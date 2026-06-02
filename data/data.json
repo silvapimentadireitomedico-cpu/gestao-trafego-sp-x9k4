@@ -1,0 +1,72 @@
+{
+  "atualizadoEm": "2026-06-02T16:39:33",
+  "mesReferencia": "2026-06",
+  "tipo": "corrente",
+  "taxa_usd": 5.016,
+  "fonte_usd": "BCB 02/06",
+  "gastos": {
+    "aux-moradia": {
+      "google": 294.92,
+      "meta": 974.91,
+      "leads_novos": 65,
+      "ganhos": 2,
+      "valor_ganhos": 7190.1
+    },
+    "fies": {
+      "google": 323.24,
+      "meta": 1650.11,
+      "leads_novos": 44,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "fies-suspensao": {
+      "google": 0.0,
+      "meta": 140.76,
+      "leads_novos": 3,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "direito-medico": {
+      "google": 257.8,
+      "meta": 0.0,
+      "leads_novos": 1,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "inss": {
+      "google": 0.0,
+      "meta": 58.51,
+      "leads_novos": 3,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "provab": {
+      "google": 0.0,
+      "meta": 15.17,
+      "leads_novos": 0,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "seguro": {
+      "google": 1596.88,
+      "meta": 0.0,
+      "leads_novos": 55,
+      "ganhos": 3,
+      "valor_ganhos": 8970.0
+    },
+    "livre-ir": {
+      "google": 0.0,
+      "meta": 0.0,
+      "leads_novos": 1,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    },
+    "seg-vida": {
+      "google": 271.44,
+      "meta": 85.26,
+      "leads_novos": 4,
+      "ganhos": 0,
+      "valor_ganhos": 0.0
+    }
+  }
+}

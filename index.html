@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silva Pimenta · Magalhães Gomes — Dashboard de Orçamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <video class="keepalive" src="keepalive.mp4" autoplay muted loop playsinline aria-hidden="true"></video>
+
+  <div class="dashboard-wrapper">
+    <div class="dashboard-container">
+      <div class="bg-decoration">
+        <div class="bg-circle bg-circle-1"></div>
+        <div class="bg-circle bg-circle-2"></div>
+      </div>
+
+      <header class="header">
+        <div class="brand">
+          <img src="logo.png" alt="Silva Pimenta" class="brand-logo">
+        </div>
+        <div class="period">
+          <div class="period-label">Orçamento Mensal · <span id="mesNome">Maio</span> <span id="anoValue">2026</span></div>
+          <div class="period-value">Dia <span id="diaAtual">—</span> de <span id="diasMes">—</span></div>
+          <div class="period-toggle">
+            <button id="btnMesCorrente" class="period-tab active" type="button">Mês corrente</button>
+            <button id="btnMesAnterior" class="period-tab" type="button">Mês anterior</button>
+          </div>
+        </div>
+        <div class="total-box">
+          <div class="total-label">Total consumido / orçado</div>
+          <div class="total-value">
+            <span id="totalGasto">R$ —</span>
+            <span class="total-sep">/</span>
+            <span class="total-budget" id="totalOrcamento">R$ —</span>
+          </div>
+          <div class="total-bar">
+            <div class="total-bar-fill" id="totalBarFill"></div>
+          </div>
+          <div class="total-meta">
+            <span id="totalPercent">—%</span>
+            <span class="total-meta-sep">·</span>
+            <span id="totalSaldo">—</span>
+          </div>
+          <div class="total-diaria-row">
+            <span class="total-diaria-label">Diária disponível</span>
+            <span class="total-diaria-value" id="totalDiaria">—</span>
+          </div>
+          <div class="total-diaria-info" id="totalDiariaInfo">—</div>
+        </div>
+      </header>
+
+      <section class="resumo-executivo" id="resumoExecutivo">
+        <div class="resumo-icon">●</div>
+        <div class="resumo-texto" id="resumoTexto">Carregando análise…</div>
+      </section>
+
+      <section class="escritorios">
+        <div class="escritorio-block">
+          <h2 class="escritorio-title">
+            <span class="escritorio-dot dot-silva"></span>
+            Silva Pimenta · Médico
+          </h2>
+          <div class="produtos-grid" id="silvaGrid"></div>
+        </div>
+
+        <div class="escritorio-block">
+          <h2 class="escritorio-title">
+            <span class="escritorio-dot dot-magalhaes"></span>
+            Magalhães Gomes · Securitário
+          </h2>
+          <div class="produtos-grid" id="magalhaesGrid"></div>
+        </div>
+      </section>
+
+      <section class="plataformas">
+        <h2 class="section-title">Gasto por Plataforma</h2>
+        <div class="plataformas-grid">
+          <div class="plataforma-card plataforma-meta">
+            <div class="plataforma-header">
+              <span class="plataforma-icon">Ⓜ</span>
+              <span class="plataforma-name">Meta Ads</span>
+            </div>
+            <div class="plataforma-value" id="metaTotal">R$ —</div>
+            <div class="plataforma-share" id="metaShare">— %</div>
+          </div>
+          <div class="plataforma-card plataforma-google">
+            <div class="plataforma-header">
+              <span class="plataforma-icon">G</span>
+              <span class="plataforma-name">Google Ads</span>
+            </div>
+            <div class="plataforma-value" id="googleTotal">R$ —</div>
+            <div class="plataforma-share" id="googleShare">— %</div>
+          </div>
+          <div class="plataforma-card plataforma-usd">
+            <div class="plataforma-header">
+              <span class="plataforma-icon">$</span>
+              <span class="plataforma-name">USD → BRL</span>
+            </div>
+            <div class="plataforma-value" id="usdRate">5,20</div>
+            <div class="plataforma-share" id="usdSource">fallback</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-today">
+          <span class="footer-today-icon">●</span>
+          <span id="footerStatus">Carregando dados…</span>
+        </div>
+        <div class="legenda">
+          <span class="legenda-item"><span class="legenda-dot ok"></span> No ritmo</span>
+          <span class="legenda-item"><span class="legenda-dot warn"></span> Atenção</span>
+          <span class="legenda-item"><span class="legenda-dot alert"></span> Estourou</span>
+          <span class="legenda-sep">·</span>
+          <span class="legenda-item"><strong>Gastando</strong> = média/dia</span>
+          <span class="legenda-item"><strong>Pode</strong> = teto/dia até fim do mês</span>
+          <span class="legenda-item"><strong>Pode +/Cortar</strong> = ajuste real</span>
+        </div>
+        <div class="footer-update">
+          Atualizado em <span id="footerTime">—</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

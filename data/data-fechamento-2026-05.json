@@ -1,0 +1,54 @@
+{
+  "_comentario": "FECHAMENTO MAIO 2026 (mês inteiro 01-31/mai). Coletado em 01/jun/2026. Google = API LAST_MONTH. Meta = CSVs BMs 01-31/mai (todos os 5 BMs, INCLUINDO Livre IR final). USD a 5,20. Livre IR encerrado em 26/mai. Arquivo IMUTÁVEL — não atualizar mais (fechamento histórico).",
+  "atualizadoEm": "2026-06-01T09:00:00-03:00",
+  "fonte": "Fechamento Maio 2026 · Google: API LAST_MONTH · Meta: CSVs 01-31/mai (5 BMs)",
+  "mesReferencia": "2026-05",
+  "tipo": "fechamento",
+  "gastos": {
+    "aux-moradia": {
+      "meta":   17653.34,
+      "google": 4110.99,
+      "_nota":  "FECHAMENTO MAI. Meta: BM EUA $1.004,32 × 5,20 = R$ 5.222,46 (97 conv, CPL $10,35) + BM BR R$ 12.430,88 (CADASTRO QUENTE R$ 11.823,08 / 132 leads CPL R$ 89,57 + TRAFEGO SITE TOPO R$ 607,80 / 844 conv). Google API: LP - Auxílio Moradia."
+    },
+    "fies": {
+      "meta":   18475.95,
+      "google": 3844.12,
+      "_nota":  "FECHAMENTO MAI. Meta: BM EUA $725,51 × 5,20 = R$ 3.772,65 (LEADS 11/03 $665,89 / 156 conv + SEMELHANTE 08/04 $59,62 / 11 conv) + BM BR R$ 14.703,30 (CADASTRO R$ 7.307,90 / 148 leads CPL R$ 49,38 + ENGAJ WHATSAPP R$ 6.456,72 / 243 conv CPL R$ 26,57 + TRAFEGO SITE R$ 938,68 / 2.944 cliques CPC R$ 0,32). Google API: Silva Pimenta [FIES]."
+    },
+    "fies-suspensao": {
+      "meta":   2729.92,
+      "google": 0,
+      "_nota":  "FECHAMENTO MAI. Meta BM BR: SUSPENSÃO CADASTRO R$ 2.729,92 (40 leads, CPL R$ 68,25). Google sem conta dedicada. ESTOUROU 148% do orçamento R$ 1.840,65."
+    },
+    "direito-medico": {
+      "meta":   0,
+      "google": 5108.57,
+      "_nota":  "FECHAMENTO MAI. Google API: LP | DIREITO MÉDICO. Meta zero (sem campanhas ativas). Apenas 34% do orçamento R$ 15.000 utilizado."
+    },
+    "inss": {
+      "meta":   734.53,
+      "google": 0,
+      "_nota":  "FECHAMENTO MAI. Meta BM BR: INSS ENGAJAMENTO WHATSAPP R$ 734,53 (34 conv, CPL R$ 21,60). Apenas 24% do orçamento R$ 3.103,86."
+    },
+    "provab": {
+      "meta":   185.33,
+      "google": 0,
+      "_nota":  "FECHAMENTO MAI. Meta BM BR: MAIS MEDICOS WHATSAPP R$ 185,33 (PROVAB = MAIS MÉDICOS). 80% do orçamento R$ 232."
+    },
+    "seguro": {
+      "meta":   0,
+      "google": 29154.33,
+      "_nota":  "FECHAMENTO MAI. Google API. Magalhães Gomes Advogados (1301598996) VIDA OUT: NEG SEGURO (BR+SP+MG) R$ 10.196,62 + NEG VEICULAR (BR+SP) R$ 11.375,15 = R$ 21.571,77. Seguro Contingência (2903149800) VIDA OUT: NEG SEGURO (BR+SP+MG) R$ 3.955,36 + NEG VEICULAR (BR+SP) R$ 3.627,19 = R$ 7.582,56. ESTOUROU 142% do orçamento R$ 20.534."
+    },
+    "livre-ir": {
+      "meta":   4152.88,
+      "google": 4812.16,
+      "_nota":  "FECHAMENTO MAI · PRODUTO ENCERRADO 26/mai. Meta BM Livre IR USD $798,63 × 5,20 = R$ 4.152,88 (LIVRE IR LEADS $467,31 / 212 conv + LivreIR Mensagens WhatsApp $228,92 / 139 conv + LivreIR Lead Form Instantâneo $102,40 / 32 leads). Google API LIVRE IR. Orçamento R$ 15.000 SAI do total mensal."
+    },
+    "seg-vida": {
+      "meta":   1863.65,
+      "google": 3586.81,
+      "_nota":  "FECHAMENTO MAI. Meta BM SP Brasil CA-02 SECURITARIO: VIDA TRAFEGO SITE FRIO R$ 1.863,65 (5.155 conv, CPL R$ 0,36). Google API: Magalhães Gomes Adv NEG VIDA R$ 1.906,64 + Seguro Contingência NEG VIDA R$ 1.680,17 = R$ 3.586,81. ESTOUROU 182% do orçamento R$ 3.000."
+    }
+  }
+}
