@@ -610,37 +610,40 @@ html, body {
 }
 .plat-row-bar { display: none; }
 
-/* ===================== PLATAFORMAS ===================== */
-.plataformas { position: relative; z-index: 1; }
+/* ===================== PLATAFORMAS (lateral direita, abaixo do Magalhães) ===================== */
+.plataformas {
+  position: relative; z-index: 1;
+  margin-top: 18px;
+}
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: var(--gold-bright);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   letter-spacing: 0.3px;
 }
 .plataformas-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 8px;
 }
 .plataforma-card {
   background: rgba(255,255,255,0.03);
   border: 1px solid var(--white-soft);
-  border-radius: 12px;
-  padding: 14px 18px;
-  display: flex; align-items: center; gap: 16px;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex; align-items: center; gap: 12px;
 }
 .plataforma-header {
-  display: flex; align-items: center; gap: 10px;
-  flex: 1;
+  display: flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
 }
 .plataforma-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
+  width: 32px; height: 32px;
+  border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   background: var(--white-soft);
 }
@@ -649,20 +652,22 @@ html, body {
 .plataforma-usd .plataforma-icon { background: rgba(74, 222, 128, 0.18); color: var(--ok); }
 
 .plataforma-name {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--white-mid);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   font-weight: 600;
 }
 .plataforma-value {
-  font-size: 26px;
+  font-size: 20px;
   font-weight: 800;
   color: var(--white);
-  letter-spacing: -0.8px;
+  letter-spacing: -0.5px;
+  margin-left: auto;
+  white-space: nowrap;
 }
 .plataforma-share {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--white-dim);
   margin-left: 6px;
 }
