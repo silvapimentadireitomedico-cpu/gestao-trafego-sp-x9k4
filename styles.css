@@ -299,7 +299,7 @@ html, body {
   border-radius: 12px;
   padding: 10px 14px;
   position: relative;
-  overflow: hidden;
+  /* overflow VISIBLE pra não cortar o bloco Meta/Google embaixo */
   transition: border-color 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -561,17 +561,17 @@ html, body {
 .produto-plats-separados {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
   margin-top: 4px;
-  padding-top: 8px;
+  padding-top: 6px;
   border-top: 1px dashed var(--white-soft);
 }
 .plat-row {
-  display: flex; flex-direction: column;
-  gap: 4px;
-  padding: 8px 10px;
+  display: flex; align-items: center;
+  gap: 6px;
+  padding: 5px 8px;
   background: rgba(255,255,255,0.03);
-  border-radius: 8px;
+  border-radius: 6px;
   border: 1px solid transparent;
 }
 .plat-row.plat-meta { border-color: rgba(96,165,250,0.25); background: rgba(37,99,235,0.06); }
@@ -580,46 +580,35 @@ html, body {
 
 .plat-row-head {
   display: flex; align-items: center;
-  font-size: 11px;
-  color: var(--white-mid);
-  gap: 6px;
+  gap: 4px;
+  flex-shrink: 0;
 }
 .plat-row-icon {
-  width: 20px; height: 20px;
-  border-radius: 5px;
+  width: 18px; height: 18px;
+  border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   font-weight: 800;
-  font-size: 12px;
+  font-size: 11px;
   flex-shrink: 0;
 }
 .plat-row.plat-meta .plat-row-icon { background: rgba(0,119,255,0.30); color: #6BAEFF; }
 .plat-row.plat-google .plat-row-icon { background: rgba(234,67,53,0.30); color: #FF6B5E; }
 .plat-row-name {
-  flex: 1;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  font-size: 11px;
+  letter-spacing: 0.4px;
+  font-size: 10px;
   text-transform: uppercase;
   color: var(--white-mid);
 }
 .plat-row-value {
   font-weight: 800;
   color: var(--white);
-  font-size: 16px;
+  font-size: 14px;
   letter-spacing: -0.3px;
-  margin-top: 2px;
-  display: block;
+  margin-left: auto;
+  white-space: nowrap;
 }
-.plat-row-bar {
-  height: 4px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 2px;
-  overflow: hidden;
-  margin-top: 4px;
-}
-.plat-row-fill { height: 100%; transition: width 0.6s ease; }
-.plat-row.plat-meta .plat-row-fill { background: linear-gradient(90deg, #2563EB, #60A5FA); }
-.plat-row.plat-google .plat-row-fill { background: linear-gradient(90deg, #DC2626, #F87171); }
+.plat-row-bar { display: none; }
 
 /* ===================== PLATAFORMAS ===================== */
 .plataformas { position: relative; z-index: 1; }
