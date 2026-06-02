@@ -249,11 +249,11 @@ function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
   const saldoCls2 = saldo < 0 ? 'alert' : (saldo < p.orcamento * 0.1 ? 'warn' : 'ok');
   const saldoValor = saldo < 0 ? '-' + fmtBRL(Math.abs(saldo)) : fmtBRL(saldo);
 
-  // Meta e Google — barras separadas com cores próprias
+  // Meta e Google — bloco lado a lado com valor destacado
   const platBars = p.plats.map(plat => {
     const v = plat === 'meta' ? gastoMeta : gastoGoogle;
     const icon = plat === 'meta' ? 'Ⓜ' : 'G';
-    const nome = plat === 'meta' ? 'Meta Ads' : 'Google Ads';
+    const nome = plat === 'meta' ? 'Meta' : 'Google';
     const cls = plat === 'meta' ? 'plat-meta' : 'plat-google';
     const percPlat = p.orcamento > 0 ? Math.min((v / p.orcamento) * 100, 100) : 0;
     const empty = v === 0 ? 'empty' : '';
@@ -262,8 +262,8 @@ function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
         <div class="plat-row-head">
           <span class="plat-row-icon">${icon}</span>
           <span class="plat-row-name">${nome}</span>
-          <span class="plat-row-value">${fmtBRL(v)}</span>
         </div>
+        <span class="plat-row-value">${fmtBRL(v)}</span>
         <div class="plat-row-bar"><div class="plat-row-fill" style="width:${percPlat}%"></div></div>
       </div>`;
   }).join('');

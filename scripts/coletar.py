@@ -53,7 +53,10 @@ def main():
     print(f"== Coletando {mes_ref} ({dt_inicio} → {dt_fim}, corrente={eh_corrente}) ==")
 
     # 1. PTAX
-    taxa_usd, fonte_usd = ptax.cotacao()
+    #    - Mês corrente: usa cotação de hoje (gasto USD do dia)
+    #    - Fechamento de mês passado: usa cotação do último dia útil do mês fechado
+    #      (assim bate com extratos contábeis e relatório Power BI)
+    taxa_usd, fonte_usd = ptax.cotacao(None if eh_corrente else dt_fim)
     print(f"PTAX: {taxa_usd:.4f} ({fonte_usd})")
 
     # 2. Google Ads
