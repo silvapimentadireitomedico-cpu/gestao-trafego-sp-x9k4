@@ -16,6 +16,9 @@ concurrency:
 jobs:
   coletar:
     runs-on: ubuntu-latest
+    # Secrets vivem no environment "production" (configurar em Settings → Environments).
+    # Deploy branches restrito a "main" → workflows em outras branches NÃO veem os secrets.
+    environment: production
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
