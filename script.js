@@ -54,8 +54,20 @@ const PRODUTOS = [
   { id: 'seg-vida',        escritorio: 'magalhaes', nome: 'Seg Vida',      orcamento:  3000.00, plats: ['meta', 'google'] }
 ];
 
-// Total considera só produtos ATIVOS (encerrados saem da régua mensal)
-const TOTAL_ORCAMENTO = PRODUTOS.filter(p => !p.encerrado).reduce((s, p) => s + p.orcamento, 0);
+// Um produto encerrado conta no total ATÉ o mês em que foi encerrado.
+// Ex: Livre IR encerrado 2026-05-26 conta em maio (gasto real) mas some em junho.
+function produtoAtivoNoMes(p, ano, mes /* 0-indexed */) {
+  if (!p.encerrado || !p.encerradoEm) return true;
+  const [anoE, mesE] = p.encerradoEm.split('-').map(Number);
+  const mesEIdx = mesE - 1; // converte 1-indexed → 0-indexed
+  if (ano < anoE) return true;
+  if (ano === anoE && mes <= mesEIdx) return true;
+  return false;
+}
+
+function totalOrcamentoNoMes(ano, mes) {
+  return PRODUTOS.filter(p => produtoAtivoNoMes(p, ano, mes)).reduce((s, p) => s + p.orcamento, 0);
+}
 
 // ============================================================
 // SCALE — manter 1920x1080 dentro de qualquer tela
@@ -110,17 +122,17 @@ function diariaDisponivel(orcamento, gasto, diasRestantes) {
   return { valor: restante / diasRestantes, estourou: restante < 0, dif: restante };
 }
 
-function renderTotal(gastoTotal, diaAtual, diasMes) {
+function renderTotal(gastoTotal, diaAtual, diasMes, totalOrcamento) {
   document.getElementById('totalGasto').textContent = fmtBRL(gastoTotal);
-  document.getElementById('totalOrcamento').textContent = fmtBRL(TOTAL_ORCAMENTO);
+  document.getElementById('totalOrcamento').textContent = fmtBRL(totalOrcamento);
 
-  const perc = (gastoTotal / TOTAL_ORCAMENTO) * 100;
+  const perc = (gastoTotal / totalOrcamento) * 100;
   const tempoPerc = (diaAtual / diasMes) * 100;
   const proj = projecao(gastoTotal, diaAtual, diasMes);
   const status = statusDoConsumo(perc, tempoPerc);
   const diasRestantes = diasMes - diaAtual + 1; // inclui hoje
-  const diaria = diariaDisponivel(TOTAL_ORCAMENTO, gastoTotal, diasRestantes);
-  const diariaIdeal = TOTAL_ORCAMENTO / diasMes;
+  const diaria = diariaDisponivel(totalOrcamento, gastoTotal, diasRestantes);
+  const diariaIdeal = totalOrcamento / diasMes;
 
   const fill = document.getElementById('totalBarFill');
   fill.style.width = Math.min(perc, 100) + '%';
@@ -130,11 +142,11 @@ function renderTotal(gastoTotal, diaAtual, diasMes) {
 
   const saldoEl = document.getElementById('totalSaldo');
   if (perc > 100) {
-    saldoEl.textContent = `Estouro: ${fmtBRL(gastoTotal - TOTAL_ORCAMENTO)}`;
+    saldoEl.textContent = `Estouro: ${fmtBRL(gastoTotal - totalOrcamento)}`;
     saldoEl.style.color = '#FCA5A5';
   } else {
     saldoEl.textContent = `Projeção mês: ${fmtBRL(proj)}`;
-    saldoEl.style.color = proj > TOTAL_ORCAMENTO * 1.05 ? '#FCA5A5' : '';
+    saldoEl.style.color = proj > totalOrcamento * 1.05 ? '#FCA5A5' : '';
   }
 
   // Diária disponível
@@ -308,13 +320,14 @@ function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
   `;
 }
 
-function renderEscritorios(dados, diaAtual, diasMes) {
+function renderEscritorios(dados, diaAtual, diasMes, ano, mes) {
   const silvaEl = document.getElementById('silvaGrid');
   const magalhaesEl = document.getElementById('magalhaesGrid');
   silvaEl.innerHTML = '';
   magalhaesEl.innerHTML = '';
 
   PRODUTOS.forEach(p => {
+    if (!produtoAtivoNoMes(p, ano, mes)) return; // some o card de produtos encerrados em meses pós-encerramento
     const g = (dados.gastos && dados.gastos[p.id]) || { meta: 0, google: 0 };
     const html = renderProdutoCard(p, g.meta || 0, g.google || 0, diaAtual, diasMes);
     if (p.escritorio === 'silva') silvaEl.insertAdjacentHTML('beforeend', html);
@@ -341,7 +354,7 @@ function renderFooter(status, atualizadoEm) {
   }
 }
 
-function renderResumoExecutivo(dados, diaAtual, diasMes) {
+function renderResumoExecutivo(dados, diaAtual, diasMes, ano, mes) {
   const el = document.getElementById('resumoTexto');
   if (!el) return;
   const ritmoMes = (diaAtual / diasMes) * 100;
@@ -350,7 +363,7 @@ function renderResumoExecutivo(dados, diaAtual, diasMes) {
   let totalOrcamento = 0;
   const folgas = [];
   const estouros = [];
-  PRODUTOS.filter(p => !p.encerrado).forEach(p => {
+  PRODUTOS.filter(p => produtoAtivoNoMes(p, ano, mes)).forEach(p => {
     const g = (dados.gastos && dados.gastos[p.id]) || { meta: 0, google: 0 };
     const gasto = (g.meta || 0) + (g.google || 0);
     const perc = (gasto / p.orcamento) * 100;
@@ -495,25 +508,23 @@ async function carregar() {
 
   const { taxa, fonte } = await buscarTaxaUSD();
 
-  // Calcular totais por plataforma — só ATIVOS entram no total mensal
-  const idsEncerrados = new Set(PRODUTOS.filter(p => p.encerrado).map(p => p.id));
+  // Totais por plataforma — produto encerrado conta no mês em que ainda estava ativo
+  const idsAtivosNoMes = new Set(
+    PRODUTOS.filter(prod => produtoAtivoNoMes(prod, p.ano, p.mes)).map(prod => prod.id)
+  );
   let totalMeta = 0, totalGoogle = 0;
-  let totalMetaEncerrado = 0, totalGoogleEncerrado = 0;
   Object.entries(dados.gastos || {}).forEach(([id, g]) => {
-    if (idsEncerrados.has(id)) {
-      totalMetaEncerrado += g.meta || 0;
-      totalGoogleEncerrado += g.google || 0;
-    } else {
-      totalMeta += g.meta || 0;
-      totalGoogle += g.google || 0;
-    }
+    if (!idsAtivosNoMes.has(id)) return; // pula produto que NÃO está ativo nesse mês
+    totalMeta += g.meta || 0;
+    totalGoogle += g.google || 0;
   });
   const gastoTotal = totalMeta + totalGoogle;
+  const totalOrcamento = totalOrcamentoNoMes(p.ano, p.mes);
 
-  renderTotal(gastoTotal, p.diaAtual, p.diasMes);
-  renderEscritorios(dados, p.diaAtual, p.diasMes);
+  renderTotal(gastoTotal, p.diaAtual, p.diasMes, totalOrcamento);
+  renderEscritorios(dados, p.diaAtual, p.diasMes, p.ano, p.mes);
   renderPlataformas(totalMeta, totalGoogle, taxa, fonte);
-  renderResumoExecutivo(dados, p.diaAtual, p.diasMes);
+  renderResumoExecutivo(dados, p.diaAtual, p.diasMes, p.ano, p.mes, totalOrcamento);
 
   // Comparativo vs mês anterior (só no modo corrente)
   if (modoAtivo === 'corrente') {
