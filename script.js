@@ -164,8 +164,9 @@ function renderTotal(gastoTotal, diaAtual, diasMes, totalOrcamento) {
   }
 }
 
-function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
+function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes, orcamentoDiario) {
   const gasto = gastoMeta + gastoGoogle;
+  orcamentoDiario = Number(orcamentoDiario) || 0;
 
   // Produto encerrado: render simplificado, sem métricas diárias nem barra
   if (p.encerrado) {
@@ -261,6 +262,13 @@ function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
   const saldoCls2 = saldo < 0 ? 'alert' : (saldo < p.orcamento * 0.1 ? 'warn' : 'ok');
   const saldoValor = saldo < 0 ? '-' + fmtBRL(Math.abs(saldo)) : fmtBRL(saldo);
 
+  // Métrica 5: Orçamento Diário (soma dos daily_budget configurados nas campanhas ATIVAS)
+  // Compara com o ritmo ideal pra alertar se configuração excede o que dá pra gastar
+  const orcRatio = gastoIdeal > 0 ? orcamentoDiario / gastoIdeal : 0;
+  const orcCls = orcamentoDiario === 0
+    ? 'neutral'
+    : orcRatio > 1.15 ? 'alert' : (orcRatio > 1.05 ? 'warn' : 'ok');
+
   // Meta e Google — bloco lado a lado com valor destacado
   const platBars = p.plats.map(plat => {
     const v = plat === 'meta' ? gastoMeta : gastoGoogle;
@@ -314,6 +322,10 @@ function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes) {
           <span class="metric-label">${ajusteLabel}</span>
           <span class="metric-value">${ajusteValor}${ajusteValor !== 'Em linha' ? '<span class="metric-unit">/dia</span>' : ''}</span>
         </div>
+        <div class="metric metric-${orcCls}" title="Orçamento Diário Configurado: soma dos daily_budget definidos nas campanhas/conjuntos ATIVOS hoje. Compara com o ritmo ideal (orçamento mensal ÷ dias do mês) — se vermelho, configuração está acima do que dá pra gastar sem estourar.">
+          <span class="metric-label">Orç. Dia</span>
+          <span class="metric-value">${fmtBRL(orcamentoDiario)}<span class="metric-unit">/dia</span></span>
+        </div>
       </div>
       <div class="produto-plats-separados">${platBars}</div>
     </div>
@@ -329,7 +341,7 @@ function renderEscritorios(dados, diaAtual, diasMes, ano, mes) {
   PRODUTOS.forEach(p => {
     if (!produtoAtivoNoMes(p, ano, mes)) return; // some o card de produtos encerrados em meses pós-encerramento
     const g = (dados.gastos && dados.gastos[p.id]) || { meta: 0, google: 0 };
-    const html = renderProdutoCard(p, g.meta || 0, g.google || 0, diaAtual, diasMes);
+    const html = renderProdutoCard(p, g.meta || 0, g.google || 0, diaAtual, diasMes, g.orcamento_diario || 0);
     if (p.escritorio === 'silva') silvaEl.insertAdjacentHTML('beforeend', html);
     else magalhaesEl.insertAdjacentHTML('beforeend', html);
   });

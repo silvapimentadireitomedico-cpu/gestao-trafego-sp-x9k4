@@ -83,7 +83,23 @@ def main():
         print(f"  ERRO Pipedrive: {e}")
         pipe = {}
 
-    # 5. Monta payload final
+    # 5. Orçamento Diário CONFIGURADO (daily_budget das campanhas/adsets ACTIVE)
+    # Só faz sentido pro mês corrente — pra mês fechado, ignora (não há "previsto")
+    orc_diario_google = {}
+    orc_diario_meta = {}
+    if eh_corrente:
+        print("Orçamento diário Google...")
+        try:
+            orc_diario_google = google_ads.coletar_orcamento_diario()
+        except Exception as e:
+            print(f"  ERRO orc-diario Google: {e}")
+        print("Orçamento diário Meta...")
+        try:
+            orc_diario_meta = meta_ads.coletar_orcamento_diario(taxa_usd)
+        except Exception as e:
+            print(f"  ERRO orc-diario Meta: {e}")
+
+    # 6. Monta payload final
     produtos = [
         "aux-moradia", "fies", "fies-suspensao", "direito-medico",
         "inss", "provab", "seguro", "livre-ir", "seg-vida",
@@ -93,12 +109,17 @@ def main():
         g = round(gads.get(slug, 0.0), 2)
         m = round(meta.get(slug, 0.0), 2)
         p = pipe.get(slug, {})
+        og = round(orc_diario_google.get(slug, 0.0), 2)
+        om = round(orc_diario_meta.get(slug, 0.0), 2)
         gastos[slug] = {
             "google": g,
             "meta": m,
             "leads_novos": p.get("leads_novos", 0),
             "ganhos": p.get("ganhos", 0),
             "valor_ganhos": round(p.get("valor_ganhos", 0.0), 2),
+            "orcamento_diario_google": og,
+            "orcamento_diario_meta": om,
+            "orcamento_diario": round(og + om, 2),
         }
 
     saida = {

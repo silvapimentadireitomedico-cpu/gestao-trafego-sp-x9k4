@@ -506,26 +506,26 @@ html, body {
 .produto-bar-fill.warn { background: linear-gradient(90deg, #F59E0B, var(--warn)); }
 .produto-bar-fill.alert { background: linear-gradient(90deg, var(--alert-deep), var(--alert)); }
 
-/* Grid de 3 métricas: Gastando | Pode gastar | Ajuste (saldo foi pro topo) */
+/* Grid de 4 métricas: Gastando | Pode | Ajuste | Orç. Dia */
 .produto-metrics {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 5px;
   margin-top: 2px;
 }
 .metric {
   display: flex; flex-direction: column;
-  padding: 6px 9px;
+  padding: 5px 7px;
   background: rgba(255,255,255,0.04);
   border-radius: 6px;
   border-left: 3px solid rgba(255,255,255,0.15);
   min-width: 0;
 }
 .metric-label {
-  font-size: 10px;
+  font-size: 9px;
   color: var(--white-mid);
   text-transform: uppercase;
-  letter-spacing: 0.7px;
+  letter-spacing: 0.6px;
   font-weight: 600;
   margin-bottom: 2px;
   white-space: nowrap;
@@ -533,7 +533,7 @@ html, body {
   text-overflow: ellipsis;
 }
 .metric-value {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 800;
   color: var(--white);
   letter-spacing: -0.3px;

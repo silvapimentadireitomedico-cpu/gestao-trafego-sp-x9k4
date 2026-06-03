@@ -110,10 +110,121 @@ def coletar(since: str, until: str, taxa_usd: float = 5.20) -> dict[str, float]:
     return saida
 
 
+def _slug_pra_regra(regra: str, nome_campanha: str) -> str | None:
+    """Resolve produto baseado na regra da conta."""
+    if regra == "all_aux": return "aux-moradia"
+    if regra == "all_fies": return "fies"
+    if regra == "all_seg_vida": return "seg-vida"
+    if regra == "all_livre_ir": return "livre-ir"
+    if regra == "by_name_brasil":
+        return _slug_por_nome(nome_campanha)
+    return None
+
+
+def _adsets_ativos(act: str, token: str) -> list[dict]:
+    """Retorna adsets ACTIVE com daily_budget > 0 e campaign{name}."""
+    params = {
+        "access_token": token,
+        "fields": "name,daily_budget,effective_status,campaign{name,id,effective_status}",
+        "effective_status": '["ACTIVE"]',
+        "limit": 500,
+    }
+    url = f"{GRAPH}/{act}/adsets?{urllib.parse.urlencode(params)}"
+    body = _http_get(url)
+    out = []
+    for row in body.get("data") or []:
+        camp = row.get("campaign") or {}
+        # Campanha mãe também precisa estar ACTIVE
+        if (camp.get("effective_status") or "").upper() != "ACTIVE":
+            continue
+        daily = row.get("daily_budget")
+        if not daily:
+            continue
+        out.append({
+            "adset_name": row.get("name") or "",
+            "campaign_name": camp.get("name") or "",
+            "daily_centavos": int(daily),  # vem em centavos da moeda da conta
+        })
+    return out
+
+
+def _campaigns_com_cbo(act: str, token: str) -> list[dict]:
+    """Campanhas ACTIVE com daily_budget direto (CBO — Campaign Budget Optimization)."""
+    params = {
+        "access_token": token,
+        "fields": "name,daily_budget,effective_status",
+        "effective_status": '["ACTIVE"]',
+        "limit": 500,
+    }
+    url = f"{GRAPH}/{act}/campaigns?{urllib.parse.urlencode(params)}"
+    body = _http_get(url)
+    out = []
+    for row in body.get("data") or []:
+        daily = row.get("daily_budget")
+        if not daily:
+            continue
+        out.append({
+            "campaign_name": row.get("name") or "",
+            "daily_centavos": int(daily),
+        })
+    return out
+
+
+def coletar_orcamento_diario(taxa_usd: float = 5.20) -> dict[str, float]:
+    """Soma daily_budget de adsets + campanhas com CBO, em BRL, por produto.
+
+    Cuidado pra não duplicar: se a campanha já tem daily_budget (CBO ligado),
+    os adsets dela não devem ter (Meta API valida isso). Então é seguro somar os dois.
+    """
+    saida: dict[str, float] = {
+        "aux-moradia": 0.0, "fies": 0.0, "fies-suspensao": 0.0,
+        "direito-medico": 0.0, "inss": 0.0, "provab": 0.0,
+        "seguro": 0.0, "livre-ir": 0.0, "seg-vida": 0.0,
+    }
+
+    for act, (token_var, moeda, regra) in CONTAS.items():
+        token = os.environ.get(token_var)
+        if not token:
+            continue
+
+        # 1) Adsets ativos (caso mais comum — CBO desligado)
+        try:
+            for a in _adsets_ativos(act, token):
+                slug = _slug_pra_regra(regra, a["campaign_name"])
+                if not slug:
+                    continue
+                valor_brl = (a["daily_centavos"] / 100.0)
+                if moeda == "USD":
+                    valor_brl *= taxa_usd
+                saida[slug] += valor_brl
+        except Exception as e:
+            print(f"  WARN Meta orc-diario adsets {act}: {e}")
+
+        # 2) Campanhas com CBO ligado
+        try:
+            for c in _campaigns_com_cbo(act, token):
+                slug = _slug_pra_regra(regra, c["campaign_name"])
+                if not slug:
+                    continue
+                valor_brl = (c["daily_centavos"] / 100.0)
+                if moeda == "USD":
+                    valor_brl *= taxa_usd
+                saida[slug] += valor_brl
+        except Exception as e:
+            print(f"  WARN Meta orc-diario campaigns {act}: {e}")
+
+    return saida
+
+
 if __name__ == "__main__":
     import sys
-    if len(sys.argv) < 3:
-        print("Uso: python meta_ads.py YYYY-MM-DD YYYY-MM-DD [taxa_usd=5.20]")
-        sys.exit(1)
-    taxa = float(sys.argv[3]) if len(sys.argv) > 3 else 5.20
-    print(json.dumps(coletar(sys.argv[1], sys.argv[2], taxa), indent=2))
+    if len(sys.argv) >= 2 and sys.argv[1] == "--orc":
+        taxa = float(sys.argv[2]) if len(sys.argv) > 2 else 5.20
+        print(json.dumps(coletar_orcamento_diario(taxa), indent=2))
+    else:
+        if len(sys.argv) < 3:
+            print("Uso: python meta_ads.py YYYY-MM-DD YYYY-MM-DD [taxa_usd=5.20]")
+            print("     python meta_ads.py --orc [taxa_usd=5.20]")
+            sys.exit(1)
+        taxa = float(sys.argv[3]) if len(sys.argv) > 3 else 5.20
+        print(json.dumps(coletar(sys.argv[1], sys.argv[2], taxa), indent=2))

@@ -102,12 +102,80 @@ def coletar(date_range: str = "THIS_MONTH", since: str | None = None, until: str
     return saida
 
 
+def _budgets_diarios(client: GoogleAdsClient, customer_id: str) -> list[tuple[str, str, float]]:
+    """Retorna [(nome_campanha, budget_id, daily_brl)] das campanhas ENABLED.
+    Budget no Google Ads pode ser COMPARTILHADO — então deduplica por budget_id depois.
+    """
+    svc = client.get_service("GoogleAdsService")
+    query = """
+        SELECT
+            campaign.name,
+            campaign.status,
+            campaign_budget.id,
+            campaign_budget.amount_micros,
+            campaign_budget.period
+        FROM campaign
+        WHERE campaign.status = 'ENABLED'
+    """
+    out = []
+    for row in svc.search(customer_id=customer_id, query=query):
+        # period: DAILY ou CUSTOM_PERIOD. Só conta DAILY (CUSTOM_PERIOD ignorado).
+        period_name = row.campaign_budget.period.name if row.campaign_budget.period else ""
+        if period_name != "DAILY":
+            continue
+        nome = row.campaign.name or ""
+        bid = str(row.campaign_budget.id)
+        daily = (row.campaign_budget.amount_micros or 0) / 1_000_000
+        out.append((nome, bid, daily))
+    return out
+
+
+def coletar_orcamento_diario() -> dict[str, float]:
+    """Soma daily_budget das campanhas ENABLED por produto.
+    Deduplica budgets compartilhados.
+    """
+    saida: dict[str, float] = {slug: 0.0 for slug in CONTAS_DIRETAS.values()}
+    saida["seguro"] = 0.0
+    saida["seg-vida"] = 0.0
+
+    client = _client()
+
+    # Contas diretas: budget vai todo pro produto da conta
+    for cid, slug in CONTAS_DIRETAS.items():
+        try:
+            vistos = set()  # dedupe budgets dentro da MESMA conta
+            for nome, bid, daily in _budgets_diarios(client, cid):
+                if bid in vistos:
+                    continue
+                vistos.add(bid)
+                saida[slug] += daily
+        except Exception as e:
+            print(f"  WARN Google orc-diario {slug} ({cid}): {e}")
+
+    # Contas seguro: split por nome (VIDA → seg-vida, resto → seguro)
+    for cid in CONTAS_SEGURO:
+        try:
+            vistos = set()
+            for nome, bid, daily in _budgets_diarios(client, cid):
+                if bid in vistos:
+                    continue
+                vistos.add(bid)
+                slug = "seg-vida" if "VIDA" in nome.upper() else "seguro"
+                saida[slug] += daily
+        except Exception as e:
+            print(f"  WARN Google orc-diario seguro ({cid}): {e}")
+
+    return saida
+
+
 if __name__ == "__main__":
     import json
     import sys
-    arg = sys.argv[1] if len(sys.argv) > 1 else "THIS_MONTH"
-    if "-" in arg and len(arg) == 10:
-        # YYYY-MM-DD YYYY-MM-DD
-        print(json.dumps(coletar(since=sys.argv[1], until=sys.argv[2]), indent=2))
+    if len(sys.argv) >= 2 and sys.argv[1] == "--orc":
+        print(json.dumps(coletar_orcamento_diario(), indent=2))
     else:
-        print(json.dumps(coletar(date_range=arg), indent=2))
+        arg = sys.argv[1] if len(sys.argv) > 1 else "THIS_MONTH"
+        if "-" in arg and len(arg) == 10:
+            print(json.dumps(coletar(since=sys.argv[1], until=sys.argv[2]), indent=2))
+        else:
+            print(json.dumps(coletar(date_range=arg), indent=2))
