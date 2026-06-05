@@ -1,24 +1,24 @@
 {
-  "atualizadoEm": "2026-06-05T15:36:38",
+  "atualizadoEm": "2026-06-05T18:01:30",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
-  "taxa_usd": 5.0415,
-  "fonte_usd": "BCB 03/06/2026",
+  "taxa_usd": 5.1244,
+  "fonte_usd": "BCB 05/06/2026",
   "gastos": {
     "aux-moradia": {
       "google": 294.92,
       "meta": 0.0,
-      "leads_novos": 101,
-      "ganhos": 3,
-      "valor_ganhos": 8985.6,
+      "leads_novos": 109,
+      "ganhos": 4,
+      "valor_ganhos": 12975.6,
       "orcamento_diario_google": 140.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 140.0
     },
     "fies": {
-      "google": 692.39,
+      "google": 703.61,
       "meta": 0.0,
-      "leads_novos": 56,
+      "leads_novos": 66,
       "ganhos": 3,
       "valor_ganhos": 9873.0,
       "orcamento_diario_google": 127.0,
@@ -36,7 +36,7 @@
       "orcamento_diario": 0.0
     },
     "direito-medico": {
-      "google": 533.78,
+      "google": 565.91,
       "meta": 0.0,
       "leads_novos": 1,
       "ganhos": 1,
@@ -48,7 +48,7 @@
     "inss": {
       "google": 0.0,
       "meta": 0.0,
-      "leads_novos": 3,
+      "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
       "orcamento_diario_google": 0.0,
@@ -66,9 +66,9 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 3969.19,
+      "google": 4209.83,
       "meta": 0.0,
-      "leads_novos": 118,
+      "leads_novos": 121,
       "ganhos": 10,
       "valor_ganhos": 28900.0,
       "orcamento_diario_google": 1075.0,
@@ -78,7 +78,7 @@
     "livre-ir": {
       "google": 0.0,
       "meta": 0.0,
-      "leads_novos": 21,
+      "leads_novos": 23,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 0.0,
