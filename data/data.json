@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-05T22:03:41",
+  "atualizadoEm": "2026-06-05T23:47:53",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1244,
@@ -36,7 +36,7 @@
       "orcamento_diario": 0.0
     },
     "direito-medico": {
-      "google": 628.8,
+      "google": 670.55,
       "meta": 0.0,
       "leads_novos": 1,
       "ganhos": 1,
@@ -66,9 +66,9 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 4584.88,
+      "google": 4650.02,
       "meta": 0.0,
-      "leads_novos": 123,
+      "leads_novos": 125,
       "ganhos": 12,
       "valor_ganhos": 37880.0,
       "orcamento_diario_google": 1075.0,
@@ -86,7 +86,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 510.83,
+      "google": 528.53,
       "meta": 0.0,
       "leads_novos": 10,
       "ganhos": 0,
