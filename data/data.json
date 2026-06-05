@@ -1,9 +1,9 @@
 {
-  "atualizadoEm": "2026-06-04T23:47:23",
+  "atualizadoEm": "2026-06-05T04:20:52",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
-  "taxa_usd": 5.0415,
-  "fonte_usd": "BCB 03/06/2026",
+  "taxa_usd": 5.2,
+  "fonte_usd": "fallback",
   "gastos": {
     "aux-moradia": {
       "google": 294.92,
@@ -36,7 +36,7 @@
       "orcamento_diario": 0.0
     },
     "direito-medico": {
-      "google": 474.9,
+      "google": 524.94,
       "meta": 0.0,
       "leads_novos": 1,
       "ganhos": 1,
@@ -66,9 +66,9 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 3341.44,
+      "google": 3417.23,
       "meta": 0.0,
-      "leads_novos": 99,
+      "leads_novos": 103,
       "ganhos": 10,
       "valor_ganhos": 28900.0,
       "orcamento_diario_google": 1075.0,
@@ -86,7 +86,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 447.92,
+      "google": 451.76,
       "meta": 0.0,
       "leads_novos": 6,
       "ganhos": 0,
