@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-06T07:34:01",
+  "atualizadoEm": "2026-06-06T10:11:36",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1244,
@@ -16,7 +16,7 @@
       "orcamento_diario": 140.0
     },
     "fies": {
-      "google": 777.34,
+      "google": 781.95,
       "meta": 0.0,
       "leads_novos": 75,
       "ganhos": 3,
@@ -66,7 +66,7 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 4765.35,
+      "google": 4773.39,
       "meta": 0.0,
       "leads_novos": 125,
       "ganhos": 12,
