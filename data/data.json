@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-08T01:41:58",
+  "atualizadoEm": "2026-06-08T06:51:58",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1244,
@@ -66,9 +66,9 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 6092.96,
+      "google": 6152.85,
       "meta": 0.0,
-      "leads_novos": 147,
+      "leads_novos": 148,
       "ganhos": 12,
       "valor_ganhos": 37880.0,
       "orcamento_diario_google": 1075.0,
@@ -78,7 +78,7 @@
     "livre-ir": {
       "google": 0.0,
       "meta": 0.0,
-      "leads_novos": 31,
+      "leads_novos": 32,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 0.0,
@@ -86,7 +86,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 673.9,
+      "google": 714.64,
       "meta": 0.0,
       "leads_novos": 10,
       "ganhos": 0,
