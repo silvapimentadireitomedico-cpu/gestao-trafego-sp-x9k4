@@ -32,8 +32,8 @@
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 0.0,
-      "orcamento_diario_meta": 90.0,
-      "orcamento_diario": 90.0
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 0.0
     },
     "direito-medico": {
       "google": 1426.47,
@@ -52,8 +52,8 @@
       "ganhos": 1,
       "valor_ganhos": 1990.0,
       "orcamento_diario_google": 0.0,
-      "orcamento_diario_meta": 24.0,
-      "orcamento_diario": 24.0
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 0.0
     },
     "provab": {
       "google": 0.0,
@@ -62,8 +62,8 @@
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 0.0,
-      "orcamento_diario_meta": 6.0,
-      "orcamento_diario": 6.0
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 0.0
     },
     "seguro": {
       "google": 7180.19,
@@ -92,8 +92,8 @@
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 308.0,
-      "orcamento_diario_meta": 60.0,
-      "orcamento_diario": 368.0
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 308.0
     }
   }
 }
