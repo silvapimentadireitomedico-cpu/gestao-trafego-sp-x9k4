@@ -1,23 +1,23 @@
 {
-  "atualizadoEm": "2026-06-08T17:27:54",
+  "atualizadoEm": "2026-06-08T21:24:01",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1695,
   "fonte_usd": "BCB 08/06/2026",
   "gastos": {
     "aux-moradia": {
-      "google": 294.92,
-      "meta": 4907.23,
-      "leads_novos": 149,
-      "ganhos": 6,
-      "valor_ganhos": 19556.6,
+      "google": 325.26,
+      "meta": 4932.62,
+      "leads_novos": 150,
+      "ganhos": 7,
+      "valor_ganhos": 26541.6,
       "orcamento_diario_google": 140.0,
       "orcamento_diario_meta": 830.41,
       "orcamento_diario": 970.41
     },
     "fies": {
       "google": 1180.11,
-      "meta": 6660.13,
+      "meta": 6691.84,
       "leads_novos": 111,
       "ganhos": 4,
       "valor_ganhos": 14863.0,
@@ -27,7 +27,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 678.74,
+      "meta": 679.87,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -36,7 +36,7 @@
       "orcamento_diario": 90.0
     },
     "direito-medico": {
-      "google": 1426.47,
+      "google": 1459.26,
       "meta": 0.0,
       "leads_novos": 3,
       "ganhos": 1,
@@ -47,7 +47,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 192.56,
+      "meta": 193.72,
       "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
@@ -57,7 +57,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 51.17,
+      "meta": 51.68,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -66,9 +66,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 7184.99,
+      "google": 7335.25,
       "meta": 0.0,
-      "leads_novos": 171,
+      "leads_novos": 173,
       "ganhos": 12,
       "valor_ganhos": 37880.0,
       "orcamento_diario_google": 1075.0,
@@ -86,8 +86,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 1065.54,
-      "meta": 456.6,
+      "google": 1068.63,
+      "meta": 458.91,
       "leads_novos": 15,
       "ganhos": 0,
       "valor_ganhos": 0.0,
