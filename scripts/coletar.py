@@ -15,7 +15,7 @@ import json
 import os
 import sys
 from calendar import monthrange
-from datetime import date, datetime
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 # import dos módulos vizinhos
@@ -123,7 +123,8 @@ def main():
         }
 
     saida = {
-        "atualizadoEm": datetime.now().isoformat(timespec="seconds"),
+        # UTC com sufixo Z — JS converte pra timezone local (BRT) sem ambiguidade
+        "atualizadoEm": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "mesReferencia": mes_ref,
         "tipo": "corrente" if eh_corrente else "fechamento",
         "taxa_usd": round(taxa_usd, 4),
