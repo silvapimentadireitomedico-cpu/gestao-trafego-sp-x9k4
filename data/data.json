@@ -1,13 +1,13 @@
 {
-  "atualizadoEm": "2026-06-10T21:18:29Z",
+  "atualizadoEm": "2026-06-10T23:01:44Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1763,
   "fonte_usd": "BCB 10/06/2026",
   "gastos": {
     "aux-moradia": {
-      "google": 614.65,
-      "meta": 6219.49,
+      "google": 674.63,
+      "meta": 6280.06,
       "leads_novos": 172,
       "ganhos": 10,
       "valor_ganhos": 33714.6,
@@ -16,18 +16,18 @@
       "orcamento_diario": 970.94
     },
     "fies": {
-      "google": 1467.83,
-      "meta": 8340.99,
+      "google": 1481.44,
+      "meta": 8400.21,
       "leads_novos": 138,
-      "ganhos": 5,
-      "valor_ganhos": 19354.0,
-      "orcamento_diario_google": 0.0,
+      "ganhos": 6,
+      "valor_ganhos": 22045.0,
+      "orcamento_diario_google": 127.0,
       "orcamento_diario_meta": 809.61,
-      "orcamento_diario": 809.61
+      "orcamento_diario": 936.61
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 861.11,
+      "meta": 867.37,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -36,7 +36,7 @@
       "orcamento_diario": 90.0
     },
     "direito-medico": {
-      "google": 1822.97,
+      "google": 1843.01,
       "meta": 0.0,
       "leads_novos": 4,
       "ganhos": 3,
@@ -47,7 +47,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 259.33,
+      "meta": 260.54,
       "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
@@ -57,7 +57,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 66.56,
+      "meta": 66.78,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 2241.0,
@@ -66,7 +66,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 9907.41,
+      "google": 9971.24,
       "meta": 0.0,
       "leads_novos": 215,
       "ganhos": 18,
@@ -87,7 +87,7 @@
     },
     "seg-vida": {
       "google": 1359.69,
-      "meta": 578.64,
+      "meta": 583.26,
       "leads_novos": 19,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
