@@ -191,7 +191,7 @@ const DATA = [
   stack:"Digisac webhook → Worker Cloudflare (filtro grátis, sp-tag-lead-filter-x7k2.pages.dev) → Make.com → Pipedrive API",
   vive:["marketing/operacao/HANDOFF-automacao-make.md  ← DOC COMPLETA","Worker: marketing/operacao/tag-lead-filter/_worker.js","Cenário 5338155 · API: MAKE_API_TOKEN no .env · backups do blueprint em marketing/operacao/backups/"],
   exec:"Roda sozinha. UPGRADE 11/06 aplicado via API: (1) worker filtra mensagens nossas/orgânicas ANTES do Make (corta créditos); (2) lead novo SEM código (template apagado/falha de criptografia) agora é cadastrado direto: Sem Funil, título \"(ORIGEM A CONFIRMAR)\"; (3) leads Google Ads das LPs Direito Médico saem com ORIGEM=Google Ads + NÚMERO DM-XXX + fix do bug do Abatimento; (4) timeout HTTP 120s. ⚠️ Mudou o regex no Make → mudar também no _worker.js.",
-  pend:["Rodar TESTE pós-aplicação (4 frases LP + template Abatimento + nº já cadastrado)","Avisar SDRs (texto pronto no HANDOFF)","Testar WhatsApp 4224 (Meta API) com lead real","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes"]
+  pend:["Avisar SDRs (texto pronto no HANDOFF)","Testar WhatsApp 4224 (Meta API) com lead real","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes","Decidir: desativar webhook Digisac antigo \"MAKE\" (fev/2025, aponta pra hook inexistente)"]
 },
 {
   id:2, title:"Form LP v2 Aux. Moradia → Pipedrive (Cloudflare)", cat:"Atendimento & Leads", status:"live",
