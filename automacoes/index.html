@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -190,7 +190,7 @@ const DATA = [
   fluxo:"Anúncio Meta (wa.me + template)\n  → Digisac (silvapimenta.digisac.app) → webhook → Make (9 módulos)\n  → regex PRODUTO + NÚMERO → HTTP telefone real → Search Pipedrive\n  → Rota A (existe): Update Person | Rota B (novo): Create Person + Deal",
   stack:"Digisac webhook → Worker Cloudflare (filtro grátis, sp-tag-lead-filter-x7k2.pages.dev) → Make.com → Pipedrive API",
   vive:["marketing/operacao/HANDOFF-automacao-make.md  ← DOC COMPLETA","Worker: marketing/operacao/tag-lead-filter/_worker.js","Cenário 5338155 · API: MAKE_API_TOKEN no .env · backups do blueprint em marketing/operacao/backups/"],
-  exec:"Roda sozinha. UPGRADE 11/06 aplicado via API: (1) worker filtra mensagens nossas/orgânicas ANTES do Make (corta créditos); (2) lead novo SEM código (template apagado/falha de criptografia) agora é cadastrado direto: Sem Funil, título \"(ORIGEM A CONFIRMAR)\"; (3) leads Google Ads das LPs Direito Médico saem com ORIGEM=Google Ads + NÚMERO DM-XXX + fix do bug do Abatimento; (4) timeout HTTP 120s; (5) frase-padrão do Meta (\"Tenho interesse e queria mais informações\", botão do perfil IG) reconhecida → ORIGEM=Meta Orgânico + NÚMERO=PERFIL-META. ⚠️ Mudou o regex no Make → mudar também no _worker.js.",
+  exec:"Roda sozinha. UPGRADE 11/06 aplicado via API: (1) worker filtra mensagens nossas/orgânicas ANTES do Make (corta créditos); (2) lead novo SEM código (template apagado/falha de criptografia) agora é cadastrado direto: Sem Funil, título \"(ORIGEM A CONFIRMAR)\"; (3) leads Google Ads das LPs Direito Médico saem com ORIGEM=Google Ads + NÚMERO DM-XXX + fix do bug do Abatimento; (4) timeout HTTP 120s; (5) frase-padrão do Meta (\"Tenho interesse e queria mais informações\", botão do perfil IG) reconhecida → ORIGEM=Meta Orgânico + NÚMERO=PERFIL-META; (6) todo lead novo gera comentário interno amarelo no Digisac com funil/responsável/pessoa/negócio/link do deal. ⚠️ Mudou o regex no Make → mudar também no _worker.js.",
   pend:["Avisar SDRs (texto pronto no HANDOFF)","Testar WhatsApp 4224 (Meta API) com lead real","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes","Decidir: desativar webhook Digisac antigo \"MAKE\" (fev/2025, aponta pra hook inexistente)"]
 },
 {
