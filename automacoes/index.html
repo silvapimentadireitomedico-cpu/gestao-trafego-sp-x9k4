@@ -189,31 +189,31 @@ const DATA = [
   oque:"Quando um lead clica num anúncio Meta e manda a mensagem-template no WhatsApp (ex: \"...por favor. 64\"), o Make intercepta via webhook do Digisac, extrai por regex o produto e o número do conjunto, busca o telefone real, procura a pessoa no Pipedrive e: se existe, atualiza os campos; se é nova, cria pessoa + deal no funil do produto com o dono certo (Rodrigo/Yago/Emmanuel/Maria Eduarda). Cobre ~91% dos leads Meta e elimina o tagging manual do SDR.",
   fluxo:"Anúncio Meta (wa.me + template)\n  → Digisac (silvapimenta.digisac.app) → webhook → Make (9 módulos)\n  → regex PRODUTO + NÚMERO → HTTP telefone real → Search Pipedrive\n  → Rota A (existe): Update Person | Rota B (novo): Create Person + Deal",
   stack:"Digisac webhook · Make.com (~25k créditos/mês) · Pipedrive API",
-  vive:["marketing/operacao/HANDOFF-automacao-make.md  ← DOC COMPLETA","marketing/operacao/automacao-tag-lead-make.md (blueprint)","Cenário: us2.make.com/436138/scenarios/5338155"],
-  exec:"Roda sozinha (Scheduling ON). Teste: mandar WhatsApp com \"...por favor. 64\" → pessoa sai no Pipedrive com NÚMERO=64 e ORIGEM=Meta Ads. Logs: HISTORY do cenário no Make.",
-  pend:["Monitorar 24-48h pós-religada","Avisar SDRs (texto pronto no HANDOFF)","Validar campos no Pipedrive","Testar WhatsApp 4224 (Meta API) com lead real","Confirmar que não duplica com o Cadastro (#03)","PREENCHER ORIGEM pros ~8% sem template","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes"]
+  vive:["marketing/operacao/HANDOFF-automacao-make.md  ← DOC COMPLETA","Cenário 5338155: us2.make.com/436138 · API: MAKE_API_TOKEN no .env","Backup blueprint: marketing/operacao/backups/ (11/06)"],
+  exec:"Roda sozinha (Scheduling ON). Teste: mandar WhatsApp com \"...por favor. 64\" → pessoa sai no Pipedrive com NÚMERO=64 e ORIGEM=Meta Ads. Logs: HISTORY no Make ou via API. Incidente 11/06: timeout 40s no HTTP Digisac desativou o cenário; religado via API no mesmo dia.",
+  pend:["Aplicar Rota \"lead novo SEM código\" (cadastro direto — desenhada no HANDOFF)","Aplicar extensão Google Ads LPs Direito Médico + fix bug \"Abatimento do FIES\" caindo no fallback","Subir timeout do módulo HTTP 40s→120s (mitigação incidente 11/06)","Avisar SDRs (texto pronto no HANDOFF)","Testar WhatsApp 4224 (Meta API) com lead real","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes"]
 },
 {
-  id:2, title:"Make · Form LP v2 Auxílio Moradia", cat:"Atendimento & Leads", status:"live",
-  valid:"Validado 25/05/2026 em produção",
-  tagline:"Submit do form Elementor da LP v2 → Pipedrive com Lead etiquetado + Note com os 9 campos de qualificação.",
-  oque:"Cada envio do formulário da LP /auxilio-moradia-medico-v2/ dispara um webhook no Make que cria a Person no Pipedrive, abre um Lead com label AUXÍLIO MORADIA e anexa uma Note com os 9 campos extras (especialização, instituição, início/fim da residência, status) + metadados de origem. O SDR vê na Lead Inbox e converte em deal.",
-  fluxo:"Form Elementor Pro (9 campos)\n  → Webhook \"WEBHOOK | GOOGLE | LP V2 | AUXÍLIO MORADIA\"\n  → Pipedrive: Person → Lead (label AUX MORADIA) → Note (9 campos + metadados)",
-  stack:"Elementor Form Pro · Make.com · Pipedrive",
-  vive:["marketing/lp-rebuild/auxilio-moradia-2026-05-13/ (GUIA-FORM-ELEMENTOR.md)","_contexto/atividades-recentes.md (25/05) ← mapa dos field_*"],
-  exec:"Roda sozinha por submit. Teste: enviar o form → lead na Lead Inbox com a Note. Atenção: se o Thainar editar o form no Elementor, os IDs field_* mudam e o mapeamento quebra.",
-  pend:[]
+  id:2, title:"Form LP v2 Aux. Moradia → Pipedrive (Cloudflare)", cat:"Atendimento & Leads", status:"live",
+  valid:"Arquitetura nova desde 01/06 · confirmada 11/06 via API + código",
+  tagline:"Form da LP v2 dispara e-mail (Web3Forms) + lead direto no Pipedrive via Pages Function /api/lead + conversão Google.",
+  oque:"ATENÇÃO: a arquitetura MUDOU em 01/06. A LP migrou do WordPress/Elementor pro Cloudflare Pages, no mesmo padrão das LPs de Direito Médico: o submit manda e-mail via Web3Forms, cria o lead direto no Pipedrive pela Pages Function /api/lead (mesmo domínio, sem CORS), dispara a conversão Google Ads e abre o WhatsApp. O cenário Make antigo (5183050, webhook LP V2) ficou OBSOLETO e está desativado; os 4 itens na fila dele são testes do dia da migração, não leads perdidos.",
+  fluxo:"Form (lead-form + modal)\n  → Web3Forms (e-mail) · fetch('/api/lead') → Pages Function → Pipedrive\n  → Conversão Google Ads → WhatsApp",
+  stack:"Cloudflare Pages + Functions · Web3Forms · Pipedrive API (secret PIPEDRIVE_TOKEN no projeto Pages)",
+  vive:["marketing/lp-rebuild/auxilio-moradia-2026-06-01/ (_deploy/functions/api/lead.js)","Histórico era Elementor/Make: marketing/lp-rebuild/auxilio-moradia-2026-05-13/"],
+  exec:"Teste: enviar o form → /api/lead retorna 200 (DevTools) + lead no Pipedrive + e-mail chega.",
+  pend:["Limpeza no Make: arquivar cenário obsoleto 5183050 + webhook 2360599","Conferir cenários órfãos inativos 4703335 e 4577990"]
 },
 {
-  id:3, title:"Make · Lead Form Meta (Cadastro)", cat:"Atendimento & Leads", status:"live",
-  valid:"Validado 26/05/2026 · cenário legado",
-  tagline:"Cenário antigo que taggeia leads de Cadastro Meta (Lead Ads) no Pipedrive. ~682 deals históricos.",
-  oque:"Cenário legado do Make, anterior ao Tag Lead (#01), que processa os leads vindos de formulário instantâneo do Meta (Cadastro/Lead Ads) e os entrega tagueados no Pipedrive. Continua em produção. É o único sem doc local — vive só no painel do Make.",
-  fluxo:"Meta Lead Ads (form instantâneo)\n  → Make (cenário legado)\n  → Pipedrive (lead criado e tagueado)",
-  stack:"Meta Lead Ads · Make.com · Pipedrive",
-  vive:["(cenário no Make cloud — sem arquivo local)","Referências: HANDOFF-automacao-make.md (Padrão 3) · diário 26/05"],
-  exec:"Roda sozinha. Verificar pelo painel do Make (cenário distinto do Tag Lead).",
-  pend:["⚠️ Confirmar que NÃO há dupla escrita com o #01 (lead preenchido 2x)","Documentar o cenário (print do blueprint → marketing/operacao/)"]
+  id:3, title:"Make · Lead Form Meta (Cadastro — 4 cenários)", cat:"Atendimento & Leads", status:"live",
+  valid:"Mapeado 11/06/2026 via API Make (IDs reais)",
+  tagline:"4 cenários no Make (um por produto) taggeiam leads de Cadastro Meta no Pipedrive. ~682 deals históricos.",
+  oque:"O \"Make antigo de Cadastro\" são na verdade 4 cenários separados, um por produto: AUXÍLIO (4049424), FIES (4049353), LIVRE IR (5076843) e SUSPENSÃO (4804398) — todos ATIVOS. Processam os leads de formulário instantâneo do Meta (Lead Ads) e entregam tagueados no Pipedrive. Atenção: o de LIVRE IR segue ligado com o produto descontinuado desde 26/05. Sobreposição com o Tag Lead (#01) é risco baixo: lead de Cadastro que também manda WhatsApp cai na Rota A (update, não duplica).",
+  fluxo:"Meta Lead Ads (form instantâneo)\n  → webhooks FACE|FLAVIO por produto → 4 cenários Make\n  → Pipedrive (lead criado e tagueado)",
+  stack:"Meta Lead Ads · Make.com (4 cenários, team 436138) · Pipedrive",
+  vive:["IDs e webhooks: cartão 03 (_organizacao/automacoes/)","API: us2.make.com/api/v2/scenarios/<ID>/blueprint (MAKE_API_TOKEN)"],
+  exec:"Rodam sozinhas. Ler/editar via API Make ou painel.",
+  pend:["Decidir: desligar LIVRE IR Cadastro (5076843)? Produto descontinuado 26/05","Validar 1 lead real contra dupla escrita com #01","Backup dos 4 blueprints via API"]
 },
 {
   id:4, title:"Meta · Comentário → Mensagem", cat:"Atendimento & Leads", status:"live",
