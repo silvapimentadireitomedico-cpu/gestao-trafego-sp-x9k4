@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Automações — Silva Pimenta &amp; Magalhães Gomes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#1A4758; --teal-deep:#0F2F3B; --teal-light:#2A6072;
+    --gold:#C5A57A; --gold-bright:#E2C896; --gold-deep:#9A7E5A;
+    --white:#FFFFFF; --white-soft:rgba(255,255,255,.08); --white-mid:rgba(255,255,255,.6);
+    --live:#3DDC84; --live-deep:#1F7A4D;
+    --warn:#F0B429; --warn-deep:#8a6a14;
+    --plan:#B48CE0; --plan-deep:#6d4e96;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{min-height:100%}
+  body{
+    background:
+      radial-gradient(ellipse at top left, var(--teal) 0%, var(--teal-deep) 65%),
+      var(--teal-deep);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    padding:28px 38px 60px;
+  }
+
+  /* ---------- header ---------- */
+  header{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    padding-bottom:18px;border-bottom:1px solid var(--white-soft);margin-bottom:18px}
+  .h-title h1{font-family:'Playfair Display',serif;font-size:26px;letter-spacing:.5px}
+  .h-title h1 span{color:var(--gold)}
+  .h-title .sub{color:var(--white-mid);font-size:12.5px;margin-top:4px;letter-spacing:.4px}
+  .h-stats{display:flex;gap:12px;flex-wrap:wrap}
+  .h-stat{background:var(--white-soft);border:1px solid rgba(197,165,122,.25);border-radius:10px;
+    padding:10px 18px;text-align:center;min-width:92px}
+  .h-stat .n{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums}
+  .h-stat .l{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--white-mid);margin-top:2px}
+  .h-stat.live .n{color:var(--live)}
+  .h-stat.warn .n{color:var(--warn)}
+  .h-stat.plan .n{color:var(--plan)}
+  .h-stat.tot .n{color:var(--gold)}
+
+  /* ---------- filtros ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+  .filters button{
+    border:1px solid rgba(255,255,255,.18);background:transparent;color:var(--white-mid);
+    padding:7px 15px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;
+    font-family:'Inter',sans-serif;letter-spacing:.3px;transition:.15s}
+  .filters button:hover{border-color:var(--gold);color:var(--gold-bright)}
+  .filters button.active{background:var(--gold);border-color:var(--gold);color:var(--teal-deep)}
+
+  /* ---------- grid ---------- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:13px}
+  .card{
+    background:linear-gradient(160deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.03) 100%);
+    border:1px solid rgba(197,165,122,.22);
+    border-radius:12px;padding:15px 16px 13px;cursor:pointer;position:relative;
+    transition:transform .15s, border-color .15s, box-shadow .15s;
+    display:flex;flex-direction:column;gap:8px;min-height:118px;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .card .row1{display:flex;align-items:center;gap:9px}
+  .card .num{
+    font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:var(--teal-deep);
+    background:var(--gold);border-radius:6px;width:25px;height:25px;flex:0 0 25px;
+    display:flex;align-items:center;justify-content:center}
+  .card h3{font-size:14.5px;font-weight:700;line-height:1.25;flex:1}
+  .card .tagline{font-size:12px;color:var(--white-mid);line-height:1.45;flex:1}
+  .card .row3{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:2px}
+  .cat-chip{font-size:9px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold);
+    border:1px solid rgba(197,165,122,.4);padding:3px 8px;border-radius:12px;white-space:nowrap}
+
+  /* status badge */
+  .status{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;
+    letter-spacing:1.6px;text-transform:uppercase;padding:4px 10px;border-radius:14px;white-space:nowrap}
+  .status .dot{width:8px;height:8px;border-radius:50%;flex:0 0 8px}
+  .st-live{background:rgba(61,220,132,.12);color:var(--live);border:1px solid rgba(61,220,132,.45)}
+  .st-live .dot{background:var(--live);animation:pulse 1.6s ease-in-out infinite}
+  .st-warn{background:rgba(240,180,41,.12);color:var(--warn);border:1px solid rgba(240,180,41,.45)}
+  .st-warn .dot{background:var(--warn)}
+  .st-plan{background:rgba(180,140,224,.12);color:var(--plan);border:1px solid rgba(180,140,224,.45)}
+  .st-plan .dot{background:var(--plan)}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(61,220,132,.55);opacity:1}
+    50%{box-shadow:0 0 0 6px rgba(61,220,132,0);opacity:.75}
+  }
+  .card.is-live{border-left:3px solid var(--live)}
+  .card.is-warn{border-left:3px solid var(--warn)}
+  .card.is-plan{border-left:3px solid var(--plan);opacity:.88}
+
+  footer{margin-top:26px;text-align:center;color:var(--white-mid);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+
+  /* ---------- modal ---------- */
+  .overlay{position:fixed;inset:0;background:rgba(8,24,31,.78);backdrop-filter:blur(3px);
+    display:none;align-items:flex-start;justify-content:center;padding:34px 18px;z-index:60;overflow-y:auto}
+  .overlay.show{display:flex}
+  .modal{
+    background:linear-gradient(170deg,#16404f 0%, #0F2F3B 100%);
+    border:1px solid rgba(197,165,122,.45);border-radius:16px;
+    max-width:860px;width:100%;padding:28px 32px 26px;box-shadow:0 30px 80px rgba(0,0,0,.55);
+    animation:slide-up .25s cubic-bezier(.22,1,.36,1)}
+  @keyframes slide-up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+  .m-head{display:flex;align-items:flex-start;gap:14px;padding-bottom:16px;border-bottom:1px solid var(--white-soft)}
+  .m-num{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--teal-deep);
+    background:var(--gold);border-radius:9px;width:40px;height:40px;flex:0 0 40px;
+    display:flex;align-items:center;justify-content:center}
+  .m-titles{flex:1}
+  .m-titles h2{font-family:'Playfair Display',serif;font-size:21px;line-height:1.25}
+  .m-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:7px;align-items:center}
+  .m-meta .cat-chip{font-size:9.5px}
+  .m-valid{font-size:11px;color:var(--white-mid)}
+  .m-close{background:transparent;border:1px solid rgba(255,255,255,.25);color:var(--white-mid);
+    width:34px;height:34px;border-radius:9px;font-size:16px;cursor:pointer;flex:0 0 34px}
+  .m-close:hover{border-color:var(--gold);color:var(--gold)}
+
+  .m-body{padding-top:16px;display:flex;flex-direction:column;gap:16px}
+  .sec h4{font-family:'Playfair Display',serif;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);margin-bottom:7px}
+  .sec p{font-size:13.5px;line-height:1.65;color:rgba(255,255,255,.88)}
+  .sec pre{
+    background:rgba(0,0,0,.3);border:1px solid rgba(197,165,122,.2);border-radius:9px;
+    padding:13px 15px;font-size:11.8px;line-height:1.55;overflow-x:auto;color:var(--gold-bright);
+    font-family:ui-monospace,Menlo,Consolas,monospace;white-space:pre}
+  .sec .paths{display:flex;flex-direction:column;gap:5px}
+  .sec .paths code{
+    background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.1);border-radius:6px;
+    padding:5px 10px;font-size:11.5px;color:var(--gold-bright);
+    font-family:ui-monospace,Menlo,Consolas,monospace;word-break:break-all}
+  .sec a{color:var(--live);text-decoration:none;border-bottom:1px dotted rgba(61,220,132,.5)}
+  .sec a:hover{border-bottom-style:solid}
+  .pendl{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .pendl li{font-size:12.8px;line-height:1.5;color:rgba(255,255,255,.85);padding-left:20px;position:relative}
+  .pendl li:before{content:"";position:absolute;left:4px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+  .pendl li.ok{color:var(--live)}
+  .pendl li.ok:before{background:var(--live)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:680px){.two-col{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-title">
+    <h1>⚖️ Automações <span>Silva Pimenta &amp; Magalhães Gomes</span></h1>
+    <div class="sub">Mapa central · clique em qualquer card pra ver o detalhe completo · atualizado em 11/06/2026</div>
+  </div>
+  <div class="h-stats">
+    <div class="h-stat tot"><div class="n" id="cTot">0</div><div class="l">Total</div></div>
+    <div class="h-stat live"><div class="n" id="cLive">0</div><div class="l">● Live</div></div>
+    <div class="h-stat warn"><div class="n" id="cWarn">0</div><div class="l">Parcial</div></div>
+    <div class="h-stat plan"><div class="n" id="cPlan">0</div><div class="l">Planejado</div></div>
+  </div>
+</header>
+
+<div class="filters" id="filters">
+  <button data-f="all" class="active">Todas</button>
+  <button data-f="live">🟢 Live</button>
+  <button data-f="warn">🟡 Parcial</button>
+  <button data-f="plan">🟣 Planejado</button>
+  <button data-f="cat:Atendimento & Leads">Atendimento &amp; Leads</button>
+  <button data-f="cat:Dashboards">Dashboards</button>
+  <button data-f="cat:Tracking & Conversão">Tracking</button>
+  <button data-f="cat:APIs">APIs</button>
+  <button data-f="cat:Dados & Planilhas">Dados</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>Fonte da verdade: clientes/silva-pimenta/_organizacao/automacoes/ · INDEX.md + cartões 01-16</footer>
+
+<div class="overlay" id="overlay">
+  <div class="modal" id="modal"></div>
+</div>
+
+<script>
+const STATUS = {
+  live:{cls:"st-live",label:"Live",card:"is-live"},
+  warn:{cls:"st-warn",label:"Parcial",card:"is-warn"},
+  plan:{cls:"st-plan",label:"Planejado",card:"is-plan"}
+};
+
+const DATA = [
+{
+  id:1, title:"Make · Tag Lead (Digisac → Pipedrive)", cat:"Atendimento & Leads", status:"live",
+  valid:"Validado 10/06/2026 · religado após fix ifempty",
+  tagline:"Toda mensagem de WhatsApp nova preenche sozinha NÚMERO DA CAMPANHA + ORIGEM no Pipedrive e cria o deal no funil certo.",
+  oque:"Quando um lead clica num anúncio Meta e manda a mensagem-template no WhatsApp (ex: \"...por favor. 64\"), o Make intercepta via webhook do Digisac, extrai por regex o produto e o número do conjunto, busca o telefone real, procura a pessoa no Pipedrive e: se existe, atualiza os campos; se é nova, cria pessoa + deal no funil do produto com o dono certo (Rodrigo/Yago/Emmanuel/Maria Eduarda). Cobre ~91% dos leads Meta e elimina o tagging manual do SDR.",
+  fluxo:"Anúncio Meta (wa.me + template)\n  → Digisac (silvapimenta.digisac.app) → webhook → Make (9 módulos)\n  → regex PRODUTO + NÚMERO → HTTP telefone real → Search Pipedrive\n  → Rota A (existe): Update Person | Rota B (novo): Create Person + Deal",
+  stack:"Digisac webhook · Make.com (~25k créditos/mês) · Pipedrive API",
+  vive:["marketing/operacao/HANDOFF-automacao-make.md  ← DOC COMPLETA","marketing/operacao/automacao-tag-lead-make.md (blueprint)","Cenário: us2.make.com/436138/scenarios/5338155"],
+  exec:"Roda sozinha (Scheduling ON). Teste: mandar WhatsApp com \"...por favor. 64\" → pessoa sai no Pipedrive com NÚMERO=64 e ORIGEM=Meta Ads. Logs: HISTORY do cenário no Make.",
+  pend:["Monitorar 24-48h pós-religada","Avisar SDRs (texto pronto no HANDOFF)","Validar campos no Pipedrive","Testar WhatsApp 4224 (Meta API) com lead real","Confirmar que não duplica com o Cadastro (#03)","PREENCHER ORIGEM pros ~8% sem template","V2 Rota A: não sobrescrever NÚMERO existente","Dashboard de health","Expandir pro Magalhães Gomes"]
+},
+{
+  id:2, title:"Make · Form LP v2 Auxílio Moradia", cat:"Atendimento & Leads", status:"live",
+  valid:"Validado 25/05/2026 em produção",
+  tagline:"Submit do form Elementor da LP v2 → Pipedrive com Lead etiquetado + Note com os 9 campos de qualificação.",
+  oque:"Cada envio do formulário da LP /auxilio-moradia-medico-v2/ dispara um webhook no Make que cria a Person no Pipedrive, abre um Lead com label AUXÍLIO MORADIA e anexa uma Note com os 9 campos extras (especialização, instituição, início/fim da residência, status) + metadados de origem. O SDR vê na Lead Inbox e converte em deal.",
+  fluxo:"Form Elementor Pro (9 campos)\n  → Webhook \"WEBHOOK | GOOGLE | LP V2 | AUXÍLIO MORADIA\"\n  → Pipedrive: Person → Lead (label AUX MORADIA) → Note (9 campos + metadados)",
+  stack:"Elementor Form Pro · Make.com · Pipedrive",
+  vive:["marketing/lp-rebuild/auxilio-moradia-2026-05-13/ (GUIA-FORM-ELEMENTOR.md)","_contexto/atividades-recentes.md (25/05) ← mapa dos field_*"],
+  exec:"Roda sozinha por submit. Teste: enviar o form → lead na Lead Inbox com a Note. Atenção: se o Thainar editar o form no Elementor, os IDs field_* mudam e o mapeamento quebra.",
+  pend:[]
+},
+{
+  id:3, title:"Make · Lead Form Meta (Cadastro)", cat:"Atendimento & Leads", status:"live",
+  valid:"Validado 26/05/2026 · cenário legado",
+  tagline:"Cenário antigo que taggeia leads de Cadastro Meta (Lead Ads) no Pipedrive. ~682 deals históricos.",
+  oque:"Cenário legado do Make, anterior ao Tag Lead (#01), que processa os leads vindos de formulário instantâneo do Meta (Cadastro/Lead Ads) e os entrega tagueados no Pipedrive. Continua em produção. É o único sem doc local — vive só no painel do Make.",
+  fluxo:"Meta Lead Ads (form instantâneo)\n  → Make (cenário legado)\n  → Pipedrive (lead criado e tagueado)",
+  stack:"Meta Lead Ads · Make.com · Pipedrive",
+  vive:["(cenário no Make cloud — sem arquivo local)","Referências: HANDOFF-automacao-make.md (Padrão 3) · diário 26/05"],
+  exec:"Roda sozinha. Verificar pelo painel do Make (cenário distinto do Tag Lead).",
+  pend:["⚠️ Confirmar que NÃO há dupla escrita com o #01 (lead preenchido 2x)","Documentar o cenário (print do blueprint → marketing/operacao/)"]
+},
+{
+  id:4, title:"Meta · Comentário → Mensagem", cat:"Atendimento & Leads", status:"live",
+  valid:"Configurado 29/05/2026 (pós-viral do V8)",
+  tagline:"Palavra-chave no comentário (FIES, quero saber...) → DM automática com link wa.me taggeado.",
+  oque:"Automação nativa do Meta Business Suite criada quando o vídeo V8 do FIES viralizou (8+ leads em 5h via comentários). Quando alguém comenta uma palavra-gatilho num post/reel, responde publicamente (\"Te mandei mensagem no privado 👋\") e manda DM com prova social leve (Lei 10.260) + link wa.me com a tag [BR-V8-COMENT] pra rastreio no Pipedrive.",
+  fluxo:"Comentário com gatilho (FB/IG)\n  → resposta pública automática\n  → DM privada: prova social + wa.me?text=...[BR-V8-COMENT]",
+  stack:"Meta Business Suite (nativo, grátis) — sem código",
+  vive:["Business Suite → Automações → \"Comentar para enviar mensagem\"","Doc: _contexto/atividades-recentes.md (27/05 e 29/05)"],
+  exec:"Editar direto no Business Suite (gatilhos: Fies, fies pf, quero saber, tenho fies, me explica...). Teste: comentar num post ativo.",
+  pend:["Se passar de 30 leads/dia: migrar pra ManyChat/Make pra ganhar tracking por conjunto + deal automático"]
+},
+{
+  id:5, title:"Dashboard Jurídico (TV)", cat:"Dashboards", status:"live",
+  valid:"Em produção 24/7 desde 04/05/2026",
+  tagline:"Leaderboard ao vivo da equipe jurídica na TV do escritório. Atualiza a cada 30s, lê até a cor das células.",
+  oque:"Ranking em tempo real das iniciais por colaboradora, exibido na TV via Fire Stick. O Apps Script lê a planilha do time (valores + cores de célula → produto), expõe JSON público, e o frontend no GitHub Pages renderiza com pódio, ranking, gráfico e destaque vermelho pra quem não registrou inicial no dia. Desempate por Seguro. Wake Lock + vídeo keepalive seguram a TV acesa.",
+  fluxo:"Google Sheets (aba trimestral, auto-detectada)\n  → Apps Script Web App (JSON com cores)\n  → fetch 30s → GitHub Pages → Fire Stick fullscreen",
+  stack:"Google Sheets · Apps Script · GitHub Pages · Fire Stick (Fully Kiosk)",
+  vive:["dashboard-juridico/ (README, apps-script.gs, index.html, fotos/)","URL: silvapimentadireitomedico-cpu.github.io/dashboard-juridico-silva-pimenta"],
+  exec:"Preview local: node dashboard-juridico/render-preview.js. Mudança visual: editar e push. Colaboradora nova: foto em fotos/ + EQUIPE_ATIVA no .gs.",
+  pend:["Fotos Hugo/Julia · SARAH na EQUIPE_ATIVA quando entrar","Logo oficial branco/gold (Thainar)","Dropdown de trimestre · export PDF semanal"]
+},
+{
+  id:6, title:"Dashboard de Orçamento", cat:"Dashboards", status:"live",
+  valid:"Online desde 02/06/2026 · cron 30min",
+  tagline:"Gasto diário por produto (Meta+Google), projeção do mês e alertas de estouro. Atualiza sozinho a cada 30 min.",
+  oque:"Painel online que mostra, por produto, o ritmo de gasto vs orçamento (R$ 92.120,66/mês): Gastando (média/dia), Pode (teto/dia) e Pode+/Cortar (ajuste real). Converte USD pela PTAX do BCB. GitHub Actions roda a coleta a cada 30 minutos e commita o data.json. IMPORTANTE: pra decidir budget, olhar sempre \"Pode +\" (verde) ou \"Cortar\" (vermelho) — \"Pode\" é teto, não aumento.",
+  fluxo:"GitHub Actions (cron */30)\n  → coletar.py (Google Ads + Meta 3 BMs + Pipedrive + PTAX)\n  → data/data.json → commit → GitHub Pages (frontend lê a cada 5 min)",
+  stack:"Python · GitHub Actions · GitHub Pages · 9 secrets",
+  vive:["dashboard-orcamento/ (repo git próprio: gestao-trafego-sp-x9k4)","Orçamento: _contexto/orcamento.md → array PRODUTOS no script.js"],
+  exec:"Local: setar envs → python scripts/coletar.py → http.server. Fechar mês: coletar.py --mes YYYY-MM. Cron falhou: Actions → Run workflow. Debug: compara-pipedrive.py.",
+  pend:[]
+},
+{
+  id:7, title:"GTM + Conversões (site oficial)", cat:"Tracking & Conversão", status:"live",
+  valid:"Validado em 3 pontas 29/05/2026",
+  tagline:"GTM-MW7CC59V rastreia WhatsApp e forms no site → Google Ads + GA4 + FB + TikTok.",
+  oque:"Container GTM do silvapimenta.com.br que faz o lead \"contar\" pras plataformas: clique no botão WhatsApp e envio de form disparam conversão no Google Ads (AW-16456666854 Direito Médico ~68 conv/30d · AW-11334960527 Aux Moradia com Enhanced Conversions), evento principal no GA4, Facebook Pixel e TikTok Pixel. As LPs novas do Cloudflare NÃO usam este GTM (gtag direto), mas alimentam as mesmas conversões.",
+  fluxo:"Clique WhatsApp / form submit\n  → GTM dispara: Google Ads conv · GA4 (principal) · FB Pixel · TikTok Pixel",
+  stack:"Google Tag Manager · gtag · pixels",
+  vive:["Export: dados/google-ads/Tag Manager/GTM-MW7CC59V_v46.json","Edição: painel GTM (container GTM-MW7CC59V)"],
+  exec:"Verificar: GA4 Tempo Real capta o evento · DevTools Network mostra a tag AW-... com status 200.",
+  pend:["Higiene: remover domínio resíduo ghfstrader.shop do linker","Arquivar PageView secundária (resíduo)"]
+},
+{
+  id:8, title:"LPs Direito Médico (Cloudflare)", cat:"Tracking & Conversão", status:"live",
+  valid:"No ar desde 29/05/2026 · teste end-to-end OK",
+  tagline:"4 LPs em defesa.silvapimenta.com.br — form dispara e-mail + Pipedrive + conversão Google numa tacada.",
+  oque:"4 landing pages (/ guarda-chuva, /sindicancia-crm, /processo-etico, /erro-medico) no Cloudflare Pages. O form modal chama a Pages Function /api/lead que: manda e-mail via Web3Forms, cria Person+Lead+Note no Pipedrive com origem Google Ads, e dispara a conversão + pixels. As keywords ativas do Google Ads apontam pra cá (URL no nível da keyword). REGRA CRÍTICA: todos os RSAs do mesmo Ad Group precisam apontar pro mesmo domínio raiz — trocar domínio reprova o anúncio silenciosamente.",
+  fluxo:"Form (modal) → Pages Function /api/lead\n  → Web3Forms (e-mail) · Pipedrive (Person+Lead+Note)\n  → Google Ads conv + FB/TikTok pixels (gtag direto)",
+  stack:"Cloudflare Pages + Functions · Web3Forms · Pipedrive API · wrangler",
+  vive:["marketing/trafego-pago/otimizacoes/direito-medico/2026-05-28/landing-pages/","Cloudflare: projeto defesa-medico-sp · deploy via wrangler + API token"],
+  exec:"Deploy: wrangler pages deploy (API token; OAuth não funciona). Verificar: enviar form na /erro-medico → HTTP 200 + lead no Pipedrive + conversão.",
+  pend:["D+14 (12/06): avaliação estrutural do ciclo (lance/grupos/higiene GTM) — no Calendar"]
+},
+{
+  id:9, title:"API Meta Ads (System User)", cat:"APIs", status:"live",
+  valid:"Ativo desde 02/06/2026 · tokens permanentes",
+  tagline:"Lê e edita as 5 contas Meta direto via API. Sem CSV manual nunca mais.",
+  oque:"Token System User permanente (não expira) que dá acesso de leitura e escrita às 5 contas: Direito Médico, Securitário, CA 03 (BM Brasil) + FIES e Aux Moradia (BM EUA). Scripts prontos pra campanhas, insights, públicos e uploads de lista. ⚠️ ANTES de qualquer escrita: ler SEGURANCA-API-META.md — orçamento em CENTAVOS, criar PAUSED, validate_only, nunca DELETAR, special_ad_categories em FIES/financeiro, versão v25.0.",
+  fluxo:"scripts read/create/update/targeting/dataset\n  → Meta Graph API v25 → 5 contas (2 BMs, tokens separados)",
+  stack:"Python · Meta Graph API v25 · tokens em .env",
+  vive:[".claude/skills/meta-ads-ratos/ (scripts + .env + references/SEGURANCA-API-META.md)","Contas e comandos: clientes/silva-pimenta/CLAUDE.md"],
+  exec:"$env:PYTHONIOENCODING=\"utf-8\" → python read.py campaigns --account act_320965166251046. Conta EUA: sobrescrever META_ADS_TOKEN antes. USD→BRL: 5,20.",
+  pend:[]
+},
+{
+  id:10, title:"API Google Ads (Basic Access)", cat:"APIs", status:"live",
+  valid:"Ativo desde 21/05/2026 · 15k ops/dia",
+  tagline:"Lê e edita as 3 contas Google (Aux Moradia, Direito Médico, FIES) via MCC.",
+  oque:"Basic Access aprovado na MCC 9025188297 (OAuth tucraft.art@gmail.com, app em produção — refresh token não expira). Lê campanhas, termos de pesquisa, keywords, quality score; cria e edita objetos via GAQL. REGRAS FIXAS: (1) todos os RSAs do Ad Group no mesmo domínio raiz; (2) sempre desativar Parceiros de Pesquisa e Display após criar campanha Search (create.py vem com Parceiros ON).",
+  fluxo:"scripts read/insights/update/create (GAQL)\n  → Google Ads API → Aux Moradia 3560859574 · Dir. Médico 6351554556 · FIES 5313139497",
+  stack:"Python · google-ads SDK · OAuth + developer token em .env",
+  vive:[".claude/skills/google-ads-ratos/ (scripts + .env)","Se invalid_grant: rodar setup.py oauth"],
+  exec:"python read.py campaigns --customer-id 3560859574 · read.py search-terms --customer-id 5313139497 · insights.py account --date-range LAST_30_DAYS.",
+  pend:[]
+},
+{
+  id:11, title:"Planilha META POWER BI", cat:"Dados & Planilhas", status:"warn",
+  valid:"Funcional · roda manualmente (sem cron)",
+  tagline:"Puxa Meta + Google + Pipedrive e atualiza o xlsx que alimenta o Power BI. Toda terça + dia 01, na mão.",
+  oque:"Conjunto de 4 scripts Python que coleta gasto por produto (Meta nas 3 BMs, Google nas contas), leads/fechados/receita do Pipedrive (Receita Futura = 20% × valor da causa dos abertos) e escreve na PLANILHA DE META POWER BI.xlsx com backup automático. Modos: criar-mês (dia 01, fecha o anterior) e atualizar-mês (terças). O jeito certo de rodar é invocar a skill /atualizar-planilha-meta-powerbi, que conduz coleta → resumo → confirmação → gravação.",
+  fluxo:"/atualizar-planilha-meta-powerbi\n  → puxar_meta_ads.py + puxar_google_ads.py + puxar_pipedrive.py\n  → resumo pro William → atualizar_planilha.py (backup antes)",
+  stack:"Python · openpyxl · skill Claude Code",
+  vive:["automacoes/planilha-power-bi/scripts/ + outputs/ + backups/",".claude/commands/atualizar-planilha-meta-powerbi.md ← fluxo completo","dados/PLANILHA DE META POWER BI.xlsx (mestre)"],
+  exec:"Skill no chat: /atualizar-planilha-meta-powerbi. Direto: python puxar_meta_ads.py 2026-06 · atualizar_planilha.py --preview (dry-run).",
+  pend:["Agendar execução automática (Task Scheduler ou GitHub Actions) — hoje é 100% manual"]
+},
+{
+  id:12, title:"Pipeline Silva-Pimenta-META.xlsx", cat:"Dados & Planilhas", status:"warn",
+  valid:"Ad-hoc · usado nos ciclos de otimização",
+  tagline:"Raio-x por deal: cruza Pipedrive com histórico de vendas FIES pra separar CPL barato de lead bom.",
+  oque:"Scripts de análise profunda que cruzam deals do Pipedrive (propostas, contratos, valores) com o histórico de vendas do FIES. Base da lição \"CPL baixo não é qualidade\" (conjunto com CPL R$ 10 tinha 89,5% de refugo). Complementa a Planilha Power BI (#11): aquela é o consolidado mensal, esta é o detalhe por deal usado em diagnóstico de tráfego.",
+  fluxo:"puxar_pipedrive_detalhado.py (export deals FIES)\n  → atualizar_silva_pimenta_meta.py (cruza com vendas históricas)\n  → Silva-Pimenta-META.xlsx",
+  stack:"Python · Pipedrive API · openpyxl",
+  vive:["automacoes/silva-pimenta-meta/scripts/ (3 scripts + lib_meta.py)"],
+  exec:"Sob demanda nos ciclos de otimização. Abrir o script antes pra conferir parâmetros (período, produto).",
+  pend:["Decidir: vira recorrente (integrar ao #11) ou continua sob demanda"]
+},
+{
+  id:13, title:"Dashboard Financeiro (Sheets)", cat:"Dashboards", status:"warn",
+  valid:"Fase Pipedrive pronta (08/05) · setup pendente",
+  tagline:"Apps Script diário → Sheets → Power BI com leads/fechados/receita dos 9 produtos. Falta plugar Meta+Google.",
+  oque:"Automação que popula uma planilha Google com os números dos 9 produtos dos dois escritórios, direto do Pipedrive (cron diário 6h). Abas: Historico (manual), Mes Corrente (auto), Consolidado (Power BI conecta). O código da fase Pipedrive está pronto; falta o setup (criar planilha, token, disparador) e plugar o gasto Meta + Google — os tokens JÁ EXISTEM (#09 e #10), então dá pra fechar.",
+  fluxo:"Pipedrive (9 funis) → Apps Script (cron 6h)\n  → aba Mes Corrente → Consolidado → Power BI",
+  stack:"Google Sheets · Apps Script · Pipedrive API",
+  vive:["dashboard-financeiro/apps-script.gs + README.md (setup passo a passo)","Roadmap UTM no mesmo diretório (ver #14)"],
+  exec:"Próxima sessão: criar planilha 3 abas → colar .gs → PIPEDRIVE_TOKEN nas Script Properties → função teste → disparador 6h → plugar gastoMeta/gastoGoogle.",
+  pend:["Criar planilha + token + Apps Script + disparador","Validar 9 funis vs constante PRODUTOS","Colar histórico jan/25–abr/26","Conectar Power BI","Plugar Meta Ads (token existe)","Plugar Google Ads (token existe)"]
+},
+{
+  id:14, title:"UTM Tracking enriquecido", cat:"Tracking & Conversão", status:"plan",
+  valid:"Só roadmap — nada implementado",
+  tagline:"UTMs + fbclid/gclid nas LPs → Pipedrive com nome legível de campanha e criativo. 3 níveis.",
+  oque:"Roadmap pra saber de qual anúncio veio cada lead sem depender do código [BR-XX] no texto. Nível 1: padronizar UTMs + JS de captura nas LPs (hidden fields no form). Nível 2: click IDs (fbclid/gclid) que habilitam Conversões Offline. Nível 3: enriquecimento via API com nome legível de campanha/criativo + custo do clique. Complementa o Tag Lead (#01): cobre os ~8% que apagam o template e cria redundância de atribuição.",
+  fluxo:"LP captura UTMs/click IDs (JS → hidden fields)\n  → form → Make (#01/#02) → campos custom Pipedrive\n  → (nível 3) API enriquece com nomes legíveis",
+  stack:"JS · campos custom Pipedrive · Meta/Google APIs",
+  vive:["dashboard-financeiro/utm-tracking-roadmap.md ← roadmap completo"],
+  exec:"Começar pelo Nível 1 (não depende de API): padronizar UTM nas campanhas + JS nas LPs + mapear nos cenários Make.",
+  pend:["Implementar Nível 1 (UTMs padronizadas + JS de captura)"]
+},
+{
+  id:15, title:"Dashboard de Encerramentos (TV)", cat:"Dashboards", status:"live",
+  valid:"Finalizado 10/06/2026 · Pages no ar (HTTP 200)",
+  tagline:"Leaderboard MENSAL do setor de encerramentos na TV. Irmão do Jurídico, plugado na planilha de encerramentos.",
+  oque:"Mesma mecânica do Dashboard Jurídico (#05) — Apps Script lê a planilha com cores, JSON público, frontend 30s — mas com aba MENSAL (ENCERRAMENTOS - JUNHO 2026, detectada sozinha na virada do mês), header na linha 5, dados na linha 6 e equipe com SARAH no lugar do RAFAEL (jun/2026). Equipe: MAX, HUGO, STELLA, SARAH, NATALY, ISABELLA, ANA, SUELLEN.",
+  fluxo:"Sheets (aba mensal auto) → Apps Script Web App\n  → fetch 30s → GitHub Pages (repo separado) → Fire Stick",
+  stack:"Google Sheets · Apps Script · GitHub Pages · Fire Stick",
+  vive:["dashboard-encerramentos/ (README, apps-script.gs, fotos/)","URL: silvapimentadireitomedico-cpu.github.io/dashboard-encerramentos-silva-pimenta","⚠️ sem .git local — editar = re-subir no repo (web upload)"],
+  exec:"Preview: node render-preview.js. Trocar equipe: EQUIPE_ATIVA (.gs) + EQUIPE (script.js) → reimplantar Nova versão + push.",
+  pend:["Conferir diagnosticoCores (cores fora da legenda) após primeiros dias reais"]
+},
+{
+  id:16, title:"Bot Suporte IA — Magalhães Gomes", cat:"Atendimento & Leads", status:"warn",
+  valid:"Em dev · Sprints 1+3 prontos · TWT respondeu 10/06",
+  tagline:"Bot Claude no WhatsApp pra clientes do SEGURO: valida CPF, consulta processo no ADVWin, escala pra Yasmim.",
+  oque:"Bot de atendimento (FastAPI + Claude) pros clientes ativos do SEGURO do Magalhães Gomes. Identifica pelo telefone, valida CPF (3 últimos dígitos), consulta o processo e responde dúvidas factuais; escala pra humana quando precisa, com roteamento por departamento no Digisac. STATUS: Sprints 1+3 fechados, rodando em dev local com whitelist (só William). ADVWin respondeu: API existe, R$ 900/mês (Premium 07-19h, bot 100% dentro), SEM sandbox, doc PDF só após assinar, sem rota de CPF (validação local), fidelidade 12 meses + aviso 90 dias. BLOQUEIO: decisão de contratar (William + Dr. Flávio) = R$ 10.800 mínimo.",
+  fluxo:"Cliente → WhatsApp → 360 Dialog → Digisac → webhook\n  → FastAPI + Claude (9 tools) → responde ou escala\n  → Yasmim (depto Humano) → devolve pro depto IA quando termina",
+  stack:"FastAPI · Python 3.12 · Claude Sonnet 4.6 · Supabase Postgres · Digisac · futuro Fly.io (~R$ 1.075-1.325/mês total)",
+  vive:["clientes/magalhaes-gomes/agente-suporte-ia/docs/ESTADO-DO-PROJETO.md ← handoff","clientes/magalhaes-gomes/agente-suporte-ia/docs/API-DIGISAC-REFERENCIA.md ← API validada","Código: agente-suporte-ia/app/ · credenciais só no .env"],
+  exec:"Dev local: scripts/subir_local.ps1 (uvicorn + Cloudflare Tunnel; URL muda a cada reboot → atualizar webhook no Digisac). Ver COMO_RETOMAR.md.",
+  pend:["DECISÃO: contratar ADVWin? R$ 900/mês × 12m, sem sandbox","Pós-contrato: doc PDF → Sprint 2 (~1 dia) · CPF local","Guardrails OAB com Dr. Flávio (30 perguntas-armadilha)","Sprint 4: Fly.io + URL fixa","Display Name Rejected (360 Dialog)","Suporte a áudio (transcrição nativa)","Remover whitelist de teste","Confirmar número do bot vs troca 27/05"]
+}
+];
+
+/* ---------- render ---------- */
+let filter="all";
+function counts(){
+  document.getElementById('cTot').textContent=DATA.length;
+  document.getElementById('cLive').textContent=DATA.filter(d=>d.status==='live').length;
+  document.getElementById('cWarn').textContent=DATA.filter(d=>d.status==='warn').length;
+  document.getElementById('cPlan').textContent=DATA.filter(d=>d.status==='plan').length;
+}
+function render(){
+  const g=document.getElementById('grid'); g.innerHTML="";
+  DATA.filter(d=>{
+    if(filter==="all")return true;
+    if(filter.startsWith("cat:"))return d.cat===filter.slice(4);
+    return d.status===filter;
+  }).forEach(d=>{
+    const s=STATUS[d.status];
+    const el=document.createElement('div');
+    el.className="card "+s.card;
+    el.innerHTML=`
+      <div class="row1">
+        <div class="num">${String(d.id).padStart(2,'0')}</div>
+        <h3>${d.title}</h3>
+      </div>
+      <div class="tagline">${d.tagline}</div>
+      <div class="row3">
+        <span class="cat-chip">${d.cat}</span>
+        <span class="status ${s.cls}"><span class="dot"></span>${s.label}</span>
+      </div>`;
+    el.addEventListener('click',()=>openModal(d));
+    g.appendChild(el);
+  });
+}
+function openModal(d){
+  const s=STATUS[d.status];
+  const m=document.getElementById('modal');
+  m.innerHTML=`
+    <div class="m-head">
+      <div class="m-num">${String(d.id).padStart(2,'0')}</div>
+      <div class="m-titles">
+        <h2>${d.title}</h2>
+        <div class="m-meta">
+          <span class="status ${s.cls}"><span class="dot"></span>${s.label}</span>
+          <span class="cat-chip">${d.cat}</span>
+          <span class="m-valid">${d.valid}</span>
+        </div>
+      </div>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="m-body">
+      <div class="sec"><h4>O que faz</h4><p>${d.oque}</p></div>
+      <div class="sec"><h4>Fluxo</h4><pre>${d.fluxo}</pre></div>
+      <div class="two-col">
+        <div class="sec"><h4>Stack</h4><p>${d.stack}</p></div>
+        <div class="sec"><h4>Como executar / verificar</h4><p>${d.exec}</p></div>
+      </div>
+      <div class="sec"><h4>Onde vive</h4><div class="paths">${d.vive.map(v=>`<code>${v}</code>`).join("")}</div></div>
+      <div class="sec"><h4>Pendências ${d.pend.length?`(${d.pend.length})`:""}</h4>
+        ${d.pend.length
+          ? `<ul class="pendl">${d.pend.map(p=>`<li>${p}</li>`).join("")}</ul>`
+          : `<ul class="pendl"><li class="ok">Nenhuma pendência aberta</li></ul>`}
+      </div>
+    </div>`;
+  document.getElementById('overlay').classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.getElementById('overlay').addEventListener('click',e=>{ if(e.target.id==='overlay')closeModal(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape')closeModal(); });
+document.getElementById('filters').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b)return;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); filter=b.dataset.f; render();
+});
+counts(); render();
+</script>
+</body>
+</html>
