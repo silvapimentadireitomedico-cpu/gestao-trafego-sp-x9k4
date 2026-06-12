@@ -217,6 +217,7 @@ const AUTONOMIA = {
   14: {k:"future", note:"Quando implementada, roda sozinha nas LPs (JS de captura), sem rotina."},
   15: {k:"auto",   note:"Igual ao Jurídico: Apps Script + TV sozinhos, virada de mês automática."},
   16: {k:"future", note:"Será agente 24/7 após o deploy no Fly.io. Hoje roda em dev local com whitelist (depende do PC ligado + tunnel)."},
+  19: {k:"auto",   note:"Webhook-driven 24/7: espelho no ganho e aviso ao jurídico sem nenhum humano no meio. Só a Duda arrasta cards (que é o trabalho dela mesmo)."},
   18: {k:"auto",   note:"Agente 100% na nuvem: roda às 08:00 todo dia sem depender de PC ligado. Gerenciar em claude.ai/code/routines."},
   17: {k:"future", note:"Nasce autônoma (webhooks dos dois CRMs ↔ worker) quando construída. Aguardando acessos da seguradora."}
 };
@@ -417,7 +418,17 @@ const DATA = [
   stack:"Claude cloud routine (Sonnet 4.6) · WebSearch · webhook Discord",
   vive:["Gerenciar: claude.ai/code/routines/trig_016rFzJ9iEznrBbS2xBcxHhE","Cartão: _organizacao/automacoes/18-radar-de-conteudo.md"],
   exec:"Ajustar temas/canal: editar o prompt da rotina. Rodar agora: pedir no chat. Desligar: claude.ai/code/routines.",
-  pend:["Migrar destino pro canal #marketing após a reorganização do Discord","Calibrar com feedback da Thainar na 1ª semana"]
+  pend:["Migrar destino pro canal #marketing após a reorganização do Discord","Calibrar com feedback da Thainar na 1ª semana"]},
+{
+  id:19, cat:"Atendimento & Leads", title:"Robô das Ações (PÓS-FECHAMENTO → Discord)", status:"live",
+  valid:"Criada e testada 12/06 · ciclo completo validado",
+  tagline:"Deal ganho cria card espelho no funil PÓS-FECHAMENTO; Duda arrasta pra DOCUMENTO OK e o jurídico é avisado no Discord.",
+  oque:"Automatiza o fluxo pasta completa → ação que vivia no chat-geral: (1) comercial marca GANHO num funil SP → robô cria card espelho no funil PÓS-FECHAMENTO (COLETANDO DOCUMENTOS), sem tocar nas métricas de receita; (2) Documentação arrasta pra DOCUMENTO OK quando a pasta fecha; (3) robô posta no #✅-ações-sp (cliente + produto, SEM link Pipedrive pois o jurídico não usa); jurídico assume na thread e marca ✅ ao concluir; (4) AÇÃO FEITA fecha o ciclo. MG desligado por enquanto.",
+  fluxo:"Deal SP ganho → webhook Pipedrive → worker cria espelho (funil 11)\nEspelho → DOCUMENTO OK → worker → Discord #✅-ações-sp",
+  stack:"Pipedrive webhook (1877132) · Worker Cloudflare · webhook Discord",
+  vive:["tag-lead-filter/_worker.js (rota /pipedrive-acoes)","Funil PÓS-FECHAMENTO (11) · etapas 113/114/115","_organizacao/automacoes/19-robo-acoes-pos-fechamento.md"],
+  exec:"Roda sozinha. Ganhos ANTERIORES a 12/06 não geram espelho retroativo (Duda cria manual). Ligar MG: 1 webhook + 1 linha no worker.",
+  pend:["Avisar Duda + jurídico do fluxo (no anúncio do Discord)","Avaliar ligar pro MG depois"]
 }
 ];
 
