@@ -90,6 +90,14 @@
   .card.is-warn{border-left:3px solid var(--warn)}
   .card.is-plan{border-left:3px solid var(--plan);opacity:.88}
 
+  /* autonomia */
+  .au-chip{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;
+    padding:3px 8px;border-radius:12px;white-space:nowrap}
+  .au-auto{background:rgba(61,220,132,.14);color:var(--live);border:1px solid rgba(61,220,132,.4)}
+  .au-manual{background:rgba(240,180,41,.14);color:var(--warn);border:1px solid rgba(240,180,41,.45)}
+  .au-tool{background:rgba(147,197,253,.12);color:#93C5FD;border:1px solid rgba(147,197,253,.4)}
+  .au-future{background:rgba(180,140,224,.12);color:var(--plan);border:1px solid rgba(180,140,224,.4)}
+
   footer{margin-top:26px;text-align:center;color:var(--white-mid);font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
 
   /* ---------- modal ---------- */
@@ -144,7 +152,7 @@
 <header>
   <div class="h-title">
     <h1>⚖️ Automações <span>Silva Pimenta &amp; Magalhães Gomes</span></h1>
-    <div class="sub">Mapa central · clique em qualquer card pra ver o detalhe completo · atualizado em 11/06/2026</div>
+    <div class="sub">Mapa central · clique em qualquer card pra ver o detalhe completo · atualizado em 12/06/2026</div>
   </div>
   <div class="h-stats">
     <div class="h-stat tot"><div class="n" id="cTot">0</div><div class="l">Total</div></div>
@@ -156,6 +164,8 @@
 
 <div class="filters" id="filters">
   <button data-f="all" class="active">Todas</button>
+  <button data-f="au:auto">🤖 Autônomas</button>
+  <button data-f="au:todo">🖐️ Falta automatizar</button>
   <button data-f="live">🟢 Live</button>
   <button data-f="warn">🟡 Parcial</button>
   <button data-f="plan">🟣 Planejado</button>
@@ -179,6 +189,34 @@ const STATUS = {
   live:{cls:"st-live",label:"Live",card:"is-live"},
   warn:{cls:"st-warn",label:"Parcial",card:"is-warn"},
   plan:{cls:"st-plan",label:"Planejado",card:"is-plan"}
+};
+
+const AU = {
+  auto:   {cls:"au-auto",   label:"🤖 Autônoma"},
+  manual: {cls:"au-manual", label:"🖐️ Manual"},
+  tool:   {cls:"au-tool",   label:"🧰 Camada"},
+  future: {cls:"au-future", label:"⏳ Será autônoma"}
+};
+
+// Autonomia por automação: roda sozinha (agente)? + caminho pra automatizar
+const AUTONOMIA = {
+  1:  {k:"auto",   note:"Agente 24/7 dirigido por webhook: do clique no anúncio ao Pipedrive + comentário no Digisac, zero intervenção humana."},
+  2:  {k:"auto",   note:"Dispara sozinha a cada envio do formulário da LP. Nada a configurar."},
+  3:  {k:"auto",   note:"Os 3 cenários ativos disparam sozinhos a cada Lead Ads. Nada a configurar."},
+  4:  {k:"auto",   note:"Automação nativa do Meta, responde comentários 24/7 sozinha."},
+  5:  {k:"auto",   note:"Apps Script + TV se atualizam sozinhos (30s). Humano só pra trocar equipe/fotos."},
+  6:  {k:"auto",   note:"GitHub Actions roda a cada 30 min: coleta, commita e publica sozinho."},
+  7:  {k:"auto",   note:"Dispara a cada visita/clique do site. Manutenção só quando muda alguma conversão."},
+  8:  {k:"auto",   note:"Pages Function roda sozinha a cada envio de formulário."},
+  9:  {k:"tool",   note:"Camada de acesso usada por chats e skills sob demanda — não 'roda' por conta. Quem consome ela é que pode ser agendado (ex: relatórios). O /otimizar continua com decisão humana por design."},
+  10: {k:"tool",   note:"Mesma natureza da API Meta: camada sob demanda. Candidata a alimentar rotinas agendadas de relatório."},
+  11: {k:"manual", note:"HOJE: rodar /atualizar-planilha-meta-powerbi toda terça + dia 01. PRA AUTOMATIZAR: agendar rotina (cloud agent do Claude via /schedule, ou Task Scheduler/GitHub Actions rodando os 4 scripts). Candidata nº 1."},
+  12: {k:"manual", note:"Ad-hoc por natureza (raio-x de qualidade usado nos ciclos de otimização). Pode virar rotina mensal agendada se quiser leitura recorrente."},
+  13: {k:"future", note:"Nasce autônoma (cron diário 6h do Apps Script) assim que a planilha for montada e Meta/Google plugados. Setup pendente."},
+  14: {k:"future", note:"Quando implementada, roda sozinha nas LPs (JS de captura), sem rotina."},
+  15: {k:"auto",   note:"Igual ao Jurídico: Apps Script + TV sozinhos, virada de mês automática."},
+  16: {k:"future", note:"Será agente 24/7 após o deploy no Fly.io. Hoje roda em dev local com whitelist (depende do PC ligado + tunnel)."},
+  17: {k:"future", note:"Nasce autônoma (webhooks dos dois CRMs ↔ worker) quando construída. Aguardando acessos da seguradora."}
 };
 
 const DATA = [
@@ -384,9 +422,12 @@ function render(){
   DATA.filter(d=>{
     if(filter==="all")return true;
     if(filter.startsWith("cat:"))return d.cat===filter.slice(4);
+    if(filter==="au:auto")return (AUTONOMIA[d.id]||{}).k==="auto";
+    if(filter==="au:todo")return ["manual","future"].includes((AUTONOMIA[d.id]||{}).k);
     return d.status===filter;
   }).forEach(d=>{
     const s=STATUS[d.status];
+    const au=AU[(AUTONOMIA[d.id]||{}).k]||null;
     const el=document.createElement('div');
     el.className="card "+s.card;
     el.innerHTML=`
@@ -396,7 +437,7 @@ function render(){
       </div>
       <div class="tagline">${d.tagline}</div>
       <div class="row3">
-        <span class="cat-chip">${d.cat}</span>
+        ${au?`<span class="au-chip ${au.cls}">${au.label}</span>`:`<span class="cat-chip">${d.cat}</span>`}
         <span class="status ${s.cls}"><span class="dot"></span>${s.label}</span>
       </div>`;
     el.addEventListener('click',()=>openModal(d));
@@ -413,6 +454,7 @@ function openModal(d){
         <h2>${d.title}</h2>
         <div class="m-meta">
           <span class="status ${s.cls}"><span class="dot"></span>${s.label}</span>
+          ${AU[(AUTONOMIA[d.id]||{}).k]?`<span class="au-chip ${AU[AUTONOMIA[d.id].k].cls}">${AU[AUTONOMIA[d.id].k].label}</span>`:""}
           <span class="cat-chip">${d.cat}</span>
           <span class="m-valid">${d.valid}</span>
         </div>
@@ -420,6 +462,7 @@ function openModal(d){
       <button class="m-close" onclick="closeModal()">✕</button>
     </div>
     <div class="m-body">
+      ${AUTONOMIA[d.id]?`<div class="sec"><h4>Autonomia</h4><p>${AUTONOMIA[d.id].note}</p></div>`:""}
       <div class="sec"><h4>O que faz</h4><p>${d.oque}</p></div>
       <div class="sec"><h4>Fluxo</h4><pre>${d.fluxo}</pre></div>
       <div class="two-col">
