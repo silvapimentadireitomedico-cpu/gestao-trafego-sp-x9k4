@@ -212,7 +212,7 @@ const AUTONOMIA = {
   9:  {k:"tool",   note:"Camada de acesso usada por chats e skills sob demanda — não 'roda' por conta. Quem consome ela é que pode ser agendado (ex: relatórios). O /otimizar continua com decisão humana por design."},
   10: {k:"tool",   note:"Mesma natureza da API Meta: camada sob demanda. Candidata a alimentar rotinas agendadas de relatório."},
   11: {k:"auto", note:"AUTÔNOMA desde 12/06: tarefa do Windows roda diário às 07:30 e o orquestrador age nas terças (atualiza mês) e dia 01 (fecha anterior + cria novo). Notifica no Discord #automações com o resumo; erro também notifica. Backup antes de cada gravação. Manual: rodar_automatico.py --force."},
-  12: {k:"manual", note:"Ad-hoc por natureza (raio-x de qualidade usado nos ciclos de otimização). Pode virar rotina mensal agendada se quiser leitura recorrente."},
+  12: {k:"auto", note:"AUTÔNOMA desde 12/06: tarefa do Windows toda terça 07:45 atualiza a planilha oficial (GERAL sobrescrevendo + bloco VENDAS recriado); 1ª terça fecha o mês anterior. Notifica Discord + WhatsApp; backup antes de cada gravação. Manual: rodar_automatico.py --force."},
   
   14: {k:"future", note:"Quando implementada, roda sozinha nas LPs (JS de captura), sem rotina."},
   15: {k:"auto",   note:"Igual ao Jurídico: Apps Script + TV sozinhos, virada de mês automática."},
@@ -345,15 +345,15 @@ const DATA = [
   pend:["FEITO 12/06: tarefa do Windows + orquestrador + Discord. Manual se precisar: rodar_automatico.py --force"]
 },
 {
-  id:12, title:"Pipeline Silva-Pimenta-META.xlsx", cat:"Dados & Planilhas", status:"warn",
-  valid:"Ad-hoc · usado nos ciclos de otimização",
-  tagline:"Raio-x por deal: cruza Pipedrive com histórico de vendas FIES pra separar CPL barato de lead bom.",
-  oque:"Scripts de análise profunda que cruzam deals do Pipedrive (propostas, contratos, valores) com o histórico de vendas do FIES. Base da lição \"CPL baixo não é qualidade\" (conjunto com CPL R$ 10 tinha 89,5% de refugo). Complementa a Planilha Power BI (#11): aquela é o consolidado mensal, esta é o detalhe por deal usado em diagnóstico de tráfego.",
-  fluxo:"puxar_pipedrive_detalhado.py (export deals FIES)\n  → atualizar_silva_pimenta_meta.py (cruza com vendas históricas)\n  → Silva-Pimenta-META.xlsx",
-  stack:"Python · Pipedrive API · openpyxl",
-  vive:["automacoes/silva-pimenta-meta/scripts/ (3 scripts + lib_meta.py)"],
-  exec:"Sob demanda nos ciclos de otimização. Abrir o script antes pra conferir parâmetros (período, produto).",
-  pend:["Decidir: vira recorrente (integrar ao #11) ou continua sob demanda"]
+  id:12, title:"Planilha Silva-Pimenta-META (semanal)", cat:"Dados & Planilhas", status:"live",
+  valid:"Autônoma desde 12/06 · execução real validada (1 bloco/mês por aba, notificações entregues)",
+  tagline:"Raio-x por deal: toda terça 07:45 atualiza GERAL + VENDAS de todos os produtos com Pipedrive × investido Meta+Google.",
+  oque:"Tarefa do Windows roda toda TERÇA às 07:45 (com recuperação se o PC estava desligado): atualiza a planilha oficial dados/Silva-Pimenta-META.xlsx com o mês corrente — aba GERAL (investido Meta+Google via data.json do #6, receita, receita futura, leads, fechados, SOBRESCREVENDO os números da semana anterior) e aba VENDAS (bloco do mês removido e recriado com cada contrato: nome, telefone, datas, entrada, êxito 20% do prejuízo). Na 1ª terça do mês fecha também o mês anterior. Backup automático antes de cada save e notificação dupla: Discord #🤖-automações + WhatsApp (CallMeBot). Base da lição \"CPL baixo não é qualidade\".",
+  fluxo:"Task Windows (terça 07:45) → rodar_automatico.py\n  → puxar_pipedrive_detalhado.py + data.json (#6)\n  → atualizar_silva_pimenta_meta.py (backup antes)\n  → dados/Silva-Pimenta-META.xlsx → Discord + WhatsApp",
+  stack:"Python 3.14 · Pipedrive API · openpyxl · Task Scheduler · CallMeBot",
+  vive:["automacoes/silva-pimenta-meta/scripts/ (rodar_automatico.py + 3 scripts)","dados/Silva-Pimenta-META.xlsx (oficial — fonte da verdade)","Task: SilvaPimenta - Planilha META Semanal"],
+  exec:"Sozinha toda terça. Manual: rodar_automatico.py --force (usar o Python 3.14; --preview = ensaio sem salvar).",
+  pend:["Abas GERAL de SEGURO/SEG VIDA/MAIS MÉDICOS/LIVRE IR sem coluna jun/2026 — robô avisa toda terça e gera pendencias-*.txt; resolver inserindo a coluna na planilha"]
 },
 {
   id:13, title:"Dashboard Financeiro (Sheets)", cat:"Dashboards", status:"off",
