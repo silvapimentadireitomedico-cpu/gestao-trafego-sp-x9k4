@@ -217,6 +217,7 @@ const AUTONOMIA = {
   14: {k:"future", note:"Quando implementada, roda sozinha nas LPs (JS de captura), sem rotina."},
   15: {k:"auto",   note:"Igual ao Jurídico: Apps Script + TV sozinhos, virada de mês automática."},
   16: {k:"future", note:"Será agente 24/7 após o deploy no Fly.io. Hoje roda em dev local com whitelist (depende do PC ligado + tunnel)."},
+  18: {k:"auto",   note:"Agente 100% na nuvem: roda às 08:00 todo dia sem depender de PC ligado. Gerenciar em claude.ai/code/routines."},
   17: {k:"future", note:"Nasce autônoma (webhooks dos dois CRMs ↔ worker) quando construída. Aguardando acessos da seguradora."}
 };
 
@@ -406,7 +407,17 @@ const DATA = [
   stack:"HubSpot Private App (CRM API + webhooks) · Pipedrive API + webhooks · Worker Cloudflare",
   vive:["marketing/operacao/integracao-hubspot-seguradora/ (proposta HTML + PDF)","_organizacao/automacoes/17-integracao-hubspot-seguradora.md"],
   exec:"Aguardando: token Private App da seguradora + funis espelhados + de-para de etapas. Construção ~1 dia útil + testes nos 2 sentidos.",
-  pend:["Seguradora criar Private App e enviar token","Definir funil da parceria no Pipedrive + etapas","Funil espelhado no HubSpot + tabela de-para","Campos que viajam + dono padrão (Dayvid?)","Construir worker + testar ponta a ponta"]
+  pend:["Seguradora criar Private App e enviar token","Definir funil da parceria no Pipedrive + etapas","Funil espelhado no HubSpot + tabela de-para","Campos que viajam + dono padrão (Dayvid?)","Construir worker + testar ponta a ponta"]},
+{
+  id:18, cat:"Marketing", title:"Radar de Conteúdo (notícias → pautas)", status:"live",
+  valid:"Criada 12/06 · roda na NUVEM às 08:00",
+  tagline:"Agente Claude na nuvem caça notícias que impactam médicos e segurados e posta sugestões de pauta prontas pra Thainar no Discord.",
+  oque:"Rotina cloud do Claude (independente do PC): todo dia às 08:00 pesquisa notícias das últimas 24-48h sobre os temas dos dois públicos (residência médica, FIES, CFM, decisões judiciais / negativas de seguradora, SUSEP, seguros) e posta no Discord #automações até 3+2 sugestões com fonte, por que importa, formato (reel/carrossel/post) e gancho de abertura pronto, com compliance OAB. Dia fraco = 1 ideia evergreen no lugar.",
+  fluxo:"Rotina cloud (cron 08:00 BRT) → WebSearch (g1, Conjur, Migalhas...)\n  → curadoria 3 médicos + 2 segurados → webhook Discord",
+  stack:"Claude cloud routine (Sonnet 4.6) · WebSearch · webhook Discord",
+  vive:["Gerenciar: claude.ai/code/routines/trig_016rFzJ9iEznrBbS2xBcxHhE","Cartão: _organizacao/automacoes/18-radar-de-conteudo.md"],
+  exec:"Ajustar temas/canal: editar o prompt da rotina. Rodar agora: pedir no chat. Desligar: claude.ai/code/routines.",
+  pend:["Migrar destino pro canal #marketing após a reorganização do Discord","Calibrar com feedback da Thainar na 1ª semana"]
 }
 ];
 
