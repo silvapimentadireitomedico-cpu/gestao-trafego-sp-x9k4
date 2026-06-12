@@ -423,7 +423,7 @@ const DATA = [
   id:19, cat:"Atendimento & Leads", title:"Robô das Ações (PÓS-FECHAMENTO → Discord)", status:"live",
   valid:"Criada e testada 12/06 · ciclo completo validado",
   tagline:"Deal ganho cria card espelho no funil PÓS-FECHAMENTO; Duda arrasta pra DOCUMENTO OK e o jurídico é avisado no Discord.",
-  oque:"Automatiza o fluxo pasta completa → ação que vivia no chat-geral: (1) comercial marca GANHO num funil SP → robô cria card espelho no funil PÓS-FECHAMENTO (COLETANDO DOCUMENTOS), sem tocar nas métricas de receita; (2) Documentação arrasta pra DOCUMENTO OK quando a pasta fecha; (3) robô posta no #✅-ações-sp (cliente + produto, SEM link Pipedrive pois o jurídico não usa); jurídico assume na thread e marca ✅ ao concluir; (4) AÇÃO FEITA fecha o ciclo. MG desligado por enquanto.",
+  oque:"Automatiza o fluxo pasta completa → ação que vivia no chat-geral: (1) comercial marca GANHO em QUALQUER funil (todos, exceto o próprio pós-fechamento) → robô cria card espelho no funil PÓS-FECHAMENTO (COLETANDO DOCUMENTOS), sem tocar nas métricas de receita; (2) Documentação arrasta pra DOCUMENTO OK quando a pasta fecha; (3) robô posta no #✅-ações-sp (cliente + produto, SEM link Pipedrive pois o jurídico não usa); jurídico assume na thread e marca ✅ ao concluir; (4) AÇÃO FEITA fecha o ciclo. Avisos de todos os produtos caem no #✅-ações-sp por enquanto.",
   fluxo:"Deal SP ganho → webhook Pipedrive → worker cria espelho (funil 11)\nEspelho → DOCUMENTO OK → worker → Discord #✅-ações-sp",
   stack:"Pipedrive webhook (1877132) · Worker Cloudflare · webhook Discord",
   vive:["tag-lead-filter/_worker.js (rota /pipedrive-acoes)","Funil PÓS-FECHAMENTO (11) · etapas 113/114/115","_organizacao/automacoes/19-robo-acoes-pos-fechamento.md"],
