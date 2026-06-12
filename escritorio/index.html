@@ -6,116 +6,140 @@
 <title>Escritório Virtual — Agentes Silva Pimenta</title>
 <style>
   :root{
-    --wall:#5d4a66; --wall2:#4a3a52; --floor1:#c9a36a; --floor2:#bd9357;
-    --ink:#1a1326; --ui:#0F2F3B; --gold:#C5A57A;
-    --ok:#3DDC84; --err:#ff5050; --zzz:#9bb7ff;
-    --px:4px;
+    --wall:#6b5377; --wall2:#5a4565; --rodape:#3d2f49;
+    --floor1:#d2aa70; --floor2:#c69b5d; --rug:#8e5d3a;
+    --mesa:#8a5a31; --mesa2:#6d4423;
+    --ink:#1a1326; --gold:#C5A57A; --gold2:#e9c98f;
+    --ok:#3DDC84; --err:#ff5050; --zzz:#9bb7ff; --cafe:#6fd3ff;
+    --px:5px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:#231a2e;font-family:'Courier New',monospace;color:#fff;min-height:100vh;
-    display:flex;flex-direction:column;align-items:center;padding:18px 10px 40px;
+  body{background:radial-gradient(circle at 50% 0%, #2d2140 0%, #1c1429 70%);font-family:'Courier New',monospace;
+    color:#fff;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px 10px 40px;
     image-rendering:pixelated}
-  h1{font-size:20px;letter-spacing:1px;color:var(--gold);text-shadow:2px 2px 0 #000}
-  .sub{font-size:11px;color:#bfa9d6;margin:4px 0 14px}
-  .hud{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;justify-content:center}
-  .hud span{background:#171024;border:2px solid #3a2c4d;padding:5px 12px;font-size:11px;border-radius:4px}
-  .hud b{color:var(--gold)}
+  h1{font-size:21px;letter-spacing:2px;color:var(--gold2);text-shadow:3px 3px 0 #000}
+  .sub{font-size:11px;color:#bfa9d6;margin:5px 0 14px}
+  .hud{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;justify-content:center}
+  .hud span{background:#171024;border:2px solid #46355e;padding:6px 14px;font-size:11px;border-radius:6px;
+    box-shadow:0 3px 0 #0a0612}
+  .hud b{color:var(--gold2)}
 
   /* ====== sala ====== */
-  .room{position:relative;width:920px;max-width:98vw;height:560px;border:6px solid #120c1c;
-    border-radius:6px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6)}
-  .wall{position:absolute;top:0;left:0;right:0;height:120px;
-    background:repeating-linear-gradient(90deg,var(--wall) 0 28px,var(--wall2) 28px 56px)}
-  .wall:after{content:"";position:absolute;bottom:0;left:0;right:0;height:10px;background:#352741}
-  .floor{position:absolute;top:120px;left:0;right:0;bottom:0;
-    background:repeating-conic-gradient(var(--floor1) 0% 25%, var(--floor2) 0% 50%) 0 0/56px 56px}
+  .room{position:relative;width:960px;max-width:98vw;height:660px;border:8px solid #0e0918;
+    border-radius:8px;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.7), inset 0 0 80px rgba(0,0,0,.25)}
+  .wall{position:absolute;top:0;left:0;right:0;height:130px;
+    background:repeating-linear-gradient(90deg,var(--wall) 0 30px,var(--wall2) 30px 60px)}
+  .wall .rodape{position:absolute;bottom:0;left:0;right:0;height:14px;background:var(--rodape);
+    border-top:3px solid #2c2138}
+  .floor{position:absolute;top:130px;left:0;right:0;bottom:0;
+    background:repeating-conic-gradient(var(--floor1) 0% 25%, var(--floor2) 0% 50%) 0 0/48px 48px}
+  .floor:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.18),transparent 30%)}
 
-  /* quadros e TVs na parede */
-  .tvwall{position:absolute;top:24px;width:120px;height:66px;background:#0c0c14;border:5px solid #2c2238;border-radius:3px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
-  .tvwall .bar{width:80%;height:7px;border-radius:2px;background:var(--gold);opacity:.85;animation:tvflick 2.4s infinite}
-  .tvwall .bar:nth-child(2){width:60%;background:var(--ok);animation-delay:.6s}
-  .tvwall .bar:nth-child(3){width:70%;background:#93C5FD;animation-delay:1.2s}
-  .tvwall .lbl{position:absolute;bottom:-18px;width:160px;left:50%;transform:translateX(-50%);
-    text-align:center;font-size:9px;color:#cdbce0}
+  .janela{position:absolute;top:22px;right:40px;width:110px;height:74px;background:linear-gradient(180deg,#8fd0f5,#cfeaff);
+    border:6px solid #3d2f49;border-radius:3px}
+  .janela:before{content:"";position:absolute;top:0;bottom:0;left:50%;width:5px;background:#3d2f49}
+  .janela .nuvem{position:absolute;top:14px;left:8px;width:26px;height:9px;background:#fff;border-radius:5px;
+    animation:nuvem 14s linear infinite}
+  @keyframes nuvem{from{transform:translateX(-10px)}to{transform:translateX(90px)}}
+  .relogio{position:absolute;top:30px;left:300px;width:42px;height:42px;background:#f4ead2;border:5px solid #3d2f49;
+    border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#222;font-weight:bold}
+  .placa{position:absolute;top:36px;left:34px;background:#1A4758;border:4px solid #112f3c;color:var(--gold2);
+    font-size:13px;font-weight:bold;letter-spacing:2px;padding:9px 14px;box-shadow:0 4px 0 #0b2230}
+
+  .tvwall{position:absolute;top:26px;width:118px;height:68px;background:#0c0c14;border:5px solid #2c2238;border-radius:4px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;cursor:pointer;
+    box-shadow:0 0 14px rgba(61,220,132,.18)}
+  .tvwall:hover{box-shadow:0 0 20px rgba(61,220,132,.45)}
+  .tvwall .bar{width:78%;height:7px;border-radius:2px;background:var(--gold);opacity:.85;animation:tvflick 2.4s infinite}
+  .tvwall .bar:nth-child(3){width:58%;background:var(--ok);animation-delay:.6s}
+  .tvwall .bar:nth-child(4){width:68%;background:#93C5FD;animation-delay:1.2s}
+  .tvwall .lbl{position:absolute;bottom:-20px;width:150px;left:50%;transform:translateX(-50%);
+    text-align:center;font-size:9px;color:#d8c8ea;text-shadow:1px 1px 0 #000}
   @keyframes tvflick{0%,100%{opacity:.85}50%{opacity:.45}}
-  .led{position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:50%;background:var(--ok);
-    animation:pulseled 1.4s infinite}
-  @keyframes pulseled{50%{opacity:.3}}
+  .led{position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulseled 1.4s infinite}
+  @keyframes pulseled{50%{opacity:.25}}
 
-  /* logo na parede */
-  .placa{position:absolute;top:34px;left:30px;background:#1A4758;border:4px solid #133646;color:var(--gold);
-    font-size:12px;font-weight:bold;letter-spacing:2px;padding:8px 12px}
-
-  /* ====== estação de trabalho ====== */
-  .station{position:absolute;width:150px;height:150px;cursor:pointer}
-  .desk{position:absolute;bottom:18px;left:6px;width:130px;height:44px;background:#7a4f2b;
-    border:4px solid #5d3a1d;border-bottom-width:8px;border-radius:3px}
-  .desk:before{content:"";position:absolute;left:8px;bottom:-26px;width:10px;height:20px;background:#5d3a1d}
-  .desk:after{content:"";position:absolute;right:8px;bottom:-26px;width:10px;height:20px;background:#5d3a1d}
-  .monitor{position:absolute;top:-34px;left:50%;transform:translateX(-50%);width:46px;height:30px;
-    background:#10101c;border:4px solid #2b2b3d;border-radius:2px}
-  .monitor .scr{position:absolute;inset:2px;background:#06121c}
-  .typing .monitor .scr{animation:scr .5s steps(2) infinite;background:#0e3a52}
-  @keyframes scr{50%{background:#11506e}}
+  /* ====== estação ====== */
+  .station{position:absolute;width:170px;height:200px;cursor:pointer}
+  .station:hover .nome{background:#2a1c40;border-color:var(--gold)}
+  .rug{position:absolute;bottom:26px;left:0;width:170px;height:74px;background:var(--rug);opacity:.55;border-radius:6px}
+  .desk{position:absolute;bottom:44px;left:15px;width:140px;height:42px;background:var(--mesa);
+    border:4px solid var(--mesa2);border-bottom-width:9px;border-radius:4px;z-index:3}
+  .desk:before{content:"";position:absolute;left:10px;bottom:-30px;width:11px;height:22px;background:var(--mesa2)}
+  .desk:after{content:"";position:absolute;right:10px;bottom:-30px;width:11px;height:22px;background:var(--mesa2)}
+  .monitor{position:absolute;top:-36px;left:50%;transform:translateX(-50%);width:50px;height:32px;
+    background:#10101c;border:4px solid #2b2b3d;border-radius:3px}
+  .monitor:after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);width:14px;height:6px;background:#2b2b3d}
+  .monitor .scr{position:absolute;inset:2px;background:#08141f}
+  .typing .monitor .scr{animation:scr .45s steps(2) infinite;background:#0e3a52}
+  @keyframes scr{50%{background:#15618a}}
   .erroada .monitor .scr{background:#3a0e12;animation:scr-err .6s steps(2) infinite}
-  @keyframes scr-err{50%{background:#5e1119}}
+  @keyframes scr-err{50%{background:#6b1220}}
+  .cafe{position:absolute;bottom:46px;right:16px;width:14px;height:12px;background:#f4ead2;border:3px solid #b89f76;
+    border-radius:0 0 4px 4px;z-index:4;display:none}
+  .cafe:before{content:"";position:absolute;right:-7px;top:2px;width:5px;height:6px;border:2px solid #b89f76;border-left:none;border-radius:0 4px 4px 0}
+  .cafe .vapor{position:absolute;top:-12px;left:3px;color:#fff;font-size:9px;opacity:.7;animation:vapor 2s infinite}
+  @keyframes vapor{0%{opacity:0;transform:translateY(4px)}50%{opacity:.8}100%{opacity:0;transform:translateY(-6px)}}
 
-  .char{position:absolute;left:50%;bottom:54px;transform:translateX(-50%);width:calc(12*var(--px));height:calc(15*var(--px))}
+  .char{position:absolute;left:50%;bottom:96px;transform:translateX(-50%);
+    width:calc(12*var(--px));height:calc(15*var(--px));z-index:2}
   .char .px{position:absolute;top:0;left:0;width:var(--px);height:var(--px)}
-  .nome{position:absolute;bottom:0;left:50%;transform:translateX(-50%);background:#171024;color:#fff;
-    font-size:9px;padding:2px 6px;border:2px solid #3a2c4d;border-radius:3px;white-space:nowrap}
-  .stchip{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:8px;
-    padding:1px 6px;border-radius:6px;white-space:nowrap}
-  .st-ok{background:#10331f;color:var(--ok)}
-  .st-type{background:#0e2a3a;color:#6fd3ff}
-  .st-err{background:#3a1012;color:var(--err)}
-  .st-zzz{background:#1c2440;color:var(--zzz)}
 
-  /* balões */
-  .balao{position:absolute;top:-66px;left:50%;transform:translateX(-50%);background:#fff;color:#111;
-    font-size:10px;font-weight:bold;padding:6px 9px;border:3px solid #111;border-radius:6px;white-space:nowrap;z-index:5}
-  .balao:after{content:"";position:absolute;bottom:-9px;left:50%;transform:translateX(-50%);
+  .nome{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);background:#171024;color:#fff;
+    font-size:10px;padding:3px 8px;border:2px solid #46355e;border-radius:4px;white-space:nowrap;z-index:5}
+  .stchip{position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:8.5px;font-weight:bold;
+    padding:2px 8px;border-radius:8px;white-space:nowrap;z-index:5;letter-spacing:.5px}
+  .st-ok{background:#10331f;color:var(--ok);border:1px solid #1d5c39}
+  .st-type{background:#0e2a3a;color:var(--cafe);border:1px solid #1c5876}
+  .st-err{background:#3a1012;color:var(--err);border:1px solid #7c1d22}
+  .st-zzz{background:#1c2440;color:var(--zzz);border:1px solid #34487e}
+
+  .balao{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:#fff;color:#111;
+    font-size:10px;font-weight:bold;padding:6px 10px;border:3px solid #111;border-radius:8px;white-space:nowrap;z-index:6}
+  .balao:after{content:"";position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
     border:5px solid transparent;border-top-color:#111}
   .balao.erro{background:#ffe1e1;border-color:#a40000;color:#a40000;animation:shake .5s infinite}
   @keyframes shake{25%{transform:translateX(-54%)}75%{transform:translateX(-46%)}}
   .balao.dots span{animation:dotty 1.2s infinite;display:inline-block}
   .balao.dots span:nth-child(2){animation-delay:.2s}
   .balao.dots span:nth-child(3){animation-delay:.4s}
-  @keyframes dotty{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-3px)}}
-  .zzzfx{position:absolute;top:-44px;left:60%;color:var(--zzz);font-size:13px;font-weight:bold;animation:zfloat 2.2s infinite}
-  @keyframes zfloat{0%{opacity:0;transform:translateY(6px)}40%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
+  @keyframes dotty{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+  .zzzfx{position:absolute;top:18px;left:62%;color:var(--zzz);font-size:14px;font-weight:bold;z-index:6;
+    text-shadow:1px 1px 0 #000;animation:zfloat 2.2s infinite}
+  @keyframes zfloat{0%{opacity:0;transform:translateY(8px)}40%{opacity:1}100%{opacity:0;transform:translateY(-14px)}}
 
   /* pilha de pendências */
-  .pilha{position:absolute;right:26px;bottom:30px;width:120px;cursor:pointer;text-align:center}
-  .pasta{height:16px;margin:0 auto;border:3px solid #7c5a14;border-radius:2px}
-  .pasta:nth-child(1){width:74px;background:#e9b94e}
-  .pasta:nth-child(2){width:84px;background:#d9a93e}
-  .pasta:nth-child(3){width:94px;background:#c99a30}
-  .pasta:nth-child(4){width:104px;background:#b98b24}
-  .pilha .lbl{margin-top:6px;font-size:9px;color:#ffd98a;background:#171024;border:2px solid #3a2c4d;
-    border-radius:3px;padding:3px 5px;display:inline-block}
-  .pilha:hover .pasta{transform:translateX(2px)}
+  .pilha{position:absolute;right:30px;bottom:44px;width:130px;cursor:pointer;text-align:center;z-index:4}
+  .pilha .papel{height:6px;width:64px;margin:0 auto;background:#f4ead2;border:2px solid #cbb78f}
+  .pasta{height:17px;margin:0 auto;border:3px solid #7c5a14;border-radius:3px}
+  .pasta:nth-child(2){width:76px;background:#e9b94e}
+  .pasta:nth-child(3){width:88px;background:#d9a93e}
+  .pasta:nth-child(4){width:100px;background:#c99a30}
+  .pasta:nth-child(5){width:112px;background:#b98b24}
+  .pilha:hover .pasta,.pilha:hover .papel{transform:translateY(-2px)}
+  .pilha .lbl{margin-top:8px;font-size:9px;color:#ffd98a;background:#171024;border:2px solid #46355e;
+    border-radius:4px;padding:4px 6px;display:inline-block;box-shadow:0 3px 0 #0a0612}
 
-  /* planta / bebedouro */
-  .planta{position:absolute;width:26px;height:40px}
-  .planta .vaso{position:absolute;bottom:0;left:4px;width:18px;height:14px;background:#a3502e;border:3px solid #7c3a20}
-  .planta .folha{position:absolute;bottom:12px;left:1px;width:24px;height:26px;background:#2e8b4f;border:3px solid #1e6336;border-radius:50% 50% 10% 10%}
-  .agua{position:absolute;width:24px;height:52px;background:#cfe8ff;border:3px solid #8ab6d8;border-radius:4px 4px 2px 2px}
-  .agua:before{content:"";position:absolute;top:8px;left:3px;right:3px;height:18px;background:#7cc0ee}
+  .planta{position:absolute;width:30px;height:46px;z-index:2}
+  .planta .vaso{position:absolute;bottom:0;left:5px;width:20px;height:15px;background:#a3502e;border:3px solid #7c3a20}
+  .planta .folha{position:absolute;bottom:13px;left:1px;width:28px;height:30px;background:#2e8b4f;border:3px solid #1e6336;
+    border-radius:50% 50% 12% 12%}
+  .agua{position:absolute;width:26px;height:56px;background:#cfe8ff;border:4px solid #8ab6d8;border-radius:5px 5px 3px 3px;z-index:2}
+  .agua:before{content:"";position:absolute;top:9px;left:3px;right:3px;height:20px;background:#7cc0ee}
+  .agua:after{content:"";position:absolute;top:2px;left:50%;transform:translateX(-50%);width:10px;height:5px;background:#8ab6d8}
 
   /* modal */
-  .overlay{position:fixed;inset:0;background:rgba(8,5,15,.8);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+  .overlay{position:fixed;inset:0;background:rgba(8,5,15,.82);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
   .overlay.show{display:flex}
-  .modal{background:#1b1228;border:4px solid var(--gold);border-radius:8px;max-width:520px;width:100%;padding:20px;font-size:12px}
-  .modal h2{color:var(--gold);font-size:15px;margin-bottom:10px}
+  .modal{background:#1b1228;border:4px solid var(--gold);border-radius:10px;max-width:540px;width:100%;padding:22px;font-size:12px;
+    box-shadow:0 10px 0 #0a0612}
+  .modal h2{color:var(--gold2);font-size:15px;margin-bottom:10px}
   .modal p,.modal li{line-height:1.7;color:#e8def5}
   .modal ul{padding-left:18px;margin:6px 0}
   .modal a{color:var(--ok)}
-  .modal .fechar{margin-top:12px;background:var(--gold);color:#1b1228;border:none;padding:7px 14px;
-    font-family:inherit;font-weight:bold;cursor:pointer;border-radius:4px}
-  .toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#171024;border:2px solid #3a2c4d;
-    color:#bfa9d6;font-size:10px;padding:5px 12px;border-radius:4px}
+  .modal .fechar{margin-top:14px;background:var(--gold);color:#1b1228;border:none;padding:8px 16px;
+    font-family:inherit;font-weight:bold;cursor:pointer;border-radius:5px;box-shadow:0 3px 0 #8a6f4d}
+  .toast{margin-top:14px;background:#171024;border:2px solid #46355e;color:#bfa9d6;font-size:10px;padding:6px 14px;border-radius:5px}
 </style>
 </head>
 <body>
@@ -129,28 +153,31 @@
   </div>
 
   <div class="room" id="room">
-    <div class="wall"></div>
+    <div class="wall"><div class="rodape"></div></div>
     <div class="floor"></div>
     <div class="placa">SILVA PIMENTA</div>
+    <div class="relogio" id="relogio">--:--</div>
+    <div class="janela"><div class="nuvem"></div></div>
 
-    <div class="tvwall" style="left:200px" onclick="abrirTV('orcamento')">
+    <div class="tvwall" style="left:380px" onclick="abrirTV('orcamento')">
       <span class="led"></span><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="lbl">📺 Dash Orçamento (cron 30min)</div>
+      <div class="lbl">📺 Orçamento</div>
     </div>
-    <div class="tvwall" style="left:360px" onclick="abrirTV('juridico')">
+    <div class="tvwall" style="left:530px" onclick="abrirTV('juridico')">
       <span class="led"></span><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="lbl">📺 Dash Jurídico (TV)</div>
+      <div class="lbl">📺 Jurídico</div>
     </div>
-    <div class="tvwall" style="left:520px" onclick="abrirTV('encerr')">
+    <div class="tvwall" style="left:680px" onclick="abrirTV('encerr')">
       <span class="led"></span><div class="bar"></div><div class="bar"></div><div class="bar"></div>
-      <div class="lbl">📺 Dash Encerramentos (TV)</div>
+      <div class="lbl">📺 Encerramentos</div>
     </div>
 
-    <div class="planta" style="left:18px;bottom:24px"><div class="folha"></div><div class="vaso"></div></div>
-    <div class="planta" style="right:160px;top:140px"><div class="folha"></div><div class="vaso"></div></div>
-    <div class="agua" style="left:60px;bottom:140px"></div>
+    <div class="planta" style="left:20px;bottom:26px"><div class="folha"></div><div class="vaso"></div></div>
+    <div class="planta" style="right:180px;top:150px"><div class="folha"></div><div class="vaso"></div></div>
+    <div class="agua" style="left:66px;top:170px"></div>
 
     <div class="pilha" id="pilha">
+      <div class="papel"></div>
       <div class="pasta"></div><div class="pasta"></div><div class="pasta"></div><div class="pasta"></div>
       <div class="lbl">📂 PENDÊNCIAS<br><span id="pilhaN">6</span> pra automatizar</div>
     </div>
@@ -163,11 +190,11 @@
 const STATUS_URL = 'https://sp-tag-lead-filter-x7k2.pages.dev/status';
 
 const AGENTES = [
-  { key:'taglead', nome:'Tag Lead',          x:120, y:300, shirt:'#1A4758', hair:'#3a2415' },
-  { key:'cadaux',  nome:'Cad. Auxílio',      x:330, y:300, shirt:'#7a3aa8', hair:'#101010' },
-  { key:'cadfies', nome:'Cad. FIES',         x:540, y:300, shirt:'#b8762a', hair:'#5a3214' },
-  { key:'cadsusp', nome:'Cad. Suspensão',    x:330, y:430, shirt:'#2e7d4f', hair:'#222' },
-  { key:'hubspot', nome:'HubSpot (em breve)',x:120, y:430, shirt:'#666',    hair:'#444', fixo:'zzz' },
+  { key:'taglead', nome:'Tag Lead',           x:115, y:180, shirt:'#1A4758', hair:'#3a2415' },
+  { key:'cadaux',  nome:'Cad. Auxílio',       x:395, y:180, shirt:'#7a3aa8', hair:'#101010' },
+  { key:'cadfies', nome:'Cad. FIES',          x:675, y:180, shirt:'#b8762a', hair:'#5a3214' },
+  { key:'cadsusp', nome:'Cad. Suspensão',     x:255, y:420, shirt:'#2e7d4f', hair:'#222' },
+  { key:'hubspot', nome:'HubSpot (em breve)', x:535, y:420, shirt:'#6b6b78', hair:'#444', fixo:'zzz' },
 ];
 
 const PENDENCIAS = [
@@ -179,7 +206,6 @@ const PENDENCIAS = [
   '#17 HubSpot × Pipedrive — aguardando acessos da seguradora',
 ];
 
-// ===== sprite pixel (box-shadow) =====
 const MAPA_BASE = [
   '..HHHHHH....',
   '.HHHHHHHH...',
@@ -198,14 +224,13 @@ const MAPA_BASE = [
   '..PP..PP....',
 ];
 function sprite(el, ag, frame, dormindo){
-  const px = 4;
-  const cores = { H:ag.hair, S:'#e8b88a', O:dormindo?'#e8b88a':'#1a1326', C:ag.shirt, P:'#2b2b3d', '_':'#c9805e' };
+  const px = 5;
+  const cores = { H:ag.hair, S:'#e8b88a', O:dormindo?'#caa078':'#1a1326', C:ag.shirt, P:'#2b2b3d', '_':'#c9805e' };
   let sh = [];
   MAPA_BASE.forEach((row,y)=>{
     [...row].forEach((c,x)=>{
       if(c==='.')return;
       let yy = y;
-      // braços (linha 10, colunas 0 e 9 = 'S') sobem/descem no frame de digitação
       if(frame===1 && y===10 && (x===0||x===9)) yy = 9;
       sh.push(`${x*px}px ${yy*px}px 0 0 ${cores[c]||'#fff'}`);
     });
@@ -214,33 +239,36 @@ function sprite(el, ag, frame, dormindo){
   el.style.width = el.style.height = px+'px';
 }
 
-// ===== monta estações =====
 const room = document.getElementById('room');
 const els = {};
 AGENTES.forEach(ag=>{
   const st = document.createElement('div');
   st.className='station'; st.style.left=ag.x+'px'; st.style.top=ag.y+'px';
   st.innerHTML = `
+    <div class="rug"></div>
     <div class="balao erro" style="display:none">⚠️ ERRO!</div>
     <div class="balao dots" style="display:none"><span>.</span><span>.</span><span>.</span></div>
     <div class="zzzfx" style="display:none">z Z z</div>
     <div class="char"><i class="px"></i></div>
     <div class="desk"><div class="monitor"><div class="scr"></div></div></div>
+    <div class="cafe"><span class="vapor">~</span></div>
     <div class="nome">${ag.nome}</div>
     <div class="stchip st-ok">–</div>`;
   st.onclick = ()=>abrirAgente(ag.key);
   room.appendChild(st);
   els[ag.key] = { st, ag, char: st.querySelector('.px'),
     bErr: st.querySelector('.balao.erro'), bDots: st.querySelector('.balao.dots'),
-    zzz: st.querySelector('.zzzfx'), chip: st.querySelector('.stchip') };
+    zzz: st.querySelector('.zzzfx'), chip: st.querySelector('.stchip'), cafe: st.querySelector('.cafe') };
   sprite(st.querySelector('.px'), ag, 0, ag.fixo==='zzz');
 });
 
 let DADOS = null, frame = 0;
-setInterval(()=>{ // animação de digitação
+setInterval(()=>{
   frame = 1-frame;
   Object.values(els).forEach(e=>{ if(e.estado==='typing') sprite(e.char, e.ag, frame, false); });
 }, 380);
+setInterval(()=>{ document.getElementById('relogio').textContent =
+  new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}); }, 1000);
 
 function aplicar(key, estado, detalhe){
   const e = els[key]; if(!e) return;
@@ -248,9 +276,10 @@ function aplicar(key, estado, detalhe){
   e.bErr.style.display = estado==='erro' ? 'block':'none';
   e.bDots.style.display = estado==='typing' ? 'block':'none';
   e.zzz.style.display = estado==='zzz' ? 'block':'none';
+  e.cafe.style.display = estado==='idle' ? 'block':'none';
   e.st.classList.toggle('typing', estado==='typing');
   e.st.classList.toggle('erroada', estado==='erro');
-  const M = { typing:['DIGITANDO…','st-type'], erro:['ERRO!','st-err'], zzz:['DORMINDO','st-zzz'], idle:['na escuta','st-ok'] };
+  const M = { typing:['DIGITANDO…','st-type'], erro:['ERRO!','st-err'], zzz:['DORMINDO','st-zzz'], idle:['na escuta ☕','st-ok'] };
   e.chip.textContent = M[estado][0]; e.chip.className = 'stchip '+M[estado][1];
   sprite(e.char, e.ag, 0, estado==='zzz');
 }
@@ -269,21 +298,20 @@ async function atualizar(){
         else if(age<10) estado='typing';
       }
       if(estado==='typing')w++; else if(estado==='erro')er++; else if(estado==='idle')id++;
-      aplicar(a.key, estado, a.ultima ? `Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} ops` : 'sem execuções');
+      aplicar(a.key, estado, a.ultima ? `Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso ✅':'ERRO ⚠️'} · ${a.ultima.ops} operações` : 'sem execuções recentes');
     });
-    aplicar('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17)');
+    aplicar('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17). Vai acordar quando a integração for construída. 😴');
     document.getElementById('hWork').textContent=w;
     document.getElementById('hErr').textContent=er;
     document.getElementById('hIdle').textContent=id;
     document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
-    document.getElementById('toast').textContent = er>0 ? '⚠️ tem agente com erro — clica nele pra ver' : 'tudo monitorado · status real do Make';
+    document.getElementById('toast').textContent = er>0 ? '⚠️ tem agente com erro — clica nele pra ver os detalhes' : '✅ tudo monitorado · status real do Make · clique nos personagens';
   }catch(e){
     document.getElementById('toast').textContent='falha ao falar com o Make: '+e;
   }
 }
 atualizar(); setInterval(atualizar, 60000);
 
-// ===== modais =====
 const ov=document.getElementById('ov'), md=document.getElementById('md');
 function abrir(html){ md.innerHTML = html + '<button class="fechar" onclick="ov.classList.remove(\'show\')">fechar</button>'; ov.classList.add('show'); }
 ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('show'); });
@@ -291,10 +319,10 @@ ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('show'); 
 function abrirAgente(key){
   const e = els[key];
   const a = (DADOS?.agentes||[]).find(x=>x.key===key);
-  abrir(`<h2>${e.ag.nome}</h2>
+  abrir(`<h2>👤 ${e.ag.nome}</h2>
     <p>${e.detalhe||'…'}</p>
-    ${a?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${a.id}/edit" target="_blank">#${a.id} (abrir HISTORY)</a> · ativo: ${a.ativo?'sim':'NÃO'}</p>`:''}
-    <p style="color:#9b87b8">Estados: DIGITANDO = executou nos últimos 10 min · ERRO = última execução falhou (clique no link e use "Run once more" na execução vermelha) · DORMINDO = cenário desligado.</p>`);
+    ${a?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${a.id}/edit" target="_blank">#${a.id} — abrir HISTORY</a> · ativo: ${a.ativo?'sim':'NÃO'}</p>`:''}
+    <p style="color:#9b87b8">DIGITANDO = executou nos últimos 10 min · ERRO = última execução falhou (no HISTORY, use "Run once more" na execução vermelha) · DORMINDO = desligado · ☕ = na escuta, sem movimento recente.</p>`);
 }
 document.getElementById('pilha').onclick = ()=>abrir(
   `<h2>📂 Pilha de pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul>
