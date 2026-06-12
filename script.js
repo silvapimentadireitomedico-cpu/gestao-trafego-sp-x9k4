@@ -45,7 +45,7 @@ const PRODUTOS = [
   { id: 'aux-moradia',     escritorio: 'silva',     nome: 'Aux. Moradia',  orcamento: 22252.40, plats: ['meta', 'google'] },
   { id: 'fies',            escritorio: 'silva',     nome: 'FIES',          orcamento: 26157.60, plats: ['meta', 'google'] },
   { id: 'fies-suspensao',  escritorio: 'silva',     nome: 'FIES Susp.',    orcamento:  1840.65, plats: ['meta', 'google'] },
-  { id: 'direito-medico',  escritorio: 'silva',     nome: 'Direito Médico',orcamento: 15000.00, plats: ['google'] },
+  { id: 'direito-medico',  escritorio: 'silva',     nome: 'Direito Médico',orcamento: 15000.00, plats: ['meta', 'google'] },
   { id: 'inss',            escritorio: 'silva',     nome: 'INSS',          orcamento:  3103.86, plats: ['meta'] },
   { id: 'provab',          escritorio: 'silva',     nome: 'PROVAB',        orcamento:   232.00, plats: ['meta'] },
   // Magalhães Gomes
