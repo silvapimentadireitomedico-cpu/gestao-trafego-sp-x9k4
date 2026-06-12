@@ -357,6 +357,17 @@ const DATA = [
   vive:["clientes/magalhaes-gomes/agente-suporte-ia/docs/ESTADO-DO-PROJETO.md ← handoff","clientes/magalhaes-gomes/agente-suporte-ia/docs/API-DIGISAC-REFERENCIA.md ← API validada","Código: agente-suporte-ia/app/ · credenciais só no .env"],
   exec:"Dev local: scripts/subir_local.ps1 (uvicorn + Cloudflare Tunnel; URL muda a cada reboot → atualizar webhook no Digisac). Ver COMO_RETOMAR.md.",
   pend:["DECISÃO: contratar ADVWin? R$ 900/mês × 12m, sem sandbox","Pós-contrato: doc PDF → Sprint 2 (~1 dia) · CPF local","Guardrails OAB com Dr. Flávio (30 perguntas-armadilha)","Sprint 4: Fly.io + URL fixa","Display Name Rejected (360 Dialog)","Suporte a áudio (transcrição nativa)","Remover whitelist de teste","Confirmar número do bot vs troca 27/05"]
+},
+{
+  id:17, cat:"Atendimento & Leads", status:"plan", title:"Integração HubSpot × Pipedrive (Seguradora)",
+  valid:"Em desenho · proposta enviada à seguradora 12/06",
+  tagline:"Funis espelhados: cadastro no HubSpot da seguradora vira deal no nosso Pipedrive; cada etapa nossa reflete no funil deles em tempo real.",
+  oque:"Parceria com seguradora: eles cadastram o cliente no HubSpot deles → cria Person+Deal no funil da parceria no nosso Pipedrive. Quando movemos a etapa (Coletando Informações, Análise Enviada...), o deal espelhado no HubSpot move junto, dando acompanhamento em tempo real pra seguradora. SEM Digisac no meio (exigência deles). Anti-loop: criação só HS→PD, etapa só PD→HS. Vínculo por ID gravado em campo custom (stateless, sem banco). Custo zero (worker Cloudflare).",
+  fluxo:"HubSpot (cadastro) → webhook → Worker → Pipedrive (cria deal)\nPipedrive (etapa muda) → webhook → Worker → HubSpot (move espelho)",
+  stack:"HubSpot Private App (CRM API + webhooks) · Pipedrive API + webhooks · Worker Cloudflare",
+  vive:["marketing/operacao/integracao-hubspot-seguradora/ (proposta HTML + PDF)","_organizacao/automacoes/17-integracao-hubspot-seguradora.md"],
+  exec:"Aguardando: token Private App da seguradora + funis espelhados + de-para de etapas. Construção ~1 dia útil + testes nos 2 sentidos.",
+  pend:["Seguradora criar Private App e enviar token","Definir funil da parceria no Pipedrive + etapas","Funil espelhado no HubSpot + tabela de-para","Campos que viajam + dono padrão (Dayvid?)","Construir worker + testar ponta a ponta"]
 }
 ];
 
