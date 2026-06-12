@@ -334,7 +334,7 @@ const DATA = [
   id:11, title:"Planilha META POWER BI", cat:"Dados & Planilhas", status:"live",
   valid:"AUTÔNOMA desde 12/06 · testada de ponta a ponta",
   tagline:"Roda sozinha: terças atualiza o mês corrente, dia 01 fecha o anterior e cria o novo. Resumo no Discord #automações.",
-  oque:"Tarefa do Windows roda diariamente às 07:30 (com recuperação se o PC estava desligado) e o orquestrador rodar_automatico.py decide: terça = atualizar mês corrente; dia 01 = fechar o mês anterior + criar as linhas do novo. Coleta Meta (3 BMs) + Google + Pipedrive (Receita Futura = Safra), escreve no xlsx mestre com BACKUP automático antes, e manda o resumo por produto no Discord #🤖-automações (erro também notifica, nunca silencioso). Indicação nunca é sobrescrita (manual do William).",
+  oque:"Tarefa do Windows roda diariamente às 07:30 (com recuperação se o PC estava desligado) e o orquestrador rodar_automatico.py decide: terça = atualizar mês corrente; dia 01 = fechar o mês anterior + criar as linhas do novo. Coleta Meta (3 BMs) + Google + Pipedrive (Receita Futura = Safra), escreve no xlsx mestre com BACKUP automático antes, e manda o resumo por produto no Discord #🤖-automações E no WhatsApp do William (CallMeBot, número neutro — erro também notifica, nunca silencioso). Indicação nunca é sobrescrita (manual do William).",
   fluxo:"/atualizar-planilha-meta-powerbi\n  → puxar_meta_ads.py + puxar_google_ads.py + puxar_pipedrive.py\n  → resumo pro William → atualizar_planilha.py (backup antes)",
   stack:"Python · openpyxl · skill Claude Code",
   vive:["automacoes/planilha-power-bi/scripts/ + outputs/ + backups/",".claude/commands/atualizar-planilha-meta-powerbi.md ← fluxo completo","dados/PLANILHA DE META POWER BI.xlsx (mestre)"],
