@@ -188,7 +188,8 @@
 const STATUS = {
   live:{cls:"st-live",label:"Live",card:"is-live"},
   warn:{cls:"st-warn",label:"Parcial",card:"is-warn"},
-  plan:{cls:"st-plan",label:"Planejado",card:"is-plan"}
+  plan:{cls:"st-plan",label:"Planejado",card:"is-plan"},
+  off:{cls:"st-plan",label:"🚫 Aposentada",card:"is-plan"}
 };
 
 const AU = {
@@ -212,7 +213,7 @@ const AUTONOMIA = {
   10: {k:"tool",   note:"Mesma natureza da API Meta: camada sob demanda. Candidata a alimentar rotinas agendadas de relatório."},
   11: {k:"auto", note:"AUTÔNOMA desde 12/06: tarefa do Windows roda diário às 07:30 e o orquestrador age nas terças (atualiza mês) e dia 01 (fecha anterior + cria novo). Notifica no Discord #automações com o resumo; erro também notifica. Backup antes de cada gravação. Manual: rodar_automatico.py --force."},
   12: {k:"manual", note:"Ad-hoc por natureza (raio-x de qualidade usado nos ciclos de otimização). Pode virar rotina mensal agendada se quiser leitura recorrente."},
-  13: {k:"future", note:"Nasce autônoma (cron diário 6h do Apps Script) assim que a planilha for montada e Meta/Google plugados. Setup pendente."},
+  
   14: {k:"future", note:"Quando implementada, roda sozinha nas LPs (JS de captura), sem rotina."},
   15: {k:"auto",   note:"Igual ao Jurídico: Apps Script + TV sozinhos, virada de mês automática."},
   16: {k:"future", note:"Será agente 24/7 após o deploy no Fly.io. Hoje roda em dev local com whitelist (depende do PC ligado + tunnel)."},
@@ -284,7 +285,7 @@ const DATA = [
   stack:"Python · GitHub Actions · GitHub Pages · 9 secrets",
   vive:["dashboard-orcamento/ (repo git próprio: gestao-trafego-sp-x9k4)","Orçamento: _contexto/orcamento.md → array PRODUTOS no script.js"],
   exec:"Local: setar envs → python scripts/coletar.py → http.server. Fechar mês: coletar.py --mes YYYY-MM. Cron falhou: Actions → Run workflow. Debug: compara-pipedrive.py.",
-  pend:[]
+  pend:["Evolução futura (visão William 12/06): cards clicáveis com detalhe do produto — leads, vendas, faturamento por canal e por campanha"]
 },
 {
   id:7, title:"GTM + Conversões (site oficial)", cat:"Tracking & Conversão", status:"live",
@@ -353,15 +354,15 @@ const DATA = [
   pend:["Decidir: vira recorrente (integrar ao #11) ou continua sob demanda"]
 },
 {
-  id:13, title:"Dashboard Financeiro (Sheets)", cat:"Dashboards", status:"warn",
-  valid:"Fase Pipedrive pronta (08/05) · setup pendente",
-  tagline:"Apps Script diário → Sheets → Power BI com leads/fechados/receita dos 9 produtos. Falta plugar Meta+Google.",
-  oque:"Automação que popula uma planilha Google com os números dos 9 produtos dos dois escritórios, direto do Pipedrive (cron diário 6h). Abas: Historico (manual), Mes Corrente (auto), Consolidado (Power BI conecta). O código da fase Pipedrive está pronto; falta o setup (criar planilha, token, disparador) e plugar o gasto Meta + Google — os tokens JÁ EXISTEM (#09 e #10), então dá pra fechar.",
-  fluxo:"Pipedrive (9 funis) → Apps Script (cron 6h)\n  → aba Mes Corrente → Consolidado → Power BI",
-  stack:"Google Sheets · Apps Script · Pipedrive API",
-  vive:["dashboard-financeiro/apps-script.gs + README.md (setup passo a passo)","Roadmap UTM no mesmo diretório (ver #14)"],
-  exec:"Próxima sessão: criar planilha 3 abas → colar .gs → PIPEDRIVE_TOKEN nas Script Properties → função teste → disparador 6h → plugar gastoMeta/gastoGoogle.",
-  pend:["Criar planilha + token + Apps Script + disparador","Validar 9 funis vs constante PRODUTOS","Colar histórico jan/25–abr/26","Conectar Power BI","Plugar Meta Ads (token existe)","Plugar Google Ads (token existe)"]
+  id:13, title:"Dashboard Financeiro (Sheets)", cat:"Dashboards", status:"off",
+  valid:"ABORTADA 12/06 por decisão do William — nunca foi montada",
+  tagline:"Aposentada: a #11 automatizada + o Dash de Orçamento já cobrem tudo que ela faria.",
+  oque:"Desenho de 08/05, de quando não havia tokens de API e a Planilha Power BI era manual. Ficou redundante em 12/06: a #11 alimenta o Power BI sozinha (leads, fechados, receita, investido por produto/mês) e o #6 mostra gasto diário. A VISÃO FUTURA do William ficou registrada no #6: cards clicáveis abrindo o detalhe do produto (leads, vendas, faturamento, faturamento por canal de tráfego e por campanha). O código apps-script.gs fica na pasta como referência histórica.",
+  fluxo:"(aposentada — ver #11 para os dados e #6 para a evolução futura)",
+  stack:"Google Sheets · Apps Script · Pipedrive API (nunca montada)",
+  vive:["dashboard-financeiro/apps-script.gs + README.md (referência histórica)"],
+  exec:"Não montar sem repensar — superada pela #11 autônoma.",
+  pend:["Evolução futura migrada pro card #6 (cards clicáveis com detalhe por produto/canal/campanha)"]
 },
 {
   id:14, title:"UTM Tracking enriquecido", cat:"Tracking & Conversão", status:"plan",
