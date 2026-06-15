@@ -66,11 +66,11 @@ ctx.imageSmoothingEnabled=false;
 
 // ---- agentes (key bate com /status) ----
 const AGENTES=[
-  {key:'taglead',nome:'TÉO',  role:'Tag Lead · capta WhatsApp', x:300,y:210, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#7a3aa8'},
-  {key:'cadaux', nome:'AURORA',role:'Cadastro Auxílio Moradia', x:470,y:210, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#2b6fb0'},
-  {key:'cadfies',nome:'FÁBIO', role:'Cadastro FIES',            x:640,y:210, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
-  {key:'cadsusp',nome:'SUELI', role:'Cadastro Suspensão FIES',  x:385,y:400, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
-  {key:'hubspot',nome:'HUGO',  role:'HubSpot (em breve)',       x:555,y:400, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
+  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     role:'Tag Lead · capta lead do WhatsApp e cadastra no Pipedrive', x:300,y:215, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#7a3aa8'},
+  {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta)', x:480,y:215, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#2b6fb0'},
+  {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    role:'Cadastro de leads do FIES (Lead Form Meta)',            x:660,y:215, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
+  {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)', x:390,y:410, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
+  {key:'hubspot',nome:'HUGO',  tag:'HUBSPOT',      role:'Integração HubSpot × Pipedrive da seguradora (em breve)', x:570,y:410, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
 ];
 const PENDENCIAS=[
   '#14 UTM Tracking — implementar nível 1',
@@ -142,14 +142,16 @@ function drawWorker(ag,t){
   r(x-14,dy+8+hpush,8,5,'#e8b88a'); r(x+6,dy+8-hpush,8,5,'#e8b88a');
   // café (idle)
   if(ag.estado==='idle'){ r(x+34,dy-6,9,11,'#f4ead2'); r(x+43,dy-3,3,5,'#c9b48c'); }
-  // ---- placa de nome ----
-  const npW = Math.max(54, ag.nome.length*11+16);
-  ro(x-npW/2, hy-44, npW, 16, ag.plate, 2);
-  text(ag.nome, x, hy-32, 8, '#fff');
+  // ---- placa: NOME (linha 1) + FUNÇÃO (linha 2) ----
+  const npW = Math.max(ag.nome.length*11+16, ag.tag.length*6+14, 64);
+  ro(x-npW/2, hy-52, npW, 26, ag.plate, 2);
+  r(x-npW/2, hy-32, npW, 6, 'rgba(0,0,0,.28)');   // faixa da função
+  text(ag.nome, x, hy-40, 8, '#fff');
+  text(ag.tag,  x, hy-29, 5, '#ffe9b0');
   // ---- status flutuante ----
-  drawStatus(ag, x, hy-58, t);
+  drawStatus(ag, x, hy-66, t);
   // hit box
-  ag._hit={x:x-50,y:hy-46,w:100,h:y+74-(hy-46)};
+  ag._hit={x:x-50,y:hy-54,w:100,h:y+74-(hy-54)};
 }
 
 function drawStatus(ag,x,y,t){
@@ -222,20 +224,10 @@ function mascote(x,y,t){ shadow(x,y+14,14); const b=Math.sin(t/300)*2;
 function whiteboard(x,y){ ro(x-46,y,92,30,'#e8a33a',3); r(x-40,y+5,80,20,'#fff');
   r(x-34,y+10,40,3,'#b0b0c0'); r(x-34,y+16,54,3,'#b0b0c0'); }
 
-// ---- Mauro (chefe, anda) ----
-const mauro={x:880,y:430, tx:880,ty:430, face:1, alvo:null,
-  pa:{x:880,y:330}, pb:{x:880,y:520}, pt:0, dir:1, walkPhase:0};
-function drawBossRoom(){
-  // sala do chefe (canto direito-baixo) com tapete + vidro
-  r(792,300,232,400,'rgba(90,70,110,.20)');
-  ctx.strokeStyle='#ffd54a'; ctx.lineWidth=3; ctx.strokeRect(792,300,230,398);
-  r(800,316,216,360,'rgba(150,200,255,.10)'); // vidro
-  // tapete
-  ctx.fillStyle='#5a3a6a'; ctx.fillRect(820,360,170,260);
-  // mesa do chefe
-  shadow(880,300,40); ro(842,250,76,26,'#8a5a31',2); r(842,272,76,7,'#6d4423');
-  text('👔 SUPERVISÃO',905,326,8,'#ffd54a');
-}
+// ---- Mauro (chefe, PATRULHA entre os funcionários) ----
+// circuito que passa entre a fileira de cima (y~210) e a de baixo (y~400) e volta
+const PATROL=[{x:235,y:300},{x:715,y:300},{x:715,y:500},{x:300,y:500},{x:235,y:430}];
+const mauro={x:235,y:300, _px:0,_py:0, face:1, alvo:null, wp:0, pausa:0};
 function drawMauro(t){
   const x=mauro.x,y=mauro.y;
   shadow(x,y+26,20);
@@ -261,16 +253,25 @@ function drawMauro(t){
   mauro._hit={x:x-22,y:y-54,w:44,h:84};
 }
 
-// ---- pilha de pendências ----
-const pilha={x:120,y:560};
-function drawPilha(t){
-  const {x,y}=pilha; shadow(x,y+18,40);
-  const cols=['#b98b24','#c99a30','#d9a93e','#e9b94e'];
-  cols.forEach((c,i)=>{ const w=70-i*8; ro(x-w/2,y-i*11,w,11,c,2); });
-  r(x-22,y-48,44,8,'#f4ead2'); // papel
-  ro(x-46,y+18,92,16,'#3a2c12',2); text('📂 '+PENDENCIAS.length+' PEND.',x,y+30,7,'#ffd98a');
-  pilha._hit={x:x-46,y:y-48,w:92,h:96};
+// ---- armário de arquivos (guarda as pendências) ----
+const armario={x:96,y:600};
+function drawArmario(t){
+  const {x,y}=armario; shadow(x,y+8,30);
+  ro(x-26,y-86,52,90,'#8f969f',3);          // corpo metálico
+  r(x-26,y-86,52,7,'#aeb4bc');              // topo
+  r(x-26,y-2,52,6,'#5f656d');               // base
+  for(let i=0;i<4;i++){ const gy=y-80+i*21;  // 4 gavetas
+    r(x-22,gy,44,18,'#9ba1aa'); r(x-22,gy+15,44,3,'#6a7079');
+    r(x-9,gy+6,18,5,'#3a3f48');              // puxador
+    r(x-5,gy+2,10,2,'#c7cdd4');              // brilho
+  }
+  ro(x-34,y+8,68,16,'#3a2c12',2); text('📁 '+PENDENCIAS.length+' ARQ.',x,y+20,7,'#ffd98a');
+  armario._hit={x:x-34,y:y-86,w:68,h:110};
 }
+// ---- bebedouro (decoração à direita) ----
+function waterCooler(x,y){ shadow(x,y+30,14); ro(x-13,y-2,26,34,'#e6ecf2',2);
+  ro(x-11,y-26,22,24,'#7cc0ee',2); r(x-7,y-22,8,8,'rgba(255,255,255,.5)');
+  r(x-5,y+12,10,7,'#3a7fb0'); r(x-13,y+30,26,4,'#aab0b8'); }
 
 // ---- FPS ----
 let frames=0,fps=0,lastFps=performance.now();
@@ -309,34 +310,44 @@ async function atualizar(){
 
 // ---- loop ----
 function update(dt,t){
-  // Mauro: vai até erro ou patrulha
+  // Mauro patrulha entre as mesas; se há erro, vai até o agente e fica lá um tempo
   let dest;
-  if(mauro.alvo){ dest={x:mauro.alvo.x, y:mauro.alvo.y+70}; }
-  else { mauro.pt+=dt*0.00035*mauro.dir; if(mauro.pt>=1){mauro.pt=1;mauro.dir=-1;} if(mauro.pt<=0){mauro.pt=0;mauro.dir=1;}
-    dest={x:mauro.pa.x+(mauro.pb.x-mauro.pa.x)*mauro.pt, y:mauro.pa.y+(mauro.pb.y-mauro.pa.y)*mauro.pt}; }
-  const k=Math.min(1,dt*0.004);
+  if(mauro.alvo){ dest={x:mauro.alvo.x, y:mauro.alvo.y+72}; }
+  else {
+    dest=PATROL[mauro.wp];
+    if(Math.hypot(dest.x-mauro.x, dest.y-mauro.y)<10){
+      mauro.pausa+=dt;
+      if(mauro.pausa>700){ mauro.pausa=0; mauro.wp=(mauro.wp+1)%PATROL.length; } // pausa rápida pra "olhar"
+    }
+  }
+  const k=Math.min(1,dt*0.0032);
   mauro.face = (dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
   mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
 }
 function draw(t){
   HITS=[];
   drawFloor();
-  // parede topo: janela, vending, whiteboard
-  window_(360,18); vending(940,12); whiteboard(150,30);
-  // decorações de chão
-  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO'); // 2 na parede esq
-  tvWall(700,560,'encerr','ENCERRAMENTOS');
-  pottedTall(250,110); plant(880,150); plant(60,420);
-  pingpong(150,460); sofa(120,650); bookshelf(720,470); easel(470,560); mascote(40,660,t);
-  // agentes clicáveis
-  drawBossRoom();
-  AGENTES.forEach(a=>drawWorker(a,t));
-  drawMauro(t);
-  drawPilha(t);
-  // registra hits dos agentes/mauro/pilha
+  // parede topo
+  window_(360,18); vending(960,12); whiteboard(150,30);
+  // armários de arquivo na parede do topo (decor) — estilo escritório do print
+  for(let i=0;i<2;i++){ const fx=560+i*60; ro(fx-22,40,44,40,'#8f969f',2); r(fx-18,46,36,14,'#9ba1aa'); r(fx-18,62,36,14,'#9ba1aa'); r(fx-7,52,14,3,'#3a3f48'); r(fx-7,68,14,3,'#3a3f48'); }
+  // dashboards na parede esquerda + um embaixo
+  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO');
+  tvWall(770,560,'encerr','ENCERRAMENTOS');
+  // plantas e mobília
+  pottedTall(245,110); plant(60,470); plant(960,210); pottedTall(905,150);
+  pingpong(150,560); sofa(120,660); bookshelf(905,460); easel(470,610); mascote(45,690,t);
+  waterCooler(905,330);
+  drawArmario(t);
+  // ATORES ordenados por y (profundidade): Mauro "entra" entre as fileiras de mesas
+  const atores=[];
+  AGENTES.forEach(a=>atores.push({y:a.y+74, fn:()=>drawWorker(a,t)}));
+  atores.push({y:mauro.y+26, fn:()=>drawMauro(t)});
+  atores.sort((p,q)=>p.y-q.y).forEach(o=>o.fn());
+  // hits
   AGENTES.forEach(a=>HITS.push({...a._hit,key:a.key}));
   HITS.push({...mauro._hit,key:'mauro'});
-  HITS.push({...pilha._hit,pilha:true});
+  HITS.push({...armario._hit,pilha:true});
 }
 let last=performance.now();
 function loop(now){ const dt=now-last; last=now; update(dt,now); draw(now); drawFps(now);
