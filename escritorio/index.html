@@ -3,457 +3,374 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Escritório Virtual 3D — Agentes Silva Pimenta</title>
+<title>Escritório Virtual — Agentes Silva Pimenta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
-  body{background:radial-gradient(circle at 50% 0%,#241a36 0%,#140e1f 70%);font-family:'Inter','Segoe UI',system-ui,sans-serif;
-    color:#fff;overflow:hidden}
-  #app{position:fixed;inset:0}
-  canvas{display:block}
+  body{background:#11101a;font-family:'Press Start 2P',monospace;color:#fff;overflow:hidden;
+    display:flex;flex-direction:column;align-items:center}
   /* topo */
-  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:14px 18px 24px;
-    background:linear-gradient(180deg,rgba(14,9,24,.85),transparent);pointer-events:none}
-  .title{display:flex;align-items:center;gap:10px;justify-content:center}
-  .title h1{font-size:18px;font-weight:800;letter-spacing:1px;color:#e9c98f;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-  .sub{text-align:center;font-size:11px;color:#bfa9d6;margin-top:3px}
-  .hud{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap;pointer-events:auto}
-  .hud span{background:rgba(23,16,36,.82);border:1px solid #46355e;padding:6px 14px;font-size:11px;border-radius:20px;
-    backdrop-filter:blur(6px);box-shadow:0 4px 14px rgba(0,0,0,.4)}
-  .hud b{color:#e9c98f;font-weight:700}
-  /* labels 3D */
-  .lbl3d{pointer-events:none;text-align:center;transform:translateY(-6px)}
-  .lbl3d .nm{font-size:11px;font-weight:700;color:#fff;background:rgba(15,10,24,.78);padding:2px 9px;border-radius:8px;
-    border:1px solid #46355e;white-space:nowrap;text-shadow:0 1px 2px #000}
-  .lbl3d .role{display:block;font-size:8.5px;color:#bfa9d6;font-weight:500;margin-top:1px}
-  .chip{display:inline-block;margin-top:4px;font-size:8.5px;font-weight:700;padding:2px 9px;border-radius:10px;
-    white-space:nowrap;letter-spacing:.4px}
-  .c-ok{background:#10331f;color:#3DDC84;border:1px solid #1d5c39}
-  .c-type{background:#0e2a3a;color:#6fd3ff;border:1px solid #1c5876}
-  .c-err{background:#3a1012;color:#ff5d5d;border:1px solid #7c1d22;animation:blink 1s infinite}
-  .c-zzz{background:#1c2440;color:#9bb7ff;border:1px solid #34487e}
-  .c-boss{background:#3a2c12;color:#e9c98f;border:1px solid #7c5e24}
-  @keyframes blink{50%{opacity:.45}}
-  .balloon{pointer-events:none;font-size:11px;font-weight:800;padding:6px 11px;border-radius:10px;white-space:nowrap;
-    background:#fff;color:#111;border:2px solid #111;box-shadow:0 4px 12px rgba(0,0,0,.5);transform:translateY(-44px)}
-  .balloon.err{background:#ffe1e1;border-color:#a40000;color:#a40000;animation:shake .5s infinite}
-  @keyframes shake{25%{transform:translateY(-44px) translateX(-3px)}75%{transform:translateY(-44px) translateX(3px)}}
-  /* dica + toast */
-  .foot{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:10;display:flex;gap:10px;align-items:center;
-    flex-wrap:wrap;justify-content:center}
-  .foot .t{background:rgba(23,16,36,.82);border:1px solid #46355e;color:#cdbbe2;font-size:10.5px;padding:6px 14px;
-    border-radius:20px;backdrop-filter:blur(6px)}
+  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:10px 12px;pointer-events:none;
+    background:linear-gradient(180deg,rgba(10,9,20,.9),transparent)}
+  .title{text-align:center;font-size:13px;color:#ffd54a;text-shadow:2px 2px 0 #000;letter-spacing:1px}
+  .hud{display:flex;gap:6px;justify-content:center;margin-top:9px;flex-wrap:wrap;pointer-events:auto}
+  .hud span{background:#1b2236;border:2px solid #36406a;padding:6px 10px;font-size:8px;border-radius:3px;
+    box-shadow:0 3px 0 #0a0d18;line-height:1.4}
+  .hud b{color:#ffd54a}
+  #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#9a9aa2;
+    box-shadow:0 0 0 4px #0a0d18,0 18px 50px rgba(0,0,0,.7)}
+  .foot{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:10;
+    background:#1b2236;border:2px solid #36406a;color:#cdbbe2;font-size:8px;padding:7px 12px;border-radius:3px;
+    box-shadow:0 3px 0 #0a0d18;line-height:1.5;text-align:center}
   /* modal */
-  .overlay{position:fixed;inset:0;background:rgba(8,5,15,.82);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
+  .overlay{position:fixed;inset:0;background:rgba(8,5,15,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
   .overlay.show{display:flex}
-  .modal{background:#1b1228;border:2px solid #C5A57A;border-radius:14px;max-width:540px;width:100%;padding:24px;font-size:12.5px;
-    box-shadow:0 20px 60px rgba(0,0,0,.7)}
-  .modal h2{color:#e9c98f;font-size:16px;margin-bottom:10px}
-  .modal p,.modal li{line-height:1.7;color:#e8def5}
-  .modal ul{padding-left:18px;margin:6px 0}
-  .modal a{color:#3DDC84}
-  .modal .fechar{margin-top:16px;background:#C5A57A;color:#1b1228;border:none;padding:9px 18px;font-family:inherit;
-    font-weight:700;cursor:pointer;border-radius:8px}
-  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;color:#bfa9d6;
-    font-size:13px;background:#140e1f}
+  .modal{background:#171a2e;border:3px solid #ffd54a;border-radius:6px;max-width:540px;width:100%;padding:22px;
+    font-size:10px;line-height:1.9;box-shadow:0 10px 0 #0a0d18}
+  .modal h2{color:#ffd54a;font-size:12px;margin-bottom:12px;line-height:1.5}
+  .modal p,.modal li{color:#dcd3f0;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.7}
+  .modal ul{padding-left:18px;margin:8px 0}
+  .modal a{color:#5fe39a}
+  .modal .role{color:#9b87b8;font-size:10px}
+  .modal .fechar{margin-top:16px;background:#ffd54a;color:#171a2e;border:none;padding:9px 16px;
+    font-family:'Press Start 2P';font-size:9px;cursor:pointer;border-radius:4px;box-shadow:0 3px 0 #b8932c}
+  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;
+    background:#11101a;color:#ffd54a;font-size:11px;text-align:center;line-height:2}
 </style>
 </head>
 <body>
-  <div id="app"></div>
-  <div id="loading">carregando o escritório 3D…</div>
-
+  <div id="loading">CARREGANDO<br>ESCRITÓRIO…</div>
   <div class="top">
-    <div class="title"><span style="font-size:22px">🏢</span><h1>ESCRITÓRIO VIRTUAL 3D · SILVA PIMENTA</h1></div>
-    <div class="sub">agentes de automação ao vivo · Mauro vigia tudo · status real do Make a cada 60s</div>
+    <div class="title">🏢 ESCRITÓRIO VIRTUAL · SILVA PIMENTA</div>
     <div class="hud">
-      <span>🟢 trabalhando: <b id="hWork">–</b></span>
-      <span>☕ ociosos: <b id="hIdle">–</b></span>
-      <span>⚠️ erros: <b id="hErr">–</b></span>
-      <span>👔 Mauro: <b id="hBoss">vigiando</b></span>
+      <span>🟢 ATIVO <b id="hWork">–</b></span>
+      <span>☕ OCIOSO <b id="hIdle">–</b></span>
+      <span>⚠️ ERRO <b id="hErr">–</b></span>
+      <span>👔 MAURO <b id="hBoss">–</b></span>
       <span>🕐 <b id="hTime">–</b></span>
     </div>
   </div>
-
-  <div class="foot">
-    <span class="t" id="toast">conectando ao Make…</span>
-    <span class="t">🖱️ arraste pra girar · role pra zoom · clique num agente</span>
-  </div>
-
+  <div id="wrap"><canvas id="cv" width="1024" height="700"></canvas></div>
+  <div class="foot" id="toast">conectando ao Make…</div>
   <div class="overlay" id="ov"><div class="modal" id="md"></div></div>
 
-<script type="importmap">
-{ "imports": {
-  "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-  "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-}}
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-
+<script>
 const STATUS_URL = 'https://sp-tag-lead-filter-x7k2.pages.dev/status';
+const W=1024, H=700;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+ctx.imageSmoothingEnabled=false;
 
-// key bate com o /status do worker; nomes novos (personificação)
-const AGENTES = [
-  { key:'taglead', nome:'Téo',    role:'Tag Lead · capta WhatsApp', pos:[-7,0,-1], shirt:'#1A4758', hair:'#3a2415' },
-  { key:'cadaux',  nome:'Aurora', role:'Cadastro Auxílio Moradia',  pos:[-2.3,0,-1], shirt:'#7a3aa8', hair:'#101010' },
-  { key:'cadfies', nome:'Fábio',  role:'Cadastro FIES',             pos:[2.4,0,-1], shirt:'#b8762a', hair:'#5a3214' },
-  { key:'cadsusp', nome:'Sueli',  role:'Cadastro Suspensão FIES',   pos:[-4.6,0,4.2], shirt:'#2e7d4f', hair:'#241a10' },
-  { key:'hubspot', nome:'Hugo',   role:'HubSpot (em breve)',        pos:[0.2,0,4.2], shirt:'#6b6b78', hair:'#3a3a3a', fixo:'zzz' },
+// ---- agentes (key bate com /status) ----
+const AGENTES=[
+  {key:'taglead',nome:'TÉO',  role:'Tag Lead · capta WhatsApp', x:300,y:210, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#7a3aa8'},
+  {key:'cadaux', nome:'AURORA',role:'Cadastro Auxílio Moradia', x:470,y:210, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#2b6fb0'},
+  {key:'cadfies',nome:'FÁBIO', role:'Cadastro FIES',            x:640,y:210, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
+  {key:'cadsusp',nome:'SUELI', role:'Cadastro Suspensão FIES',  x:385,y:400, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
+  {key:'hubspot',nome:'HUGO',  role:'HubSpot (em breve)',       x:555,y:400, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
 ];
-
-const PENDENCIAS = [
+const PENDENCIAS=[
   '#14 UTM Tracking — implementar nível 1',
   '#16 Bot IA Magalhães — deploy Fly.io (vira agente 24/7)',
   '#17 HubSpot × Pipedrive — aguardando acessos da seguradora',
 ];
-
-// ---------- cena ----------
-const app = document.getElementById('app');
-const scene = new THREE.Scene();
-scene.background = new THREE.Color('#140e1f');
-scene.fog = new THREE.Fog('#140e1f', 22, 46);
-
-const camera = new THREE.PerspectiveCamera(50, innerWidth/innerHeight, 0.1, 100);
-camera.position.set(2.5, 14, 19.5);
-
-const renderer = new THREE.WebGLRenderer({ antialias:true });
-renderer.setSize(innerWidth, innerHeight);
-renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-app.appendChild(renderer.domElement);
-
-const labelRenderer = new CSS2DRenderer();
-labelRenderer.setSize(innerWidth, innerHeight);
-labelRenderer.domElement.style.position='fixed';
-labelRenderer.domElement.style.top='0';
-labelRenderer.domElement.style.pointerEvents='none';
-app.appendChild(labelRenderer.domElement);
-
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(2.2, 1.4, 1.5);
-controls.enableDamping = true; controls.dampingFactor = .08;
-controls.maxPolarAngle = Math.PI/2.15; controls.minDistance = 8; controls.maxDistance = 30;
-controls.autoRotate = false;
-
-// ---------- luz ----------
-scene.add(new THREE.HemisphereLight('#d6c6ff', '#4a3f33', 0.9));
-const key = new THREE.DirectionalLight('#fff3da', 1.25);
-key.position.set(8, 16, 10); key.castShadow = true;
-key.shadow.mapSize.set(2048,2048);
-key.shadow.camera.near=1; key.shadow.camera.far=60;
-key.shadow.camera.left=-22; key.shadow.camera.right=22; key.shadow.camera.top=22; key.shadow.camera.bottom=-22;
-key.shadow.bias=-0.0004;
-scene.add(key);
-scene.add(new THREE.AmbientLight('#7a6a9a', 0.5));
-
-// ---------- piso + tapete + paredes ----------
-const floorMat = new THREE.MeshStandardMaterial({ color:'#c89e63', roughness:.95 });
-const floor = new THREE.Mesh(new THREE.PlaneGeometry(60,60), floorMat);
-floor.rotation.x = -Math.PI/2; floor.receiveShadow = true; scene.add(floor);
-// tabuleiro sutil
-const tile = new THREE.Mesh(new THREE.PlaneGeometry(26,20),
-  new THREE.MeshStandardMaterial({ color:'#b98e54', roughness:.9 }));
-tile.rotation.x=-Math.PI/2; tile.position.set(-1,0.01,1.5); tile.receiveShadow=true; scene.add(tile);
-// tapete da área de trabalho
-const rug = new THREE.Mesh(new THREE.PlaneGeometry(20,12),
-  new THREE.MeshStandardMaterial({ color:'#5a3a6a', roughness:1 }));
-rug.rotation.x=-Math.PI/2; rug.position.set(-2.3,0.02,1.5); rug.receiveShadow=true; scene.add(rug);
-
-function wall(w,h,d,x,y,z,color){
-  const m = new THREE.Mesh(new THREE.BoxGeometry(w,h,d),
-    new THREE.MeshStandardMaterial({ color, roughness:.9 }));
-  m.position.set(x,y,z); m.castShadow=true; m.receiveShadow=true; scene.add(m); return m;
-}
-wall(26,5,0.5,-1,2.5,-8.4,'#5a4565');   // parede de trás
-wall(0.5,5,20,-14.2,2.5,1.6,'#4f3c5c'); // parede esquerda
-// painel decorativo / placa na parede de trás
-const placa = new THREE.Mesh(new THREE.BoxGeometry(6,1.5,0.2),
-  new THREE.MeshStandardMaterial({color:'#143a48',emissive:'#0c2630',emissiveIntensity:.4,roughness:.5}));
-placa.position.set(-8,3.4,-8.1); scene.add(placa);
-const placaTxt = document.createElement('div');
-placaTxt.className='lbl3d'; placaTxt.innerHTML='<div class="nm" style="background:#143a48;border-color:#0c2630;letter-spacing:2px">SILVA PIMENTA</div>';
-const placaObj = new CSS2DObject(placaTxt); placaObj.position.set(-8,3.4,-7.9); scene.add(placaObj);
-
-// TVs na parede (dashboards)
-const TVS = {
+const TVS={
   orcamento:['📺 Dashboard de Orçamento','Atualiza sozinho a cada 30 min (GitHub Actions).','https://silvapimentadireitomedico-cpu.github.io/gestao-trafego-sp-x9k4/'],
   juridico:['📺 Dashboard Jurídico','Na TV do escritório 24/7, atualiza a cada 30s.','https://silvapimentadireitomedico-cpu.github.io/dashboard-juridico-silva-pimenta/'],
-  encerr:['📺 Dashboard Encerramentos','Na TV do escritório, aba mensal automática.','https://silvapimentadireitomedico-cpu.github.io/dashboard-encerramentos-silva-pimenta/'],
+  encerr:['📺 Dashboard Encerramentos','Aba mensal automática.','https://silvapimentadireitomedico-cpu.github.io/dashboard-encerramentos-silva-pimenta/'],
 };
-const clickables = [];
-['orcamento','juridico','encerr'].forEach((k,i)=>{
-  const tv = new THREE.Mesh(new THREE.BoxGeometry(3,1.7,0.18),
-    new THREE.MeshStandardMaterial({color:'#0c0c14',emissive:'#1d5c39',emissiveIntensity:.5,roughness:.4}));
-  tv.position.set(-0.5 + i*3.6, 3.2, -8.0); tv.userData={tv:k}; scene.add(tv); clickables.push(tv);
-  const l=document.createElement('div'); l.className='lbl3d';
-  l.innerHTML=`<div class="role" style="color:#d8c8ea">${TVS[k][0]}</div>`;
-  const o=new CSS2DObject(l); o.position.copy(tv.position); o.position.y-=1.15; scene.add(o);
-});
 
-// ---------- fábrica de personagem ----------
-function makePerson({shirt, hair, skin='#e8b88a', standing=false, tie=null}){
-  const g = new THREE.Group();
-  const mShirt = new THREE.MeshStandardMaterial({color:shirt, roughness:.75});
-  const mSkin  = new THREE.MeshStandardMaterial({color:skin, roughness:.85});
-  const mHair  = new THREE.MeshStandardMaterial({color:hair, roughness:.95});
-  const torsoH = standing?1.15:0.85;
-  const baseY = standing?0.0:0.35;
-  const torso = new THREE.Mesh(new THREE.CapsuleGeometry(0.45,torsoH,8,16), mShirt);
-  torso.position.y = baseY+0.95; torso.castShadow=true; g.add(torso);
-  if(tie){ const t=new THREE.Mesh(new THREE.BoxGeometry(0.14,0.55,0.06),new THREE.MeshStandardMaterial({color:tie}));
-    t.position.set(0,baseY+1.05,0.43); g.add(t); }
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.36,24,20), mSkin);
-  head.position.y = baseY+1.95; head.castShadow=true; g.add(head);
-  const hairM = new THREE.Mesh(new THREE.SphereGeometry(0.385,24,20,0,Math.PI*2,0,Math.PI*0.58), mHair);
-  hairM.position.y = head.position.y+0.05; hairM.castShadow=true; g.add(hairM);
-  const armGeo = new THREE.CapsuleGeometry(0.14,0.62,6,10);
-  const armL = new THREE.Mesh(armGeo,mShirt); armL.position.set(-0.55,baseY+0.95,0.12); armL.rotation.z=0.18; armL.castShadow=true;
-  const armR = new THREE.Mesh(armGeo,mShirt); armR.position.set(0.55,baseY+0.95,0.12); armR.rotation.z=-0.18; armR.castShadow=true;
-  g.add(armL,armR);
-  // pernas (só em pé aparece bem)
-  if(standing){
-    const legGeo=new THREE.CapsuleGeometry(0.17,0.7,6,10); const mLeg=new THREE.MeshStandardMaterial({color:'#2b2740',roughness:.8});
-    const lL=new THREE.Mesh(legGeo,mLeg); lL.position.set(-0.22,0.05,0); lL.castShadow=true;
-    const lR=new THREE.Mesh(legGeo,mLeg); lR.position.set(0.22,0.05,0); lR.castShadow=true;
-    g.add(lL,lR); g.userData.legs=[lL,lR];
+// ---- helpers de desenho ----
+function r(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x|0,y|0,w|0,h|0); }
+function ro(x,y,w,h,c,o=2,oc='#14101e'){ r(x-o,y-o,w+o*2,h+o*2,oc); r(x,y,w,h,c); } // bloco com contorno
+function shadow(cx,cy,w){ ctx.fillStyle='rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(cx,cy,w,w*0.32,0,0,7); ctx.fill(); }
+function text(s,x,y,size,c,align='center'){ ctx.font=size+"px 'Press Start 2P'"; ctx.textAlign=align;
+  ctx.fillStyle='#000'; ctx.fillText(s,x+1,y+1); ctx.fillStyle=c; ctx.fillText(s,x,y); }
+
+// ---- piso xadrez ----
+function drawFloor(){
+  const T=32;
+  for(let j=0;j<Math.ceil(H/T);j++) for(let i=0;i<Math.ceil(W/T);i++){
+    r(i*T,j*T,T,T,(i+j)%2?'#a8a8b0':'#9a9aa2');
   }
-  g.userData.parts={head,armL,armR,torso,baseY};
-  return g;
+  // faixa de parede no topo
+  r(0,0,W,84,'#7d7f8c'); r(0,84,W,5,'#5a5c68');
+  // rodapé
+  r(0,80,W,4,'#6a6c78');
 }
-// cadeira simples
-function makeChair(){
-  const g=new THREE.Group(); const m=new THREE.MeshStandardMaterial({color:'#2a2438',roughness:.7});
-  const seat=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.16,0.9),m); seat.position.y=0.62; seat.castShadow=true;
-  const back=new THREE.Mesh(new THREE.BoxGeometry(0.9,1.0,0.14),m); back.position.set(0,1.1,-0.4); back.castShadow=true;
-  g.add(seat,back); return g;
+
+// ---- personagem sentado ----
+function drawWorker(ag,t){
+  const x=ag.x, y=ag.y;
+  shadow(x,y+58,52);
+  // ---- corpo / cabeça (atrás da mesa) ----
+  const bob = ag.estado==='typing' ? Math.sin(t/110)*1.5 : (ag.estado==='zzz'? 0 : Math.sin(t/600)*0.6);
+  const hy = y-22+bob;
+  // ombros (camisa)
+  ro(x-26,hy+16,52,26,ag.shirt,2);
+  r(x-26,hy+30,52,12,ag.shirt2); // sombra inferior camisa
+  // braços
+  ro(x-32,hy+20,10,20,ag.shirt,2); ro(x+22,hy+20,10,20,ag.shirt,2);
+  // pescoço
+  r(x-5,hy+12,10,8,'#e0a578');
+  // cabeça
+  ro(x-15,hy-14,30,28,'#e8b88a',2);
+  // cabelo
+  r(x-17,hy-18,34,12,ag.hair); r(x-17,hy-18,5,20,ag.hair); r(x+12,hy-18,5,20,ag.hair);
+  // olhos
+  if(ag.estado==='zzz'){ r(x-9,hy-2,8,2,'#14101e'); r(x+2,hy-2,8,2,'#14101e'); }
+  else { r(x-9,hy-4,5,5,'#14101e'); r(x+4,hy-4,5,5,'#14101e'); }
+  // boca
+  r(x-4,hy+6,8,2,'#b06a4a');
+  // ---- mesa (na frente) ----
+  const dy=y+24;
+  ro(x-50,dy,100,30,'#8a5a31',2);          // tampo
+  r(x-50,dy+22,100,8,'#6d4423');           // borda
+  r(x-46,dy+30,10,18,'#5a3a1e'); r(x+36,dy+30,10,18,'#5a3a1e'); // pernas
+  // monitor sobre a mesa
+  const scr = ag.estado==='erro'?'#ff4d4d': ag.estado==='typing'?'#36c2ff': ag.estado==='zzz'?'#2a3050':'#3DDC84';
+  ro(x-22,dy-22,44,28,'#15151f',2);
+  const flick = ag.estado==='typing' ? (Math.sin(t/120)>0?1:.6) : 1;
+  ctx.globalAlpha = ag.estado==='zzz'?.5:flick; r(x-18,dy-18,36,20,scr); ctx.globalAlpha=1;
+  r(x-3,dy+6,6,4,'#15151f'); r(x-8,dy+10,16,3,'#15151f'); // pé do monitor
+  // teclado + mãos digitando
+  r(x-16,dy+10,32,6,'#d9d9e2');
+  const hpush = ag.estado==='typing' ? Math.sin(t/90)*2 : 0;
+  r(x-14,dy+8+hpush,8,5,'#e8b88a'); r(x+6,dy+8-hpush,8,5,'#e8b88a');
+  // café (idle)
+  if(ag.estado==='idle'){ r(x+34,dy-6,9,11,'#f4ead2'); r(x+43,dy-3,3,5,'#c9b48c'); }
+  // ---- placa de nome ----
+  const npW = Math.max(54, ag.nome.length*11+16);
+  ro(x-npW/2, hy-44, npW, 16, ag.plate, 2);
+  text(ag.nome, x, hy-32, 8, '#fff');
+  // ---- status flutuante ----
+  drawStatus(ag, x, hy-58, t);
+  // hit box
+  ag._hit={x:x-50,y:hy-46,w:100,h:y+74-(hy-46)};
 }
-// mesa + monitor
-function makeDesk(){
-  const g=new THREE.Group();
-  const wood=new THREE.MeshStandardMaterial({color:'#7a4f2a',roughness:.6});
-  const top=new THREE.Mesh(new THREE.BoxGeometry(2.4,0.16,1.2),wood); top.position.y=1.0; top.castShadow=top.receiveShadow=true; g.add(top);
-  [[-1.05,-0.5],[1.05,-0.5],[-1.05,0.5],[1.05,0.5]].forEach(([x,z])=>{
-    const l=new THREE.Mesh(new THREE.BoxGeometry(0.13,1,0.13),wood); l.position.set(x,0.5,z); l.castShadow=true; g.add(l);});
-  const mon=new THREE.Mesh(new THREE.BoxGeometry(1.0,0.66,0.08),new THREE.MeshStandardMaterial({color:'#10101c',roughness:.4}));
-  mon.position.set(0,1.52,0.15); mon.rotation.x=0.12; g.add(mon);
-  const scrMat=new THREE.MeshStandardMaterial({color:'#0e3a52',emissive:'#0e3a52',emissiveIntensity:.6,roughness:.3});
-  const scr=new THREE.Mesh(new THREE.PlaneGeometry(0.86,0.52),scrMat); scr.position.set(0,1.52,0.205); scr.rotation.x=0.12; g.add(scr);
-  const stand=new THREE.Mesh(new THREE.BoxGeometry(0.12,0.18,0.12),new THREE.MeshStandardMaterial({color:'#2b2b3d'}));
-  stand.position.set(0,1.18,0.15); g.add(stand);
-  // xícara de café (idle)
-  const cup=new THREE.Mesh(new THREE.CylinderGeometry(0.1,0.08,0.14,12),new THREE.MeshStandardMaterial({color:'#f4ead2'}));
-  cup.position.set(0.7,1.16,0.3); cup.visible=false; g.add(cup);
-  g.userData={scrMat, cup};
-  return g;
+
+function drawStatus(ag,x,y,t){
+  if(ag.estado==='typing'){ // engrenagem girando + balão
+    drawGear(x+30, y+6, t);
+    bubble(x,y,'#1b1f33','#5fd0ff', ['•','•','•'][Math.floor(t/220)%3]==='•'?'• • •':'• • •');
+  } else if(ag.estado==='erro'){
+    const sh=Math.sin(t/70)*2;
+    bubble(x+sh,y,'#3a1012','#ff6b6b','! ERRO');
+  } else if(ag.estado==='zzz'){
+    text('z',x+18,y+2-((t/400)%14),9,'#9bb7ff');
+    text('Z',x+26,y-6-((t/300)%18),11,'#bcd0ff');
+  } else { // idle: balãozinho de café leve
+    bubble(x,y,'#13331f','#7be0a0','☕');
+  }
 }
-// planta decorativa
-function planta(x,z){
-  const g=new THREE.Group();
-  const vaso=new THREE.Mesh(new THREE.CylinderGeometry(0.28,0.2,0.4,12),new THREE.MeshStandardMaterial({color:'#a3502e',roughness:.8}));
-  vaso.position.y=0.2; vaso.castShadow=true;
-  const folha=new THREE.Mesh(new THREE.SphereGeometry(0.5,12,10),new THREE.MeshStandardMaterial({color:'#2e8b4f',roughness:.9}));
-  folha.position.y=0.75; folha.scale.set(1,1.3,1); folha.castShadow=true;
-  g.add(vaso,folha); g.position.set(x,0,z); scene.add(g);
+function bubble(x,y,bg,fg,txt){
+  const w=Math.max(40, txt.length*8+18);
+  ro(x-w/2,y-16,w,18,bg,2,'#0c0f18');
+  text(txt,x,y-3,8,fg);
+  r(x-3,y+2,8,4,bg); // rabinho
 }
-planta(-13,-6.5); planta(7.5,-6.5); planta(-13,8);
-
-// ---------- pilha de pendências (falta automatizar) ----------
-const pilha = new THREE.Group(); pilha.position.set(-9.2,0,6.4); scene.add(pilha);
-['#b98b24','#c99a30','#d9a93e','#e9b94e'].forEach((c,i)=>{
-  const w=1.5-i*0.2;
-  const f=new THREE.Mesh(new THREE.BoxGeometry(w,0.24,1.05),new THREE.MeshStandardMaterial({color:c,roughness:.7}));
-  f.position.y=0.12+i*0.26; f.rotation.y=(i%2?0.06:-0.05); f.castShadow=true; f.receiveShadow=true; pilha.add(f);
-});
-const papel=new THREE.Mesh(new THREE.BoxGeometry(0.72,0.05,0.52),new THREE.MeshStandardMaterial({color:'#f4ead2',roughness:.8}));
-papel.position.y=0.12+4*0.26; papel.castShadow=true; pilha.add(papel);
-const pilhaHit=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.8,1.4),new THREE.MeshBasicMaterial({visible:false}));
-pilhaHit.position.y=0.7; pilhaHit.userData={pilha:true}; pilha.add(pilhaHit); clickables.push(pilhaHit);
-const pilhaLbl=document.createElement('div'); pilhaLbl.className='lbl3d';
-pilhaLbl.innerHTML=`<div class="nm" style="background:#3a2c12;border-color:#7c5e24;color:#ffd98a">📂 PENDÊNCIAS<span class="role">${PENDENCIAS.length} pra automatizar</span></div>`;
-const pilhaObj=new CSS2DObject(pilhaLbl); pilhaObj.position.set(0,1.8,0); pilha.add(pilhaObj);
-
-// ---------- estações ----------
-const stations = {};
-AGENTES.forEach(ag=>{
-  const grp = new THREE.Group(); grp.position.set(...ag.pos); scene.add(grp);
-  const desk = makeDesk(); desk.position.z = 0.7; grp.add(desk);
-  const chair = makeChair(); chair.position.z = -0.5; grp.add(chair);
-  const person = makePerson({shirt:ag.shirt, hair:ag.hair, standing:false});
-  person.position.z = -0.35; grp.add(person);
-  // luz de estado (point light por baixo do monitor)
-  const stLight = new THREE.PointLight('#3DDC84', 0, 5, 2); stLight.position.set(0,1.6,1.0); grp.add(stLight);
-  // label
-  const wrap=document.createElement('div'); wrap.className='lbl3d';
-  wrap.innerHTML=`<div class="nm">${ag.nome}<span class="role">${ag.role}</span></div><div class="chip c-ok">–</div>`;
-  const lblObj=new CSS2DObject(wrap); lblObj.position.set(0,3.0,-0.35); grp.add(lblObj);
-  // balão
-  const bWrap=document.createElement('div'); const bObj=new CSS2DObject(bWrap); bObj.position.set(0,3.0,-0.35); grp.add(bObj);
-  // hit (clique) — caixa invisível ao redor
-  const hit=new THREE.Mesh(new THREE.BoxGeometry(2,3.4,2.4),new THREE.MeshBasicMaterial({visible:false}));
-  hit.position.set(0,1.6,0); hit.userData={key:ag.key}; grp.add(hit); clickables.push(hit);
-  stations[ag.key] = { ag, grp, person, desk, stLight, chip:wrap.querySelector('.chip'), balloon:bWrap, estado:'idle' };
-});
-
-// ---------- sala de vidro do Mauro (o chefe) ----------
-const sala = new THREE.Group(); sala.position.set(9.5,0,1.5); scene.add(sala);
-// piso da sala
-const salaFloor=new THREE.Mesh(new THREE.PlaneGeometry(7,9),new THREE.MeshStandardMaterial({color:'#3a2c4a',roughness:.9}));
-salaFloor.rotation.x=-Math.PI/2; salaFloor.position.y=0.03; salaFloor.receiveShadow=true; sala.add(salaFloor);
-// vidros (paredes transparentes)
-const glassMat=new THREE.MeshPhysicalMaterial({color:'#bfe6ff',transmission:.9,transparent:true,opacity:.22,roughness:.05,metalness:0,thickness:.5});
-function glass(w,h,d,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),glassMat);m.position.set(x,y,z);sala.add(m);
-  // moldura
-  const fr=new THREE.Mesh(new THREE.BoxGeometry(w+0.06,0.08,d+0.06),new THREE.MeshStandardMaterial({color:'#e9c98f',metalness:.4,roughness:.4}));
-  fr.position.set(x,y-h/2,z); sala.add(fr); fr.clone&&0;}
-glass(7,3,0.1,0,1.6,-4.4);   // fundo
-glass(0.1,3,9,3.4,1.6,0);    // direita
-glass(0.1,3,3.2,-3.4,1.6,-3.3); // esquerda (parcial — deixa porta)
-glass(7,3,0.1,0,1.6,4.4);    // frente parcial via separação
-// placa CHEFIA
-const chefLbl=document.createElement('div'); chefLbl.className='lbl3d';
-chefLbl.innerHTML='<div class="nm" style="background:#3a2c12;border-color:#7c5e24;color:#e9c98f;letter-spacing:1px">👔 SUPERVISÃO</div>';
-const chefObj=new CSS2DObject(chefLbl); chefObj.position.set(9.5,3.6,-2.9); scene.add(chefObj);
-// mesa do chefe
-const mesaChefe=makeDesk(); mesaChefe.position.set(9.5,0,-2.6); mesaChefe.scale.set(1.1,1.1,1.1); scene.add(mesaChefe);
-mesaChefe.userData.scrMat.color.set('#1a3a2a'); mesaChefe.userData.scrMat.emissive.set('#1a3a2a');
-
-// Mauro (em pé, terno, gravata dourada)
-const mauro = makePerson({shirt:'#22304a', hair:'#2a2018', standing:true, tie:'#e9c98f'});
-mauro.position.set(9.5,0,1.5); scene.add(mauro);
-const mauroLbl=document.createElement('div'); mauroLbl.className='lbl3d';
-mauroLbl.innerHTML='<div class="nm">Mauro<span class="role">O Supervisor · vigia 24/7</span></div><div class="chip c-boss">VIGIANDO</div>';
-const mauroObj=new CSS2DObject(mauroLbl); mauroObj.position.set(0,3.05,0); mauro.add(mauroObj);
-const mauroHit=new THREE.Mesh(new THREE.BoxGeometry(1.6,3.6,1.6),new THREE.MeshBasicMaterial({visible:false}));
-mauroHit.position.y=1.7; mauroHit.userData={key:'mauro'}; mauro.add(mauroHit); clickables.push(mauroHit);
-// holofote na sala do chefe
-const spot=new THREE.SpotLight('#fff0d0',0.8,16,Math.PI/5,.5,1); spot.position.set(9.5,7,1.5);
-spot.target.position.set(9.5,0,0); scene.add(spot); scene.add(spot.target);
-
-// patrulha do Mauro
-const patrol = { a:new THREE.Vector3(9.5,0,4.0), b:new THREE.Vector3(9.5,0,-1.2), t:0, dir:1, alvo:null, voltando:false };
-
-// ---------- estados / dados ----------
-let DADOS=null, tclock=0;
-function setEstado(key, estado, detalhe){
-  const s=stations[key]; if(!s) return; s.estado=estado; s.detalhe=detalhe||'';
-  const COR={ idle:['#3DDC84','na escuta ☕','c-ok'], typing:['#23a6e0','DIGITANDO…','c-type'],
-    erro:['#ff4040','ERRO!','c-err'], zzz:['#3a4e8e','DORMINDO','c-zzz'] };
-  const [cor,txt,cls]=COR[estado];
-  s.chip.textContent=txt; s.chip.className='chip '+cls;
-  s.desk.userData.scrMat.color.set(estado==='erro'?'#3a0e12':estado==='typing'?'#0e3a52':estado==='zzz'?'#101018':'#0e2a22');
-  s.desk.userData.scrMat.emissive.set(estado==='erro'?'#6b1220':estado==='typing'?'#15618a':estado==='zzz'?'#0a0a12':'#10331f');
-  s.stLight.color.set(cor); s.stLight.intensity = estado==='zzz'?0.15:(estado==='erro'?2.2:1.1);
-  s.desk.userData.cup.visible = estado==='idle';
-  // balão
-  s.balloon.innerHTML = estado==='erro' ? '<div class="balloon err">⚠️ ERRO!</div>'
-    : estado==='typing' ? '<div class="balloon">⌨️ …</div>'
-    : estado==='zzz' ? '<div class="balloon" style="background:#1c2440;color:#9bb7ff;border-color:#34487e">💤</div>' : '';
+function drawGear(x,y,t){
+  ctx.save(); ctx.translate(x,y); ctx.rotate((t/600)%(Math.PI*2));
+  ctx.fillStyle='#5aa9ff';
+  for(let i=0;i<8;i++){ ctx.rotate(Math.PI/4); ctx.fillRect(-2,-9,4,5); }
+  ctx.restore();
+  r(x-5,y-5,10,10,'#7bc0ff'); r(x-2,y-2,4,4,'#1b2236');
 }
+
+// ---- decorações ----
+function plant(x,y){ shadow(x,y+16,16); ro(x-9,y,18,14,'#a3502e',2); r(x-7,y+2,14,4,'#7c3a20');
+  ro(x-12,y-20,24,22,'#2e9d52',2); r(x-3,y-20,6,22,'#1d6e36'); }
+function pottedTall(x,y){ shadow(x,y+22,14); ro(x-8,y,16,22,'#c0703a',2);
+  r(x-3,y-30,6,30,'#1d6e36'); r(x-12,y-22,10,5,'#2e9d52'); r(x+2,y-30,10,5,'#2e9d52'); r(x-14,y-12,12,5,'#2e9d52'); }
+function window_(x,y){ ro(x-40,y,80,46,'#5a5c68',3); r(x-36,y+4,72,38,'#8fd0f5');
+  r(x-36,y+22,72,4,'#5a5c68'); r(x-2,y+4,4,38,'#5a5c68');
+  r(x-30,y+9,16,6,'#cfeaff'); r(x-30,y+9,16,6,'rgba(255,255,255,.5)'); }
+function tvWall(x,y,key,label){ shadow(x,y+30,30);
+  ro(x-34,y,68,40,'#0c0c14',3); r(x-30,y+4,60,28,'#10202a');
+  // barrinhas
+  r(x-24,y+9,40,4,'#ffd54a'); r(x-24,y+16,28,4,'#3DDC84'); r(x-24,y+23,34,4,'#7bb6ff');
+  r(x+24,y+3,4,4,'#3DDC84'); // led
+  text(label,x,y+54,7,'#d8c8ea');
+  HITS.push({x:x-34,y:y,w:68,h:40,tv:key});
+}
+function vending(x,y){ shadow(x,y+56,24); ro(x-26,y,52,72,'#c0202a',3);
+  r(x-22,y+4,34,42,'#1b1f2e'); // vidro
+  const cols=['#ff5d5d','#ffd54a','#5fd0ff','#7be0a0'];
+  for(let j=0;j<4;j++)for(let i=0;i<3;i++) r(x-19+i*11,y+8+j*9,8,6,cols[(i+j)%4]);
+  r(x+14,y+6,8,40,'#2a2f3e'); // painel
+  text('SNAX',x-4,y+62,6,'#ffd54a'); }
+function bookshelf(x,y){ shadow(x,y+34,30); ro(x-30,y,60,44,'#7a4a22',3);
+  const bc=['#c0392b','#2980b9','#27ae60','#e0a82a','#8e44ad','#c0392b','#16a085'];
+  for(let s=0;s<2;s++) for(let i=0;i<7;i++){ r(x-26+i*8,y+4+s*20,6,16,bc[(i+s)%7]); }
+  r(x-30,y+22,60,3,'#5a3618'); }
+function pingpong(x,y){ shadow(x,y+22,46); ro(x-46,y-14,92,34,'#2e8b57',3);
+  r(x-2,y-14,4,34,'#fff'); r(x-46,y+2,92,3,'#fff');
+  r(x-50,y+18,6,16,'#3a2a18'); r(x+44,y+18,6,16,'#3a2a18'); }
+function sofa(x,y){ shadow(x,y+20,40); ro(x-44,y,88,26,'#ffd54a',3); r(x-44,y-12,88,14,'#f0c63a');
+  r(x-44,y,8,26,'#e0b62a'); r(x+36,y,8,26,'#e0b62a'); }
+function easel(x,y){ shadow(x,y+30,22); r(x-2,y,4,40,'#5a3a1e'); r(x-22,y+38,8,16,'#5a3a1e'); r(x+14,y+38,8,16,'#5a3a1e');
+  ro(x-24,y-26,48,34,'#f4ead2',3); // tela
+  ctx.strokeStyle='#c0392b'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.arc(x,y-9,11,0,7); ctx.stroke(); ctx.beginPath(); ctx.arc(x,y-9,5,0,7); ctx.stroke();
+  r(x-1,y-10,2,2,'#c0392b'); }
+function mascote(x,y,t){ shadow(x,y+14,14); const b=Math.sin(t/300)*2;
+  ro(x-10,y-10+b,20,20,'#e0392b',2); r(x-7,y-5+b,5,5,'#fff'); r(x+2,y-5+b,5,5,'#fff');
+  r(x-6,y-4+b,2,2,'#000'); r(x+3,y-4+b,2,2,'#000'); r(x-12,y-4+b,3,8,'#e0392b'); r(x+9,y-4+b,3,8,'#e0392b'); }
+function whiteboard(x,y){ ro(x-46,y,92,30,'#e8a33a',3); r(x-40,y+5,80,20,'#fff');
+  r(x-34,y+10,40,3,'#b0b0c0'); r(x-34,y+16,54,3,'#b0b0c0'); }
+
+// ---- Mauro (chefe, anda) ----
+const mauro={x:880,y:430, tx:880,ty:430, face:1, alvo:null,
+  pa:{x:880,y:330}, pb:{x:880,y:520}, pt:0, dir:1, walkPhase:0};
+function drawBossRoom(){
+  // sala do chefe (canto direito-baixo) com tapete + vidro
+  r(792,300,232,400,'rgba(90,70,110,.20)');
+  ctx.strokeStyle='#ffd54a'; ctx.lineWidth=3; ctx.strokeRect(792,300,230,398);
+  r(800,316,216,360,'rgba(150,200,255,.10)'); // vidro
+  // tapete
+  ctx.fillStyle='#5a3a6a'; ctx.fillRect(820,360,170,260);
+  // mesa do chefe
+  shadow(880,300,40); ro(842,250,76,26,'#8a5a31',2); r(842,272,76,7,'#6d4423');
+  text('👔 SUPERVISÃO',905,326,8,'#ffd54a');
+}
+function drawMauro(t){
+  const x=mauro.x,y=mauro.y;
+  shadow(x,y+26,20);
+  const moving=Math.abs(mauro.x-mauro._px)+Math.abs(mauro.y-mauro._py)>0.4;
+  const step = moving? Math.sin(t/120)*3 : 0;
+  // pernas
+  r(x-8,y+12+Math.max(0,step),7,16,'#2b2740'); r(x+1,y+12+Math.max(0,-step),7,16,'#2b2740');
+  // corpo (terno)
+  ro(x-13,y-8,26,24,'#22304a',2); r(x-2,y-6,4,18,'#ffd54a'); // gravata
+  // braços
+  ro(x-17,y-6,6,18,'#22304a',2); ro(x+11,y-6,6,18,'#22304a',2);
+  // cabeça
+  ro(x-11,y-30,22,22,'#e8b88a',2);
+  r(x-13,y-34,26,9,'#2a2018'); // cabelo
+  if(mauro.face>0){ r(x+1,y-24,4,4,'#14101e'); r(x-7,y-24,4,4,'#14101e'); }
+  else { r(x-5,y-24,4,4,'#14101e'); }
+  // nome
+  ro(x-30,y-52,60,15,'#3a2c12',2); text('MAURO',x,y-41,7,'#ffd54a');
+  // status
+  if(mauro.alvo){ bubble(x,y-58,'#3a1012','#ff8a8a','SOCORRO!'); }
+  else { drawGear(x+22,y-44,t); }
+  mauro._px=x; mauro._py=y;
+  mauro._hit={x:x-22,y:y-54,w:44,h:84};
+}
+
+// ---- pilha de pendências ----
+const pilha={x:120,y:560};
+function drawPilha(t){
+  const {x,y}=pilha; shadow(x,y+18,40);
+  const cols=['#b98b24','#c99a30','#d9a93e','#e9b94e'];
+  cols.forEach((c,i)=>{ const w=70-i*8; ro(x-w/2,y-i*11,w,11,c,2); });
+  r(x-22,y-48,44,8,'#f4ead2'); // papel
+  ro(x-46,y+18,92,16,'#3a2c12',2); text('📂 '+PENDENCIAS.length+' PEND.',x,y+30,7,'#ffd98a');
+  pilha._hit={x:x-46,y:y-48,w:92,h:96};
+}
+
+// ---- FPS ----
+let frames=0,fps=0,lastFps=performance.now();
+function drawFps(now){ frames++; if(now-lastFps>500){ fps=Math.round(frames*1000/(now-lastFps)); frames=0; lastFps=now; }
+  ro(8,8,108,20,'#0c1018',2); text(fps+' FPS',62,22,9,fps>=45?'#7be07b':'#ffd54a'); }
+
+// ---- HITS (clique) ----
+let HITS=[];
+
+// ---- estado / dados ----
+let DADOS=null;
+function setEstado(key,estado,detalhe){ const a=AGENTES.find(x=>x.key===key); if(!a)return; a.estado=estado; a.detalhe=detalhe; }
+AGENTES.forEach(a=>a.estado='idle');
 
 async function atualizar(){
   try{
-    const r=await fetch(STATUS_URL+'?t='+Date.now()); DADOS=await r.json();
+    const rr=await fetch(STATUS_URL+'?t='+Date.now()); DADOS=await rr.json();
     let w=0,er=0,id=0,erroKey=null;
     (DADOS.agentes||[]).forEach(a=>{
-      let estado='idle';
-      if(!a.ativo) estado='zzz';
-      else if(a.ultima){
-        const age=(Date.now()-new Date(a.ultima.ts).getTime())/60000;
-        if(a.ultima.status===3 && age<60) estado='erro';
-        else if(age<10) estado='typing';
-      }
-      if(estado==='typing')w++; else if(estado==='erro'){er++; erroKey=a.key;} else if(estado==='idle')id++;
-      setEstado(a.key, estado, a.ultima?`Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso ✅':'ERRO ⚠️'} · ${a.ultima.ops} operações`:'sem execuções recentes');
+      let e='idle';
+      if(!a.ativo)e='zzz';
+      else if(a.ultima){ const age=(Date.now()-new Date(a.ultima.ts).getTime())/60000;
+        if(a.ultima.status===3&&age<60)e='erro'; else if(age<10)e='typing'; }
+      if(e==='typing')w++; else if(e==='erro'){er++;erroKey=a.key;} else if(e==='idle')id++;
+      setEstado(a.key,e,a.ultima?`Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} operações`:'sem execuções recentes');
     });
-    setEstado('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17). Acorda quando a integração for construída. 😴');
-    hWork.textContent=w; hErr.textContent=er; hIdle.textContent=id; hTime.textContent=new Date().toLocaleTimeString('pt-BR');
-    // Mauro reage: se há erro, vai até o agente; senão patrulha
-    patrol.alvo = erroKey ? stations[erroKey].grp.position.clone() : null;
-    hBoss.textContent = erroKey ? 'socorrendo '+stations[erroKey].ag.nome : 'vigiando';
-    toast.textContent = er>0 ? '⚠️ Mauro detectou erro e foi até o agente — clica nele pra ver' : '✅ tudo no ar · Mauro patrulhando · status real do Make';
-  }catch(e){ toast.textContent='falha ao falar com o Make: '+e; }
+    setEstado('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17). 😴');
+    document.getElementById('hWork').textContent=w; document.getElementById('hErr').textContent=er;
+    document.getElementById('hIdle').textContent=id; document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
+    const ag=AGENTES.find(a=>a.key===erroKey);
+    mauro.alvo = ag? {x:ag.x,y:ag.y} : null;
+    document.getElementById('hBoss').textContent = ag? 'socorrendo '+ag.nome : 'vigiando';
+    document.getElementById('toast').textContent = er>0? '⚠️ Mauro foi até o agente com erro — clica nele' : '✅ tudo no ar · Mauro patrulhando · status real do Make · clique nos personagens';
+  }catch(e){ document.getElementById('toast').textContent='falha ao falar com o Make: '+e; }
 }
-const hWork=document.getElementById('hWork'),hErr=document.getElementById('hErr'),hIdle=document.getElementById('hIdle'),
-  hTime=document.getElementById('hTime'),hBoss=document.getElementById('hBoss'),toast=document.getElementById('toast');
-atualizar(); setInterval(atualizar,60000);
 
-// ---------- clique ----------
-const ray=new THREE.Raycaster(), mouse=new THREE.Vector2();
+// ---- loop ----
+function update(dt,t){
+  // Mauro: vai até erro ou patrulha
+  let dest;
+  if(mauro.alvo){ dest={x:mauro.alvo.x, y:mauro.alvo.y+70}; }
+  else { mauro.pt+=dt*0.00035*mauro.dir; if(mauro.pt>=1){mauro.pt=1;mauro.dir=-1;} if(mauro.pt<=0){mauro.pt=0;mauro.dir=1;}
+    dest={x:mauro.pa.x+(mauro.pb.x-mauro.pa.x)*mauro.pt, y:mauro.pa.y+(mauro.pb.y-mauro.pa.y)*mauro.pt}; }
+  const k=Math.min(1,dt*0.004);
+  mauro.face = (dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
+  mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
+}
+function draw(t){
+  HITS=[];
+  drawFloor();
+  // parede topo: janela, vending, whiteboard
+  window_(360,18); vending(940,12); whiteboard(150,30);
+  // decorações de chão
+  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO'); // 2 na parede esq
+  tvWall(700,560,'encerr','ENCERRAMENTOS');
+  pottedTall(250,110); plant(880,150); plant(60,420);
+  pingpong(150,460); sofa(120,650); bookshelf(720,470); easel(470,560); mascote(40,660,t);
+  // agentes clicáveis
+  drawBossRoom();
+  AGENTES.forEach(a=>drawWorker(a,t));
+  drawMauro(t);
+  drawPilha(t);
+  // registra hits dos agentes/mauro/pilha
+  AGENTES.forEach(a=>HITS.push({...a._hit,key:a.key}));
+  HITS.push({...mauro._hit,key:'mauro'});
+  HITS.push({...pilha._hit,pilha:true});
+}
+let last=performance.now();
+function loop(now){ const dt=now-last; last=now; update(dt,now); draw(now); drawFps(now);
+  requestAnimationFrame(loop); }
+
+// ---- clique ----
+let scale=1, ox=0, oy=0;
+function resize(){ const wrap=document.getElementById('wrap'); const aw=wrap.clientWidth, ah=wrap.clientHeight;
+  scale=Math.min(aw/W, ah/H)*0.98; cv.style.width=(W*scale)+'px'; cv.style.height=(H*scale)+'px';
+  const rect=cv.getBoundingClientRect(); ox=rect.left; oy=rect.top; }
+addEventListener('resize',resize);
 const ov=document.getElementById('ov'), md=document.getElementById('md');
-function abrir(html){ md.innerHTML=html+'<button class="fechar" onclick="document.getElementById(\'ov\').classList.remove(\'show\')">fechar</button>'; ov.classList.add('show'); }
+function abrir(html){ md.innerHTML=html+'<button class="fechar" onclick="document.getElementById(\'ov\').classList.remove(\'show\')">FECHAR</button>'; ov.classList.add('show'); }
 ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('show'); });
-renderer.domElement.addEventListener('pointerdown',e=>{
-  mouse.x=(e.clientX/innerWidth)*2-1; mouse.y=-(e.clientY/innerHeight)*2+1;
-  ray.setFromCamera(mouse,camera);
-  const hit=ray.intersectObjects(clickables,false)[0];
-  if(!hit) return;
-  const u=hit.object.userData;
-  if(u.tv){ const t=TVS[u.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); }
-  else if(u.pilha){ abrir(`<h2>📂 Pilha de pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a> (filtro 🖐️ Falta automatizar).</p>`); }
-  else if(u.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2>
-    <p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão pra não estourar o Pipedrive e avisa no Discord <b>#🤖-automações</b>. Roda de hora em hora — não depende do PC ligado.</p>
-    <p>Quando algum agente dá erro, o Mauro <b>sai da sala e vai até a mesa dele</b> (é o que você vê aqui). 😎</p>
-    <p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); }
-  else if(u.key){ const s=stations[u.key]; const a=(DADOS?.agentes||[]).find(x=>x.key===u.key);
-    abrir(`<h2>👤 ${s.ag.nome} <span style="font-size:11px;color:#bfa9d6">· ${s.ag.role}</span></h2>
-    <p>${s.detalhe||'…'}</p>
-    ${a?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${a.id}/edit" target="_blank">#${a.id} — abrir HISTORY</a> · ativo: ${a.ativo?'sim':'NÃO'}</p>`:''}
-    <p style="color:#9b87b8">DIGITANDO = rodou nos últimos 10 min · ERRO = última execução falhou · DORMINDO = desligado (o Mauro religa sozinho) · ☕ = na escuta.</p>`); }
+cv.addEventListener('pointerdown',e=>{
+  const rect=cv.getBoundingClientRect();
+  const mx=(e.clientX-rect.left)/scale, my=(e.clientY-rect.top)/scale;
+  for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i];
+    if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
+      if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
+      if(h.pilha){ abrir(`<h2>📂 Pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a>.</p>`); return; }
+      if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Quando dá erro, ele <b>vai até a mesa do agente</b> (é o que você vê).</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
+      const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
+      abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.role}</span></h2><p>${a.detalhe||'…'}</p>
+        ${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}
+        <p class="role">DIGITANDO = rodou nos últimos 10 min · ERRO = última execução falhou (o Mauro religa) · DORMINDO = desligado · ☕ = na escuta.</p>`); return;
+    }
+  }
 });
 
-// ---------- animação ----------
-const clock=new THREE.Clock();
-function animate(){
-  requestAnimationFrame(animate);
-  const dt=clock.getDelta(); tclock+=dt;
-  // agentes digitando: braços e cabeça mexem
-  Object.values(stations).forEach(s=>{
-    const p=s.person.userData.parts;
-    if(s.estado==='typing'){
-      const f=Math.sin(tclock*12);
-      p.armL.rotation.x = -0.5 + f*0.25; p.armR.rotation.x = -0.5 - f*0.25;
-      p.head.position.y = p.parts? p.head.position.y : p.head.position.y;
-      s.person.position.y = Math.sin(tclock*6)*0.02;
-    } else if(s.estado==='zzz'){
-      s.person.rotation.z = 0.12 + Math.sin(tclock*1.5)*0.02; s.person.position.y=0;
-      p.armL.rotation.x=0; p.armR.rotation.x=0;
-    } else {
-      s.person.rotation.z=0; s.person.position.y=Math.sin(tclock*2)*0.01;
-      p.armL.rotation.x=0; p.armR.rotation.x=0;
-    }
-  });
-  // Mauro: vai até alvo (erro) ou patrulha
-  const mp=mauro.position;
-  let destino;
-  if(patrol.alvo){ destino=new THREE.Vector3(patrol.alvo.x, 0, patrol.alvo.z+2.2); }
-  else {
-    patrol.t += dt*0.22*patrol.dir;
-    if(patrol.t>=1){patrol.t=1;patrol.dir=-1;} if(patrol.t<=0){patrol.t=0;patrol.dir=1;}
-    destino=patrol.a.clone().lerp(patrol.b, patrol.t);
-  }
-  const prevx=mp.x, prevz=mp.z;
-  mp.x += (destino.x-mp.x)*Math.min(1,dt*2.2);
-  mp.z += (destino.z-mp.z)*Math.min(1,dt*2.2);
-  // vira pra direção do movimento
-  const dx=mp.x-prevx, dz=mp.z-prevz;
-  if(Math.abs(dx)+Math.abs(dz)>0.0006){ mauro.rotation.y = Math.atan2(dx,dz); }
-  // pernas do Mauro andando
-  if(mauro.userData.legs){ const moving=(Math.abs(dx)+Math.abs(dz))>0.002; const sw=moving?Math.sin(tclock*9)*0.5:0;
-    mauro.userData.legs[0].rotation.x=sw; mauro.userData.legs[1].rotation.x=-sw;
-    mauro.userData.parts.armL.rotation.x=-sw; mauro.userData.parts.armR.rotation.x=sw; }
-  controls.update();
-  renderer.render(scene,camera);
-  labelRenderer.render(scene,camera);
-}
-animate();
-document.getElementById('loading').style.display='none';
-
-addEventListener('resize',()=>{
-  camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth,innerHeight); labelRenderer.setSize(innerWidth,innerHeight);
+// ---- boot ----
+(document.fonts? document.fonts.ready : Promise.resolve()).then(()=>{
+  document.getElementById('loading').style.display='none';
+  resize(); atualizar(); setInterval(atualizar,60000); requestAnimationFrame(loop);
 });
 </script>
 </body>
