@@ -260,6 +260,21 @@ function planta(x,z){
 }
 planta(-13,-6.5); planta(7.5,-6.5); planta(-13,8);
 
+// ---------- pilha de pendências (falta automatizar) ----------
+const pilha = new THREE.Group(); pilha.position.set(-9.2,0,6.4); scene.add(pilha);
+['#b98b24','#c99a30','#d9a93e','#e9b94e'].forEach((c,i)=>{
+  const w=1.5-i*0.2;
+  const f=new THREE.Mesh(new THREE.BoxGeometry(w,0.24,1.05),new THREE.MeshStandardMaterial({color:c,roughness:.7}));
+  f.position.y=0.12+i*0.26; f.rotation.y=(i%2?0.06:-0.05); f.castShadow=true; f.receiveShadow=true; pilha.add(f);
+});
+const papel=new THREE.Mesh(new THREE.BoxGeometry(0.72,0.05,0.52),new THREE.MeshStandardMaterial({color:'#f4ead2',roughness:.8}));
+papel.position.y=0.12+4*0.26; papel.castShadow=true; pilha.add(papel);
+const pilhaHit=new THREE.Mesh(new THREE.BoxGeometry(1.8,1.8,1.4),new THREE.MeshBasicMaterial({visible:false}));
+pilhaHit.position.y=0.7; pilhaHit.userData={pilha:true}; pilha.add(pilhaHit); clickables.push(pilhaHit);
+const pilhaLbl=document.createElement('div'); pilhaLbl.className='lbl3d';
+pilhaLbl.innerHTML=`<div class="nm" style="background:#3a2c12;border-color:#7c5e24;color:#ffd98a">📂 PENDÊNCIAS<span class="role">${PENDENCIAS.length} pra automatizar</span></div>`;
+const pilhaObj=new CSS2DObject(pilhaLbl); pilhaObj.position.set(0,1.8,0); pilha.add(pilhaObj);
+
 // ---------- estações ----------
 const stations = {};
 AGENTES.forEach(ag=>{
@@ -377,6 +392,7 @@ renderer.domElement.addEventListener('pointerdown',e=>{
   if(!hit) return;
   const u=hit.object.userData;
   if(u.tv){ const t=TVS[u.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); }
+  else if(u.pilha){ abrir(`<h2>📂 Pilha de pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a> (filtro 🖐️ Falta automatizar).</p>`); }
   else if(u.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2>
     <p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão pra não estourar o Pipedrive e avisa no Discord <b>#🤖-automações</b>. Roda de hora em hora — não depende do PC ligado.</p>
     <p>Quando algum agente dá erro, o Mauro <b>sai da sala e vai até a mesa dele</b> (é o que você vê aqui). 😎</p>
