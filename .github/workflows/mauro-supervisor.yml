@@ -1,0 +1,26 @@
+name: Mauro supervisor (ronda)
+
+# O Mauro vigia os cenarios do Make de hora em hora. TODA a logica (religar,
+# re-checar, escalar pro William no WhatsApp/Discord) esta no worker Cloudflare
+# (rota /supervisor). Aqui so disparamos o curl — de graca, sem agente de IA.
+# Migrado da rotina cloud do Claude em 15/06/2026 pra cortar custo (~720 exec/mes).
+
+on:
+  schedule:
+    - cron: "0 * * * *"   # de hora em hora (UTC). Free tier pode atrasar 5-15min — ok pro caso.
+  workflow_dispatch: {}    # botao manual em Actions
+
+concurrency:
+  group: mauro
+  cancel-in-progress: false
+
+jobs:
+  ronda:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Mauro faz a ronda das automacoes
+        run: |
+          echo "Ronda do Mauro: $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          resp=$(curl -s --max-time 100 "https://sp-tag-lead-filter-x7k2.pages.dev/supervisor")
+          echo "Resposta: $resp"
