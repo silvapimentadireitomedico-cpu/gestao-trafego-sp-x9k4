@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório Semanal · FIES · Silva Pimenta</title>
+<style>
+  :root{--azul:#1B4965;--azul2:#13354a;--gold:#C5A57A;--gold2:#e9c98f;--bg:#0f1620;--card:#16212e;--card2:#1b2937;--line:#27384a;
+    --ok:#34d399;--okbg:#0e3326;--bad:#f87171;--badbg:#3a1414;--warn:#fbbf24;--warnbg:#3a2e0c;--ink:#e8eef5;--mut:#9fb3c8;}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.5;padding:0 0 60px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--azul),var(--azul2));padding:26px 0 22px;border-bottom:3px solid var(--gold);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  h1{font-size:21px;font-weight:800}h1 small{display:block;font-size:12px;font-weight:500;color:#cfe0ef;margin-top:3px}
+  .chip{background:rgba(0,0,0,.25);border:1px solid var(--gold);color:var(--gold2);font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px}
+  .periodo{font-size:11px;color:#bcd0e3;margin-top:4px}
+  section{margin-top:24px}
+  .stitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;margin-bottom:13px}
+  .stitle .ic{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:14px}
+  /* tendencia */
+  .trend{width:100%;border-collapse:collapse;background:var(--card);border-radius:12px;overflow:hidden;font-size:13px}
+  .trend th{background:var(--card2);padding:11px 12px;text-align:right;font-size:11px;color:var(--mut);text-transform:uppercase}
+  .trend th:first-child{text-align:left}
+  .trend td{padding:11px 12px;border-top:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+  .trend td:first-child{text-align:left;font-weight:600}
+  .trend .win{color:var(--gold2);font-weight:800}
+  .up{color:#34d399}.down{color:#f87171}.flat{color:var(--mut)}
+  .hier{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .step .q{font-size:13px;font-weight:800;margin:3px 0}
+  .step .r{font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block}
+  .r.ok{background:var(--okbg);color:var(--ok)}.r.warn{background:var(--warnbg);color:var(--warn)}.r.bad{background:var(--badbg);color:var(--bad)}
+  .plat{border-radius:14px;padding:2px;margin-top:14px}
+  .plat.g{background:linear-gradient(135deg,#4285F4,#1a73e8)}.plat.m{background:linear-gradient(135deg,#0866FF,#0a4fd0)}
+  .plat-in{background:var(--bg);border-radius:12px;padding:18px}
+  .plat-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  .plat-head .t{font-size:17px;font-weight:800}
+  .hs{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:20px}
+  .hs .grade{font-size:20px;font-weight:900;width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
+  .grade.C{background:#3a2e0c;color:#fbbf24}.grade.D{background:#3a1414;color:#f87171}
+  .hs .hsl{font-size:10px;color:var(--mut)}.hs .hsv{font-size:12px;font-weight:700}
+  .subk{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px;margin-bottom:13px}
+  .subk .b{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+  .subk .l{font-size:10px;color:var(--mut);text-transform:uppercase}.subk .v{font-size:17px;font-weight:800;margin-top:2px}.subk .cls{font-size:10px;font-weight:700;margin-top:2px}
+  .block{border-radius:11px;padding:14px 16px;border:1px solid var(--line);margin-bottom:10px}
+  .block.ok{background:var(--okbg);border-color:#1c5c43}.block.bad{background:var(--badbg);border-color:#7a2b2b}
+  .block h4{font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+  .block ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .block li{font-size:12.5px;padding-left:20px;position:relative}
+  .block.ok li:before{content:"✓";color:var(--ok);font-weight:800;position:absolute;left:0}
+  .block.bad li:before{content:"✗";color:var(--bad);font-weight:800;position:absolute;left:0}
+  .block li b{color:#fff}
+  .acao{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:12px 14px;margin-bottom:9px}
+  .acao .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .acao .t{font-size:12.5px;font-weight:700}.acao .why{font-size:11.5px;color:var(--mut);margin-top:4px}
+  .badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .b-fix{background:#3a2e0c;color:var(--warn);border:1px solid #7a5e1a}.b-keep{background:#0e3326;color:var(--ok);border:1px solid #1c5c43}
+  .b-test{background:#10263a;color:#7cc0ee;border:1px solid #1c5876}.b-kill{background:#3a1414;color:var(--bad);border:1px solid #7a2b2b}.b-scale{background:#0e3326;color:#7be0a0;border:1px solid #1c5c43}
+  table.dt{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;background:var(--card);border-radius:10px;overflow:hidden}
+  table.dt th{background:var(--card2);text-align:left;padding:8px 10px;font-size:10.5px;color:var(--mut);text-transform:uppercase}
+  table.dt td{padding:7px 10px;border-top:1px solid var(--line)}td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px}
+  .tag.cr{background:var(--badbg);color:var(--bad)}.tag.at{background:var(--warnbg);color:var(--warn)}.tag.bo{background:#10263a;color:#5fa8ee}.tag.ex{background:var(--okbg);color:var(--ok)}
+  .note{font-size:11px;color:var(--mut);margin-top:7px}
+  .nota{background:#3a2e0c;border:1px solid #7a5e1a;color:#fbe5a8;font-size:12px;padding:11px 14px;border-radius:10px;margin-top:14px}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div><h1>📊 Relatório Semanal de Campanha<small>FIES (Abatimento) · análise Google × Meta · tendência 30/14/7 dias</small></h1>
+    <div class="periodo">Atualizado: terça, 16/06/2026 · 08:00</div></div>
+  <div style="text-align:right"><span class="chip">⚖️ Silva Pimenta</span><div class="periodo">Rita · Benchmarks BR + Quality Gates</div></div>
+</div></header>
+
+<div class="wrap">
+
+  <!-- TENDÊNCIA 30/14/7 -->
+  <section>
+    <div class="stitle"><span class="ic" style="background:var(--card2);color:var(--gold2)">📈</span> Tendência · 30 / 14 / 7 dias</div>
+    <table class="trend">
+      <tr><th>Métrica</th><th class="win">30 dias</th><th class="win">14 dias</th><th class="win">7 dias</th><th>Leitura</th></tr>
+      <tr><td>💰 Gasto</td><td>R$ 25.663</td><td>R$ 12.626</td><td>R$ 5.858</td><td class="flat">ritmo estável</td></tr>
+      <tr><td>🟢 Leads</td><td>445</td><td>160</td><td>79</td><td class="down">volume caindo um pouco</td></tr>
+      <tr><td>🎯 CPL</td><td>R$ 57,67</td><td>R$ 78,91</td><td>R$ 74,16</td><td class="down">CPL subiu (↑)</td></tr>
+      <tr><td>🏆 Vendas</td><td>22</td><td>11</td><td>8</td><td class="up">ritmo acelerou (↑)</td></tr>
+      <tr><td>📈 ROAS</td><td>3,18x</td><td>3,30x</td><td><b>5,04x</b></td><td class="up">retorno MELHOROU muito (↑)</td></tr>
+    </table>
+    <div class="nota">📌 <b>Leitura cirúrgica:</b> o CPL subiu (R$58 → R$74), mas nos últimos 7 dias vieram <b>menos leads e mais qualificados</b> — 8 vendas e <b>ROAS 5x</b> (vs 3,2x no mês). Pela regra: <b>lead caro que vende mais NÃO se corta</b>. Aqui é manter/escalar e atacar só eficiência. <span style="color:#9fb3c8">(As tags de qualidade do Pipedrive ainda estão amadurecendo — a leitura de qualidade fica mais precisa nas próximas semanas.)</span></div>
+  </section>
+
+  <!-- HIERARQUIA -->
+  <section>
+    <div class="stitle"><span class="ic" style="background:var(--card2);color:var(--gold2)">🧭</span> Hierarquia de decisão</div>
+    <div class="hier">
+      <div class="step"><div class="q">Converte?</div><span class="r ok">SIM ✓</span></div>
+      <div class="step"><div class="q">É lucrativo?</div><span class="r ok">SIM ✓ (ROAS 5x)</span></div>
+      <div class="step"><div class="q">É escalável?</div><span class="r warn">PARCIAL ⚠</span></div>
+      <div class="step"><div class="q">É eficiente?</div><span class="r bad">NÃO ✗</span></div>
+    </div>
+    <div class="note">Converte e lucra forte (ROAS 5x nos 7d). O gargalo é eficiência: Quality Score no Google e fadiga de criativo no Meta (a campanha que mais gasta está saturada).</div>
+  </section>
+
+  <!-- GOOGLE -->
+  <section>
+    <div class="plat g"><div class="plat-in">
+      <div class="plat-head"><div class="t">🔵 GOOGLE ADS <span style="font-size:12px;color:var(--mut);font-weight:500">· Search · R$ 3.676 (14% do gasto)</span></div>
+        <div class="hs"><span class="grade D">D</span><div><div class="hsl">Health Score</div><div class="hsv">54/100 · ação necessária</div></div></div></div>
+      <div class="subk">
+        <div class="b"><div class="l">Quality Score</div><div class="v">~2-3</div><div class="cls" style="color:var(--bad)">🔴 CRÍTICO (&lt;4)</div></div>
+        <div class="b"><div class="l">Termos s/ conv</div><div class="v">R$ 382</div><div class="cls" style="color:var(--warn)">🟡 LP/tracking</div></div>
+        <div class="b"><div class="l">Keywords c/ QS</div><div class="v">60</div><div class="cls" style="color:var(--mut)">nenhuma QS&gt;5</div></div>
+      </div>
+      <div class="block ok"><h4>🟢 Bom</h4><ul>
+        <li><b>Termos de alta intenção:</b> "negociar fies", "abater dívida fies", "desconto fies" — avatar certo. Alguns convertem mesmo com QS baixo ("negociar fies" QS2 deu 5 conversões).</li>
+      </ul></div>
+      <div class="block bad"><h4>🔴 Ruim (vs benchmark Google BR)</h4><ul>
+        <li><b>Quality Score crítico:</b> maioria QS 2-3, nenhuma acima de 5 (pior que o Auxílio). Encarece muito o clique.</li>
+        <li><b>R$ 382 em buscas certeiras sem conversão</b> ("negociar fies", "desconto fies pandemia") → desconexão anúncio↔LP ou rastreamento, não termo errado.</li>
+      </ul></div>
+      <div class="stitle" style="font-size:13px;margin:14px 0 9px"><span class="ic" style="background:var(--warnbg);color:var(--warn)">🛠️</span> Ações Google (aprovar)</div>
+      <div class="acao"><div class="top"><span class="t">1. Reescrever RSAs com a keyword pra subir o QS</span><span class="badge b-fix">CORRIGIR</span></div><div class="why">QS 2-3 é o pior ponto. Títulos com "negociar/abater dívida do FIES" + LP aderente. Maior alavanca de CPC.</div></div>
+      <div class="acao"><div class="top"><span class="t">2. Verificar LP + tag de conversão</span><span class="badge b-test">VERIFICAR</span></div><div class="why">R$382 em termos perfeitos com 0 conversão pode ser LP fraca ou conversão não medida (pode estar fechando no WhatsApp sem registrar).</div></div>
+      <div class="acao"><div class="top"><span class="t">3. NÃO negativar os termos de FIES</span><span class="badge b-keep">MANTER</span></div><div class="why">São o avatar (negociar/abater FIES). Vários convertem. Cortar mataria lead bom.</div></div>
+      <table class="dt">
+        <tr><th>Keyword (QS baixo)</th><th class="num">QS</th><th class="num">Gasto</th><th class="num">Conv</th><th>Ação</th></tr>
+        <tr><td>negociar fies</td><td class="num"><span class="tag cr">2</span></td><td class="num">R$ 596</td><td class="num">5</td><td><span class="tag at">subir QS (converte!)</span></td></tr>
+        <tr><td>abater dívida fies</td><td class="num"><span class="tag cr">3</span></td><td class="num">R$ 308</td><td class="num">4</td><td><span class="tag at">subir QS</span></td></tr>
+        <tr><td>abatimento fies médico</td><td class="num"><span class="tag cr">3</span></td><td class="num">R$ 149</td><td class="num">0</td><td><span class="tag at">QS + LP</span></td></tr>
+      </table>
+    </div></div>
+  </section>
+
+  <!-- META -->
+  <section>
+    <div class="plat m"><div class="plat-in">
+      <div class="plat-head"><div class="t">🔷 META ADS <span style="font-size:12px;color:var(--mut);font-weight:500">· R$ 21.987 (86% do gasto · o motor)</span></div>
+        <div class="hs"><span class="grade C">C</span><div><div class="hsl">Health Score</div><div class="hsv">66/100 · otimizar</div></div></div></div>
+      <div class="subk">
+        <div class="b"><div class="l">CPL Meta</div><div class="v">R$ 17</div><div class="cls" style="color:var(--ok)">🟢 EXCELENTE (nicho R$40-120)</div></div>
+        <div class="b"><div class="l">Freq (FIES CADASTRO)</div><div class="v">8,59</div><div class="cls" style="color:var(--bad)">🔴 MUITO SATURADO</div></div>
+        <div class="b"><div class="l">Resultados</div><div class="v">1.307</div><div class="cls" style="color:var(--mut)">conversas/leads</div></div>
+      </div>
+      <div class="block ok"><h4>🟢 Bom</h4><ul>
+        <li><b>CPL excelente:</b> R$ 17 médio, muito abaixo do nicho financeiro. "ENGATAMENTO WHATSAPP" R$15, "LEADS 11/03" R$11, "SEMELHANTE 03/06" R$9,71.</li>
+        <li><b>Públicos semelhantes baratos e saudáveis</b> (freq ~1,1) — espaço pra escalar.</li>
+      </ul></div>
+      <div class="block bad"><h4>🔴 Ruim (vs benchmark Meta BR)</h4><ul>
+        <li><b>FIES CADASTRO saturadíssima:</b> frequência <b>8,59</b> (kill rule é 5). É a que mais gasta (R$ 9.949). O público está vendo o mesmo anúncio demais → o CPL vai subir (é parte do porquê do CPL geral ter subido).</li>
+        <li><b>CTR baixo</b> nas grandes (0,6%) — criativo desgastado.</li>
+      </ul></div>
+      <div class="stitle" style="font-size:13px;margin:14px 0 9px"><span class="ic" style="background:var(--warnbg);color:var(--warn)">🛠️</span> Ações Meta (aprovar)</div>
+      <div class="acao"><div class="top"><span class="t">1. Renovar criativo da FIES CADASTRO (freq 8,59) — sem pausar</span><span class="badge b-kill">URGENTE</span></div><div class="why">Traz 513 leads a R$19 e vende — NÃO pausar. Mas a saturação está corroendo. Subir criativos novos e/ou ampliar público pra renovar a audiência e segurar o CPL.</div></div>
+      <div class="acao"><div class="top"><span class="t">2. Escalar os públicos SEMELHANTES (CPL R$9-11)</span><span class="badge b-scale">ESCALAR</span></div><div class="why">"SEMELHANTE 03/06" (R$9,71, freq 1,11) e "LEADS 11/03" (R$11) estão baratos e frescos. Realocar verba da saturada pra essas (+20-30%).</div></div>
+      <div class="acao"><div class="top"><span class="t">3. Renovar ENGATAMENTO WHATSAPP (freq 3,16, CTR 0,68%)</span><span class="badge b-fix">CORRIGIR</span></div><div class="why">CPL ótimo (R$15) mas começando a saturar. Criativo novo antes de virar problema.</div></div>
+      <table class="dt">
+        <tr><th>Campanha Meta FIES</th><th class="num">Gasto</th><th class="num">Freq</th><th class="num">Lds</th><th class="num">CPL</th><th>Status</th></tr>
+        <tr><td>FIES | CADASTRO</td><td class="num">R$ 9.949</td><td class="num">8,59</td><td class="num">513</td><td class="num">R$ 19</td><td><span class="tag cr">renovar criativo</span></td></tr>
+        <tr><td>FIES | ENGATAMENTO | WHATSAPP</td><td class="num">R$ 7.323</td><td class="num">3,16</td><td class="num">491</td><td class="num">R$ 15</td><td><span class="tag at">renovar em breve</span></td></tr>
+        <tr><td>FIES | LEADS | 11/03 (tel 7482)</td><td class="num">R$ 2.073</td><td class="num">1,62</td><td class="num">183</td><td class="num">R$ 11</td><td><span class="tag ex">saudável</span></td></tr>
+        <tr><td>FIES | SEMELHANTE | 03/06</td><td class="num">R$ 136</td><td class="num">1,11</td><td class="num">14</td><td class="num">R$ 9,71</td><td><span class="tag ex">escalar</span></td></tr>
+        <tr><td>FIES | TRÁFEGO | SITE</td><td class="num">R$ 876</td><td class="num">2,32</td><td class="num">0</td><td class="num">—</td><td><span class="tag at">topo de funil</span></td></tr>
+      </table>
+    </div></div>
+  </section>
+
+  <footer>
+    Relatório automático · <b>FIES (Abatimento)</b> · Silva Pimenta · atualizado 16/06/2026 08:00<br>
+    Frameworks: Benchmarks BR (nicho financeiro) + Quality Gates (kill/scale rules, Health Score) + dados reais Google Ads · Meta Ads · Pipedrive (30/14/7 dias).
+  </footer>
+</div>
+</body>
+</html>
