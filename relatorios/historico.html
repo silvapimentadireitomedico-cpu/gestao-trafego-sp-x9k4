@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Histórico · Relatórios e Mudanças · Rita</title>
+<style>
+  :root{--azul:#1B4965;--gold:#e9c98f;--bg:#0f1620;--card:#16212e;--line:#27384a;--ink:#e8eef5;--mut:#9fb3c8;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--g:#4285F4;--m:#0866FF}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:0 0 60px}
+  .wrap{max-width:880px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--azul),#13354a);padding:24px 0;border-bottom:3px solid #C5A57A}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  h1{font-size:19px;font-weight:800}h1 small{display:block;font-size:12px;font-weight:500;color:#cfe0ef;margin-top:3px}
+  .upd{font-size:11px;color:#bcd0e3}
+  .entry{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:16px;border-left:4px solid #C5A57A}
+  .entry .head{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .date{font-size:13px;font-weight:800;color:var(--gold)}
+  .prod{font-size:12px;font-weight:700;background:#13354a;color:#9fc9e8;padding:3px 10px;border-radius:20px}
+  .st{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px}
+  .st.wait{background:#3a2e0c;color:var(--warn)} .st.done{background:#0e3326;color:var(--ok)} .st.applied{background:#10263a;color:#7cc0ee}
+  .entry h3{font-size:13px;margin:10px 0 6px;color:#fff}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;margin-right:5px}
+  .pill.g{background:#0e1f3a;color:#7ab0f5} .pill.m{background:#0a1830;color:#6fa0ff}
+  ul{list-style:none;display:flex;flex-direction:column;gap:6px;margin:6px 0}
+  li{font-size:13px;padding-left:18px;position:relative;color:#dce6f0}
+  li:before{content:"•";position:absolute;left:0;color:var(--mut)}
+  .rec li:before{content:"→";color:var(--gold)}
+  a.btn{display:inline-block;margin-top:10px;background:#0d6e64;color:#fff;font-weight:700;font-size:12px;text-decoration:none;padding:8px 14px;border-radius:8px}
+  footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
+  .nota{background:#3a2e0c;border:1px solid #7a5e1a;color:#fbe5a8;font-size:12px;padding:11px 14px;border-radius:10px;margin-top:16px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div><h1>📋 Histórico de Relatórios e Mudanças<small>Rita · análise de campanha (Google + Meta)</small></h1></div>
+  <div class="upd">Última atualização: <b>15/06/2026</b></div>
+</div></header>
+
+<div class="wrap">
+  <div class="nota">⏳ As <b>tags de qualidade do Pipedrive</b> começaram a ser preenchidas em ~16/06/2026. Até a base amadurecer (algumas semanas), as recomendações ainda não batem 100% com a qualidade real do lead. Regra fixa: <b>nunca pausar campanha cara que traz vendas/leads qualificados</b> — só cortar/melhorar o que traz lixo.</div>
+
+  <!-- entradas: mais recente no topo -->
+  <div class="entry">
+    <div class="head">
+      <span class="date">15/06/2026 · segunda</span>
+      <span class="prod">AUXÍLIO MORADIA</span>
+      <span class="st wait">⏳ aguardando aprovação</span>
+    </div>
+    <p style="font-size:12.5px;color:var(--mut)">Primeiro relatório (piloto). Período 17/05–15/06. Gasto R$ 21.642 · 414 leads · CPL R$ 52 · 28 vendas (R$ 85,9 mil) · ROAS 3,97x. Base sadia (converte e lucra); foco em eficiência.</p>
+
+    <h3><span class="pill g">GOOGLE</span> achados</h3>
+    <ul>
+      <li>Quality Score crítico (maioria QS3, nenhuma &gt;5) → CPC ~R$17.</li>
+      <li>R$ 583 em termos do avatar com 0 conversão → sinal de LP / rastreamento, não de termo errado.</li>
+    </ul>
+    <h3><span class="pill m">META</span> achados</h3>
+    <ul>
+      <li>CPL R$ 35 (bom pro nicho financeiro R$40-120).</li>
+      <li>CTR 0,6% (crítico) · "MENSAGENS 17/0" com frequência 5,44 (saturada, kill rule).</li>
+    </ul>
+    <h3>🛠️ Recomendações</h3>
+    <ul class="rec">
+      <li><b>Google:</b> atacar Quality Score (reescrever RSAs com a keyword nos títulos).</li>
+      <li><b>Google:</b> verificar landing page + tag de conversão antes de cortar qualquer coisa.</li>
+      <li><b>Meta:</b> renovar criativos das campanhas de MENSAGENS (frequência alta).</li>
+      <li><b>Meta:</b> escalar a CADASTRO QUENTE (+20-30%), a vencedora.</li>
+      <li><b>Manter:</b> NÃO negativar os termos de auxílio moradia (são o avatar).</li>
+    </ul>
+    <a class="btn" href="aux-moradia.html" target="_blank">📈 abrir o relatório completo →</a>
+  </div>
+
+  <footer>
+    Cada relatório que a Rita gera vira uma entrada aqui (data, achados, recomendações e status: ⏳ aguardando · ✅ aprovado · 🚀 aplicado).<br>
+    Cadência: segunda Auxílio · terça FIES · quarta Seguro · quinta Direito Médico.
+  </footer>
+</div>
+</body>
+</html>

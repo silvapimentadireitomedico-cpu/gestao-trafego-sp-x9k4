@@ -6,40 +6,39 @@
 <title>Escritório Virtual — Agentes Silva Pimenta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
-  body{background:#11101a;font-family:'Press Start 2P',monospace;color:#fff;overflow:hidden;
+  body{background:#11101a;font-family:'Inter',system-ui,'Segoe UI',sans-serif;color:#fff;overflow:hidden;
     display:flex;flex-direction:column;align-items:center}
   /* topo */
-  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:10px 12px;pointer-events:none;
-    background:linear-gradient(180deg,rgba(10,9,20,.9),transparent)}
-  .title{text-align:center;font-size:13px;color:#ffd54a;text-shadow:2px 2px 0 #000;letter-spacing:1px}
-  .hud{display:flex;gap:6px;justify-content:center;margin-top:9px;flex-wrap:wrap;pointer-events:auto}
-  .hud span{background:#1b2236;border:2px solid #36406a;padding:6px 10px;font-size:8px;border-radius:3px;
-    box-shadow:0 3px 0 #0a0d18;line-height:1.4}
-  .hud b{color:#ffd54a}
+  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:12px 14px;pointer-events:none;
+    background:linear-gradient(180deg,rgba(10,9,20,.92),transparent)}
+  .title{text-align:center;font-size:18px;font-weight:800;color:#ffd54a;text-shadow:0 2px 6px rgba(0,0,0,.6);letter-spacing:.5px}
+  .hud{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;pointer-events:auto}
+  .hud span{background:#1b2236;border:1px solid #36406a;padding:7px 13px;font-size:12.5px;font-weight:500;border-radius:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.35)}
+  .hud b{color:#ffd54a;font-weight:800}
   #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
-  canvas{image-rendering:pixelated;image-rendering:crisp-edges;background:#9a9aa2;
-    box-shadow:0 0 0 4px #0a0d18,0 18px 50px rgba(0,0,0,.7)}
-  .foot{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:10;
-    background:#1b2236;border:2px solid #36406a;color:#cdbbe2;font-size:8px;padding:7px 12px;border-radius:3px;
-    box-shadow:0 3px 0 #0a0d18;line-height:1.5;text-align:center}
+  canvas{background:#9a9aa2;border-radius:6px;box-shadow:0 0 0 4px #0a0d18,0 18px 50px rgba(0,0,0,.7)}
+  .foot{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:10;
+    background:#1b2236;border:1px solid #36406a;color:#cdbbe2;font-size:12px;padding:8px 16px;border-radius:20px;
+    box-shadow:0 3px 10px rgba(0,0,0,.35);text-align:center}
   /* modal */
   .overlay{position:fixed;inset:0;background:rgba(8,5,15,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
   .overlay.show{display:flex}
-  .modal{background:#171a2e;border:3px solid #ffd54a;border-radius:6px;max-width:540px;width:100%;padding:22px;
-    font-size:10px;line-height:1.9;box-shadow:0 10px 0 #0a0d18}
-  .modal h2{color:#ffd54a;font-size:12px;margin-bottom:12px;line-height:1.5}
-  .modal p,.modal li{color:#dcd3f0;font-family:'Inter',system-ui,sans-serif;font-size:12.5px;line-height:1.7}
+  .modal{background:#171a2e;border:2px solid #ffd54a;border-radius:12px;max-width:560px;width:100%;padding:24px;
+    line-height:1.6;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .modal h2{color:#ffd54a;font-size:18px;font-weight:800;margin-bottom:12px;line-height:1.4}
+  .modal p,.modal li{color:#dcd3f0;font-size:13.5px;line-height:1.7}
   .modal ul{padding-left:18px;margin:8px 0}
-  .modal a{color:#5fe39a}
-  .modal .role{color:#9b87b8;font-size:10px}
-  .modal .fechar{margin-top:16px;background:#ffd54a;color:#171a2e;border:none;padding:9px 16px;
-    font-family:'Press Start 2P';font-size:9px;cursor:pointer;border-radius:4px;box-shadow:0 3px 0 #b8932c}
+  .modal a{color:#5fe39a;font-weight:700}
+  .modal .role{color:#9b87b8;font-size:12px}
+  .modal .fechar{margin-top:18px;background:#ffd54a;color:#171a2e;border:none;padding:10px 20px;
+    font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;border-radius:8px}
   #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;
-    background:#11101a;color:#ffd54a;font-size:11px;text-align:center;line-height:2}
+    background:#11101a;color:#ffd54a;font-size:15px;font-weight:700;text-align:center;line-height:2}
 </style>
 </head>
 <body>
@@ -62,7 +61,7 @@
 const STATUS_URL = 'https://sp-tag-lead-filter-x7k2.pages.dev/status';
 const W=1024, H=700;
 const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
-ctx.imageSmoothingEnabled=false;
+ctx.imageSmoothingEnabled=true;
 
 // ---- agentes (key bate com /status) ----
 const AGENTES=[
@@ -88,8 +87,9 @@ const TVS={
 function r(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x|0,y|0,w|0,h|0); }
 function ro(x,y,w,h,c,o=2,oc='#14101e'){ r(x-o,y-o,w+o*2,h+o*2,oc); r(x,y,w,h,c); } // bloco com contorno
 function shadow(cx,cy,w){ ctx.fillStyle='rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(cx,cy,w,w*0.32,0,0,7); ctx.fill(); }
-function text(s,x,y,size,c,align='center'){ ctx.font=size+"px 'Press Start 2P'"; ctx.textAlign=align;
-  ctx.fillStyle='#000'; ctx.fillText(s,x+1,y+1); ctx.fillStyle=c; ctx.fillText(s,x,y); }
+function text(s,x,y,size,c,align='center',weight=700){ ctx.font=weight+' '+Math.round(size*1.5)+"px Inter, system-ui, Arial";
+  ctx.textAlign=align; ctx.textBaseline='alphabetic';
+  ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillText(s,x+0.7,y+0.7); ctx.fillStyle=c; ctx.fillText(s,x,y); }
 
 // ---- piso xadrez ----
 function drawFloor(){
@@ -369,8 +369,12 @@ function loop(now){ const dt=now-last; last=now; update(dt,now); draw(now); draw
 
 // ---- clique ----
 let scale=1, ox=0, oy=0;
+const DPR=Math.min(window.devicePixelRatio||1, 2.5);
 function resize(){ const wrap=document.getElementById('wrap'); const aw=wrap.clientWidth, ah=wrap.clientHeight;
   scale=Math.min(aw/W, ah/H)*0.98; cv.style.width=(W*scale)+'px'; cv.style.height=(H*scale)+'px';
+  // backing store em alta resolução (nitidez): coords-mundo W×H mapeadas por scale*DPR
+  cv.width=Math.round(W*scale*DPR); cv.height=Math.round(H*scale*DPR);
+  ctx.setTransform(scale*DPR,0,0,scale*DPR,0,0); ctx.imageSmoothingEnabled=true;
   const rect=cv.getBoundingClientRect(); ox=rect.left; oy=rect.top; }
 addEventListener('resize',resize);
 const ov=document.getElementById('ov'), md=document.getElementById('md');
@@ -387,12 +391,13 @@ cv.addEventListener('pointerdown',e=>{
       if(h.key==='relatorios'){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none'; abrir(`<h2>📊 Rita · Relatórios de Campanha</h2>
         <p class="role">Análise cirúrgica Google + Meta · benchmarks BR + Quality Gates. Clique pra abrir:</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
-          <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">segunda ✓ pronto</span></a>
+          <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 15/06 ✓</span></a>
           <span style="${bt};background:#1b2937;color:#9fb3c8">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.7">terça · em breve</span></span>
           <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.7">quarta · em breve</span></span>
           <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.7">quinta · em breve</span></span>
         </div>
-        <p class="role" style="margin-top:10px">Cada relatório separa Google e Meta, classifica por benchmark BR e sugere alterações pra você aprovar.</p>`); return; }
+        <p style="margin-top:12px"><a href="${R}historico.html" target="_blank" style="color:#5fe39a;font-weight:700;text-decoration:none">📋 Histórico de relatórios e mudanças →</a></p>
+        <p class="role" style="margin-top:6px">Cada relatório traz a data da última edição e separa Google × Meta com benchmarks BR. O histórico guarda todas as recomendações e o status (aguardando / aprovado / aplicado).</p>`); return; }
       const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
       abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.role}</span></h2><p>${a.detalhe||'…'}</p>
         ${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}
