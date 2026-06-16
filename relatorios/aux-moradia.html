@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório Semanal · Auxílio Moradia · Silva Pimenta</title>
+<style>
+  :root{
+    --azul:#1B4965; --azul2:#13354a; --gold:#C5A57A; --gold2:#e9c98f;
+    --bg:#0f1620; --card:#16212e; --card2:#1b2937; --line:#27384a;
+    --ok:#34d399; --okbg:#0e3326; --bad:#f87171; --badbg:#3a1414;
+    --warn:#fbbf24; --warnbg:#3a2e0c; --ink:#e8eef5; --mut:#9fb3c8;
+    --google:#4285F4; --googlebg:#0e1f3a; --meta:#0866FF; --metabg:#0a1830;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.5;padding:0 0 60px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--azul),var(--azul2));padding:26px 0 22px;border-bottom:3px solid var(--gold);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  h1{font-size:21px;font-weight:800}
+  h1 small{display:block;font-size:12px;font-weight:500;color:#cfe0ef;margin-top:3px}
+  .chip{background:rgba(0,0,0,.25);border:1px solid var(--gold);color:var(--gold2);font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px}
+  .periodo{font-size:11px;color:#bcd0e3;margin-top:4px}
+  section{margin-top:24px}
+  .stitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:800;margin-bottom:13px}
+  .stitle .ic{width:26px;height:26px;border-radius:7px;display:grid;place-items:center;font-size:14px}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+  .kpi .l{font-size:11px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+  .kpi .v{font-size:22px;font-weight:800;margin-top:4px}
+  .kpi .s{font-size:11px;margin-top:3px;color:var(--mut)}
+  .kpi .s.good{color:var(--ok)} .kpi .s.bad{color:var(--bad)} .kpi .s.warn{color:var(--warn)}
+  /* hierarquia decisão */
+  .hier{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}
+  .step .n{font-size:10px;color:var(--mut);font-weight:700}
+  .step .q{font-size:13px;font-weight:800;margin:5px 0}
+  .step .r{font-size:11px;font-weight:800;padding:3px 10px;border-radius:20px;display:inline-block}
+  .r.ok{background:var(--okbg);color:var(--ok)} .r.warn{background:var(--warnbg);color:var(--warn)} .r.bad{background:var(--badbg);color:var(--bad)}
+  /* seção plataforma */
+  .plat{border-radius:14px;padding:2px;margin-top:14px}
+  .plat.g{background:linear-gradient(135deg,#4285F4,#1a73e8)} .plat.m{background:linear-gradient(135deg,#0866FF,#0a4fd0)}
+  .plat-in{background:var(--bg);border-radius:12px;padding:18px}
+  .plat-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+  .plat-head .t{font-size:17px;font-weight:800;display:flex;align-items:center;gap:9px}
+  .hs{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);padding:7px 13px;border-radius:20px}
+  .hs .grade{font-size:20px;font-weight:900;width:32px;height:32px;border-radius:8px;display:grid;place-items:center}
+  .grade.A{background:#0e3326;color:#34d399}.grade.B{background:#13354a;color:#5fa8ee}.grade.C{background:#3a2e0c;color:#fbbf24}.grade.D{background:#3a1414;color:#f87171}.grade.F{background:#3a1414;color:#f87171}
+  .hs .hsl{font-size:10px;color:var(--mut)} .hs .hsv{font-size:12px;font-weight:700}
+  .block{border-radius:11px;padding:14px 16px;border:1px solid var(--line);margin-bottom:10px}
+  .block.ok{background:var(--okbg);border-color:#1c5c43} .block.bad{background:var(--badbg);border-color:#7a2b2b}
+  .block h4{font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+  .block ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .block li{font-size:12.5px;padding-left:20px;position:relative}
+  .block.ok li:before{content:"✓";color:var(--ok);font-weight:800;position:absolute;left:0}
+  .block.bad li:before{content:"✗";color:var(--bad);font-weight:800;position:absolute;left:0}
+  .block li b{color:#fff}
+  .acao{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:12px 14px;margin-bottom:9px}
+  .acao .top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .acao .t{font-size:12.5px;font-weight:700} .acao .why{font-size:11.5px;color:var(--mut);margin-top:4px}
+  .badge{font-size:10px;font-weight:800;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .b-fix{background:#3a2e0c;color:var(--warn);border:1px solid #7a5e1a}
+  .b-keep{background:#0e3326;color:var(--ok);border:1px solid #1c5c43}
+  .b-test{background:#10263a;color:#7cc0ee;border:1px solid #1c5876}
+  .b-kill{background:#3a1414;color:var(--bad);border:1px solid #7a2b2b}
+  .b-scale{background:#0e3326;color:#7be0a0;border:1px solid #1c5c43}
+  table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px;background:var(--card);border-radius:10px;overflow:hidden}
+  th{background:var(--card2);text-align:left;padding:8px 10px;font-size:10.5px;color:var(--mut);text-transform:uppercase}
+  td{padding:7px 10px;border-top:1px solid var(--line)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:6px}
+  .tag.cr{background:var(--badbg);color:var(--bad)} .tag.at{background:var(--warnbg);color:var(--warn)} .tag.bo{background:#10263a;color:#5fa8ee} .tag.ex{background:var(--okbg);color:var(--ok)}
+  .note{font-size:11px;color:var(--mut);margin-top:7px}
+  .subk{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:9px;margin-bottom:13px}
+  .subk .b{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px}
+  .subk .l{font-size:10px;color:var(--mut);text-transform:uppercase}
+  .subk .v{font-size:17px;font-weight:800;margin-top:2px}
+  .subk .cls{font-size:10px;font-weight:700;margin-top:2px}
+  footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div><h1>📊 Relatório Semanal de Campanha<small>Auxílio Moradia · análise separada Google × Meta</small></h1>
+      <div class="periodo">Período: 17/05 a 15/06/2026 · gerado segunda 15/06</div></div>
+    <div style="text-align:right"><span class="chip">⚖️ Silva Pimenta</span>
+      <div class="periodo">Mauro · frameworks: Benchmarks BR + Quality Gates</div></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- VISÃO GERAL -->
+  <section>
+    <div class="kpis">
+      <div class="kpi"><div class="l">💰 Gasto total</div><div class="v">R$ 21.642</div><div class="s">Google R$ 3.275 · Meta R$ 18.367</div></div>
+      <div class="kpi"><div class="l">🟢 Leads (Pipedrive)</div><div class="v">414</div><div class="s">cadastrados no funil</div></div>
+      <div class="kpi"><div class="l">🎯 CPL real</div><div class="v">R$ 52</div><div class="s good">BOM p/ nicho financeiro (R$40-120)</div></div>
+      <div class="kpi"><div class="l">🏆 Vendas</div><div class="v">28</div><div class="s good">R$ 85.888 faturado</div></div>
+      <div class="kpi"><div class="l">📈 ROAS</div><div class="v">3,97x</div><div class="s good">retorno saudável</div></div>
+    </div>
+  </section>
+
+  <!-- HIERARQUIA DE DECISÃO (Quality Gates) -->
+  <section>
+    <div class="stitle"><span class="ic" style="background:var(--card2);color:var(--gold2)">🧭</span> Hierarquia de decisão <span style="font-size:11px;color:var(--mut);font-weight:500">(framework Quality Gates: resolver de cima pra baixo)</span></div>
+    <div class="hier">
+      <div class="step"><div class="n">1</div><div class="q">Converte?</div><span class="r ok">SIM ✓</span></div>
+      <div class="step"><div class="n">2</div><div class="q">É lucrativo?</div><span class="r ok">SIM ✓</span></div>
+      <div class="step"><div class="n">3</div><div class="q">É escalável?</div><span class="r warn">PARCIAL ⚠</span></div>
+      <div class="step"><div class="n">4</div><div class="q">É eficiente?</div><span class="r bad">NÃO ✗</span></div>
+    </div>
+    <div class="note">Converte e dá lucro (ROAS ~4x) → <b>a base está sadia</b>. O problema é eficiência (#4): Quality Score no Google e fadiga de criativo no Meta. Como já é lucrativo, atacamos eficiência pra <b>baixar CPL e escalar</b>, sem urgência de "parar tudo".</div>
+  </section>
+
+  <!-- ============ GOOGLE ============ -->
+  <section>
+    <div class="plat g"><div class="plat-in">
+      <div class="plat-head">
+        <div class="t">🔵 GOOGLE ADS <span style="font-size:12px;color:var(--mut);font-weight:500">· Search · R$ 3.275 (15% do gasto)</span></div>
+        <div class="hs"><span class="grade D">D</span><div><div class="hsl">Health Score</div><div class="hsv">58/100 · ação necessária</div></div></div>
+      </div>
+      <div class="subk">
+        <div class="b"><div class="l">CPC</div><div class="v">~R$ 17</div><div class="cls" style="color:var(--bad)">🔴 CRÍTICO (&gt;R$10)</div></div>
+        <div class="b"><div class="l">Quality Score</div><div class="v">~3</div><div class="cls" style="color:var(--bad)">🔴 CRÍTICO (&lt;4)</div></div>
+        <div class="b"><div class="l">Termos s/ conv</div><div class="v">R$ 583</div><div class="cls" style="color:var(--warn)">🟡 investigar</div></div>
+        <div class="b"><div class="l">Keywords ativas</div><div class="v">54</div><div class="cls" style="color:var(--mut)">nenhuma QS&gt;5</div></div>
+      </div>
+
+      <div class="block ok"><h4>🟢 Bom</h4><ul>
+        <li><b>Termos de altíssima intenção:</b> 100% das buscas são o avatar exato ("auxílio moradia residência médica", "para residentes"). Audiência certíssima.</li>
+      </ul></div>
+      <div class="block bad"><h4>🔴 Ruim (vs benchmark Google BR)</h4><ul>
+        <li><b>Quality Score crítico:</b> maioria QS3, nenhuma keyword acima de QS5 (benchmark: QS&lt;4 = crítico). Infla CPC e derruba aparições.</li>
+        <li><b>CPC ~R$17</b> contra o esperado de R$1,50-5 no Search (crítico, &gt;R$10). Reflexo direto do QS baixo.</li>
+        <li><b>R$ 583 em buscas certeiras com 0 conversão</b> — pela regra "muitos cliques, poucas conversões", o problema é <b>desconexão anúncio↔landing page</b> ou <b>rastreamento de conversão</b> (não o termo).</li>
+      </ul></div>
+      <div class="stitle" style="font-size:13px;margin:14px 0 9px"><span class="ic" style="background:var(--warnbg);color:var(--warn)">🛠️</span> Ações Google (aprovar)</div>
+      <div class="acao"><div class="top"><span class="t">1. Atacar o Quality Score (QS3 → QS6+)</span><span class="badge b-fix">CORRIGIR</span></div><div class="why">Quality Gate "QS&lt;5 + CTR baixo" → reescrever os RSAs com a keyword principal ("auxílio moradia residência médica") nos títulos e alinhar a LP. Maior alavanca: baixa CPC sem gastar mais.</div></div>
+      <div class="acao"><div class="top"><span class="t">2. Verificar LP + rastreamento de conversão</span><span class="badge b-test">VERIFICAR</span></div><div class="why">Pela hierarquia, isso é #1 (Converte?): 17 cliques de termo perfeito com 0 conversão pode ser tag de conversão furada (pode estar convertendo no WhatsApp sem registrar). Validar ANTES de cortar nada.</div></div>
+      <div class="acao"><div class="top"><span class="t">3. NÃO negativar os termos de auxílio moradia</span><span class="badge b-keep">MANTER</span></div><div class="why">São o avatar. A regra de negativas vale pra termos IRRELEVANTES — não é o caso. Negativar mataria lead bom.</div></div>
+
+      <table>
+        <tr><th>Termo de busca (Google)</th><th class="num">Gasto</th><th class="num">Clk</th><th class="num">Conv</th><th>Diagnóstico</th></tr>
+        <tr><td>auxilio moradia residencia medica</td><td class="num">R$ 296</td><td class="num">17</td><td class="num">0</td><td><span class="tag cr">LP/tracking</span></td></tr>
+        <tr><td>auxilio moradia para residentes</td><td class="num">R$ 71</td><td class="num">4</td><td class="num">0</td><td><span class="tag cr">LP/tracking</span></td></tr>
+        <tr><td>auxilio moradia medico (keyword QS3)</td><td class="num">R$ 225</td><td class="num">—</td><td class="num">0</td><td><span class="tag at">QS + LP</span></td></tr>
+        <tr><td colspan="5" class="note" style="padding:8px 10px">Total ~R$ 583 em termos do avatar sem conversão. Foco: destravar conversão, não cortar termo.</td></tr>
+      </table>
+    </div></div>
+  </section>
+
+  <!-- ============ META ============ -->
+  <section>
+    <div class="plat m"><div class="plat-in">
+      <div class="plat-head">
+        <div class="t">🔷 META ADS <span style="font-size:12px;color:var(--mut);font-weight:500">· R$ 18.367 (85% do gasto · o motor)</span></div>
+        <div class="hs"><span class="grade C">C</span><div><div class="hsl">Health Score</div><div class="hsv">68/100 · otimizar</div></div></div>
+      </div>
+      <div class="subk">
+        <div class="b"><div class="l">CPL Meta</div><div class="v">R$ 35</div><div class="cls" style="color:var(--ok)">🟢 BOM (nicho R$40-120)</div></div>
+        <div class="b"><div class="l">CTR</div><div class="v">0,6%</div><div class="cls" style="color:var(--bad)">🔴 CRÍTICO (&lt;1%)</div></div>
+        <div class="b"><div class="l">Frequência (pior)</div><div class="v">5,44</div><div class="cls" style="color:var(--bad)">🔴 SATURADO (&gt;5)</div></div>
+        <div class="b"><div class="l">Resultados</div><div class="v">533</div><div class="cls" style="color:var(--mut)">conversas/leads</div></div>
+      </div>
+
+      <div class="block ok"><h4>🟢 Bom</h4><ul>
+        <li><b>CPL ótimo pro nicho:</b> R$ 35 contra benchmark financeiro de R$40-120. A campanha CADASTRO QUENTE (R$ 34) e MENSAGENS 17/0 (R$ 26) estão excelentes.</li>
+        <li><b>É o motor de volume:</b> 533 resultados, lucrativo (ROAS bom). Pela hierarquia, base sadia.</li>
+      </ul></div>
+      <div class="block bad"><h4>🔴 Ruim (vs benchmark Meta BR)</h4><ul>
+        <li><b>Frequência saturada:</b> "MENSAGENS 17/0" com freq <b>5,44</b> bateu o Kill Rule de prospecção (&gt;5,0). "03/0" em 4,74 (quase). Público vendo o mesmo anúncio demais → CPL vai subir.</li>
+        <li><b>CTR crítico (0,6%):</b> abaixo de 1% (benchmark leads). Pela regra "CPL ok + CTR baixo" = criativo não engaja o suficiente, há margem.</li>
+        <li><b>TRÁFEGO SITE FRIO:</b> R$ 603 com CTR 2,36% (bom) mas <b>0 lead</b> — se não alimenta remarketing, é verba parada.</li>
+      </ul></div>
+      <div class="stitle" style="font-size:13px;margin:14px 0 9px"><span class="ic" style="background:var(--warnbg);color:var(--warn)">🛠️</span> Ações Meta (aprovar)</div>
+      <div class="acao"><div class="top"><span class="t">1. Renovar criativos das campanhas de MENSAGENS (freq 5+)</span><span class="badge b-kill">URGENTE</span></div><div class="why">Kill Rule de saturação: freq &gt;5 = público cansado. Subir criativos novos OU expandir público nas "MENSAGENS 17/0" e "03/0" antes que o CPL suba.</div></div>
+      <div class="acao"><div class="top"><span class="t">2. Escalar a CADASTRO QUENTE (+20-30%)</span><span class="badge b-scale">ESCALAR</span></div><div class="why">355 leads, CPL R$ 34, freq 3,22 (ainda ok). É a vencedora. Regra de escalar: subir orçamento 20-30% (nunca dobrar, pra não resetar o aprendizado).</div></div>
+      <div class="acao"><div class="top"><span class="t">3. Testar criativos novos pra subir o CTR</span><span class="badge b-test">TESTAR</span></div><div class="why">CTR 0,6% tem muito espaço (bom seria 2%+). Novos ângulos/ganchos podem baixar ainda mais o CPL já bom.</div></div>
+      <div class="acao"><div class="top"><span class="t">4. Revisar a TRÁFEGO SITE FRIO (R$ 603, 0 lead)</span><span class="badge b-fix">REVISAR</span></div><div class="why">Se não está alimentando remarketing/pixel, realocar a verba pra CADASTRO QUENTE. Se é topo de funil proposital, manter e medir assistidas.</div></div>
+
+      <table>
+        <tr><th>Campanha Meta</th><th class="num">Gasto</th><th class="num">CTR</th><th class="num">Freq</th><th class="num">CPL</th><th>Status</th></tr>
+        <tr><td>CADASTRO | QUENTE</td><td class="num">R$ 12.303</td><td class="num">0,71%</td><td class="num">3,22</td><td class="num">R$ 34</td><td><span class="tag ex">escalar</span></td></tr>
+        <tr><td>LEADS | MENSAGENS | 17/0</td><td class="num">R$ 3.385</td><td class="num">0,57%</td><td class="num">5,44</td><td class="num">R$ 26</td><td><span class="tag cr">saturada</span></td></tr>
+        <tr><td>LEADS | MENSAGENS | 03/0</td><td class="num">R$ 2.440</td><td class="num">0,58%</td><td class="num">4,74</td><td class="num">R$ 46</td><td><span class="tag at">renovar</span></td></tr>
+        <tr><td>TRÁFEGO SITE | TOPO | FRIO</td><td class="num">R$ 603</td><td class="num">2,36%</td><td class="num">1,6</td><td class="num">—</td><td><span class="tag at">revisar</span></td></tr>
+      </table>
+    </div></div>
+  </section>
+
+  <footer>
+    Relatório automático · <b>Auxílio Moradia</b> (piloto) · Silva Pimenta<br>
+    Frameworks aplicados: <b>Benchmarks BR</b> (classificação por nicho financeiro) + <b>Quality Gates</b> (hierarquia de decisão, kill/scale rules, Health Score) + dados reais Google Ads API · Meta Ads API · Pipedrive.<br>
+    Versão final: toda <b>segunda</b> (Auxílio), 7 dias, publicado + WhatsApp/Discord. FIES (terça) · Seguro (quarta) · Direito Médico (quinta).
+  </footer>
+</div>
+</body>
+</html>

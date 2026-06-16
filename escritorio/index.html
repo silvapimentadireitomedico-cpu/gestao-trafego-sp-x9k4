@@ -71,7 +71,7 @@ const AGENTES=[
   {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    role:'Cadastro de leads do FIES (Lead Form Meta)',            x:660,y:215, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
   {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)', x:390,y:410, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
   {key:'hubspot',nome:'HUGO',  tag:'HUBSPOT',      role:'Integração HubSpot × Pipedrive da seguradora (em breve)', x:570,y:410, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
-  {key:'relatorios',nome:'RITA', tag:'RELATÓRIOS', role:'Relatórios cirúrgicos de campanha (Google + Meta) com benchmarks BR + Quality Gates. Gera segunda (Auxílio), terça (FIES), quarta (Seguro), quinta (Direito Médico).', x:760,y:410, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0d6e64',fixo:'rel'},
+  {key:'relatorios',nome:'RITA', tag:'RELATÓRIOS', role:'Relatórios cirúrgicos de campanha (Google + Meta) com benchmarks BR + Quality Gates. Gera segunda (Auxílio), terça (FIES), quarta (Seguro), quinta (Direito Médico).', x:855,y:410, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0d6e64',fixo:'rel'},
 ];
 const PENDENCIAS=[
   '#14 UTM Tracking — implementar nível 1',
@@ -329,20 +329,29 @@ function update(dt,t){
   mauro.face = (dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
   mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
 }
+// ---- setores do escritório (áreas demarcadas no chão) ----
+function setorBox(x,y,w,h,cor,label){
+  ctx.fillStyle=cor+'1a'; ctx.fillRect(x,y,w,h);            // preenchimento translúcido
+  ctx.strokeStyle=cor; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(x,y,w,h); ctx.setLineDash([]);
+  const lw=label.length*7+22; r(x,y+h-20,lw,20,cor); text(label,x+lw/2,y+h-6,7,'#0b1118');  // faixa-título no rodapé (livre de placas)
+}
+function drawSetores(){
+  setorBox(230,148,512,492,'#4f86c6','AUTOMACOES (MAKE)');         // Téo, Aurora, Fábio, Sueli, Hugo
+  setorBox(752,338,224,302,'#13a89a','RELATORIOS / TRAFEGO');      // Rita
+}
 function draw(t){
   HITS=[];
   drawFloor();
+  drawSetores();
   // parede topo
   window_(360,18); vending(960,12); whiteboard(150,30);
-  // armários de arquivo na parede do topo (decor) — estilo escritório do print
   for(let i=0;i<2;i++){ const fx=560+i*60; ro(fx-22,40,44,40,'#8f969f',2); r(fx-18,46,36,14,'#9ba1aa'); r(fx-18,62,36,14,'#9ba1aa'); r(fx-7,52,14,3,'#3a3f48'); r(fx-7,68,14,3,'#3a3f48'); }
-  // dashboards na parede esquerda + um embaixo
-  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO');
-  tvWall(770,560,'encerr','ENCERRAMENTOS');
+  // dashboards na parede esquerda (3 TVs)
+  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO'); tvWall(120,350,'encerr','ENCERRAMENTOS');
   // plantas e mobília
-  pottedTall(245,110); plant(60,470); plant(960,210); pottedTall(905,150);
-  pingpong(150,560); sofa(120,660); bookshelf(905,460); easel(470,610); mascote(45,690,t);
-  waterCooler(905,330);
+  pottedTall(245,110); plant(60,520); plant(960,200); pottedTall(905,150);
+  pingpong(150,600); sofa(120,690); easel(660,665); mascote(45,700,t);
+  bookshelf(958,610); waterCooler(958,480);
   drawArmario(t);
   // ATORES ordenados por y (profundidade): Mauro "entra" entre as fileiras de mesas
   const atores=[];
@@ -375,6 +384,15 @@ cv.addEventListener('pointerdown',e=>{
       if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
       if(h.pilha){ abrir(`<h2>📂 Pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a>.</p>`); return; }
       if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Quando dá erro, ele <b>vai até a mesa do agente</b> (é o que você vê).</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
+      if(h.key==='relatorios'){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none'; abrir(`<h2>📊 Rita · Relatórios de Campanha</h2>
+        <p class="role">Análise cirúrgica Google + Meta · benchmarks BR + Quality Gates. Clique pra abrir:</p>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">segunda ✓ pronto</span></a>
+          <span style="${bt};background:#1b2937;color:#9fb3c8">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.7">terça · em breve</span></span>
+          <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.7">quarta · em breve</span></span>
+          <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.7">quinta · em breve</span></span>
+        </div>
+        <p class="role" style="margin-top:10px">Cada relatório separa Google e Meta, classifica por benchmark BR e sugere alterações pra você aprovar.</p>`); return; }
       const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
       abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.role}</span></h2><p>${a.detalhe||'…'}</p>
         ${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}
