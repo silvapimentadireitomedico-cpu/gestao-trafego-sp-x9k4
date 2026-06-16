@@ -71,6 +71,7 @@ const AGENTES=[
   {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    role:'Cadastro de leads do FIES (Lead Form Meta)',            x:660,y:215, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
   {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)', x:390,y:410, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
   {key:'hubspot',nome:'HUGO',  tag:'HUBSPOT',      role:'Integração HubSpot × Pipedrive da seguradora (em breve)', x:570,y:410, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
+  {key:'relatorios',nome:'RITA', tag:'RELATÓRIOS', role:'Relatórios cirúrgicos de campanha (Google + Meta) com benchmarks BR + Quality Gates. Gera segunda (Auxílio), terça (FIES), quarta (Seguro), quinta (Direito Médico).', x:760,y:410, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0d6e64',fixo:'rel'},
 ];
 const PENDENCIAS=[
   '#14 UTM Tracking — implementar nível 1',
@@ -299,6 +300,10 @@ async function atualizar(){
       setEstado(a.key,e,a.ultima?`Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} operações`:'sem execuções recentes');
     });
     setEstado('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17). 😴');
+    // Rita (relatórios) não vem do Make: estado fixo. No dia do produto, "trabalhando".
+    { const dia=new Date().getDay(); const prod={1:'Auxílio Moradia',2:'FIES',3:'Seguro',4:'Direito Médico'}[dia];
+      if(prod) setEstado('relatorios','typing','📊 Gerando o relatório de '+prod+' hoje (Google + Meta, cirúrgico).');
+      else setEstado('relatorios','idle','📊 Relatórios de campanha · gera seg (Aux) · ter (FIES) · qua (Seguro) · qui (Direito Médico).'); }
     document.getElementById('hWork').textContent=w; document.getElementById('hErr').textContent=er;
     document.getElementById('hIdle').textContent=id; document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
     const ag=AGENTES.find(a=>a.key===erroKey);
