@@ -386,11 +386,12 @@ cv.addEventListener('pointerdown',e=>{
   for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i];
     if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
       if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
-      if(h.pilha){ abrir(`<h2>📂 Pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a>.</p>`); return; }
+      if(h.pilha){ abrir(`<p style="margin-bottom:12px"><a href="quadro-status.html" target="_blank" style="display:inline-block;background:#e9c98f;color:#2a2310;font-weight:800;padding:10px 16px;border-radius:9px;text-decoration:none">📋 Abrir o Quadro de Status (feito + pendências) →</a></p><h2 style="font-size:14px">📂 Pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a>.</p>`); return; }
       if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Quando dá erro, ele <b>vai até a mesa do agente</b> (é o que você vê).</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
       if(h.key==='relatorios'){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none'; abrir(`<h2>📊 Rita · Relatórios de Campanha</h2>
         <p class="role">Análise cirúrgica Google + Meta · benchmarks BR + Quality Gates. Clique pra abrir:</p>
         <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas (comercial) <span style="font-weight:400;font-size:11px;opacity:.85">tempo real · números reais ✓</span></a>
           <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 15/06 ✓</span></a>
           <a href="${R}fies.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 16/06 ✓</span></a>
           <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.7">quarta · em breve</span></span>
