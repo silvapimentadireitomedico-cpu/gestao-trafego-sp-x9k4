@@ -1,33 +1,33 @@
 {
-  "atualizadoEm": "2026-06-16T23:15:13Z",
+  "atualizadoEm": "2026-06-17T01:45:06Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.078,
   "fonte_usd": "BCB 16/06/2026",
   "gastos": {
     "aux-moradia": {
-      "google": 0.0,
-      "meta": 10496.26,
+      "google": 1439.22,
+      "meta": 10572.27,
       "leads_novos": 246,
       "ganhos": 15,
       "valor_ganhos": 48570.6,
-      "orcamento_diario_google": 0.0,
+      "orcamento_diario_google": 60.0,
       "orcamento_diario_meta": 823.28,
-      "orcamento_diario": 823.28
+      "orcamento_diario": 883.28
     },
     "fies": {
       "google": 0.0,
-      "meta": 13315.72,
+      "meta": 13418.17,
       "leads_novos": 219,
       "ganhos": 12,
       "valor_ganhos": 44389.0,
-      "orcamento_diario_google": 127.0,
+      "orcamento_diario_google": 0.0,
       "orcamento_diario_meta": 807.43,
-      "orcamento_diario": 934.43
+      "orcamento_diario": 807.43
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 1418.3,
+      "meta": 1433.72,
       "leads_novos": 3,
       "ganhos": 2,
       "valor_ganhos": 3781.0,
@@ -36,18 +36,18 @@
       "orcamento_diario": 90.0
     },
     "direito-medico": {
-      "google": 0.0,
-      "meta": 295.14,
+      "google": 3385.9,
+      "meta": 306.85,
       "leads_novos": 20,
       "ganhos": 3,
       "valor_ganhos": 10470.0,
-      "orcamento_diario_google": 0.0,
+      "orcamento_diario_google": 245.0,
       "orcamento_diario_meta": 50.0,
-      "orcamento_diario": 50.0
+      "orcamento_diario": 295.0
     },
     "inss": {
       "google": 0.0,
-      "meta": 400.22,
+      "meta": 401.41,
       "leads_novos": 9,
       "ganhos": 3,
       "valor_ganhos": 5680.0,
@@ -57,7 +57,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 101.03,
+      "meta": 101.51,
       "leads_novos": 6,
       "ganhos": 1,
       "valor_ganhos": 2241.0,
@@ -66,14 +66,14 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 15763.73,
+      "google": 11758.06,
       "meta": 0.0,
       "leads_novos": 311,
       "ganhos": 29,
       "valor_ganhos": 76823.04,
-      "orcamento_diario_google": 0.0,
+      "orcamento_diario_google": 255.0,
       "orcamento_diario_meta": 0.0,
-      "orcamento_diario": 0.0
+      "orcamento_diario": 255.0
     },
     "livre-ir": {
       "google": 0.0,
@@ -86,14 +86,14 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 2141.62,
-      "meta": 949.08,
+      "google": 912.33,
+      "meta": 960.37,
       "leads_novos": 26,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
-      "orcamento_diario_google": 0.0,
+      "orcamento_diario_google": 105.0,
       "orcamento_diario_meta": 60.0,
-      "orcamento_diario": 60.0
+      "orcamento_diario": 165.0
     }
   }
 }
