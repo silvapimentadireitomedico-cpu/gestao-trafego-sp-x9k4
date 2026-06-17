@@ -48,6 +48,7 @@
     <div class="hud">
       <span>🟢 ATIVO <b id="hWork">–</b></span>
       <span>☕ OCIOSO <b id="hIdle">–</b></span>
+      <span>😴 DORMINDO <b id="hSleep">–</b></span>
       <span>⚠️ ERRO <b id="hErr">–</b></span>
       <span>👔 MAURO <b id="hBoss">–</b></span>
       <span>🕐 <b id="hTime">–</b></span>
@@ -290,22 +291,26 @@ AGENTES.forEach(a=>a.estado='idle');
 async function atualizar(){
   try{
     const rr=await fetch(STATUS_URL+'?t='+Date.now()); DADOS=await rr.json();
-    let w=0,er=0,id=0,erroKey=null;
+    let erroKey=null;
     (DADOS.agentes||[]).forEach(a=>{
       let e='idle';
       if(!a.ativo)e='zzz';
       else if(a.ultima){ const age=(Date.now()-new Date(a.ultima.ts).getTime())/60000;
         if(a.ultima.status===3&&age<60)e='erro'; else if(age<10)e='typing'; }
-      if(e==='typing')w++; else if(e==='erro'){er++;erroKey=a.key;} else if(e==='idle')id++;
+      if(e==='erro')erroKey=a.key;
       setEstado(a.key,e,a.ultima?`Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} operações`:'sem execuções recentes');
     });
-    setEstado('hubspot','zzz','Em desenho — aguardando acessos da seguradora (cartão 17). 😴');
-    // Rita (relatórios) não vem do Make: estado fixo. No dia do produto, "trabalhando".
-    { const dia=new Date().getDay(); const prod={1:'Auxílio Moradia',2:'FIES',3:'Seguro',4:'Direito Médico'}[dia];
-      if(prod) setEstado('relatorios','typing','📊 Gerando o relatório de '+prod+' hoje (Google + Meta, cirúrgico).');
-      else setEstado('relatorios','idle','📊 Relatórios de campanha · gera seg (Aux) · ter (FIES) · qua (Seguro) · qui (Direito Médico).'); }
-    document.getElementById('hWork').textContent=w; document.getElementById('hErr').textContent=er;
-    document.getElementById('hIdle').textContent=id; document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
+    setEstado('hubspot','zzz','Em desenho — aguardando o formulário e o card de teste da seguradora (cartão 17). 😴');
+    // Rita (relatórios) não vem do Make. A automação até as 8h ainda é PENDENTE: hoje os relatórios são gerados sob demanda.
+    setEstado('relatorios','idle','📊 Relatórios de campanha (Google + Meta, benchmarks BR). Geração automática até 8h ainda PENDENTE — hoje sob demanda. Cadência: seg Aux · ter FIES · qua Seguro · qui Direito Médico.');
+    // contagem sobre TODOS os agentes (não só os do Make)
+    const cnt={typing:0,idle:0,erro:0,zzz:0};
+    AGENTES.forEach(a=>{ cnt[a.estado]=(cnt[a.estado]||0)+1; });
+    document.getElementById('hWork').textContent=cnt.typing;
+    document.getElementById('hIdle').textContent=cnt.idle;
+    document.getElementById('hSleep').textContent=cnt.zzz;
+    document.getElementById('hErr').textContent=cnt.erro;
+    document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
     const ag=AGENTES.find(a=>a.key===erroKey);
     mauro.alvo = ag? {x:ag.x,y:ag.y} : null;
     document.getElementById('hBoss').textContent = ag? 'socorrendo '+ag.nome : 'vigiando';
