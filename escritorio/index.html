@@ -72,6 +72,11 @@ const AGENTES=[
   {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)', x:390,y:410, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
   {key:'hubspot',nome:'HUGO',  tag:'HUBSPOT',      role:'Integração HubSpot × Pipedrive da seguradora (em breve)', x:570,y:410, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
   {key:'relatorios',nome:'RITA', tag:'RELATÓRIOS', role:'Relatórios cirúrgicos de campanha (Google + Meta) com benchmarks BR + Quality Gates. Gera segunda (Auxílio), terça (FIES), quarta (Seguro), quinta (Direito Médico).', x:855,y:410, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0d6e64',fixo:'rel'},
+  {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',  role:'Robô das Ações · todo ganho vira card no PÓS-FECHAMENTO e avisa o jurídico no Discord', x:300,y:560, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', fixo:'cloud'},
+  {key:'diario',nome:'BENTO',tag:'RELAT. 20H', role:'Relatório Diário de Tráfego · manda o resumo no WhatsApp todo dia às 20h', x:480,y:560, shirt:'#d99a2c',shirt2:'#b3791a',hair:'#241a10',plate:'#cf8a2a', fixo:'cloud'},
+  {key:'radar', nome:'NINA', tag:'RADAR',      role:'Radar de Conteúdo · varre notícias às 8h e sugere pautas pro Thainar', x:660,y:560, shirt:'#b15cd6',shirt2:'#8a3fb0',hair:'#2a1a3a',plate:'#7b2cbf', fixo:'cloud'},
+  {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', role:'Arquiteto de Agentes · monta agentes novos já com o Gabarito ADAPTA + as skills certas injetadas', x:855,y:215, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', fixo:'idle'},
+  {key:'botmag',nome:'GUI',  tag:'BOT MG',     role:'Bot IA WhatsApp da Magalhães Gomes · atendimento (em dev, falta deploy no Fly.io)', x:855,y:560, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz'},
 ];
 const PENDENCIAS=[
   '#14 UTM Tracking — implementar nível 1',
@@ -302,7 +307,13 @@ async function atualizar(){
     });
     setEstado('hubspot','zzz','Em desenho — aguardando o formulário e o card de teste da seguradora (cartão 17). 😴');
     // Rita (relatórios) não vem do Make. A automação até as 8h ainda é PENDENTE: hoje os relatórios são gerados sob demanda.
-    setEstado('relatorios','idle','📊 Relatórios de campanha (Google + Meta, benchmarks BR). Geração automática até 8h ainda PENDENTE — hoje sob demanda. Cadência: seg Aux · ter FIES · qua Seguro · qui Direito Médico.');
+    setEstado('relatorios','idle','📊 Relatórios de campanha (Google + Meta, benchmarks BR + quality gates). Usa as skills de análise + playbook do produto. Geração automática até 8h ainda PENDENTE — hoje sob demanda. Cadência: seg Aux · ter FIES · qua Seguro · qui Direito Médico.');
+    // agentes autônomos (não-Make): estado fixo + descrição com o que fazem
+    setEstado('acoes','idle','🤖 Autônomo. Quando um deal é marcado GANHO em qualquer funil, cria o card no PÓS-FECHAMENTO (Coletando Documentos) e posta no Discord #✅-ações-sp. (cartão 19)');
+    setEstado('diario','idle','📥 Autônomo (Tarefa do Windows). Todo dia às 20h monta o resumo de tráfego (leads, gasto, CPL, vendas) e manda no WhatsApp. (cartão 21)');
+    setEstado('radar','idle','📰 Autônomo (nuvem, 08:00). Varre notícias e sugere pautas de conteúdo pro Thainar no Discord. (cartão 18)');
+    setEstado('arquiteto','idle','🏗️ É só pedir "cria um agente que faz X" que eu invoco ele: avalia a tarefa, escolhe as skills certas e monta o agente já com o Gabarito ADAPTA + as skills injetadas.');
+    setEstado('botmag','zzz','📱 Atendimento WhatsApp da Magalhães Gomes (Digisac + Claude). Sprints prontos em dev local; falta o deploy no Fly.io pra virar 24/7. (cartão 16) 😴');
     // contagem sobre TODOS os agentes (não só os do Make)
     const cnt={typing:0,idle:0,erro:0,zzz:0};
     AGENTES.forEach(a=>{ cnt[a.estado]=(cnt[a.estado]||0)+1; });
@@ -314,7 +325,7 @@ async function atualizar(){
     const ag=AGENTES.find(a=>a.key===erroKey);
     mauro.alvo = ag? {x:ag.x,y:ag.y} : null;
     document.getElementById('hBoss').textContent = ag? 'socorrendo '+ag.nome : 'vigiando';
-    document.getElementById('toast').textContent = er>0? '⚠️ Mauro foi até o agente com erro — clica nele' : '✅ tudo no ar · Mauro patrulhando · status real do Make · clique nos personagens';
+    document.getElementById('toast').textContent = cnt.erro>0? '⚠️ Mauro foi até o agente com erro — clica nele' : '✅ tudo no ar · Mauro patrulhando · clique nos personagens pra ver o que cada um faz';
   }catch(e){ document.getElementById('toast').textContent='falha ao falar com o Make: '+e; }
 }
 
@@ -341,8 +352,8 @@ function setorBox(x,y,w,h,cor,label){
   const lw=label.length*7+22; r(x,y+h-20,lw,20,cor); text(label,x+lw/2,y+h-6,7,'#0b1118');  // faixa-título no rodapé (livre de placas)
 }
 function drawSetores(){
-  setorBox(230,148,512,492,'#4f86c6','AUTOMACOES (MAKE)');         // Téo, Aurora, Fábio, Sueli, Hugo
-  setorBox(752,338,224,302,'#13a89a','RELATORIOS / TRAFEGO');      // Rita
+  setorBox(230,148,512,492,'#4f86c6','ATENDIMENTO & AUTOMACOES');  // Téo,Aurora,Fábio,Sueli,Hugo + Doca,Bento,Nina
+  setorBox(752,170,224,470,'#13a89a','RELATORIOS / OPERACAO');     // Adão, Rita, Gui
 }
 function draw(t){
   HITS=[];
