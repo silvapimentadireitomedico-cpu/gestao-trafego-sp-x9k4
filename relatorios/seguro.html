@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatório Seguro · Rita · Silva Pimenta</title>
+<style>
+  :root{--azul:#1B4965;--gold:#e9c98f;--bg:#0f1620;--card:#16212e;--line:#27384a;--ink:#e8eef5;--mut:#9fb3c8;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--g:#4285F4;--m:#0866FF}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:0 0 60px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px}
+  header{background:linear-gradient(135deg,var(--azul),#13354a);padding:24px 0;border-bottom:3px solid #C5A57A}
+  header .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  h1{font-size:19px;font-weight:800}h1 small{display:block;font-size:12px;font-weight:500;color:#cfe0ef;margin-top:3px}
+  .upd{font-size:11px;color:#bcd0e3}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:18px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+  .kpi .l{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);font-weight:700}
+  .kpi .n{font-size:21px;font-weight:800;margin-top:3px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;margin-top:16px}
+  .card.g{border-left:4px solid var(--g)} .card.m{border-left:4px solid var(--m)} .card.rec{border-left:4px solid var(--gold)}
+  h2{font-size:14px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+  .pill{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px}
+  .pill.g{background:#0e1f3a;color:#7ab0f5} .pill.m{background:#0a1830;color:#6fa0ff} .pill.gold{background:#3a300c;color:var(--gold)}
+  .sub{font-size:12px;color:var(--mut);margin-bottom:12px}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}
+  th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--line)}
+  th:first-child,td:first-child{text-align:left}
+  th{color:var(--mut);font-size:10px;text-transform:uppercase;letter-spacing:.4px;font-weight:700}
+  td:first-child{font-weight:600}
+  .b-ok{color:var(--ok);font-weight:800}.b-warn{color:var(--warn);font-weight:800}.b-bad{color:var(--bad);font-weight:800}
+  ul{list-style:none;display:flex;flex-direction:column;gap:7px;margin:8px 0}
+  li{font-size:13px;padding-left:18px;position:relative;color:#dce6f0}
+  li:before{content:"•";position:absolute;left:0;color:var(--mut)}
+  .rec li:before{content:"→";color:var(--gold)}
+  .nota{background:#10263a;border:1px solid #1f4060;border-left:4px solid #5fa8d3;border-radius:10px;padding:11px 14px;font-size:12px;color:#cfe3f5;margin-top:14px}
+  footer{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div><h1>📈 Relatório de Campanha · SEGURO<small>Rita · Magalhães Gomes Securitário · Google + Meta</small></h1></div>
+  <div class="upd">Gerado em <b>17/06/2026</b><br>Período: últimos 30 dias</div>
+</div></header>
+
+<div class="wrap">
+  <div class="kpis">
+    <div class="kpi"><div class="l">Investimento Google</div><div class="n">R$ 33,2k</div></div>
+    <div class="kpi"><div class="l">Conversões (leads)</div><div class="n">~1.175</div></div>
+    <div class="kpi"><div class="l">CPA médio</div><div class="n">R$ 28</div></div>
+    <div class="kpi"><div class="l">Meta no Seguro</div><div class="n" style="color:var(--mut)">~off</div></div>
+  </div>
+
+  <div class="nota">⚙️ Canal do Seguro é <b>Google</b>. O Meta (Securitário) está praticamente <b>desligado no Seguro</b> (R$ 0 em não-vida; só ~R$ 975 em Vida no mês). O Seguro roda em <b>2 contas Google de propósito</b> (cobertura dupla de leilão: Inst 1301598996 + Cont 2903149800). Período = últimos 30 dias (janela da API).</div>
+
+  <div class="card g">
+    <h2><span class="pill g">GOOGLE</span> Por linha de produto (somando as 2 contas)</h2>
+    <div class="sub">Ordenado por eficiência. CPA = custo ÷ conversões (leads).</div>
+    <table>
+      <thead><tr><th>Linha</th><th>Invest.</th><th>Leads</th><th>CPA</th><th>Leitura</th></tr></thead>
+      <tbody>
+        <tr><td>Veicular</td><td>~R$ 14,7k</td><td>~713</td><td class="b-ok">R$ 16-28</td><td>melhor eficiência + volume</td></tr>
+        <tr><td>Seguro (negativa)</td><td>~R$ 14,6k</td><td>~370</td><td class="b-warn">R$ 26-52</td><td>ok, mas MG caro na conta 2</td></tr>
+        <tr><td>Vida</td><td>~R$ 3,9k</td><td>~92</td><td class="b-bad">R$ 31-63</td><td>mais caro, revisar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card g">
+    <h2><span class="pill g">GOOGLE</span> Achados cirúrgicos</h2>
+    <ul>
+      <li><b>Veicular é o motor:</b> CPA R$ 16-28, o mais barato e o de maior volume (NEGATIVA VEICULAR BRASIL sozinha fez ~487 leads a R$ 16-18). É o que sustenta a conta.</li>
+      <li><b>Vida é o gargalo:</b> NEGATIVA VIDA BRASIL na conta 2 está a <b>R$ 63/lead</b> (o pior da conta), e Vida em geral fica R$ 31-63. Custa ~2x o Veicular.</li>
+      <li><b>Canibalização entre as 2 contas:</b> NEGATIVA SEGURO MG custa <b>R$ 28 na conta 1 e R$ 52 na conta 2</b> (mesmo produto, mesma praça). A cobertura dupla é proposital, mas o CPA 2x na conta 2 sugere as duas disputando o mesmo leilão e encarecendo o lance.</li>
+    </ul>
+  </div>
+
+  <div class="card m">
+    <h2><span class="pill m">META</span> Achado</h2>
+    <ul>
+      <li>O Seguro (não-vida) está com <b>R$ 0 no Meta</b> no mês. Só há ~R$ 975 em campanhas de <b>Vida</b>. Ou seja, hoje o Seguro é <b>Google-only</b>.</li>
+      <li>Não há fadiga/frequência pra reportar porque não há volume de Meta no Seguro.</li>
+    </ul>
+  </div>
+
+  <div class="card rec">
+    <h2><span class="pill gold">RECOMENDAÇÕES</span> pra aprovar</h2>
+    <ul class="rec">
+      <li><b>Escalar Veicular</b> (+15-20% de budget nas campanhas BRASIL e SP): é o melhor CPA e tem volume. Vencedor claro.</li>
+      <li><b>Revisar Vida</b>, começando por NEGATIVA VIDA BRASIL (conta 2, R$ 63): checar termos de pesquisa e Quality Score, ou reduzir budget até melhorar.</li>
+      <li><b>Resolver a canibalização do SEGURO MG</b> entre as 2 contas: definir qual conta lidera MG (ou negativar MG numa delas) pra parar de competir no próprio leilão e derrubar o CPA da conta 2.</li>
+      <li><b>Meta no Seguro:</b> decidir se vale ativar um teste de Meta pro Seguro (hoje é Google-only) ou manter o foco no Google, que está performando.</li>
+      <li><b>Manter:</b> não cortar Veicular nem Seguro BRASIL (estão eficientes). Atacar só Vida e a canibalização MG.</li>
+    </ul>
+  </div>
+
+  <div class="nota">⏳ Este é o relatório <b>manual</b> de hoje (a automação da Rita até as 8h ainda é pendente). O aprofundamento que entra com a automação: tendência 30/14/7 dias, Quality Score por keyword, termos de pesquisa desperdiçando, e benchmarks BR por linha de produto.</div>
+
+  <footer>
+    Rita · análise de campanha · Magalhães Gomes Securitário (Seguro). Dados: Google Ads API (2 contas) · últimos 30 dias · gerado 17/06/2026.<br>
+    Cadência: segunda Auxílio · terça FIES · <b>quarta Seguro</b> · quinta Direito Médico.
+  </footer>
+</div>
+</body>
+</html>
