@@ -8,7 +8,7 @@
   :root{--bg:#0f1620;--card:#16212e;--line:#27384a;--ink:#e8eef5;--mut:#9fb3c8;--ok:#34d399;--warn:#fbbf24;--bad:#f87171;--gold:#e9c98f;--azul:#1B4965}
   *{margin:0;padding:0;box-sizing:border-box}
   body{background:var(--bg);font-family:'Inter','Segoe UI',system-ui,sans-serif;color:var(--ink);line-height:1.55;padding:0 0 60px}
-  .wrap{max-width:920px;margin:0 auto;padding:0 18px}
+  .wrap{max-width:940px;margin:0 auto;padding:0 18px}
   header{background:linear-gradient(135deg,var(--azul),#13354a);padding:24px 0;border-bottom:3px solid #C5A57A}
   header .wrap{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:10px}
   h1{font-size:21px;font-weight:800}h1 small{display:block;font-size:12px;font-weight:500;color:#cfe0ef;margin-top:3px}
@@ -17,133 +17,157 @@
   .rb{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;text-align:center}
   .rb .n{font-size:26px;font-weight:800}.rb.ok .n{color:var(--ok)}.rb.pend .n{color:var(--warn)}.rb.dec .n{color:var(--gold)}
   .rb .l{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-  h2{font-size:15px;font-weight:800;margin:26px 0 10px;display:flex;align-items:center;gap:8px}
+  h2{font-size:15px;font-weight:800;margin:26px 0 6px;display:flex;align-items:center;gap:8px}
+  .cat{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);font-weight:700;margin:16px 0 4px}
   details{background:var(--card);border:1px solid var(--line);border-radius:11px;margin-top:9px;overflow:hidden}
   details[open]{border-color:#3a516a}
   summary{padding:13px 16px;cursor:pointer;font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:9px;list-style:none}
   summary::-webkit-details-marker{display:none}
   summary .ic{font-size:14px}
-  summary .badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px}
-  .b-ok{background:#0e3326;color:var(--ok)}.b-pend{background:#3a2e0c;color:var(--warn)}.b-dec{background:#3a300c;color:var(--gold)}
+  summary .badge{margin-left:auto;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .b-ok{background:#0e3326;color:var(--ok)}.b-pend{background:#3a2e0c;color:var(--warn)}.b-dec{background:#3a300c;color:var(--gold)}.b-wait{background:#10263a;color:#7cc0ee}
   .body{padding:0 16px 14px 39px;font-size:13px;color:#dce6f0}
   .body ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin:4px 0}
   .body li{padding-left:16px;position:relative}.body li:before{content:"›";position:absolute;left:0;color:var(--mut)}
   .body a{color:var(--gold);font-weight:600;text-decoration:none}
   .lk{display:inline-block;margin-top:8px;background:#0d6e64;color:#fff;font-weight:700;font-size:12px;text-decoration:none;padding:7px 13px;border-radius:8px}
-  .nota{background:#10263a;border:1px solid #1f4060;border-left:4px solid #5fa8d3;border-radius:10px;padding:11px 14px;font-size:12.5px;color:#cfe3f5;margin-top:10px}
   footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
 </style>
 </head>
 <body>
 <header><div class="wrap">
   <div><h1>📋 Quadro de Status<small>Silva Pimenta · o que foi feito e o que falta · retomar amanhã</small></h1></div>
-  <div class="upd">Atualizado: <b>16/06/2026</b></div>
+  <div class="upd">Atualizado: <b>17/06/2026</b></div>
 </div></header>
 
 <div class="wrap">
   <div class="resumo">
-    <div class="rb ok"><div class="n">11</div><div class="l">Feito</div></div>
-    <div class="rb pend"><div class="n">5</div><div class="l">Pendente</div></div>
-    <div class="rb dec"><div class="n">2</div><div class="l">Decisão sua</div></div>
+    <div class="rb ok"><div class="n">13</div><div class="l">Feito</div></div>
+    <div class="rb pend"><div class="n">11</div><div class="l">Pendente</div></div>
+    <div class="rb dec"><div class="n">1</div><div class="l">Decisão sua</div></div>
   </div>
 
-  <h2>✅ Feito (16/06/2026)</h2>
+  <h2>✅ Feito</h2>
 
   <details open><summary><span class="ic">📊</span> Dashboard de Vendas (comercial) <span class="badge b-ok">FEITO</span></summary>
-    <div class="body">
-      <ul>
-        <li>Painel completo e <b>online</b>, números reais (sem o bug de duplicação do Insights), validado contra o Pipedrive.</li>
-        <li>3 abas: <b>Visão geral</b>, <b>Equipe/SDRs</b>, <b>Funil &amp; perdas</b>. Cor fixa por produto.</li>
-        <li>Filtro de data: este mês, 1/2/3 semanas, 1/2 meses, mês anterior, personalizado.</li>
-        <li>Conversão por reunião: <b>por SDR</b> (atividade) · <b>por produto</b> · <b>por closer</b> (campo "Responsável pela reunião": reuniões, ganho, em aberto, perdidas, taxa).</li>
-        <li>Atualiza sozinho a cada <b>10 min</b> (Tarefa Agendada do Windows "Dashboard Vendas SP").</li>
-      </ul>
-      <a class="lk" href="https://relatorio-vendas-sp.pages.dev" target="_blank">🌐 abrir o dashboard online →</a>
-    </div>
+    <div class="body"><ul>
+      <li>Online, números reais (sem a duplicação do Insights). 3 abas, filtro de data, cor fixa por produto.</li>
+      <li>Conversão por reunião: por SDR, por produto, e <b>por closer</b> (campo "Responsável pela reunião": reuniões, ganho, em aberto, perdidas, taxa).</li>
+      <li>Atualiza a cada 10 min (Tarefa Agendada do Windows).</li>
+    </ul><a class="lk" href="https://relatorio-vendas-sp.pages.dev" target="_blank">🌐 abrir →</a></div>
   </details>
 
-  <details><summary><span class="ic">🔎</span> Investigação da "duplicação" no CRM <span class="badge b-ok">FEITO</span></summary>
+  <details><summary><span class="ic">🔎</span> Duplicação do CRM investigada (bug do Insights) <span class="badge b-ok">FEITO</span></summary>
+    <div class="body"><ul><li>Provado: o Insights conta atividade em dobro; dados limpos; não foi automação nossa. Suporte Pipedrive escalado.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">💰</span> Dashboard de Orçamento: Google do lado médico <span class="badge b-ok">FEITO</span></summary>
+    <div class="body"><ul><li>Aux/FIES/Direito apareciam R$ 0 no Google. Corrigido (contas consultadas pelo MCC certo). Valores reais publicados.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🔁</span> Duda / Robô das Ações reativados <span class="badge b-ok">FEITO</span></summary>
+    <div class="body"><ul><li>Webhooks recriados (1878049 / 1878050). SEM FUNIL centraliza no Rodrigo.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🧭</span> Gabarito de trabalho no CLAUDE.md raiz <span class="badge b-ok">FEITO</span></summary>
+    <div class="body"><ul><li>As 10 diretrizes valem pra todos os clientes e agentes novos automaticamente.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🔗</span> Integração HubSpot · endpoint de captura no ar <span class="badge b-ok">FEITO (fase 1)</span></summary>
     <div class="body"><ul>
-      <li>Provado: o <b>Insights do Pipedrive conta atividade em dobro</b> (vínculo pessoa+negócio). Os <b>dados estão limpos</b> (IDs únicos), <b>não foi automação nossa</b> nem outro usuário.</li>
-      <li>Suporte do Pipedrive acionado e <b>escalado para atendente humano</b> (caso aberto). Eles confirmaram que não há contagem distinta nativa.</li>
-      <li>Solução: usar o Dashboard de Vendas (contagem por ID único), não o card do Insights, pra remuneração.</li>
+      <li>Link do webhook entregue pra seguradora: <b>sp-tag-lead-filter-x7k2.pages.dev/hubspot</b>. Captura o payload no Discord pra mapear.</li>
+      <li>Funil SEGURALTA (7 etapas) confirmado. Eles criam só na 1ª etapa; movimentação é toda nossa.</li>
     </ul></div>
   </details>
 
-  <details><summary><span class="ic">🔁</span> Automação Duda / Robô das Ações reativada <span class="badge b-ok">FEITO</span></summary>
+  <details><summary><span class="ic">🗂️</span> Outros (sessão) <span class="badge b-ok">FEITO</span></summary>
     <div class="body"><ul>
-      <li>Confirmado que <b>não influenciou na duplicação</b>. Webhooks recriados: <b>1878049</b> (Robô das Ações, deal updated) e <b>1878050</b> (SEM FUNIL → Rodrigo, deal added).</li>
-      <li>Cards de automação 01 e 19 atualizados com os IDs novos.</li>
+      <li>Relatório estático de atividades por SDR · Dashboard de Vendas linkado no menu da Rita · memória atualizada.</li>
+      <li>Mensagem pronta pra seguradora (funil + link + próximos passos).</li>
     </ul></div>
   </details>
 
-  <details><summary><span class="ic">🧭</span> Gabarito de trabalho (ADAPTA) <span class="badge b-ok">FEITO</span></summary>
+  <h2>⏳ Pendente</h2>
+
+  <div class="cat">Relatórios &amp; dados</div>
+
+  <details open><summary><span class="ic">📨</span> Relatório diário pro Flávio (Flavinho) <span class="badge b-pend">PENDENTE</span></summary>
     <div class="body"><ul>
-      <li>10 diretrizes aplicadas no <b>CLAUDE.md da raiz</b>: todos os clientes e agentes novos herdam automaticamente, sem repetir em cada um.</li>
+      <li>O relatório das 20h já roda (Task Windows, #21). Falta ativar o <b>encaminhamento pro Flávio</b>.</li>
+      <li>O CallMeBot grátis não manda em grupo, então o Flávio precisa ativar o CallMeBot no WhatsApp dele. O bot antigo encheu; usar o <b>bot novo: +34 611 021 695</b>.</li>
+      <li><b>Passos do Flávio:</b> (1) salvar +34 611 021 695 nos contatos; (2) mandar pra esse número a frase exata "I allow callmebot to call me"; (3) o bot responde com a APIkey dele; (4) ele manda a APIkey + o número de WhatsApp dele pra gente.</li>
+      <li><b>Depois:</b> a gente cadastra o número + apikey do Flávio como destinatário no relatório diário e pronto.</li>
     </ul></div>
   </details>
 
-  <details><summary><span class="ic">🗂️</span> Outros <span class="badge b-ok">FEITO</span></summary>
+  <details><summary><span class="ic">🤖</span> Rita · relatórios de campanha automáticos até as 8h <span class="badge b-pend">PENDENTE</span></summary>
     <div class="body"><ul>
-      <li>Relatório estático de atividades por SDR (backup) entregue.</li>
-      <li>Dashboard de Vendas linkado no menu da Rita (escritório).</li>
-      <li>Memória atualizada: bug do Insights, papéis Rodrigo/Duda.</li>
+      <li>Hoje a Rita gera sob demanda. Falta deixar automático, prontos antes das 8h (William faz automação às 9h).</li>
+      <li>Cadência: seg Auxílio · ter FIES · qua Seguro · qui Direito Médico. <b>O de hoje (Seguro) ainda não saiu.</b></li>
     </ul></div>
   </details>
 
-  <h2>⏳ Pendente (retomar amanhã)</h2>
+  <div class="cat">Automações &amp; integrações</div>
 
-  <details open><summary><span class="ic">🤖</span> Automação da Rita (relatórios até 8h) <span class="badge b-pend">PENDENTE</span></summary>
+  <details><summary><span class="ic">🔗</span> HubSpot × Pipedrive (#17) · aguardando a seguradora <span class="badge b-wait">EM ANDAMENTO</span></summary>
     <div class="body"><ul>
-      <li>Hoje a Rita gera os relatórios de campanha sob demanda. Falta deixar <b>automático, prontos antes das 8h</b> (William faz automação às 9h).</li>
-      <li>Caminho: GitHub Actions / cloud (grátis), gerando Google + Meta com benchmarks BR + Quality Gates.</li>
+      <li>Endpoint no ar. Falta: eles mandarem o <b>formulário</b> (revisar campos) e configurarem o webhook + mandar um <b>card de teste</b>.</li>
+      <li>Depois do teste: fechar o mapeamento dos campos, ativar a criação no funil SEGURALTA e o espelhamento de etapas (Pipedrive → HubSpot).</li>
     </ul></div>
   </details>
+
+  <details><summary><span class="ic">📱</span> Bot IA Magalhães Gomes (#16) · deploy Fly.io <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul><li>Sprints prontos rodando em dev local. Falta decisão do ADVWin e o deploy no Fly.io pra virar agente 24/7.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🏷️</span> Make Tag Lead (#01) · ajustes finos <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul>
+      <li>Validar no Pipedrive que NÚMERO + ORIGEM saem certos · preencher ORIGEM nos ~8% sem código · matar sobreposição com o Cadastro (#03).</li>
+      <li>Testar o WhatsApp 4224 (oficial Meta) com lead real · <b>expandir pro Magalhães Gomes</b> (instância digisac deles).</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="ic">📐</span> UTM Tracking enriquecido (#14) <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul><li>Planejado. Implementar nível 1 (capturar e gravar UTMs no lead).</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🏷️</span> Higiene do GTM (#07) <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul><li>Revisar tags/disparos do GTM do site (limpeza pendente).</li></ul></div>
+  </details>
+
+  <div class="cat">Dashboards &amp; infra</div>
 
   <details><summary><span class="ic">⚖️</span> Dashboard jurídico · OAuth em Produção <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul><li>Publicar o app OAuth em "Produção" pra parar o relogin/validação semanal do dashboard de iniciais e distribuição.</li></ul></div>
+  </details>
+
+  <details><summary><span class="ic">🔧</span> Action do Orçamento · confirmar Google médico se mantém <span class="badge b-pend">PENDENTE</span></summary>
     <div class="body"><ul>
-      <li>Publicar o app OAuth em "Produção" pra parar o <b>relogin/validação semanal</b> do dashboard de iniciais e distribuição.</li>
+      <li>O fix do Google médico está no código. Quando o Action do GitHub rodar, confirmar que os valores (Aux/FIES/Direito) <b>não voltam a 0</b>.</li>
+      <li>Se voltarem: atualizar os secrets do repositório (GOOGLE_ADS_REFRESH_TOKEN + LOGIN_CUSTOMER_ID) pros valores que funcionam (em <code>.claude/skills/google-ads-ratos/.env</code>). O Action também parece rodar bem menos que o cron de 5 min diz.</li>
     </ul></div>
   </details>
 
-  <details><summary><span class="ic">📨</span> Suporte Pipedrive · bug de duplicação <span class="badge b-pend">PENDENTE</span></summary>
-    <div class="body"><ul>
-      <li>Acompanhar a resposta do <b>atendente humano</b> (caso aberto 16/06). Pegar número de protocolo e previsão de correção.</li>
-    </ul></div>
+  <div class="cat">Acompanhamentos</div>
+
+  <details><summary><span class="ic">📨</span> Suporte Pipedrive · bug de duplicação <span class="badge b-wait">AGUARDANDO</span></summary>
+    <div class="body"><ul><li>Acompanhar a resposta do atendente humano (caso aberto 16/06). Pegar protocolo e previsão de correção.</li></ul></div>
   </details>
 
   <details><summary><span class="ic">🧪</span> Qualidade dos leads <span class="badge b-pend">PENDENTE</span></summary>
     <div class="body"><ul>
-      <li>Tags de qualidade do Pipedrive começaram ~16/06. O cruzamento lead → qualidade leva <b>algumas semanas</b> pra ficar preciso.</li>
-      <li>Regra fixa: <b>não pausar campanha cara que traz lead bom</b>; cortar só o que traz lixo. Decidir por vendas + tags, não por CPL.</li>
-      <li>Validar no Pipedrive: leads cadastrados certo vs SEM FUNIL.</li>
-    </ul></div>
-  </details>
-
-  <details><summary><span class="ic">📂</span> Mapa de automações (pendências gerais) <span class="badge b-pend">PENDENTE</span></summary>
-    <div class="body"><ul>
-      <li>Ver o painel completo de automações do escritório pra pendências antigas (health, expansão Magalhães Gomes, etc.).</li>
-      <li><a href="../automacoes/" target="_blank">abrir o painel de automações →</a></li>
+      <li>Tags de qualidade do Pipedrive começaram ~16/06; o cruzamento lead → qualidade leva semanas pra ficar preciso.</li>
+      <li>Regra fixa: não pausar campanha cara que traz lead bom; cortar só lixo. Decidir por vendas + tags, não por CPL.</li>
     </ul></div>
   </details>
 
   <h2>🟡 Esperando decisão sua</h2>
 
-  <details><summary><span class="ic">⏱️</span> Frequência da atualização automática <span class="badge b-dec">DECIDIR</span></summary>
-    <div class="body"><ul>
-      <li>A tarefa que atualiza o dashboard roda <b>24/7 a cada 10 min</b> e puxa ~32 mil negócios por ciclo. Quer manter assim, ou limito ao <b>horário comercial (8h-20h)</b> pra aliviar a API?</li>
-    </ul></div>
+  <details><summary><span class="ic">⏱️</span> Frequência da atualização do Dashboard de Vendas <span class="badge b-dec">DECIDIR</span></summary>
+    <div class="body"><ul><li>A tarefa roda 24/7 a cada 10 min e puxa ~32 mil negócios por ciclo. Manter assim ou limitar ao horário comercial (8h-20h)?</li></ul></div>
   </details>
 
-  <details><summary><span class="ic">🔓</span> Confirmar Duda → Rodrigo e webhooks <span class="badge b-dec">DECIDIR</span></summary>
-    <div class="body"><ul>
-      <li>SEM FUNIL hoje centraliza no <b>Rodrigo</b> (Duda virou Documentos). Webhooks reativados. Confirmar que segue assim.</li>
-    </ul></div>
-  </details>
-
-  <div class="nota">💡 Observação sobre os números de reunião: o total da tabela "por closer" (negócios com Responsável pela reunião) costuma ser diferente do KPI "Reuniões realizadas" (atividades de reunião dos SDRs). São bases diferentes, é esperado. Detalhe está no próprio dashboard.</div>
-
-  <footer>Este quadro é o ponto de partida de amanhã. Cada item aberto traz o detalhe. Atualizado a cada sessão.</footer>
+  <footer>Este quadro é o ponto de partida da próxima sessão. Cada item abre com o detalhe. Atualizado em 17/06/2026.</footer>
 </div>
 </body>
 </html>
