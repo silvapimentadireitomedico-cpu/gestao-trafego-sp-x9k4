@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-17T21:56:01Z",
+  "atualizadoEm": "2026-06-17T23:43:48Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.0641,
@@ -7,7 +7,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 0.0,
-      "meta": 11014.9,
+      "meta": 11055.12,
       "leads_novos": 259,
       "ganhos": 15,
       "valor_ganhos": 48570.6,
@@ -17,17 +17,17 @@
     },
     "fies": {
       "google": 0.0,
-      "meta": 14005.5,
-      "leads_novos": 229,
-      "ganhos": 14,
-      "valor_ganhos": 50070.0,
+      "meta": 14125.5,
+      "leads_novos": 230,
+      "ganhos": 15,
+      "valor_ganhos": 54561.0,
       "orcamento_diario_google": 0.0,
       "orcamento_diario_meta": 807.12,
       "orcamento_diario": 807.12
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 1491.46,
+      "meta": 1498.54,
       "leads_novos": 3,
       "ganhos": 2,
       "valor_ganhos": 3781.0,
@@ -37,8 +37,8 @@
     },
     "direito-medico": {
       "google": 0.0,
-      "meta": 347.44,
-      "leads_novos": 22,
+      "meta": 353.06,
+      "leads_novos": 24,
       "ganhos": 3,
       "valor_ganhos": 10470.0,
       "orcamento_diario_google": 0.0,
@@ -47,7 +47,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 422.16,
+      "meta": 424.85,
       "leads_novos": 9,
       "ganhos": 3,
       "valor_ganhos": 5680.0,
@@ -57,8 +57,8 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 106.31,
-      "leads_novos": 6,
+      "meta": 106.69,
+      "leads_novos": 7,
       "ganhos": 1,
       "valor_ganhos": 2241.0,
       "orcamento_diario_google": 0.0,
@@ -68,7 +68,7 @@
     "seguro": {
       "google": 0.0,
       "meta": 0.0,
-      "leads_novos": 325,
+      "leads_novos": 328,
       "ganhos": 32,
       "valor_ganhos": 83793.08,
       "orcamento_diario_google": 0.0,
@@ -87,7 +87,7 @@
     },
     "seg-vida": {
       "google": 0.0,
-      "meta": 1000.48,
+      "meta": 1008.94,
       "leads_novos": 28,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
