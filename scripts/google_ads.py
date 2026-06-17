@@ -20,14 +20,19 @@ CONTAS_DIRETAS = {
 # Resultado vai pra produtos 'seguro' (não-VIDA) e 'seg-vida' (VIDA).
 CONTAS_SEGURO = ["1301598996", "2903149800"]
 
+# MCC que enxerga as contas do lado MÉDICO (Aux/FIES/Direito). Think Lab.
+# As contas diretas vivem sob esse MCC; se o login_customer_id do ambiente
+# apontar pra outro MCC (ex.: o de Seguro), elas vinham com custo 0.
+MCC_MEDICO = "9025188297"
 
-def _client() -> GoogleAdsClient:
+
+def _client(login_customer_id: str | None = None) -> GoogleAdsClient:
     cfg = {
         "developer_token": os.environ["GOOGLE_ADS_DEVELOPER_TOKEN"],
         "client_id": os.environ["GOOGLE_ADS_CLIENT_ID"],
         "client_secret": os.environ["GOOGLE_ADS_CLIENT_SECRET"],
         "refresh_token": os.environ["GOOGLE_ADS_REFRESH_TOKEN"],
-        "login_customer_id": os.environ["GOOGLE_ADS_LOGIN_CUSTOMER_ID"],
+        "login_customer_id": login_customer_id or os.environ["GOOGLE_ADS_LOGIN_CUSTOMER_ID"],
         "use_proto_plus": True,
     }
     return GoogleAdsClient.load_from_dict(cfg)
@@ -75,16 +80,17 @@ def coletar(date_range: str = "THIS_MONTH", since: str | None = None, until: str
     Se since/until forem informados, usa BETWEEN.
     """
     client = _client()
+    client_med = _client(MCC_MEDICO)   # contas do lado médico vivem sob esse MCC
     date_clause = _date_clause(date_range, since, until)
 
     saida: dict[str, float] = {slug: 0.0 for slug in CONTAS_DIRETAS.values()}
     saida["seguro"] = 0.0
     saida["seg-vida"] = 0.0
 
-    # Contas diretas
+    # Contas diretas (via MCC médico)
     for cid, slug in CONTAS_DIRETAS.items():
         try:
-            saida[slug] += _custo_conta(client, cid, date_clause)
+            saida[slug] += _custo_conta(client_med, cid, date_clause)
         except Exception as e:
             print(f"  WARN Google Ads {slug} ({cid}): {e}")
 
@@ -139,12 +145,13 @@ def coletar_orcamento_diario() -> dict[str, float]:
     saida["seg-vida"] = 0.0
 
     client = _client()
+    client_med = _client(MCC_MEDICO)
 
-    # Contas diretas: budget vai todo pro produto da conta
+    # Contas diretas: budget vai todo pro produto da conta (via MCC médico)
     for cid, slug in CONTAS_DIRETAS.items():
         try:
             vistos = set()  # dedupe budgets dentro da MESMA conta
-            for nome, bid, daily in _budgets_diarios(client, cid):
+            for nome, bid, daily in _budgets_diarios(client_med, cid):
                 if bid in vistos:
                     continue
                 vistos.add(bid)
