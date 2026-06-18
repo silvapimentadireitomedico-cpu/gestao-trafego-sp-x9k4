@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-18T16:26:12Z",
+  "atualizadoEm": "2026-06-18T16:27:15Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1613,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 2403.46,
-      "meta": 14632.19,
+      "meta": 14632.76,
       "leads_novos": 239,
       "ganhos": 17,
       "valor_ganhos": 60843.0,
