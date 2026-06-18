@@ -366,6 +366,63 @@ function renderFooter(status, atualizadoEm) {
   }
 }
 
+// ============================================================
+// GUARDA DE CONFIABILIDADE — não deixar otimizar em cima de dado errado
+// ============================================================
+// Mostra uma faixa vermelha no topo se: (a) a coleta travou (dado velho),
+// (b) o backend sinalizou fonte com erro, ou (c) um produto mostra gasto R$0
+// numa plataforma que tem orçamento diário ATIVO (impossível → leitura falhou).
+function detectarProblemas(dados, idsAtivosNoMes, modo) {
+  const problemas = [];
+  if (modo !== 'corrente') return problemas; // fechamento é histórico, não alerta
+
+  // (a) dado velho — a coleta roda a cada poucas horas; > 6h = travada
+  const ts = dados && dados.atualizadoEm ? new Date(dados.atualizadoEm).getTime() : NaN;
+  if (isFinite(ts)) {
+    const horas = (Date.now() - ts) / 3600000;
+    if (horas > 6) {
+      problemas.push(`Dados de ${new Date(ts).toLocaleString('pt-BR')} (há ${Math.round(horas)}h) — a coleta automática pode estar travada.`);
+    }
+  }
+
+  // (b) fonte sinalizada com erro pelo coletor (carry-forward ativo)
+  if (dados && dados.fontes) {
+    const labels = { google: 'Google Ads', meta: 'Meta Ads', pipedrive: 'Pipedrive' };
+    Object.entries(dados.fontes).forEach(([f, st]) => {
+      if (st !== 'ok') problemas.push(`Leitura do ${labels[f] || f} falhou na última coleta — número defasado (último valor bom).`);
+    });
+  }
+
+  // (c) heurística: orçamento ativo numa plataforma mas gasto = R$0 ali
+  const googleSusp = [], metaSusp = [];
+  Object.entries((dados && dados.gastos) || {}).forEach(([id, g]) => {
+    if (!idsAtivosNoMes.has(id)) return;
+    const prod = PRODUTOS.find(x => x.id === id);
+    const nome = prod ? prod.nome : id;
+    if ((g.orcamento_diario_google || 0) > 0 && (g.google || 0) === 0) googleSusp.push(nome);
+    if ((g.orcamento_diario_meta || 0) > 0 && (g.meta || 0) === 0) metaSusp.push(nome);
+  });
+  if (googleSusp.length) problemas.push(`Google em R$0 com orçamento ativo (${googleSusp.join(', ')}) — leitura do Google Ads provavelmente falhou, NÃO é gasto zero real.`);
+  if (metaSusp.length) problemas.push(`Meta em R$0 com orçamento ativo (${metaSusp.join(', ')}) — leitura do Meta provavelmente falhou.`);
+
+  return problemas;
+}
+
+function mostrarAlertas(problemas) {
+  let el = document.getElementById('data-alerta');
+  if (!problemas || !problemas.length) { if (el) el.remove(); return; }
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'data-alerta';
+    el.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:#991b1b;color:#fff;'
+      + 'font:700 15px/1.45 system-ui,-apple-system,sans-serif;padding:11px 20px;text-align:center;'
+      + 'box-shadow:0 3px 16px rgba(0,0,0,.55);border-bottom:2px solid #fca5a5';
+    document.body.appendChild(el);
+  }
+  el.innerHTML = '⚠ ' + problemas.join('&nbsp;&nbsp;·&nbsp;&nbsp;')
+    + '&nbsp;&nbsp;—&nbsp;<u>não otimize por estes números até a coleta voltar.</u>';
+}
+
 function renderResumoExecutivo(dados, diaAtual, diasMes, ano, mes) {
   const el = document.getElementById('resumoTexto');
   if (!el) return;
@@ -554,6 +611,12 @@ async function carregar() {
       : `Ao vivo · ${fmtBRL(gastoTotal)} consumidos`;
   }
   renderFooter(statusTxt, dados.atualizadoEm || new Date().toISOString());
+
+  // Guarda de confiabilidade: faixa vermelha se a coleta travou ou uma fonte caiu
+  const problemas = erroFetch
+    ? [`Não consegui carregar o arquivo de dados (${erroFetch}).`]
+    : detectarProblemas(dados, idsAtivosNoMes, modoAtivo);
+  mostrarAlertas(problemas);
 }
 
 function ativarToggleMes() {

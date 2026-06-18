@@ -87,15 +87,21 @@ def coletar(date_range: str = "THIS_MONTH", since: str | None = None, until: str
     saida["seguro"] = 0.0
     saida["seg-vida"] = 0.0
 
+    contas = 0
+    erros = 0
+
     # Contas diretas (via MCC médico)
     for cid, slug in CONTAS_DIRETAS.items():
+        contas += 1
         try:
             saida[slug] += _custo_conta(client_med, cid, date_clause)
         except Exception as e:
+            erros += 1
             print(f"  WARN Google Ads {slug} ({cid}): {e}")
 
     # Contas seguro com split por nome de campanha
     for cid in CONTAS_SEGURO:
+        contas += 1
         try:
             for nome, custo in _custo_campanhas(client, cid, date_clause):
                 if "VIDA" in nome.upper():
@@ -103,7 +109,16 @@ def coletar(date_range: str = "THIS_MONTH", since: str | None = None, until: str
                 else:
                     saida["seguro"] += custo
         except Exception as e:
+            erros += 1
             print(f"  WARN Google Ads seguro ({cid}): {e}")
+
+    # Se TODAS as contas falharam, é credencial/token (não é gasto zero real).
+    # Levanta exceção pra coletar.py NÃO publicar um painel inteiro zerado e silencioso.
+    if contas and erros == contas:
+        raise RuntimeError(
+            f"Google Ads: todas as {contas} contas falharam — credencial/refresh_token provável. "
+            "NÃO publicando zeros."
+        )
 
     return saida
 
@@ -147,8 +162,12 @@ def coletar_orcamento_diario() -> dict[str, float]:
     client = _client()
     client_med = _client(MCC_MEDICO)
 
+    contas = 0
+    erros = 0
+
     # Contas diretas: budget vai todo pro produto da conta (via MCC médico)
     for cid, slug in CONTAS_DIRETAS.items():
+        contas += 1
         try:
             vistos = set()  # dedupe budgets dentro da MESMA conta
             for nome, bid, daily in _budgets_diarios(client_med, cid):
@@ -157,10 +176,12 @@ def coletar_orcamento_diario() -> dict[str, float]:
                 vistos.add(bid)
                 saida[slug] += daily
         except Exception as e:
+            erros += 1
             print(f"  WARN Google orc-diario {slug} ({cid}): {e}")
 
     # Contas seguro: split por nome (VIDA → seg-vida, resto → seguro)
     for cid in CONTAS_SEGURO:
+        contas += 1
         try:
             vistos = set()
             for nome, bid, daily in _budgets_diarios(client, cid):
@@ -170,7 +191,11 @@ def coletar_orcamento_diario() -> dict[str, float]:
                 slug = "seg-vida" if "VIDA" in nome.upper() else "seguro"
                 saida[slug] += daily
         except Exception as e:
+            erros += 1
             print(f"  WARN Google orc-diario seguro ({cid}): {e}")
+
+    if contas and erros == contas:
+        raise RuntimeError("Google Ads orc-diário: todas as contas falharam — credencial provável.")
 
     return saida
 

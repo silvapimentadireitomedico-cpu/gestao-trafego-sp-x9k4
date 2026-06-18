@@ -99,6 +99,31 @@ def main():
         except Exception as e:
             print(f"  ERRO orc-diario Meta: {e}")
 
+    # 5.5 Carrega o data.json anterior pra CARRY-FORWARD.
+    #     Se uma fonte caiu por completo (ex.: refresh_token do Google expirado), o coletor
+    #     NÃO publica zeros silenciosos: reusa o último valor bom e marca a fonte como "erro".
+    #     Assim a Action para de zerar o painel quando uma credencial cai, e o frontend
+    #     mostra o aviso "não otimize" em cima do número defasado.
+    destino = DATA_DIR / ("data.json" if eh_corrente else f"data-fechamento-{mes_ref}.json")
+    prev = {}
+    if destino.exists():
+        try:
+            prev = json.loads(destino.read_text(encoding="utf-8"))
+        except Exception:
+            prev = {}
+    prev_mesmo_mes = isinstance(prev, dict) and prev.get("mesReferencia") == mes_ref
+    prev_gastos = prev.get("gastos", {}) if prev_mesmo_mes else {}
+
+    # Fonte "erro" = retornou vazio (falha total). Fonte "ok" = trouxe dado.
+    fontes = {
+        "google": "ok" if gads else "erro",
+        "meta": "ok" if meta else "erro",
+        "pipedrive": "ok" if pipe else "erro",
+    }
+    for f, st in fontes.items():
+        if st == "erro":
+            print(f"  ATENCAO: fonte {f} falhou — carry-forward do ultimo valor bom (sem zerar painel).")
+
     # 6. Monta payload final
     produtos = [
         "aux-moradia", "fies", "fies-suspensao", "direito-medico",
@@ -106,11 +131,27 @@ def main():
     ]
     gastos = {}
     for slug in produtos:
+        prev_slug = prev_gastos.get(slug, {}) if isinstance(prev_gastos.get(slug), dict) else {}
         g = round(gads.get(slug, 0.0), 2)
         m = round(meta.get(slug, 0.0), 2)
         p = pipe.get(slug, {})
         og = round(orc_diario_google.get(slug, 0.0), 2)
         om = round(orc_diario_meta.get(slug, 0.0), 2)
+
+        # Carry-forward por fonte caída (só faz sentido com data.json do mesmo mês)
+        if fontes["google"] == "erro" and prev_mesmo_mes:
+            g = round(prev_slug.get("google", 0.0), 2)
+            og = round(prev_slug.get("orcamento_diario_google", 0.0), 2)
+        if fontes["meta"] == "erro" and prev_mesmo_mes:
+            m = round(prev_slug.get("meta", 0.0), 2)
+            om = round(prev_slug.get("orcamento_diario_meta", 0.0), 2)
+        if fontes["pipedrive"] == "erro" and prev_mesmo_mes:
+            p = {
+                "leads_novos": prev_slug.get("leads_novos", 0),
+                "ganhos": prev_slug.get("ganhos", 0),
+                "valor_ganhos": prev_slug.get("valor_ganhos", 0.0),
+            }
+
         gastos[slug] = {
             "google": g,
             "meta": m,
@@ -129,11 +170,11 @@ def main():
         "tipo": "corrente" if eh_corrente else "fechamento",
         "taxa_usd": round(taxa_usd, 4),
         "fonte_usd": fonte_usd,
+        "fontes": fontes,
         "gastos": gastos,
     }
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    destino = DATA_DIR / ("data.json" if eh_corrente else f"data-fechamento-{mes_ref}.json")
     with destino.open("w", encoding="utf-8") as f:
         json.dump(saida, f, indent=2, ensure_ascii=False)
     print(f"OK → {destino}")
