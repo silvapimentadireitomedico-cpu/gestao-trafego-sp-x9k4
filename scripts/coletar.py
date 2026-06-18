@@ -122,7 +122,7 @@ def main():
     }
     for f, st in fontes.items():
         if st == "erro":
-            print(f"  ATENCAO: fonte {f} falhou — carry-forward do ultimo valor bom (sem zerar painel).")
+            print(f"  ATENCAO: fonte {f} falhou. Carry-forward do ultimo valor bom (sem zerar painel).")
 
     # 6. Monta payload final
     produtos = [

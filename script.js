@@ -367,7 +367,7 @@ function renderFooter(status, atualizadoEm) {
 }
 
 // ============================================================
-// GUARDA DE CONFIABILIDADE — não deixar otimizar em cima de dado errado
+// GUARDA DE CONFIABILIDADE: não deixar otimizar em cima de dado errado
 // ============================================================
 // Mostra uma faixa vermelha no topo se: (a) a coleta travou (dado velho),
 // (b) o backend sinalizou fonte com erro, ou (c) um produto mostra gasto R$0
@@ -376,12 +376,12 @@ function detectarProblemas(dados, idsAtivosNoMes, modo) {
   const problemas = [];
   if (modo !== 'corrente') return problemas; // fechamento é histórico, não alerta
 
-  // (a) dado velho — a coleta roda a cada poucas horas; > 6h = travada
+  // (a) dado velho: a coleta roda a cada poucas horas; > 6h = travada
   const ts = dados && dados.atualizadoEm ? new Date(dados.atualizadoEm).getTime() : NaN;
   if (isFinite(ts)) {
     const horas = (Date.now() - ts) / 3600000;
     if (horas > 6) {
-      problemas.push(`Dados de ${new Date(ts).toLocaleString('pt-BR')} (há ${Math.round(horas)}h) — a coleta automática pode estar travada.`);
+      problemas.push(`Dados de ${new Date(ts).toLocaleString('pt-BR')} (há ${Math.round(horas)}h). A coleta automática pode estar travada.`);
     }
   }
 
@@ -389,7 +389,7 @@ function detectarProblemas(dados, idsAtivosNoMes, modo) {
   if (dados && dados.fontes) {
     const labels = { google: 'Google Ads', meta: 'Meta Ads', pipedrive: 'Pipedrive' };
     Object.entries(dados.fontes).forEach(([f, st]) => {
-      if (st !== 'ok') problemas.push(`Leitura do ${labels[f] || f} falhou na última coleta — número defasado (último valor bom).`);
+      if (st !== 'ok') problemas.push(`Leitura do ${labels[f] || f} falhou na última coleta. Número defasado (mostrando o último valor bom).`);
     });
   }
 
@@ -402,8 +402,8 @@ function detectarProblemas(dados, idsAtivosNoMes, modo) {
     if ((g.orcamento_diario_google || 0) > 0 && (g.google || 0) === 0) googleSusp.push(nome);
     if ((g.orcamento_diario_meta || 0) > 0 && (g.meta || 0) === 0) metaSusp.push(nome);
   });
-  if (googleSusp.length) problemas.push(`Google em R$0 com orçamento ativo (${googleSusp.join(', ')}) — leitura do Google Ads provavelmente falhou, NÃO é gasto zero real.`);
-  if (metaSusp.length) problemas.push(`Meta em R$0 com orçamento ativo (${metaSusp.join(', ')}) — leitura do Meta provavelmente falhou.`);
+  if (googleSusp.length) problemas.push(`Google em R$0 com orçamento ativo (${googleSusp.join(', ')}). Leitura do Google Ads provavelmente falhou (NÃO é gasto zero real).`);
+  if (metaSusp.length) problemas.push(`Meta em R$0 com orçamento ativo (${metaSusp.join(', ')}). Leitura do Meta provavelmente falhou.`);
 
   return problemas;
 }
@@ -420,7 +420,7 @@ function mostrarAlertas(problemas) {
     document.body.appendChild(el);
   }
   el.innerHTML = '⚠ ' + problemas.join('&nbsp;&nbsp;·&nbsp;&nbsp;')
-    + '&nbsp;&nbsp;—&nbsp;<u>não otimize por estes números até a coleta voltar.</u>';
+    + '&nbsp;&nbsp;<u>Não otimize por estes números até a coleta voltar.</u>';
 }
 
 function renderResumoExecutivo(dados, diaAtual, diasMes, ano, mes) {

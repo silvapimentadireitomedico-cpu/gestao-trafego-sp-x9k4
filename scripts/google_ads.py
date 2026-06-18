@@ -116,8 +116,8 @@ def coletar(date_range: str = "THIS_MONTH", since: str | None = None, until: str
     # Levanta exceção pra coletar.py NÃO publicar um painel inteiro zerado e silencioso.
     if contas and erros == contas:
         raise RuntimeError(
-            f"Google Ads: todas as {contas} contas falharam — credencial/refresh_token provável. "
-            "NÃO publicando zeros."
+            f"Google Ads: todas as {contas} contas falharam (credencial/refresh_token provavel). "
+            "NAO publicando zeros."
         )
 
     return saida
@@ -195,7 +195,7 @@ def coletar_orcamento_diario() -> dict[str, float]:
             print(f"  WARN Google orc-diario seguro ({cid}): {e}")
 
     if contas and erros == contas:
-        raise RuntimeError("Google Ads orc-diário: todas as contas falharam — credencial provável.")
+        raise RuntimeError("Google Ads orc-diario: todas as contas falharam (credencial provavel).")
 
     return saida
 
