@@ -202,7 +202,7 @@ def _g_ad_groups(client, cid, since, until):
     return out
 
 
-def _g_keywords(client, cid, since, until, limit=40):
+def _g_keywords(client, cid, since, until, limit=60):
     q = f"""
         SELECT ad_group_criterion.keyword.text,
                ad_group_criterion.keyword.match_type,
@@ -236,7 +236,7 @@ def _g_keywords(client, cid, since, until, limit=40):
     return out
 
 
-def _g_search_terms(client, cid, since, until, limit=25):
+def _g_search_terms(client, cid, since, until, limit=60):
     q = f"""
         SELECT search_term_view.search_term, search_term_view.status,
                campaign.name, ad_group.name,

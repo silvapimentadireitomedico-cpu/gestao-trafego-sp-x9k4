@@ -61,6 +61,24 @@ CONTEXTO DE EXECUÇÃO (importante, sobrepõe a skill onde conflitar):
 - Sazonalidade é conhecimento seu (feriados, Dia dos Pais, prova de residência): aplique
   pelo período do JSON.
 
+ENTREGÁVEIS CIRÚRGICOS OBRIGATÓRIOS (cravar em TABELA própria, NÃO diluir no diagnóstico):
+Para o lado GOOGLE de cada produto, sempre que houver dados, inclua estas 3 tabelas de AÇÃO,
+cada linha com o MOTIVO explícito:
+1. PALAVRAS-CHAVE: por keyword (texto + match), ação = manter / ajustar lance / pausar /
+   negativar, com motivo. Quality Score < 4 em DESTAQUE vermelho (gate crítico). Nunca propor
+   pausar/negativar a keyword-âncora do produto (ex: "auxilio moradia medico" é intocada;
+   no FIES "adimplência/em dia/desconto fies" é REQUISITO, não filtro).
+2. TERMOS DE PESQUISA: por termo, ação = VIRAR KEYWORD NOVA (termo que converte e ainda não é
+   keyword) / NEGATIVAR (gasto sem conversão e off-persona) / manter, com motivo classificando
+   LIXO=público errado (targeting) vs desempenho. NUNCA negativar cidade (atuação nacional) nem
+   termo direto do produto. Liste os termos de maior gasto primeiro.
+3. QUALIDADE DOS ANÚNCIOS: Google = status de aprovação (APPROVED/WITH_ISSUES/DISAPPROVED) + QS;
+   Meta = quality_ranking, conversion_rate_ranking e frequência (freq alta + ranking BELOW =
+   fadiga). Ação por anúncio (manter / revisar criativo / pausar) com motivo. Rankings UNKNOWN
+   (campanha de mensagem/CTWA ou volume baixo) = não dar veredito, só sinalizar.
+Se um bloco não tiver dado suficiente, diga "imaturo/sem dado" em vez de inventar. Cada tabela
+fecha com 1 linha de "ação recomendada hoje" amarrada ao Plano 3 camadas.
+
 SAÍDA (obrigatório):
 - Responda APENAS com o documento HTML completo do relatório (de <!DOCTYPE html> até
   </html>), seguindo a estrutura de 17 seções e a paleta do template
