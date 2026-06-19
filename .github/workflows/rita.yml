@@ -1,0 +1,105 @@
+name: Rita - relatorio diario (Fase 2 + 3)
+
+# Pipeline diario da Rita-nuvem (entrega sem depender da maquina do William):
+#   1. DUMP granular dos 4 produtos (campanha/ad/keyword/search-term/perdas, 30/14/7d).
+#   2. GERA o relatorio HTML do produto do dia (cadencia BRT: seg Aux, ter FIES,
+#      qua Seguro, qui Direito) via API Anthropic (Rita read-only do JSON).
+#   3. COMMITA data/rita + relatorios.
+#   4. NOTIFICA o William (WhatsApp + Discord) com o link do relatorio.
+#
+# Secrets necessarios no repo (Settings > Secrets and variables > Actions):
+#   ADS (ja existem, usados pelo dashboard):
+#     GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_ADS_CLIENT_ID, GOOGLE_ADS_CLIENT_SECRET,
+#     GOOGLE_ADS_REFRESH_TOKEN, GOOGLE_ADS_LOGIN_CUSTOMER_ID,
+#     META_ADS_TOKEN, META_ADS_TOKEN_EUA, PIPEDRIVE_TOKEN
+#   NOVOS (adicionar pra Fase 3):
+#     ANTHROPIC_API_KEY            -> chave da API Anthropic (gera o relatorio)
+#     DISCORD_WEBHOOK_AUTOMACOES   -> webhook do canal #automacoes
+#     WHATSAPP_CALLMEBOT_PHONE     -> numero CallMeBot do William (ex 553182248808)
+#     WHATSAPP_CALLMEBOT_APIKEY    -> apikey CallMeBot
+# Variable opcional: RITA_PAGES_BASE (base do link; default = github.io do repo).
+
+on:
+  schedule:
+    - cron: "50 10 * * *" # 10:50 UTC = 07:50 BRT (antes da entrega 8h)
+  workflow_dispatch:
+    inputs:
+      produto:
+        description: "produto (vazio = cadencia do dia: seg Aux / ter FIES / qua Seguro / qui Direito)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rita-diario
+  cancel-in-progress: false
+
+jobs:
+  rita:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias (base + anthropic)
+        run: pip install -r requirements-rita.txt
+
+      - name: 1. Dump granular (4 produtos)
+        env:
+          GOOGLE_ADS_DEVELOPER_TOKEN: ${{ secrets.GOOGLE_ADS_DEVELOPER_TOKEN }}
+          GOOGLE_ADS_CLIENT_ID: ${{ secrets.GOOGLE_ADS_CLIENT_ID }}
+          GOOGLE_ADS_CLIENT_SECRET: ${{ secrets.GOOGLE_ADS_CLIENT_SECRET }}
+          GOOGLE_ADS_REFRESH_TOKEN: ${{ secrets.GOOGLE_ADS_REFRESH_TOKEN }}
+          GOOGLE_ADS_LOGIN_CUSTOMER_ID: ${{ secrets.GOOGLE_ADS_LOGIN_CUSTOMER_ID }}
+          META_ADS_TOKEN: ${{ secrets.META_ADS_TOKEN }}
+          META_ADS_TOKEN_EUA: ${{ secrets.META_ADS_TOKEN_EUA }}
+          PIPEDRIVE_TOKEN: ${{ secrets.PIPEDRIVE_TOKEN }}
+          PYTHONIOENCODING: "utf-8"
+        run: python scripts/rita_collector.py
+
+      - name: 2. Gerar relatorio do dia
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          ARG="${{ github.event.inputs.produto }}"
+          if [ -z "$ARG" ]; then ARG="--auto"; fi
+          python scripts/gerar_relatorio_rita.py $ARG | tee /tmp/rita.out
+          grep '^RESUMO::' /tmp/rita.out | tail -1 > /tmp/rita.resumo || true
+
+      - name: 3. Commitar (so o HTML do relatorio; data/rita e gitignored, repo publico)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add relatorios/
+          if git diff --cached --quiet; then
+            echo "Nada mudou."
+          else
+            git commit -m "auto: rita diario $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            git push
+          fi
+
+      - name: 4. Notificar (se gerou relatorio)
+        if: ${{ always() }}
+        env:
+          DISCORD_WEBHOOK_AUTOMACOES: ${{ secrets.DISCORD_WEBHOOK_AUTOMACOES }}
+          WHATSAPP_CALLMEBOT_PHONE: ${{ secrets.WHATSAPP_CALLMEBOT_PHONE }}
+          WHATSAPP_CALLMEBOT_APIKEY: ${{ secrets.WHATSAPP_CALLMEBOT_APIKEY }}
+          RITA_PAGES_BASE: ${{ vars.RITA_PAGES_BASE }}
+        run: |
+          if [ -s /tmp/rita.resumo ]; then
+            LINE=$(cat /tmp/rita.resumo)
+            MSG=$(printf '%s' "$LINE" | awk -F'::' '{print $2}')
+            REL=$(printf '%s' "$LINE" | awk -F'::' '{print $3}')
+            BASE="${RITA_PAGES_BASE:-https://silvapimentadireitomedico-cpu.github.io/gestao-trafego-sp-x9k4}"
+            python scripts/notificar_rita.py "$MSG" "$BASE/$REL"
+          else
+            echo "Sem relatorio hoje (no-op ou sem cadencia) — nao notifica."
+          fi

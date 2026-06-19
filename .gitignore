@@ -8,3 +8,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 teste-*.png
+# Repo PUBLICO: nao publicar o dump granular da Rita (gasto por campanha, keywords,
+# search terms, perdas do Pipedrive). O pipeline funciona sem commitar: dump e geracao
+# rodam no MESMO job da Action (mesmo disco). So o HTML do relatorio (relatorios/) e commitado.
+data/rita/

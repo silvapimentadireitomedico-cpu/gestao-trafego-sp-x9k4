@@ -1,0 +1,4 @@
+# Deps do workflow da Rita (dump granular + geração do relatório via API Anthropic).
+# Separado do requirements.txt base pra não pesar o cron de 5min do orçamento.
+-r requirements.txt
+anthropic>=0.92,<1
