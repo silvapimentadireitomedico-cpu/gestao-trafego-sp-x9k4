@@ -45,7 +45,7 @@
       <span>🕐 <b id="hTime">–</b></span>
     </div>
   </div>
-  <div id="wrap"><canvas id="cv" width="1480" height="1230"></canvas></div>
+  <div id="wrap"><canvas id="cv" width="1480" height="1150"></canvas></div>
   <div class="foot" id="toast">conectando…</div>
   <div class="leg"><span><i style="background:#3a8fd6"></i>SP</span><span><i style="background:#CCA24E"></i>MG</span><span><i style="background:#566"></i>neutro</span></div>
   <div class="overlay" id="ov"><div class="modal" id="md"></div></div>
@@ -57,7 +57,7 @@
 <script src="clara-ideias.js"></script>
 <script>
 const STATUS_URL='https://sp-tag-lead-filter-x7k2.pages.dev/status';
-const W=1480,H=1230;
+const W=1480,H=1150;
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 ctx.imageSmoothingEnabled=true;
 const ESC={sp:'#3a8fd6', mg:'#CCA24E'}; // cor do escritório (anel na placa)
@@ -293,21 +293,10 @@ function draw(t){
   window_(120,30); whiteboard(280,34); vending(1420,12);
   tvWall(95,180,'orcamento','ORÇAMENTO'); tvWall(95,320,'juridico','JURÍDICO'); tvWall(95,460,'encerr','ENCERR.');
   plant(95,640); plant(95,920);
-  // faixa COPA (descanso) — só enche com agente nela
-  ctx.fillStyle='#7a6a4a12'; ctx.fillRect(196,1126,1268,96); ctx.strokeStyle='#7a6a4a'; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(196,1126,1268,96); ctx.setLineDash([]);
-  { const lw='COPA · descanso'.length*7.2+22; r(196,1124,lw,20,'#7a6a4a'); text('COPA · descanso',196+lw/2,1137,7,'#0b1118'); }
-  // decoração = estado (Executor NUNCA sai da Operação: deny em pixel)
-  const idlers=AGENTES.filter(a=>a.estado==='idle'); const sleepers=AGENTES.filter(a=>a.estado==='zzz' && a.key!=='executor');
-  const ppPlayers= idlers.length>=2 ? idlers.slice(0,2):[]; const ppSet=new Set(ppPlayers.map(a=>a.key));
-  pingpong(485,1166, ppPlayers.length>0); sofaDeco(1070,1166, sleepers.length>0);
   drawArmario(t);
-  // atores ordenados por profundidade (y do desenho)
+  // todos ficam nas suas mesas (sem COPA): o estado aparece na tela da mesa + no balão
   const atores=[];
-  AGENTES.forEach(a=>{
-    if(ppSet.has(a.key)){ const i=ppPlayers.indexOf(a); const p=PP[i]; atores.push({y:p.y, fn:()=>drawLounger(a,p.x,p.y,'pingpong',t)}); }
-    else if(a.estado==='zzz' && a.key!=='executor'){ const i=sleepers.indexOf(a); const p=SOFA[Math.min(i,SOFA.length-1)]; atores.push({y:p.y, fn:()=>drawLounger(a,p.x,p.y,'sofa',t)}); }
-    else { atores.push({y:a.y+74, fn:()=>drawWorker(a,t)}); }
-  });
+  AGENTES.forEach(a=>{ atores.push({y:a.y+74, fn:()=>drawWorker(a,t)}); });
   atores.push({y:mauro.y+26, fn:()=>drawMauro(t)});
   atores.sort((p,q)=>p.y-q.y).forEach(o=>o.fn());
   AGENTES.forEach(a=>{ if(a._hit) HITS.push({...a._hit,key:a.key}); });
