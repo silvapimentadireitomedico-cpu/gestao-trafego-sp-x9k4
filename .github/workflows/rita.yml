@@ -70,6 +70,17 @@ jobs:
           PYTHONIOENCODING: "utf-8"
         run: python scripts/rita_collector.py
 
+      - name: 1b. Atribuir origem dos leads (Aux Moradia, so na segunda BRT)
+        env:
+          PIPEDRIVE_TOKEN: ${{ secrets.PIPEDRIVE_TOKEN }}
+          PYTHONIOENCODING: "utf-8"
+        run: |
+          if [ "$(TZ=America/Sao_Paulo date +%u)" = "1" ]; then
+            python scripts/atribuir_origem_aux.py
+          else
+            echo "Nao e segunda (BRT); pula a atribuicao de origem do Aux Moradia."
+          fi
+
       - name: 2. Gerar relatorio do dia
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

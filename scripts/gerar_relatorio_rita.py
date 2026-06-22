@@ -99,7 +99,7 @@ def _produto_do_dia() -> str | None:
     return CADENCIA.get(datetime.now(BRT).weekday())
 
 
-def montar_prompt(slug: str) -> tuple[list, str, dict]:
+def montar_prompt(slug: str, contexto: str = "") -> tuple[list, str, dict]:
     rotulo, refs = PRODUTOS[slug]
     skill = _read(RITA_DIR / "SKILL.md")
     template = _read(RITA_DIR / "references" / "template-html-meta.md")
@@ -118,11 +118,18 @@ def montar_prompt(slug: str) -> tuple[list, str, dict]:
     system = [{"type": "text", "text": sistema_txt, "cache_control": {"type": "ephemeral"}}]
 
     hoje = datetime.now(BRT).date().isoformat()
+    bloco_ctx = ""
+    if contexto.strip():
+        bloco_ctx = (
+            "\n\n========== CONTEXTO OPERACIONAL DESTA RODADA (do William, prevalece sobre "
+            "suposição; NÃO é dado de API, é instrução) ==========\n" + contexto.strip() + "\n"
+        )
     user = (
         f"Gere o relatório da Rita do produto {rotulo} (slug {slug}) para hoje, {hoje}.\n"
         "Os dados coletados (única fonte) estão no JSON abaixo. Siga o critério de sucesso "
-        "da skill, item por item, antes de fechar.\n\n"
-        f"```json\n{dados}\n```"
+        "da skill, item por item, antes de fechar."
+        + bloco_ctx +
+        f"\n\n```json\n{dados}\n```"
     )
     tam = {"system_chars": len(sistema_txt), "json_chars": len(dados), "refs": refs}
     return system, user, tam
@@ -139,7 +146,7 @@ def _limpar_html(txt: str) -> str:
     return (t[i:] if i > 0 else t).strip()
 
 
-def gerar(slug: str, dry_run: bool) -> int:
+def gerar(slug: str, dry_run: bool, contexto: str = "") -> int:
     if slug not in PRODUTOS:
         print(f"ERRO: produto '{slug}' inválido. Válidos: {list(PRODUTOS)}")
         return 2
@@ -147,7 +154,7 @@ def gerar(slug: str, dry_run: bool) -> int:
         print(f"ERRO: {DATA_DIR / (slug + '.json')} não existe. Rode o rita_collector antes.")
         return 3
 
-    system, user, tam = montar_prompt(slug)
+    system, user, tam = montar_prompt(slug, contexto)
     aprox_tok = (tam["system_chars"] + tam["json_chars"]) // 4
     print(f"[{slug}] system {tam['system_chars']:,} chars · json {tam['json_chars']:,} chars "
           f"· refs {tam['refs']} · ~{aprox_tok:,} tokens de input (estimativa /4)")
@@ -207,7 +214,11 @@ def main():
     ap.add_argument("produto", nargs="?", help="slug (aux-moradia, fies, seguro, direito-medico)")
     ap.add_argument("--auto", action="store_true", help="usa o produto da cadência do dia (BRT)")
     ap.add_argument("--dry-run", action="store_true", help="monta o prompt sem chamar a API")
+    ap.add_argument("--contexto", metavar="ARQUIVO", help="arquivo .md com contexto operacional da rodada")
     a = ap.parse_args()
+    contexto = ""
+    if a.contexto:
+        contexto = Path(a.contexto).read_text(encoding="utf-8")
 
     if a.auto and not a.produto:
         slug = _produto_do_dia()
@@ -225,7 +236,7 @@ def main():
     else:
         print("Informe um produto ou use --auto.")
         return 2
-    return gerar(slug, a.dry_run)
+    return gerar(slug, a.dry_run, contexto)
 
 
 if __name__ == "__main__":

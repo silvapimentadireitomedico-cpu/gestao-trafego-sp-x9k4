@@ -78,12 +78,18 @@ FROM campaign_conversion_goal WHERE campaign.id = 23688614764
 ```
 Confirmar que SUBMIT_LEAD_FORM **e** CONTACT estão `biddable=True`. Se o Smart Bidding está otimizando pra uma conversão que a LP não dispara mais → bidding cego (ver armadilha #2).
 
-### Passo 2 — Tem lead REAL? (não confiar só no "conversions" do Google)
-Cruzar SEMPRE com o Pipedrive. "Conversions" no Google conta clique no botão/submit, mas o lead pode ter abandonado antes de virar registro. Fonte da verdade de lead qualificado = Pipedrive.
+### Passo 2 — Tem lead REAL? (não confiar só no "conversions" da plataforma)
+Cruzar SEMPRE com o Pipedrive. "Conversions"/"leads" no Google e no Meta contam clique/submit/mensagem, mas o lead pode ter abandonado. Fonte da verdade de lead qualificado = Pipedrive.
 ```bash
 curl -s "https://silvapimenta.pipedrive.com/api/v1/leads?api_token=<PIPEDRIVE_TOKEN>&limit=500&archived_status=all" 
 # filtrar label 68477770-... e add_time >= início do período
 ```
+
+**Cruzar os LEADS, não só os deals/tags (instrução William 22/06):** a automação **Tag Lead** (Digisac → Pipedrive) cria um LEAD pra cada contato e grava nele **número da campanha, público, criativo e as respostas do formulário**. Esses campos estão no Lead, não só no deal. Ler os campos custom do Lead pra atribuir cada lead à campanha/adset/criativo de origem. Isso dá um cruzamento muito mais rico que olhar só os deals fechados ou só a tag de qualidade. NÃO depender só da tag de qualidade dos deals (que ainda calibra pós 16/06) — usar a origem gravada no próprio lead.
+
+### Passo 2b — Qualidade do lead (LIXO) só com CERTEZA, nunca por suspeita (regra dura William 22/06)
+É **PROIBIDO** apontar um público/criativo como fonte de LIXO por inferência ("público amplo costuma trazer lixo", "suspeito principal: Semelhante RD"). Isso é suspeita, não diagnóstico.
+**O método correto:** pegar TODOS os leads/deals marcados como LIXO (e AÇÃO INVIÁVEL) no período → pra CADA um, ler no Pipedrive **de qual campanha + público + criativo veio** (campos gravados pelo Tag Lead) → tabular a origem real → só então concluir quem traz lixo, com número e nome. Sem isso, o relatório diz "qualidade a verificar", não acusa ninguém. A régua "CPL baixo não é qualidade" continua válida, mas a culpa só se atribui com a origem verificada lead a lead.
 
 ### Passo 3 — Apostila (7 passos), nesta ordem
 1. **Search terms** (`read.py search-terms`) + negativas já aplicadas. Cortar desperdício. (Mas ver regras §6: não negativar cidade nem termo direto do produto.)
@@ -112,6 +118,8 @@ Ler a evolução pra separar causa de efeito. Device: historicamente Desktop con
 5. **CPC explode (R$ 98 já aconteceu)** quando Maximize Conversions roda sem sinal de conversão biddable. Sintoma de bidding cego — investigar Passo 1.
 
 6. **Orçamento Google Ads é em MICROS** (R$ 60 = 60.000.000 micros). Diferente do Meta (centavos).
+
+7. **Higiene de inventário Meta (limpeza de WITH_ISSUES/DISAPPROVED/PAUSED) — regra William 22/06:** pode limpar anúncios mortos pra desentupir o gerenciador, MAS com 2 travas: (a) **só ARQUIVAR, nunca deletar** (memory `feedback_meta_api_seguranca`); (b) **só os que comprovadamente NÃO gastam verba há +2 semanas** — verificar o `spend` dos últimos 14d de CADA ad antes de arquivar (`insights account --level ad --date-preset last_14d`), nunca arquivar cego pelo status. **NÃO arquivar criativo recém-subido que está WITH_ISSUES/DISAPPROVED temporário durante revisão do Meta** (ex: criativo novo do dia). DISAPPROVED que está servindo (configured ACTIVE) → pausar e mandar revisar o criativo, não arquivar. Canibalização (mesma campanha duplicada rodando os mesmos adsets) se resolve mantendo o melhor de cada par e pausando o pior, não arquivando.
 
 ---
 
