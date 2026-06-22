@@ -313,7 +313,7 @@ function pend(){ const P=window.PENDENCIAS||[],D=window.DECISOES||[]; const li=x
   return `<p style="margin-bottom:12px"><a href="quadro-status.html" target="_blank" style="display:inline-block;background:#e9c98f;color:#2a2310;font-weight:800;padding:10px 16px;border-radius:9px;text-decoration:none">📋 Abrir o Quadro de Status completo →</a></p>
   <h2 style="font-size:14px">📂 ${P.length} pendências</h2><ul>${P.map(li).join('')}</ul>
   <h2 style="font-size:14px">🟡 ${D.length} decisões suas</h2><ul>${D.map(li).join('')}</ul>`; }
-function ritaModal(esc){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
+function ritaModal(esc){ const R='https://silvapimentadireitomedico-cpu.github.io/gestao-trafego-sp-x9k4/relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
   if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${R}seguro.html" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 17/06 ✓</span></a></div>
     <p class="role" style="margin-top:8px">Relatório completo do dia em <code>magalhaes-gomes/analises/2026-06-17/</code>.</p>`;
@@ -322,7 +322,7 @@ function ritaModal(esc){ const R='../relatorios/'; const bt='display:flex;justif
       <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
       <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
       <a href="${R}fies.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">17/06 ✓</span></a>
-      <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.7">quinta</span></span>
+      <a href="${R}direito-medico.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.85">19/06 ✓</span></a>
     </div><p style="margin-top:10px"><a href="${R}historico.html" target="_blank">📋 Histórico →</a></p>`;
 }
 function claraModal(){
