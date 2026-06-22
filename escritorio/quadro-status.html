@@ -30,6 +30,7 @@
   .body ul{list-style:none;display:flex;flex-direction:column;gap:5px;margin:4px 0}
   .body li{padding-left:16px;position:relative}.body li:before{content:"›";position:absolute;left:0;color:var(--mut)}
   .body a{color:var(--gold);font-weight:600;text-decoration:none}
+  .body code{background:#0c1620;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:11.5px}
   .lk{display:inline-block;margin-top:8px;background:#0d6e64;color:#fff;font-weight:700;font-size:12px;text-decoration:none;padding:7px 13px;border-radius:8px}
   footer{margin-top:30px;padding-top:14px;border-top:1px solid var(--line);font-size:11px;color:var(--mut);text-align:center}
 </style>
@@ -37,19 +38,34 @@
 <body>
 <header><div class="wrap">
   <div><h1>📋 Quadro de Status<small>Silva Pimenta · o que foi feito e o que falta · retomar amanhã</small></h1></div>
-  <div class="upd">Atualizado: <b>17/06/2026</b></div>
+  <div class="upd">Atualizado: <b>17/06/2026 (noite)</b></div>
 </div></header>
 
 <div class="wrap">
   <div class="resumo">
-    <div class="rb ok"><div class="n">13</div><div class="l">Feito</div></div>
-    <div class="rb pend"><div class="n">11</div><div class="l">Pendente</div></div>
-    <div class="rb dec"><div class="n">1</div><div class="l">Decisão sua</div></div>
+    <div class="rb ok"><div class="n">15</div><div class="l">Feito</div></div>
+    <div class="rb pend"><div class="n">13</div><div class="l">Pendente</div></div>
+    <div class="rb dec"><div class="n">2</div><div class="l">Decisão sua</div></div>
   </div>
 
   <h2>✅ Feito</h2>
 
-  <details open><summary><span class="ic">📊</span> Dashboard de Vendas (comercial) <span class="badge b-ok">FEITO</span></summary>
+  <details open><summary><span class="ic">📈</span> Relatórios Seguro + FIES entregues hoje (Rita manual) <span class="badge b-ok">FEITO · LER</span></summary>
+    <div class="body"><ul>
+      <li>Os 2 relatórios completos (Google + Meta + Pipedrive, com cruzamento de lead REAL e LIXO) gerados pra você otimizar. As ações estão na seção "Otimizações a executar" logo abaixo.</li>
+      <li><b>Seguro:</b> <code>magalhaes-gomes/analises/2026-06-17/relatorio-completo-seguro.html</code></li>
+      <li><b>FIES:</b> <code>silva-pimenta/marketing/trafego-pago/otimizacoes/fies/2026-06-17/relatorio-fies.html</code></li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="ic">🧱</span> Pipeline da Rita na nuvem montado e validado <span class="badge b-ok">FEITO (falta só o token)</span></summary>
+    <div class="body"><ul>
+      <li>Worker rita-dados (Google+Meta+Pipedrive, cruzamento por funil/motivo/número, LIXO=persona errado) escrito e <b>validado rodando local: os números batem com a realidade</b>.</li>
+      <li>Cérebro da Rita (rotina-rita.md) + script de deploy (deploy.sh) prontos. Detalhe na pendência "Rita · automação na nuvem".</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="ic">📊</span> Dashboard de Vendas (comercial) <span class="badge b-ok">FEITO</span></summary>
     <div class="body"><ul>
       <li>Online, números reais (sem a duplicação do Insights). 3 abas, filtro de data, cor fixa por produto.</li>
       <li>Conversão por reunião: por SDR, por produto, e <b>por closer</b> (campo "Responsável pela reunião": reuniões, ganho, em aberto, perdidas, taxa).</li>
@@ -69,41 +85,63 @@
     <div class="body"><ul><li>Webhooks recriados (1878049 / 1878050). SEM FUNIL centraliza no Rodrigo.</li></ul></div>
   </details>
 
-  <details><summary><span class="ic">🧭</span> Gabarito de trabalho no CLAUDE.md raiz <span class="badge b-ok">FEITO</span></summary>
-    <div class="body"><ul><li>As 10 diretrizes valem pra todos os clientes e agentes novos automaticamente.</li></ul></div>
+  <details><summary><span class="ic">🧭</span> Gabarito + regra do LIXO no playbook da Rita <span class="badge b-ok">FEITO</span></summary>
+    <div class="body"><ul>
+      <li>As 10 diretrizes do Gabarito valem pra todos os clientes e agentes novos.</li>
+      <li>Regra do LIXO salva (SKILL.md 5.1): LIXO = persona errado → ação Google (keyword/anúncio/LP) ou Meta (público/criativo), separado dos outros motivos de perda.</li>
+    </ul></div>
   </details>
 
   <details><summary><span class="ic">🔗</span> Integração HubSpot · endpoint de captura no ar <span class="badge b-ok">FEITO (fase 1)</span></summary>
     <div class="body"><ul>
       <li>Link do webhook entregue pra seguradora: <b>sp-tag-lead-filter-x7k2.pages.dev/hubspot</b>. Captura o payload no Discord pra mapear.</li>
-      <li>Funil SEGURALTA (7 etapas) confirmado. Eles criam só na 1ª etapa; movimentação é toda nossa.</li>
+      <li>Funil SEGURALTA confirmado. Eles criam só na 1ª etapa; movimentação é toda nossa.</li>
     </ul></div>
   </details>
 
   <details><summary><span class="ic">🗂️</span> Outros (sessão) <span class="badge b-ok">FEITO</span></summary>
     <div class="body"><ul>
       <li>Relatório estático de atividades por SDR · Dashboard de Vendas linkado no menu da Rita · memória atualizada.</li>
-      <li>Mensagem pronta pra seguradora (funil + link + próximos passos).</li>
+      <li>Mensagem pronta pra seguradora · chamado da TI escrito (token Cloudflare).</li>
     </ul></div>
   </details>
 
   <h2>⏳ Pendente</h2>
 
-  <div class="cat">Relatórios &amp; dados</div>
+  <div class="cat">Otimizações de tráfego (você executa)</div>
 
-  <details open><summary><span class="ic">📨</span> Relatório diário pro Flávio (Flavinho) <span class="badge b-pend">PENDENTE</span></summary>
+  <details open><summary><span class="ic">🎯</span> Otimizações a executar (do relatório de hoje) <span class="badge b-pend">PENDENTE · VOCÊ</span></summary>
     <div class="body"><ul>
-      <li>O relatório das 20h já roda (Task Windows, #21). Falta ativar o <b>encaminhamento pro Flávio</b>.</li>
-      <li>O CallMeBot grátis não manda em grupo, então o Flávio precisa ativar o CallMeBot no WhatsApp dele. O bot antigo encheu; usar o <b>bot novo: +34 611 021 695</b>.</li>
-      <li><b>Passos do Flávio:</b> (1) salvar +34 611 021 695 nos contatos; (2) mandar pra esse número a frase exata "I allow callmebot to call me"; (3) o bot responde com a APIkey dele; (4) ele manda a APIkey + o número de WhatsApp dele pra gente.</li>
-      <li><b>Depois:</b> a gente cadastra o número + apikey do Flávio como destinatário no relatório diário e pronto.</li>
+      <li><b>SEGURO · HOJE:</b> pôr tCPA na Contingência (~R$30) ou cortar os caros dela (VIDA 05 R$67, SEGURO MG 04 R$56, VIDA 08 R$43 — CPC 2 a 3,5× a Institucional). Conferir WhatsApp morto <b>5531993061519</b> nas LPs de VIDA (trocar pelo 5511966629852). <b>CPA da Cont degradou: R$30→R$61 em 7d.</b></li>
+      <li><b>FIES · HOJE:</b> cortar "Pesquisa [FIES] SP" (R$472/conv); rotacionar o criativo frito "Imagem FIES Pergunta" (<b>freq 10,8</b>, R$4,6k); matar "v5-pandemia ENGAJAMENTO" (CPA R$304). <b>Google dobrou: CPA R$74→R$174 em 7d.</b></li>
+      <li><b>SEMANA (os dois):</b> qualificar copy/LP contra "ação inviável" + LIXO (67% das perdas do Seguro; 51/80 do FIES). Escalar campeão FIES "AD 22 NOTIC" (CPA R$37) e renovar criativos BELOW_AVERAGE.</li>
+      <li><b>2 SEMANAS:</b> LP pra subir QS (Seguro: 24 keywords QS≤3; FIES: 28). Não negativar termos-núcleo nem adimplência/desconto FIES.</li>
     </ul></div>
   </details>
 
-  <details><summary><span class="ic">🤖</span> Rita · relatórios de campanha automáticos até as 8h <span class="badge b-pend">PENDENTE</span></summary>
+  <div class="cat">Relatórios &amp; dados</div>
+
+  <details open><summary><span class="ic">🤖</span> Rita · automação na nuvem <span class="badge b-wait">QUASE PRONTO · trava no token</span></summary>
     <div class="body"><ul>
-      <li>Hoje a Rita gera sob demanda. Falta deixar automático, prontos antes das 8h (William faz automação às 9h).</li>
-      <li>Cadência: seg Auxílio · ter FIES · qua Seguro · qui Direito Médico. <b>O de hoje (Seguro) ainda não saiu.</b></li>
+      <li><b>Plano B (nuvem, sem depender da máquina) montado e validado.</b> Worker + cérebro (rotina-rita.md) + script de deploy (deploy.sh) prontos. Roda 1 produto por dia: seg Auxílio · ter FIES · qua Seguro · qui Direito.</li>
+      <li><b>TRAVA:</b> falta o token Cloudflare com permissão de Workers. <b>Chamado aberto na TI</b> (template "Editar Workers"). Nenhum segredo vai pro repo: tokens viram Secret criptografado.</li>
+      <li><b>Token-day (pouca coisa):</b> rodar <code>deploy.sh</code> → me devolve URL + chave → plugar na rotina → criar as 4 rotinas CCR → linkar o relatório aqui no escritório. Aí a Rita roda sozinha de manhã.</li>
+    </ul></div>
+  </details>
+
+  <details><summary><span class="ic">📨</span> Relatório diário pro Flávio (Flavinho) <span class="badge b-pend">PENDENTE</span></summary>
+    <div class="body"><ul>
+      <li>O relatório das 20h já roda (Task Windows, #21). Falta ativar o <b>encaminhamento pro Flávio</b>.</li>
+      <li>O Flávio precisa: (1) salvar <b>+34 611 021 695</b>; (2) mandar pra esse número "I allow callmebot to call me"; (3) o bot responde com a APIkey; (4) ele manda a APIkey + o WhatsApp dele pra gente cadastrar.</li>
+    </ul></div>
+  </details>
+
+  <div class="cat">Agentes</div>
+
+  <details open><summary><span class="ic">🎨</span> Agente creative-leadgen-meta <span class="badge b-wait">EM CONSTRUÇÃO</span></summary>
+    <div class="body"><ul>
+      <li>Especialista em criativos Meta de <b>lead qualificado no WhatsApp</b> (filtro no criativo, CTA wa.me que já qualifica, diversidade Andromeda, compliance jurídico/saúde). Sub-agentes: persona-filter, hook-writer, creative-matrix, whatsapp-cta.</li>
+      <li>Iniciado hoje pelo Passo 0 (ler referências do repo claude-ads, sem instalar nada). Continua nos próximos passos.</li>
     </ul></div>
   </details>
 
@@ -144,7 +182,7 @@
   <details><summary><span class="ic">🔧</span> Action do Orçamento · confirmar Google médico se mantém <span class="badge b-pend">PENDENTE</span></summary>
     <div class="body"><ul>
       <li>O fix do Google médico está no código. Quando o Action do GitHub rodar, confirmar que os valores (Aux/FIES/Direito) <b>não voltam a 0</b>.</li>
-      <li>Se voltarem: atualizar os secrets do repositório (GOOGLE_ADS_REFRESH_TOKEN + LOGIN_CUSTOMER_ID) pros valores que funcionam (em <code>.claude/skills/google-ads-ratos/.env</code>). O Action também parece rodar bem menos que o cron de 5 min diz.</li>
+      <li>Se voltarem: atualizar os secrets do repositório (GOOGLE_ADS_REFRESH_TOKEN + LOGIN_CUSTOMER_ID) pros valores que funcionam (em <code>.claude/skills/google-ads-ratos/.env</code>).</li>
     </ul></div>
   </details>
 
@@ -163,11 +201,15 @@
 
   <h2>🟡 Esperando decisão sua</h2>
 
+  <details open><summary><span class="ic">🕗</span> Horário da Rita automática <span class="badge b-dec">DECIDIR</span></summary>
+    <div class="body"><ul><li>A rotina roda <b>7h</b> (relatório pronto quando você chega às 8h, recomendado) ou <b>8h cheio</b> (pronto ~8h05)? Já deixo os 4 crons configurados conforme você decidir.</li></ul></div>
+  </details>
+
   <details><summary><span class="ic">⏱️</span> Frequência da atualização do Dashboard de Vendas <span class="badge b-dec">DECIDIR</span></summary>
     <div class="body"><ul><li>A tarefa roda 24/7 a cada 10 min e puxa ~32 mil negócios por ciclo. Manter assim ou limitar ao horário comercial (8h-20h)?</li></ul></div>
   </details>
 
-  <footer>Este quadro é o ponto de partida da próxima sessão. Cada item abre com o detalhe. Atualizado em 17/06/2026.</footer>
+  <footer>Este quadro é o ponto de partida da próxima sessão. Cada item abre com o detalhe. Atualizado em 17/06/2026 (noite).</footer>
 </div>
 </body>
 </html>

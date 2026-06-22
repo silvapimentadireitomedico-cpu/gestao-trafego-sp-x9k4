@@ -5,46 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Escritório Virtual — Agentes Silva Pimenta</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   html,body{height:100%}
-  body{background:#11101a;font-family:'Inter',system-ui,'Segoe UI',sans-serif;color:#fff;overflow:hidden;
-    display:flex;flex-direction:column;align-items:center}
-  /* topo */
-  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:12px 14px;pointer-events:none;
-    background:linear-gradient(180deg,rgba(10,9,20,.92),transparent)}
+  body{background:#11101a;font-family:'Inter',system-ui,'Segoe UI',sans-serif;color:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:center}
+  .top{position:fixed;top:0;left:0;right:0;z-index:10;padding:12px 14px;pointer-events:none;background:linear-gradient(180deg,rgba(10,9,20,.92),transparent)}
   .title{text-align:center;font-size:18px;font-weight:800;color:#ffd54a;text-shadow:0 2px 6px rgba(0,0,0,.6);letter-spacing:.5px}
   .hud{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;pointer-events:auto}
-  .hud span{background:#1b2236;border:1px solid #36406a;padding:7px 13px;font-size:12.5px;font-weight:500;border-radius:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,.35)}
+  .hud span{background:#1b2236;border:1px solid #36406a;padding:7px 13px;font-size:12.5px;font-weight:500;border-radius:20px;box-shadow:0 3px 10px rgba(0,0,0,.35)}
   .hud b{color:#ffd54a;font-weight:800}
   #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   canvas{background:#9a9aa2;border-radius:6px;box-shadow:0 0 0 4px #0a0d18,0 18px 50px rgba(0,0,0,.7)}
-  .foot{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);z-index:10;
-    background:#1b2236;border:1px solid #36406a;color:#cdbbe2;font-size:12px;padding:8px 16px;border-radius:20px;
-    box-shadow:0 3px 10px rgba(0,0,0,.35);text-align:center}
-  /* modal */
+  .foot{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:10;background:#1b2236;border:1px solid #36406a;color:#cdbbe2;font-size:12px;padding:8px 16px;border-radius:20px;box-shadow:0 3px 10px rgba(0,0,0,.35);text-align:center}
+  .leg{position:fixed;bottom:10px;right:12px;z-index:10;background:#1b2236;border:1px solid #36406a;font-size:11px;padding:6px 11px;border-radius:14px;color:#cdbbe2;display:flex;gap:10px;align-items:center}
+  .leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:3px;vertical-align:-1px}
   .overlay{position:fixed;inset:0;background:rgba(8,5,15,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:16px}
   .overlay.show{display:flex}
-  .modal{background:#171a2e;border:2px solid #ffd54a;border-radius:12px;max-width:560px;width:100%;padding:24px;
-    line-height:1.6;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+  .modal{background:#171a2e;border:2px solid #ffd54a;border-radius:12px;max-width:560px;width:100%;padding:24px;line-height:1.6;box-shadow:0 20px 50px rgba(0,0,0,.6);max-height:86vh;overflow:auto}
   .modal h2{color:#ffd54a;font-size:18px;font-weight:800;margin-bottom:12px;line-height:1.4}
   .modal p,.modal li{color:#dcd3f0;font-size:13.5px;line-height:1.7}
   .modal ul{padding-left:18px;margin:8px 0}
   .modal a{color:#5fe39a;font-weight:700}
   .modal .role{color:#9b87b8;font-size:12px}
-  .modal .fechar{margin-top:18px;background:#ffd54a;color:#171a2e;border:none;padding:10px 20px;
-    font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;border-radius:8px}
-  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;
-    background:#11101a;color:#ffd54a;font-size:15px;font-weight:700;text-align:center;line-height:2}
+  .modal .fechar{margin-top:18px;background:#ffd54a;color:#171a2e;border:none;padding:10px 20px;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer;border-radius:8px}
+  #loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:60;background:#11101a;color:#ffd54a;font-size:15px;font-weight:700;text-align:center;line-height:2}
 </style>
 </head>
 <body>
   <div id="loading">CARREGANDO<br>ESCRITÓRIO…</div>
   <div class="top">
-    <div class="title">🏢 ESCRITÓRIO VIRTUAL · SILVA PIMENTA</div>
+    <div class="title">🏢 ESCRITÓRIO VIRTUAL · SILVA PIMENTA + MAGALHÃES GOMES</div>
     <div class="hud">
       <span>🟢 ATIVO <b id="hWork">–</b></span>
       <span>☕ OCIOSO <b id="hIdle">–</b></span>
@@ -54,35 +45,48 @@
       <span>🕐 <b id="hTime">–</b></span>
     </div>
   </div>
-  <div id="wrap"><canvas id="cv" width="1024" height="700"></canvas></div>
-  <div class="foot" id="toast">conectando ao Make…</div>
+  <div id="wrap"><canvas id="cv" width="1180" height="905"></canvas></div>
+  <div class="foot" id="toast">conectando…</div>
+  <div class="leg"><span><i style="background:#3a8fd6"></i>SP</span><span><i style="background:#CCA24E"></i>MG</span><span><i style="background:#566"></i>neutro</span></div>
   <div class="overlay" id="ov"><div class="modal" id="md"></div></div>
 
+<!-- estado compartilhado -->
+<script src="pendencias.js"></script>
+<script src="validador-ultimo.js"></script>
+<script src="redator-ultima.js"></script>
+<script src="clara-ideias.js"></script>
 <script>
-const STATUS_URL = 'https://sp-tag-lead-filter-x7k2.pages.dev/status';
-const W=1024, H=700;
-const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+const STATUS_URL='https://sp-tag-lead-filter-x7k2.pages.dev/status';
+const W=1180,H=905;
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 ctx.imageSmoothingEnabled=true;
+const ESC={sp:'#3a8fd6', mg:'#CCA24E'}; // cor do escritório (anel na placa)
 
-// ---- agentes (key bate com /status) ----
+// ---- agentes: 5 setores por função; esc = escritório (sp/mg/null) ----
 const AGENTES=[
-  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     role:'Tag Lead · capta lead do WhatsApp e cadastra no Pipedrive', x:300,y:215, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#7a3aa8'},
-  {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta)', x:480,y:215, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#2b6fb0'},
-  {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    role:'Cadastro de leads do FIES (Lead Form Meta)',            x:660,y:215, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#cf5a2a'},
-  {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)', x:390,y:410, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e7d4f'},
-  {key:'hubspot',nome:'HUGO',  tag:'HUBSPOT',      role:'Integração HubSpot × Pipedrive da seguradora (em breve)', x:570,y:410, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78',fixo:'zzz'},
-  {key:'relatorios',nome:'RITA', tag:'RELATÓRIOS', role:'Relatórios cirúrgicos de campanha (Google + Meta) com benchmarks BR + Quality Gates. Gera segunda (Auxílio), terça (FIES), quarta (Seguro), quinta (Direito Médico).', x:855,y:410, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0d6e64',fixo:'rel'},
-  {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',  role:'Robô das Ações · todo ganho vira card no PÓS-FECHAMENTO e avisa o jurídico no Discord', x:300,y:560, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', fixo:'cloud'},
-  {key:'diario',nome:'BENTO',tag:'RELAT. 20H', role:'Relatório Diário de Tráfego · manda o resumo no WhatsApp todo dia às 20h', x:480,y:560, shirt:'#d99a2c',shirt2:'#b3791a',hair:'#241a10',plate:'#cf8a2a', fixo:'cloud'},
-  {key:'radar', nome:'NINA', tag:'RADAR',      role:'Radar de Conteúdo · varre notícias às 8h e sugere pautas pro Thainar', x:660,y:560, shirt:'#b15cd6',shirt2:'#8a3fb0',hair:'#2a1a3a',plate:'#7b2cbf', fixo:'cloud'},
-  {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', role:'Arquiteto de Agentes · monta agentes novos já com o Gabarito ADAPTA + as skills certas injetadas', x:855,y:215, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', fixo:'idle'},
-  {key:'botmag',nome:'GUI',  tag:'BOT MG',     role:'Bot IA WhatsApp da Magalhães Gomes · atendimento (em dev, falta deploy no Fly.io)', x:855,y:560, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz'},
+  // CAPTAÇÃO & CADASTRO
+  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     setor:'cap', esc:'sp', x:305,y:230, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#1f7fa6', role:'Tag Lead · capta lead do WhatsApp e cadastra no Pipedrive'},
+  {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', setor:'cap', esc:'sp', x:475,y:230, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#9a48d0', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta)'},
+  {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    setor:'cap', esc:'sp', x:305,y:365, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#e08a2a', role:'Cadastro de leads do FIES (Lead Form Meta)'},
+  {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',setor:'cap', esc:'sp', x:475,y:365, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e9d5f', role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)'},
+  // ANÁLISE & RELATÓRIO  (DUAS Ritas, uma por escritório)
+  {key:'rita-sp',nome:'RITA',tag:'RELAT. · SP',  setor:'ana', esc:'sp', x:720,y:230, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0f766e', role:'Relatórios de campanha do Silva Pimenta (Auxílio, FIES, Direito Médico). Google + Meta, benchmarks BR + quality gates.'},
+  {key:'rita-mg',nome:'RITA',tag:'RELAT. · MG',  setor:'ana', esc:'mg', x:920,y:230, shirt:'#7a4a22',shirt2:'#5a3618',hair:'#241a10',plate:'#8a5a2a', role:'Relatórios de campanha do Magalhães Gomes (Seguro). Google + Meta + Pipedrive, LIXO = persona errado.'},
+  {key:'diario',nome:'BENTO',tag:'RELAT. 20H',   setor:'ana', esc:null, x:720,y:365, shirt:'#d99a2c',shirt2:'#b3791a',hair:'#241a10',plate:'#cf8a2a', role:'Relatório Diário de Tráfego (SP + MG) · manda o resumo no WhatsApp todo dia às 20h'},
+  {key:'radar', nome:'NINA', tag:'RADAR',        setor:'ana', esc:null, x:920,y:365, shirt:'#b15cd6',shirt2:'#8a3fb0',hair:'#2a1a3a',plate:'#7b2cbf', role:'Radar de Conteúdo · varre notícias às 8h e sugere pautas pro Thainar'},
+  // CRIATIVO & COPY  (fluxo: cria → escreve → valida → saída)
+  {key:'creativemeta',nome:'CLARA',tag:'CRIATIVOS', setor:'cri', esc:null, x:335,y:532, shirt:'#d6457f',shirt2:'#a83260',hair:'#2a1a20',plate:'#c2557f', role:'Criativos Meta de lead qualificado no WhatsApp · filtro no criativo + diversidade Andromeda + gera a imagem via Higgsfield (com pré-custo). Início do fluxo.'},
+  {key:'redator',nome:'REDATOR',tag:'COPY',         setor:'cri', esc:null, x:585,y:532, shirt:'#3a6ea5',shirt2:'#274d75',hair:'#2a2018',plate:'#3a6ea5', role:'copy-leadgen-meta · escreve a copy que qualifica (PAS, qualificador no início, 3 ângulos). 2º do fluxo.'},
+  {key:'validador',nome:'VALIDADOR',tag:'🛡 GATE META',setor:'cri', esc:null, x:835,y:532, shirt:'#2e8b57',shirt2:'#1d6e41',hair:'#1a1a1a',plate:'#2e8b57', role:'compliance-meta · ÚLTIMO PORTÃO. Revisa contra a política oficial do Meta antes de subir. Nada chega em você sem passar por ele.'},
+  // EXECUÇÃO & AÇÕES
+  {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',  setor:'exe', esc:null, x:305,y:712, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', role:'Robô das Ações · todo ganho vira card no PÓS-FECHAMENTO e avisa o jurídico no Discord'},
+  {key:'executor',nome:'EXECUTOR',tag:'(futuro)', setor:'exe', esc:null, x:475,y:712, shirt:'#5a5f6e',shirt2:'#42454f',hair:'#2a2a2a',plate:'#5a5f6e', fixo:'zzz', role:'Executor de campanha · DESLIGADO por padrão (deny). Só age quando o William abrir a janela e aprovar item a item. Vê-lo acordar = a janela foi aberta.'},
+  // INFRA & ORQUESTRAÇÃO
+  {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', setor:'inf', esc:null, x:720,y:712, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', role:'Arquiteto de Agentes · monta agentes novos com o Gabarito ADAPTA + as skills certas injetadas'},
+  {key:'hubspot',nome:'HUGO', tag:'HUBSPOT',    setor:'inf', esc:'mg', x:860,y:712, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78', fixo:'zzz', role:'Integração HubSpot × Pipedrive da seguradora (Magalhães Gomes). Aguardando a seguradora.'},
+  {key:'botmag',nome:'GUI',  tag:'BOT MG',      setor:'inf', esc:'mg', x:990,y:712, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz', role:'Bot IA WhatsApp da Magalhães Gomes · atendimento (em dev, falta deploy no Fly.io)'},
 ];
-const PENDENCIAS=[
-  '#14 UTM Tracking — implementar nível 1',
-  '#16 Bot IA Magalhães — deploy Fly.io (vira agente 24/7)',
-  '#17 HubSpot × Pipedrive — aguardando acessos da seguradora',
-];
+
 const TVS={
   orcamento:['📺 Dashboard de Orçamento','Atualiza sozinho a cada 30 min (GitHub Actions).','https://silvapimentadireitomedico-cpu.github.io/gestao-trafego-sp-x9k4/'],
   juridico:['📺 Dashboard Jurídico','Na TV do escritório 24/7, atualiza a cada 30s.','https://silvapimentadireitomedico-cpu.github.io/dashboard-juridico-silva-pimenta/'],
@@ -91,207 +95,141 @@ const TVS={
 
 // ---- helpers de desenho ----
 function r(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x|0,y|0,w|0,h|0); }
-function ro(x,y,w,h,c,o=2,oc='#14101e'){ r(x-o,y-o,w+o*2,h+o*2,oc); r(x,y,w,h,c); } // bloco com contorno
+function ro(x,y,w,h,c,o=2,oc='#14101e'){ r(x-o,y-o,w+o*2,h+o*2,oc); r(x,y,w,h,c); }
 function shadow(cx,cy,w){ ctx.fillStyle='rgba(0,0,0,.18)'; ctx.beginPath(); ctx.ellipse(cx,cy,w,w*0.32,0,0,7); ctx.fill(); }
-function text(s,x,y,size,c,align='center',weight=700){ ctx.font=weight+' '+Math.round(size*1.5)+"px Inter, system-ui, Arial";
-  ctx.textAlign=align; ctx.textBaseline='alphabetic';
-  ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillText(s,x+0.7,y+0.7); ctx.fillStyle=c; ctx.fillText(s,x,y); }
+function text(s,x,y,size,c,align='center',weight=700){ ctx.font=weight+' '+Math.round(size*1.5)+"px Inter, system-ui, Arial"; ctx.textAlign=align; ctx.textBaseline='alphabetic'; ctx.fillStyle='rgba(0,0,0,.5)'; ctx.fillText(s,x+0.7,y+0.7); ctx.fillStyle=c; ctx.fillText(s,x,y); }
 
-// ---- piso xadrez ----
 function drawFloor(){
-  const T=32;
-  for(let j=0;j<Math.ceil(H/T);j++) for(let i=0;i<Math.ceil(W/T);i++){
-    r(i*T,j*T,T,T,(i+j)%2?'#a8a8b0':'#9a9aa2');
-  }
-  // faixa de parede no topo
+  const T=34;
+  for(let j=0;j<Math.ceil(H/T);j++) for(let i=0;i<Math.ceil(W/T);i++){ r(i*T,j*T,T,T,(i+j)%2?'#a8a8b0':'#9a9aa2'); }
   r(0,0,W,84,'#7d7f8c'); r(0,84,W,5,'#5a5c68');
-  // rodapé
-  r(0,80,W,4,'#6a6c78');
 }
 
-// ---- personagem sentado ----
+// placa de nome + anel do escritório
+function nameTag(ag,cx,topY){
+  const npW=Math.max(ag.nome.length*11+16, ag.tag.length*6+16, 70);
+  if(ag.esc){ r(cx-npW/2-4, topY-4, npW+8, 34, ESC[ag.esc]); } // anel do escritório
+  ro(cx-npW/2, topY, npW, 26, ag.plate, 2);
+  r(cx-npW/2, topY+20, npW, 6, 'rgba(0,0,0,.28)');
+  text(ag.nome, cx, topY+12, 8, '#fff');
+  text(ag.tag,  cx, topY+23, 4.6, '#ffe9b0');
+}
+
+function drawHeadTorso(ag,x,y,sleeping){
+  ro(x-23,y+4,46,24,ag.shirt,2); r(x-23,y+16,46,12,ag.shirt2);
+  ro(x-30,y+8,9,18,ag.shirt,2); ro(x+21,y+8,9,18,ag.shirt,2);
+  r(x-5,y-2,10,8,'#e0a578');
+  ro(x-14,y-28,28,26,'#e8b88a',2);
+  r(x-16,y-32,32,11,ag.hair); r(x-16,y-32,5,18,ag.hair); r(x+11,y-32,5,18,ag.hair);
+  if(sleeping){ r(x-9,y-16,7,2,'#14101e'); r(x+3,y-16,7,2,'#14101e'); }
+  else { r(x-9,y-18,5,5,'#14101e'); r(x+4,y-18,5,5,'#14101e'); }
+  r(x-4,y-8,8,2,'#b06a4a');
+}
+
+// agente na MESA (ativo / ocioso-na-mesa / erro)
 function drawWorker(ag,t){
-  const x=ag.x, y=ag.y;
+  const x=ag.x,y=ag.y;
   shadow(x,y+58,52);
-  // ---- corpo / cabeça (atrás da mesa) ----
-  const bob = ag.estado==='typing' ? Math.sin(t/110)*1.5 : (ag.estado==='zzz'? 0 : Math.sin(t/600)*0.6);
-  const hy = y-22+bob;
-  // ombros (camisa)
-  ro(x-26,hy+16,52,26,ag.shirt,2);
-  r(x-26,hy+30,52,12,ag.shirt2); // sombra inferior camisa
-  // braços
-  ro(x-32,hy+20,10,20,ag.shirt,2); ro(x+22,hy+20,10,20,ag.shirt,2);
-  // pescoço
-  r(x-5,hy+12,10,8,'#e0a578');
-  // cabeça
-  ro(x-15,hy-14,30,28,'#e8b88a',2);
-  // cabelo
-  r(x-17,hy-18,34,12,ag.hair); r(x-17,hy-18,5,20,ag.hair); r(x+12,hy-18,5,20,ag.hair);
-  // olhos
-  if(ag.estado==='zzz'){ r(x-9,hy-2,8,2,'#14101e'); r(x+2,hy-2,8,2,'#14101e'); }
-  else { r(x-9,hy-4,5,5,'#14101e'); r(x+4,hy-4,5,5,'#14101e'); }
-  // boca
-  r(x-4,hy+6,8,2,'#b06a4a');
-  // ---- mesa (na frente) ----
+  const bob = ag.estado==='typing'?Math.sin(t/110)*1.5:Math.sin(t/600)*0.6;
+  const hy=y-22+bob;
+  drawHeadTorso(ag,x,hy+12,false);
   const dy=y+24;
-  ro(x-50,dy,100,30,'#8a5a31',2);          // tampo
-  r(x-50,dy+22,100,8,'#6d4423');           // borda
-  r(x-46,dy+30,10,18,'#5a3a1e'); r(x+36,dy+30,10,18,'#5a3a1e'); // pernas
-  // monitor sobre a mesa
-  const scr = ag.estado==='erro'?'#ff4d4d': ag.estado==='typing'?'#36c2ff': ag.estado==='zzz'?'#2a3050':'#3DDC84';
+  ro(x-50,dy,100,30,'#8a5a31',2); r(x-50,dy+22,100,8,'#6d4423');
+  r(x-46,dy+30,10,18,'#5a3a1e'); r(x+36,dy+30,10,18,'#5a3a1e');
+  const scr= ag.estado==='erro'?'#ff4d4d': ag.estado==='typing'?'#36c2ff': ag.estado==='zzz'?'#2a3050':'#3DDC84';
   ro(x-22,dy-22,44,28,'#15151f',2);
-  const flick = ag.estado==='typing' ? (Math.sin(t/120)>0?1:.6) : 1;
-  ctx.globalAlpha = ag.estado==='zzz'?.5:flick; r(x-18,dy-18,36,20,scr); ctx.globalAlpha=1;
-  r(x-3,dy+6,6,4,'#15151f'); r(x-8,dy+10,16,3,'#15151f'); // pé do monitor
-  // teclado + mãos digitando
+  const flick= ag.estado==='typing'?(Math.sin(t/120)>0?1:.6):1;
+  ctx.globalAlpha=flick; r(x-18,dy-18,36,20,scr); ctx.globalAlpha=1;
+  r(x-3,dy+6,6,4,'#15151f'); r(x-8,dy+10,16,3,'#15151f');
   r(x-16,dy+10,32,6,'#d9d9e2');
-  const hpush = ag.estado==='typing' ? Math.sin(t/90)*2 : 0;
-  r(x-14,dy+8+hpush,8,5,'#e8b88a'); r(x+6,dy+8-hpush,8,5,'#e8b88a');
-  // café (idle)
+  const hp= ag.estado==='typing'?Math.sin(t/90)*2:0;
+  r(x-14,dy+8+hp,8,5,'#e8b88a'); r(x+6,dy+8-hp,8,5,'#e8b88a');
   if(ag.estado==='idle'){ r(x+34,dy-6,9,11,'#f4ead2'); r(x+43,dy-3,3,5,'#c9b48c'); }
-  // ---- placa: NOME (linha 1) + FUNÇÃO (linha 2) ----
-  const npW = Math.max(ag.nome.length*11+16, ag.tag.length*6+14, 64);
-  ro(x-npW/2, hy-52, npW, 26, ag.plate, 2);
-  r(x-npW/2, hy-32, npW, 6, 'rgba(0,0,0,.28)');   // faixa da função
-  text(ag.nome, x, hy-40, 8, '#fff');
-  text(ag.tag,  x, hy-29, 5, '#ffe9b0');
-  // ---- status flutuante ----
-  drawStatus(ag, x, hy-66, t);
-  // hit box
-  ag._hit={x:x-50,y:hy-54,w:100,h:y+74-(hy-54)};
+  nameTag(ag,x,hy-52);
+  drawStatus(ag,x,hy-66,t);
+  ag._hit={x:x-50,y:hy-58,w:100,h:y+74-(hy-58)};
+}
+
+// agente FORA da mesa: jogando ping-pong (idle) ou no sofá (dormindo)
+function drawLounger(ag,x,y,mode,t){
+  shadow(x,y+30,24);
+  const sl= mode==='sofa';
+  drawHeadTorso(ag,x,y,sl);
+  if(mode==='pingpong'){ const sw=Math.sin(t/130)*3; r(x+20,y+2+sw,4,11,'#7a4a22'); ro(x+16,y-9+sw,13,12,'#c0392b',1); }
+  nameTag(ag,x,y-44);
+  if(sl){ text('z',x+18,y-30-((t/400)%12),8,'#9bb7ff'); text('Z',x+25,y-38-((t/300)%16),10,'#bcd0ff'); }
+  ag._hit={x:x-24,y:y-46,w:48,h:82};
 }
 
 function drawStatus(ag,x,y,t){
-  if(ag.estado==='typing'){ // engrenagem girando + balão
-    drawGear(x+30, y+6, t);
-    bubble(x,y,'#1b1f33','#5fd0ff', ['•','•','•'][Math.floor(t/220)%3]==='•'?'• • •':'• • •');
-  } else if(ag.estado==='erro'){
-    const sh=Math.sin(t/70)*2;
-    bubble(x+sh,y,'#3a1012','#ff6b6b','! ERRO');
-  } else if(ag.estado==='zzz'){
-    text('z',x+18,y+2-((t/400)%14),9,'#9bb7ff');
-    text('Z',x+26,y-6-((t/300)%18),11,'#bcd0ff');
-  } else { // idle: balãozinho de café leve
-    bubble(x,y,'#13331f','#7be0a0','☕');
-  }
+  if(ag.estado==='typing'){ drawGear(x+30,y+6,t); bubble(x,y,'#1b1f33','#5fd0ff','• • •'); }
+  else if(ag.estado==='erro'){ const sh=Math.sin(t/70)*2; bubble(x+sh,y,'#3a1012','#ff6b6b','! ERRO'); }
+  else if(ag.estado==='zzz'){ text('z',x+14,y+2-((t/400)%12),9,'#9bb7ff'); text('Z',x+22,y-6-((t/300)%16),11,'#bcd0ff'); }
+  else { bubble(x,y,'#13331f','#7be0a0','☕'); }
 }
-function bubble(x,y,bg,fg,txt){
-  const w=Math.max(40, txt.length*8+18);
-  ro(x-w/2,y-16,w,18,bg,2,'#0c0f18');
-  text(txt,x,y-3,8,fg);
-  r(x-3,y+2,8,4,bg); // rabinho
-}
-function drawGear(x,y,t){
-  ctx.save(); ctx.translate(x,y); ctx.rotate((t/600)%(Math.PI*2));
-  ctx.fillStyle='#5aa9ff';
-  for(let i=0;i<8;i++){ ctx.rotate(Math.PI/4); ctx.fillRect(-2,-9,4,5); }
-  ctx.restore();
-  r(x-5,y-5,10,10,'#7bc0ff'); r(x-2,y-2,4,4,'#1b2236');
-}
+function bubble(x,y,bg,fg,txt){ const w=Math.max(40,txt.length*8+18); ro(x-w/2,y-16,w,18,bg,2,'#0c0f18'); text(txt,x,y-3,8,fg); r(x-3,y+2,8,4,bg); }
+function drawGear(x,y,t){ ctx.save(); ctx.translate(x,y); ctx.rotate((t/600)%(Math.PI*2)); ctx.fillStyle='#5aa9ff'; for(let i=0;i<8;i++){ ctx.rotate(Math.PI/4); ctx.fillRect(-2,-9,4,5); } ctx.restore(); r(x-5,y-5,10,10,'#7bc0ff'); r(x-2,y-2,4,4,'#1b2236'); }
 
 // ---- decorações ----
-function plant(x,y){ shadow(x,y+16,16); ro(x-9,y,18,14,'#a3502e',2); r(x-7,y+2,14,4,'#7c3a20');
-  ro(x-12,y-20,24,22,'#2e9d52',2); r(x-3,y-20,6,22,'#1d6e36'); }
-function pottedTall(x,y){ shadow(x,y+22,14); ro(x-8,y,16,22,'#c0703a',2);
-  r(x-3,y-30,6,30,'#1d6e36'); r(x-12,y-22,10,5,'#2e9d52'); r(x+2,y-30,10,5,'#2e9d52'); r(x-14,y-12,12,5,'#2e9d52'); }
-function window_(x,y){ ro(x-40,y,80,46,'#5a5c68',3); r(x-36,y+4,72,38,'#8fd0f5');
-  r(x-36,y+22,72,4,'#5a5c68'); r(x-2,y+4,4,38,'#5a5c68');
-  r(x-30,y+9,16,6,'#cfeaff'); r(x-30,y+9,16,6,'rgba(255,255,255,.5)'); }
-function tvWall(x,y,key,label){ shadow(x,y+30,30);
-  ro(x-34,y,68,40,'#0c0c14',3); r(x-30,y+4,60,28,'#10202a');
-  // barrinhas
-  r(x-24,y+9,40,4,'#ffd54a'); r(x-24,y+16,28,4,'#3DDC84'); r(x-24,y+23,34,4,'#7bb6ff');
-  r(x+24,y+3,4,4,'#3DDC84'); // led
-  text(label,x,y+54,7,'#d8c8ea');
-  HITS.push({x:x-34,y:y,w:68,h:40,tv:key});
-}
-function vending(x,y){ shadow(x,y+56,24); ro(x-26,y,52,72,'#c0202a',3);
-  r(x-22,y+4,34,42,'#1b1f2e'); // vidro
-  const cols=['#ff5d5d','#ffd54a','#5fd0ff','#7be0a0'];
-  for(let j=0;j<4;j++)for(let i=0;i<3;i++) r(x-19+i*11,y+8+j*9,8,6,cols[(i+j)%4]);
-  r(x+14,y+6,8,40,'#2a2f3e'); // painel
-  text('SNAX',x-4,y+62,6,'#ffd54a'); }
-function bookshelf(x,y){ shadow(x,y+34,30); ro(x-30,y,60,44,'#7a4a22',3);
-  const bc=['#c0392b','#2980b9','#27ae60','#e0a82a','#8e44ad','#c0392b','#16a085'];
-  for(let s=0;s<2;s++) for(let i=0;i<7;i++){ r(x-26+i*8,y+4+s*20,6,16,bc[(i+s)%7]); }
-  r(x-30,y+22,60,3,'#5a3618'); }
-function pingpong(x,y){ shadow(x,y+22,46); ro(x-46,y-14,92,34,'#2e8b57',3);
-  r(x-2,y-14,4,34,'#fff'); r(x-46,y+2,92,3,'#fff');
-  r(x-50,y+18,6,16,'#3a2a18'); r(x+44,y+18,6,16,'#3a2a18'); }
-function sofa(x,y){ shadow(x,y+20,40); ro(x-44,y,88,26,'#ffd54a',3); r(x-44,y-12,88,14,'#f0c63a');
-  r(x-44,y,8,26,'#e0b62a'); r(x+36,y,8,26,'#e0b62a'); }
-function easel(x,y){ shadow(x,y+30,22); r(x-2,y,4,40,'#5a3a1e'); r(x-22,y+38,8,16,'#5a3a1e'); r(x+14,y+38,8,16,'#5a3a1e');
-  ro(x-24,y-26,48,34,'#f4ead2',3); // tela
-  ctx.strokeStyle='#c0392b'; ctx.lineWidth=2;
-  ctx.beginPath(); ctx.arc(x,y-9,11,0,7); ctx.stroke(); ctx.beginPath(); ctx.arc(x,y-9,5,0,7); ctx.stroke();
-  r(x-1,y-10,2,2,'#c0392b'); }
-function mascote(x,y,t){ shadow(x,y+14,14); const b=Math.sin(t/300)*2;
-  ro(x-10,y-10+b,20,20,'#e0392b',2); r(x-7,y-5+b,5,5,'#fff'); r(x+2,y-5+b,5,5,'#fff');
-  r(x-6,y-4+b,2,2,'#000'); r(x+3,y-4+b,2,2,'#000'); r(x-12,y-4+b,3,8,'#e0392b'); r(x+9,y-4+b,3,8,'#e0392b'); }
-function whiteboard(x,y){ ro(x-46,y,92,30,'#e8a33a',3); r(x-40,y+5,80,20,'#fff');
-  r(x-34,y+10,40,3,'#b0b0c0'); r(x-34,y+16,54,3,'#b0b0c0'); }
+function plant(x,y){ shadow(x,y+16,16); ro(x-9,y,18,14,'#a3502e',2); r(x-7,y+2,14,4,'#7c3a20'); ro(x-12,y-20,24,22,'#2e9d52',2); r(x-3,y-20,6,22,'#1d6e36'); }
+function pottedTall(x,y){ shadow(x,y+22,14); ro(x-8,y,16,22,'#c0703a',2); r(x-3,y-30,6,30,'#1d6e36'); r(x-12,y-22,10,5,'#2e9d52'); r(x+2,y-30,10,5,'#2e9d52'); r(x-14,y-12,12,5,'#2e9d52'); }
+function window_(x,y){ ro(x-40,y,80,46,'#5a5c68',3); r(x-36,y+4,72,38,'#8fd0f5'); r(x-36,y+22,72,4,'#5a5c68'); r(x-2,y+4,4,38,'#5a5c68'); r(x-30,y+9,16,6,'#cfeaff'); }
+function whiteboard(x,y){ ro(x-46,y,92,30,'#e8a33a',3); r(x-40,y+5,80,20,'#fff'); r(x-34,y+10,40,3,'#b0b0c0'); r(x-34,y+16,54,3,'#b0b0c0'); }
+function vending(x,y){ shadow(x,y+56,24); ro(x-26,y,52,72,'#c0202a',3); r(x-22,y+4,34,42,'#1b1f2e'); const c=['#ff5d5d','#ffd54a','#5fd0ff','#7be0a0']; for(let j=0;j<4;j++)for(let i=0;i<3;i++) r(x-19+i*11,y+8+j*9,8,6,c[(i+j)%4]); r(x+14,y+6,8,40,'#2a2f3e'); text('SNAX',x-4,y+62,6,'#ffd54a'); }
+function tvWall(x,y,key,label){ shadow(x,y+30,30); ro(x-34,y,68,40,'#0c0c14',3); r(x-30,y+4,60,28,'#10202a'); r(x-24,y+9,40,4,'#ffd54a'); r(x-24,y+16,28,4,'#3DDC84'); r(x-24,y+23,34,4,'#7bb6ff'); r(x+24,y+3,4,4,'#3DDC84'); text(label,x,y+54,7,'#d8c8ea'); HITS.push({x:x-34,y:y,w:68,h:40,tv:key}); }
+function pingpong(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,48); ro(x-48,y-14,96,34,'#2e8b57',3); r(x-2,y-14,4,34,'#fff'); r(x-48,y+2,96,3,'#fff'); r(x-52,y+18,6,16,'#3a2a18'); r(x+46,y+18,6,16,'#3a2a18'); if(!on) text('🏓',x,y+6,9,'#cfeee0'); ctx.globalAlpha=1; }
+function sofaDeco(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,52); ro(x-56,y,112,28,'#ffd54a',3); r(x-56,y-14,112,16,'#f0c63a'); r(x-56,y,9,28,'#e0b62a'); r(x+47,y,9,28,'#e0b62a'); if(!on) text('🛋️',x,y+18,9,'#7a6a18'); ctx.globalAlpha=1; }
 
-// ---- Mauro (chefe, PATRULHA entre os funcionários) ----
-// circuito que passa entre a fileira de cima (y~210) e a de baixo (y~400) e volta
-const PATROL=[{x:235,y:300},{x:715,y:300},{x:715,y:500},{x:300,y:500},{x:235,y:430}];
-const mauro={x:235,y:300, _px:0,_py:0, face:1, alvo:null, wp:0, pausa:0};
+// ---- Mauro: patrulha pelos 5 setores ----
+const PATROL=[{x:390,y:300},{x:880,y:300},{x:900,y:560},{x:585,y:600},{x:390,y:560},{x:235,y:430}];
+const mauro={x:390,y:300,_px:0,_py:0,face:1,alvo:null,wp:0,pausa:0};
 function drawMauro(t){
-  const x=mauro.x,y=mauro.y;
-  shadow(x,y+26,20);
-  const moving=Math.abs(mauro.x-mauro._px)+Math.abs(mauro.y-mauro._py)>0.4;
-  const step = moving? Math.sin(t/120)*3 : 0;
-  // pernas
+  const x=mauro.x,y=mauro.y; shadow(x,y+26,20);
+  const moving=Math.abs(mauro.x-mauro._px)+Math.abs(mauro.y-mauro._py)>0.4; const step=moving?Math.sin(t/120)*3:0;
   r(x-8,y+12+Math.max(0,step),7,16,'#2b2740'); r(x+1,y+12+Math.max(0,-step),7,16,'#2b2740');
-  // corpo (terno)
-  ro(x-13,y-8,26,24,'#22304a',2); r(x-2,y-6,4,18,'#ffd54a'); // gravata
-  // braços
+  ro(x-13,y-8,26,24,'#22304a',2); r(x-2,y-6,4,18,'#ffd54a');
   ro(x-17,y-6,6,18,'#22304a',2); ro(x+11,y-6,6,18,'#22304a',2);
-  // cabeça
-  ro(x-11,y-30,22,22,'#e8b88a',2);
-  r(x-13,y-34,26,9,'#2a2018'); // cabelo
-  if(mauro.face>0){ r(x+1,y-24,4,4,'#14101e'); r(x-7,y-24,4,4,'#14101e'); }
-  else { r(x-5,y-24,4,4,'#14101e'); }
-  // nome
+  ro(x-11,y-30,22,22,'#e8b88a',2); r(x-13,y-34,26,9,'#2a2018');
+  if(mauro.face>0){ r(x+1,y-24,4,4,'#14101e'); r(x-7,y-24,4,4,'#14101e'); } else { r(x-5,y-24,4,4,'#14101e'); }
   ro(x-30,y-52,60,15,'#3a2c12',2); text('MAURO',x,y-41,7,'#ffd54a');
-  // status
-  if(mauro.alvo){ bubble(x,y-58,'#3a1012','#ff8a8a','SOCORRO!'); }
-  else { drawGear(x+22,y-44,t); }
-  mauro._px=x; mauro._py=y;
-  mauro._hit={x:x-22,y:y-54,w:44,h:84};
+  if(mauro.alvo){ bubble(x,y-58,'#3a1012','#ff8a8a','SOCORRO!'); } else { drawGear(x+22,y-44,t); }
+  mauro._px=x; mauro._py=y; mauro._hit={x:x-22,y:y-54,w:44,h:84};
 }
 
-// ---- armário de arquivos (guarda as pendências) ----
-const armario={x:96,y:600};
+// ---- armário de arquivos (lê pendencias.js) ----
+const armario={x:100,y:730};
+function nPend(){ return (window.PENDENCIAS||[]).length; }
 function drawArmario(t){
   const {x,y}=armario; shadow(x,y+8,30);
-  ro(x-26,y-86,52,90,'#8f969f',3);          // corpo metálico
-  r(x-26,y-86,52,7,'#aeb4bc');              // topo
-  r(x-26,y-2,52,6,'#5f656d');               // base
-  for(let i=0;i<4;i++){ const gy=y-80+i*21;  // 4 gavetas
-    r(x-22,gy,44,18,'#9ba1aa'); r(x-22,gy+15,44,3,'#6a7079');
-    r(x-9,gy+6,18,5,'#3a3f48');              // puxador
-    r(x-5,gy+2,10,2,'#c7cdd4');              // brilho
-  }
-  ro(x-34,y+8,68,16,'#3a2c12',2); text('📁 '+PENDENCIAS.length+' ARQ.',x,y+20,7,'#ffd98a');
-  armario._hit={x:x-34,y:y-86,w:68,h:110};
+  ro(x-26,y-86,52,90,'#8f969f',3); r(x-26,y-86,52,7,'#aeb4bc'); r(x-26,y-2,52,6,'#5f656d');
+  for(let i=0;i<4;i++){ const gy=y-80+i*21; r(x-22,gy,44,18,'#9ba1aa'); r(x-22,gy+15,44,3,'#6a7079'); r(x-9,gy+6,18,5,'#3a3f48'); r(x-5,gy+2,10,2,'#c7cdd4'); }
+  ro(x-36,y+8,72,16,'#3a2c12',2); text('📁 '+nPend()+' PENDÊNCIAS',x,y+20,6.5,'#ffd98a');
+  armario._hit={x:x-36,y:y-86,w:72,h:112};
 }
-// ---- bebedouro (decoração à direita) ----
-function waterCooler(x,y){ shadow(x,y+30,14); ro(x-13,y-2,26,34,'#e6ecf2',2);
-  ro(x-11,y-26,22,24,'#7cc0ee',2); r(x-7,y-22,8,8,'rgba(255,255,255,.5)');
-  r(x-5,y+12,10,7,'#3a7fb0'); r(x-13,y+30,26,4,'#aab0b8'); }
 
-// ---- FPS ----
-let frames=0,fps=0,lastFps=performance.now();
-function drawFps(now){ frames++; if(now-lastFps>500){ fps=Math.round(frames*1000/(now-lastFps)); frames=0; lastFps=now; }
-  ro(8,8,108,20,'#0c1018',2); text(fps+' FPS',62,22,9,fps>=45?'#7be07b':'#ffd54a'); }
+// ---- setores (por função, com acento) ----
+function setorBox(x,y,w,h,cor,label){
+  ctx.fillStyle=cor+'14'; ctx.fillRect(x,y,w,h);
+  ctx.strokeStyle=cor; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(x,y,w,h); ctx.setLineDash([]);
+  const lw=label.length*7.2+22; r(x,y-2,lw,20,cor); text(label,x+lw/2,y+13,7,'#0b1118');
+}
+function drawSetores(){
+  setorBox(205,128,350,292,'#c6864f','CAPTAÇÃO & CADASTRO');
+  setorBox(615,128,430,292,'#13a89a','ANÁLISE & RELATÓRIO');
+  setorBox(205,430,840,166,'#d6457f','CRIATIVO & COPY');
+  setorBox(205,610,350,166,'#9a6ad0','EXECUÇÃO & AÇÕES');
+  setorBox(615,610,430,166,'#6b7a8f','INFRA & ORQUESTRAÇÃO');
+  // fluxo do criativo: Clara ▶ Redator ▶ Validador ▶ saída (Validador é o último portão)
+  flowArrow(460,532); flowArrow(710,532);
+  text('▶ SAÍDA p/ você',975,536,7,'#2e8b57');
+  ctx.strokeStyle='#2e8b57'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(900,531); ctx.lineTo(958,531); ctx.stroke();
+}
+function flowArrow(x,y){ ctx.fillStyle='#d6457f'; ctx.font='800 22px Inter,Arial'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('▶',x,y); ctx.textBaseline='alphabetic'; }
 
-// ---- HITS (clique) ----
-let HITS=[];
-
-// ---- estado / dados ----
-let DADOS=null;
-function setEstado(key,estado,detalhe){ const a=AGENTES.find(x=>x.key===key); if(!a)return; a.estado=estado; a.detalhe=detalhe; }
-AGENTES.forEach(a=>a.estado='idle');
+// ---- estado ----
+let HITS=[]; let DADOS=null;
+function setEstado(key,estado,detalhe){ const a=AGENTES.find(x=>x.key===key); if(a){ a.estado=estado; a.detalhe=detalhe; } }
+AGENTES.forEach(a=>a.estado = a.fixo==='zzz'?'zzz':'idle');
 
 async function atualizar(){
   try{
@@ -300,134 +238,126 @@ async function atualizar(){
     (DADOS.agentes||[]).forEach(a=>{
       let e='idle';
       if(!a.ativo)e='zzz';
-      else if(a.ultima){ const age=(Date.now()-new Date(a.ultima.ts).getTime())/60000;
-        if(a.ultima.status===3&&age<60)e='erro'; else if(age<10)e='typing'; }
+      else if(a.ultima){ const age=(Date.now()-new Date(a.ultima.ts).getTime())/60000; if(a.ultima.status===3&&age<60)e='erro'; else if(age<10)e='typing'; }
       if(e==='erro')erroKey=a.key;
-      setEstado(a.key,e,a.ultima?`Última execução: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} operações`:'sem execuções recentes');
+      setEstado(a.key,e,a.ultima?`Última: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} ops`:'sem execuções recentes');
     });
     setEstado('hubspot','zzz','Em desenho — aguardando o formulário e o card de teste da seguradora (cartão 17). 😴');
-    // Rita (relatórios) não vem do Make. A automação até as 8h ainda é PENDENTE: hoje os relatórios são gerados sob demanda.
-    setEstado('relatorios','idle','📊 Relatórios de campanha (Google + Meta, benchmarks BR + quality gates). Usa as skills de análise + playbook do produto. Geração automática até 8h ainda PENDENTE — hoje sob demanda. Cadência: seg Aux · ter FIES · qua Seguro · qui Direito Médico.');
-    // agentes autônomos (não-Make): estado fixo + descrição com o que fazem
-    setEstado('acoes','idle','🤖 Autônomo. Quando um deal é marcado GANHO em qualquer funil, cria o card no PÓS-FECHAMENTO (Coletando Documentos) e posta no Discord #✅-ações-sp. (cartão 19)');
-    setEstado('diario','idle','📥 Autônomo (Tarefa do Windows). Todo dia às 20h monta o resumo de tráfego (leads, gasto, CPL, vendas) e manda no WhatsApp. (cartão 21)');
-    setEstado('radar','idle','📰 Autônomo (nuvem, 08:00). Varre notícias e sugere pautas de conteúdo pro Thainar no Discord. (cartão 18)');
-    setEstado('arquiteto','idle','🏗️ É só pedir "cria um agente que faz X" que eu invoco ele: avalia a tarefa, escolhe as skills certas e monta o agente já com o Gabarito ADAPTA + as skills injetadas.');
-    setEstado('botmag','zzz','📱 Atendimento WhatsApp da Magalhães Gomes (Digisac + Claude). Sprints prontos em dev local; falta o deploy no Fly.io pra virar 24/7. (cartão 16) 😴');
-    // contagem sobre TODOS os agentes (não só os do Make)
-    const cnt={typing:0,idle:0,erro:0,zzz:0};
-    AGENTES.forEach(a=>{ cnt[a.estado]=(cnt[a.estado]||0)+1; });
-    document.getElementById('hWork').textContent=cnt.typing;
-    document.getElementById('hIdle').textContent=cnt.idle;
-    document.getElementById('hSleep').textContent=cnt.zzz;
-    document.getElementById('hErr').textContent=cnt.erro;
-    document.getElementById('hTime').textContent=new Date().toLocaleTimeString('pt-BR');
-    const ag=AGENTES.find(a=>a.key===erroKey);
-    mauro.alvo = ag? {x:ag.x,y:ag.y} : null;
-    document.getElementById('hBoss').textContent = ag? 'socorrendo '+ag.nome : 'vigiando';
-    document.getElementById('toast').textContent = cnt.erro>0? '⚠️ Mauro foi até o agente com erro — clica nele' : '✅ tudo no ar · Mauro patrulhando · clique nos personagens pra ver o que cada um faz';
-  }catch(e){ document.getElementById('toast').textContent='falha ao falar com o Make: '+e; }
+    setEstado('rita-sp','idle','📊 Relatórios SP (Auxílio, FIES, Direito Médico). Google + Meta, benchmarks BR + quality gates. Automação até 8h: pendente (nuvem, trava no token). Sob demanda hoje.');
+    setEstado('rita-mg','idle','📊 Relatórios MG (Seguro). Google + Meta + Pipedrive, cruzamento de lead real, LIXO = persona errado. Mesma automação (nuvem, pendente).');
+    const claraAtiva=(window.CLARA_IDEIAS||[]).length>0, redA=window.REDATOR_ULTIMA&&!window.REDATOR_ULTIMA.exemplo, valA=window.VALIDADOR_ULTIMO&&!window.VALIDADOR_ULTIMO.exemplo;
+    setEstado('creativemeta', claraAtiva?'typing':'idle', claraAtiva?('🎨 ATIVA. Última entrega: '+window.CLARA_IDEIAS[0].produto+' · '+window.CLARA_IDEIAS[0].data+' ('+window.CLARA_IDEIAS[0].n+' peças). Clique pra ver as ideias.'):'🎨 creative-leadgen-meta: pronta. Peça "Clara, cria criativos de <produto>".');
+    setEstado('redator', redA?'typing':'idle', redA?('✍️ ATIVO. Última copy: '+window.REDATOR_ULTIMA.produto+' · '+window.REDATOR_ULTIMA.quando):'✍️ copy-leadgen-meta: pronto.');
+    setEstado('validador', valA?'typing':'idle', valA?('🛡 ATIVO. Último veredito: '+window.VALIDADOR_ULTIMO.veredito+' — '+window.VALIDADOR_ULTIMO.item+' · '+window.VALIDADOR_ULTIMO.quando):'🛡 compliance-meta: pronto.');
+    setEstado('acoes','idle','🤖 Autônomo. Deal GANHO em qualquer funil → card no PÓS-FECHAMENTO + Discord. (cartão 19)');
+    setEstado('diario','idle','📥 Autônomo (Tarefa Windows). Resumo de tráfego SP + MG no WhatsApp às 20h. (cartão 21)');
+    setEstado('radar','idle','📰 Autônomo (nuvem, 08:00). Pautas de conteúdo pro Thainar no Discord. (cartão 18)');
+    setEstado('arquiteto','idle','🏗️ Pede "cria um agente que faz X" que eu invoco ele: avalia, escolhe as skills e monta com o Gabarito ADAPTA.');
+    setEstado('botmag','zzz','📱 Atendimento WhatsApp do Magalhães Gomes (Digisac + Claude). Dev local; falta deploy no Fly.io. 😴');
+    setEstado('executor','zzz','🔒 DESLIGADO por padrão (deny). Quem executa mudança em campanha. Só acorda quando você abre a janela e aprova item a item. Vê-lo dormindo = a trava está de pé.');
+    const cnt={typing:0,idle:0,erro:0,zzz:0}; AGENTES.forEach(a=>cnt[a.estado]=(cnt[a.estado]||0)+1);
+    hWork.textContent=cnt.typing; hIdle.textContent=cnt.idle; hSleep.textContent=cnt.zzz; hErr.textContent=cnt.erro; hTime.textContent=new Date().toLocaleTimeString('pt-BR');
+    const ag=AGENTES.find(a=>a.key===erroKey); mauro.alvo= ag?{x:ag.x,y:ag.y}:null;
+    hBoss.textContent= ag?'socorrendo '+ag.nome:'vigiando todos';
+    toast.textContent= cnt.erro>0?'⚠️ Mauro foi até o agente com erro — clica nele':'✅ Mauro vigia todos os 5 setores · clique nos personagens pra ver o que cada um faz';
+  }catch(e){ toast.textContent='offline (sem feed do Make) · clique nos agentes mesmo assim'; }
 }
 
 // ---- loop ----
-function update(dt,t){
-  // Mauro patrulha entre as mesas; se há erro, vai até o agente e fica lá um tempo
+function update(dt){
   let dest;
-  if(mauro.alvo){ dest={x:mauro.alvo.x, y:mauro.alvo.y+72}; }
-  else {
-    dest=PATROL[mauro.wp];
-    if(Math.hypot(dest.x-mauro.x, dest.y-mauro.y)<10){
-      mauro.pausa+=dt;
-      if(mauro.pausa>700){ mauro.pausa=0; mauro.wp=(mauro.wp+1)%PATROL.length; } // pausa rápida pra "olhar"
-    }
-  }
-  const k=Math.min(1,dt*0.0032);
-  mauro.face = (dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
+  if(mauro.alvo){ dest={x:mauro.alvo.x,y:mauro.alvo.y+72}; }
+  else { dest=PATROL[mauro.wp]; if(Math.hypot(dest.x-mauro.x,dest.y-mauro.y)<10){ mauro.pausa+=dt; if(mauro.pausa>650){ mauro.pausa=0; mauro.wp=(mauro.wp+1)%PATROL.length; } } }
+  const k=Math.min(1,dt*0.0032); mauro.face=(dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
   mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
 }
-// ---- setores do escritório (áreas demarcadas no chão) ----
-function setorBox(x,y,w,h,cor,label){
-  ctx.fillStyle=cor+'1a'; ctx.fillRect(x,y,w,h);            // preenchimento translúcido
-  ctx.strokeStyle=cor; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(x,y,w,h); ctx.setLineDash([]);
-  const lw=label.length*7+22; r(x,y+h-20,lw,20,cor); text(label,x+lw/2,y+h-6,7,'#0b1118');  // faixa-título no rodapé (livre de placas)
-}
-function drawSetores(){
-  setorBox(230,148,512,492,'#4f86c6','ATENDIMENTO & AUTOMACOES');  // Téo,Aurora,Fábio,Sueli,Hugo + Doca,Bento,Nina
-  setorBox(752,170,224,470,'#13a89a','RELATORIOS / OPERACAO');     // Adão, Rita, Gui
-}
+
+// lounge: posições (faixa COPA embaixo)
+const PP=[{x:360,y:862},{x:455,y:862}]; const SOFA=[{x:790,y:862},{x:862,y:862},{x:934,y:862}];
 function draw(t){
-  HITS=[];
-  drawFloor();
-  drawSetores();
-  // parede topo
-  window_(360,18); vending(960,12); whiteboard(150,30);
-  for(let i=0;i<2;i++){ const fx=560+i*60; ro(fx-22,40,44,40,'#8f969f',2); r(fx-18,46,36,14,'#9ba1aa'); r(fx-18,62,36,14,'#9ba1aa'); r(fx-7,52,14,3,'#3a3f48'); r(fx-7,68,14,3,'#3a3f48'); }
-  // dashboards na parede esquerda (3 TVs)
-  tvWall(120,150,'orcamento','ORÇAMENTO'); tvWall(120,250,'juridico','JURÍDICO'); tvWall(120,350,'encerr','ENCERRAMENTOS');
-  // plantas e mobília
-  pottedTall(245,110); plant(60,520); plant(960,200); pottedTall(905,150);
-  pingpong(150,600); sofa(120,690); easel(660,665); mascote(45,700,t);
-  bookshelf(958,610); waterCooler(958,480);
+  HITS=[]; drawFloor(); drawSetores();
+  window_(360,18); whiteboard(150,32); vending(1120,12);
+  tvWall(120,170,'orcamento','ORÇAMENTO'); tvWall(120,300,'juridico','JURÍDICO'); tvWall(120,430,'encerr','ENCERR.');
+  plant(60,560); plant(1130,200);
+  // faixa COPA (descanso) — só enche com agente nela
+  ctx.fillStyle='#7a6a4a12'; ctx.fillRect(205,792,840,108); ctx.strokeStyle='#7a6a4a'; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(205,792,840,108); ctx.setLineDash([]);
+  { const lw='COPA · descanso'.length*7.2+22; r(205,790,lw,20,'#7a6a4a'); text('COPA · descanso',205+lw/2,803,7,'#0b1118'); }
+  // decoração = estado (Executor NUNCA sai da Execução: deny em pixel)
+  const idlers=AGENTES.filter(a=>a.estado==='idle'); const sleepers=AGENTES.filter(a=>a.estado==='zzz' && a.key!=='executor');
+  const ppPlayers= idlers.length>=2 ? idlers.slice(0,2):[]; const ppSet=new Set(ppPlayers.map(a=>a.key));
+  pingpong(408,858, ppPlayers.length>0); sofaDeco(862,858, sleepers.length>0);
   drawArmario(t);
-  // ATORES ordenados por y (profundidade): Mauro "entra" entre as fileiras de mesas
+  // atores ordenados por profundidade (y do desenho)
   const atores=[];
-  AGENTES.forEach(a=>atores.push({y:a.y+74, fn:()=>drawWorker(a,t)}));
+  AGENTES.forEach(a=>{
+    if(ppSet.has(a.key)){ const i=ppPlayers.indexOf(a); const p=PP[i]; atores.push({y:p.y, fn:()=>drawLounger(a,p.x,p.y,'pingpong',t)}); }
+    else if(a.estado==='zzz' && a.key!=='executor'){ const i=sleepers.indexOf(a); const p=SOFA[Math.min(i,SOFA.length-1)]; atores.push({y:p.y, fn:()=>drawLounger(a,p.x,p.y,'sofa',t)}); }
+    else { atores.push({y:a.y+74, fn:()=>drawWorker(a,t)}); }
+  });
   atores.push({y:mauro.y+26, fn:()=>drawMauro(t)});
   atores.sort((p,q)=>p.y-q.y).forEach(o=>o.fn());
-  // hits
-  AGENTES.forEach(a=>HITS.push({...a._hit,key:a.key}));
-  HITS.push({...mauro._hit,key:'mauro'});
-  HITS.push({...armario._hit,pilha:true});
+  AGENTES.forEach(a=>{ if(a._hit) HITS.push({...a._hit,key:a.key}); });
+  HITS.push({...mauro._hit,key:'mauro'}); HITS.push({...armario._hit,pilha:true});
 }
 let last=performance.now();
-function loop(now){ const dt=now-last; last=now; update(dt,now); draw(now); drawFps(now);
-  requestAnimationFrame(loop); }
+function loop(now){ const dt=now-last; last=now; update(dt); draw(now); requestAnimationFrame(loop); }
 
-// ---- clique ----
-let scale=1, ox=0, oy=0;
-const DPR=Math.min(window.devicePixelRatio||1, 2.5);
-function resize(){ const wrap=document.getElementById('wrap'); const aw=wrap.clientWidth, ah=wrap.clientHeight;
-  scale=Math.min(aw/W, ah/H)*0.98; cv.style.width=(W*scale)+'px'; cv.style.height=(H*scale)+'px';
-  // backing store em alta resolução (nitidez): coords-mundo W×H mapeadas por scale*DPR
-  cv.width=Math.round(W*scale*DPR); cv.height=Math.round(H*scale*DPR);
-  ctx.setTransform(scale*DPR,0,0,scale*DPR,0,0); ctx.imageSmoothingEnabled=true;
-  const rect=cv.getBoundingClientRect(); ox=rect.left; oy=rect.top; }
+// ---- resize / clique ----
+let scale=1; const DPR=Math.min(window.devicePixelRatio||1,2.5);
+function resize(){ const wrap=document.getElementById('wrap'); scale=Math.min(wrap.clientWidth/W,wrap.clientHeight/H)*0.98; cv.style.width=(W*scale)+'px'; cv.style.height=(H*scale)+'px'; cv.width=Math.round(W*scale*DPR); cv.height=Math.round(H*scale*DPR); ctx.setTransform(scale*DPR,0,0,scale*DPR,0,0); ctx.imageSmoothingEnabled=true; }
 addEventListener('resize',resize);
-const ov=document.getElementById('ov'), md=document.getElementById('md');
+const ov=document.getElementById('ov'),md=document.getElementById('md');
 function abrir(html){ md.innerHTML=html+'<button class="fechar" onclick="document.getElementById(\'ov\').classList.remove(\'show\')">FECHAR</button>'; ov.classList.add('show'); }
 ov.addEventListener('click',e=>{ if(e.target===ov) ov.classList.remove('show'); });
-cv.addEventListener('pointerdown',e=>{
-  const rect=cv.getBoundingClientRect();
-  const mx=(e.clientX-rect.left)/scale, my=(e.clientY-rect.top)/scale;
-  for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i];
-    if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
-      if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
-      if(h.pilha){ abrir(`<p style="margin-bottom:12px"><a href="quadro-status.html" target="_blank" style="display:inline-block;background:#e9c98f;color:#2a2310;font-weight:800;padding:10px 16px;border-radius:9px;text-decoration:none">📋 Abrir o Quadro de Status (feito + pendências) →</a></p><h2 style="font-size:14px">📂 Pendências — falta automatizar</h2><ul>${PENDENCIAS.map(p=>`<li>${p}</li>`).join('')}</ul><p>Detalhes no <a href="../automacoes/" target="_blank">painel de automações</a>.</p>`); return; }
-      if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia os agentes <b>24/7 na nuvem</b>. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Quando dá erro, ele <b>vai até a mesa do agente</b> (é o que você vê).</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
-      if(h.key==='relatorios'){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none'; abrir(`<h2>📊 Rita · Relatórios de Campanha</h2>
-        <p class="role">Análise cirúrgica Google + Meta · benchmarks BR + Quality Gates. Clique pra abrir:</p>
-        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
-          <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas (comercial) <span style="font-weight:400;font-size:11px;opacity:.85">tempo real · números reais ✓</span></a>
-          <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 15/06 ✓</span></a>
-          <a href="${R}fies.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 16/06 ✓</span></a>
-          <a href="${R}seguro.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 17/06 ✓</span></a>
-          <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.7">quinta · em breve</span></span>
-        </div>
-        <p style="margin-top:12px"><a href="${R}historico.html" target="_blank" style="color:#5fe39a;font-weight:700;text-decoration:none">📋 Histórico de relatórios e mudanças →</a></p>
-        <p class="role" style="margin-top:6px">Cada relatório traz a data da última edição e separa Google × Meta com benchmarks BR. O histórico guarda todas as recomendações e o status (aguardando / aprovado / aplicado).</p>`); return; }
-      const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
-      abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.role}</span></h2><p>${a.detalhe||'…'}</p>
-        ${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}
-        <p class="role">DIGITANDO = rodou nos últimos 10 min · ERRO = última execução falhou (o Mauro religa) · DORMINDO = desligado · ☕ = na escuta.</p>`); return;
-    }
+function pend(){ const P=window.PENDENCIAS||[],D=window.DECISOES||[]; const li=x=>`<li>${x.t}</li>`;
+  return `<p style="margin-bottom:12px"><a href="quadro-status.html" target="_blank" style="display:inline-block;background:#e9c98f;color:#2a2310;font-weight:800;padding:10px 16px;border-radius:9px;text-decoration:none">📋 Abrir o Quadro de Status completo →</a></p>
+  <h2 style="font-size:14px">📂 ${P.length} pendências</h2><ul>${P.map(li).join('')}</ul>
+  <h2 style="font-size:14px">🟡 ${D.length} decisões suas</h2><ul>${D.map(li).join('')}</ul>`; }
+function ritaModal(esc){ const R='../relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
+  if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${R}seguro.html" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 17/06 ✓</span></a></div>
+    <p class="role" style="margin-top:8px">Relatório completo do dia em <code>magalhaes-gomes/analises/2026-06-17/</code>.</p>`;
+  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+      <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
+      <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
+      <a href="${R}fies.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">17/06 ✓</span></a>
+      <span style="${bt};background:#1b2937;color:#9fb3c8">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.7">quinta</span></span>
+    </div><p style="margin-top:10px"><a href="${R}historico.html" target="_blank">📋 Histórico →</a></p>`;
+}
+function claraModal(){
+  const I=window.CLARA_IDEIAS||[];
+  const BASE = location.hostname.endsWith('pages.dev') ? '' : (location.pathname.includes('/automacoes/') ? '../../../' : '../../');
+  if(!I.length) return '<h2>🎨 CLARA · ideias de criativo</h2><p class="role">Ainda sem ideias registradas. Peça: "Clara, cria criativos de &lt;produto&gt;".</p>';
+  const groups={}; I.forEach(x=>{ (groups[x.produto]=groups[x.produto]||[]).push(x); });
+  const bt='display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none;background:#c2557f;color:#fff';
+  let html='<h2>🎨 CLARA · ideias de criativo</h2><p class="role">Briefings por produto. Clique pra abrir o conjunto (conceito + copy + diversidade Andromeda + veredito do Validador).</p>';
+  for(const prod of Object.keys(groups)){
+    html+=`<h2 style="font-size:14px;margin-top:12px">${prod}</h2><div style="display:flex;flex-direction:column;gap:8px">`;
+    groups[prod].forEach(x=>{ const href=/^https?:/i.test(x.link)?x.link:BASE+x.link; html+=`<a href="${href}" target="_blank" style="${bt}">📐 ${x.titulo}<span style="font-weight:400;font-size:11px;opacity:.85;white-space:nowrap">${x.data} · ${x.n} peças</span></a>`; });
+    html+='</div>';
   }
+  return html;
+}
+function saidaModal(o,titulo,campos){ if(!o) return `<p>Ainda sem registro.</p>`;
+  const tag= o.exemplo?'<p class="role">⚠️ exemplo (o agente ainda não rodou; quando rodar, grava o registro real aqui)</p>':`<p class="role">registro real · ${o.quando||''}</p>`;
+  return tag+campos.map(c=>`<p><b>${c[0]}:</b> ${o[c[1]]||'—'}</p>`).join(''); }
+cv.addEventListener('pointerdown',e=>{
+  const rect=cv.getBoundingClientRect(); const mx=(e.clientX-rect.left)/scale, my=(e.clientY-rect.top)/scale;
+  for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i]; if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
+    if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
+    if(h.pilha){ abrir(pend()); return; }
+    if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia <b>TODOS os agentes 24/7 na nuvem</b> e patrulha os 5 setores. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Em erro, ele vai até a mesa do agente.</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
+    if(h.key==='rita-sp'){ abrir(ritaModal('sp')); return; }
+    if(h.key==='rita-mg'){ abrir(ritaModal('mg')); return; }
+    if(h.key==='validador'){ const a=AGENTES.find(x=>x.key==='validador'); abrir(`<h2>🛡 ${a.nome} · ${a.tag}</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Último veredito</h2>${saidaModal(window.VALIDADOR_ULTIMO,'',[['Item','item'],['Veredito','veredito'],['Motivo','motivo'],['Risco','risco'],['Reescrita','reescrita']])}`); return; }
+    if(h.key==='redator'){ const a=AGENTES.find(x=>x.key==='redator'); abrir(`<h2>✍️ ${a.nome} · copy</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Última copy</h2>${saidaModal(window.REDATOR_ULTIMA,'',[['Produto','produto'],['Headline','headline'],['Texto','texto'],['CTA','cta'],['Caracteres','caracteres']])}`); return; }
+    if(h.key==='creativemeta'){ abrir(claraModal()); return; }
+    const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
+    abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.tag}${a.esc?' · '+(a.esc==='sp'?'Silva Pimenta':'Magalhães Gomes'):''}</span></h2><p class="role">${a.role}</p><p>${a.detalhe||'…'}</p>${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}<p class="role">DIGITANDO = rodou nos últimos 10 min · ERRO = última falhou (Mauro religa) · 😴 DORMINDO = desligado · ☕ = na escuta.</p>`); return;
+  } }
 });
-
-// ---- boot ----
-(document.fonts? document.fonts.ready : Promise.resolve()).then(()=>{
-  document.getElementById('loading').style.display='none';
-  resize(); atualizar(); setInterval(atualizar,60000); requestAnimationFrame(loop);
-});
+(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>{ document.getElementById('loading').style.display='none'; resize(); atualizar(); setInterval(atualizar,60000); requestAnimationFrame(loop); });
 </script>
 </body>
 </html>
