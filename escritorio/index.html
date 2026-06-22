@@ -45,7 +45,7 @@
       <span>🕐 <b id="hTime">–</b></span>
     </div>
   </div>
-  <div id="wrap"><canvas id="cv" width="1180" height="905"></canvas></div>
+  <div id="wrap"><canvas id="cv" width="1480" height="1230"></canvas></div>
   <div class="foot" id="toast">conectando…</div>
   <div class="leg"><span><i style="background:#3a8fd6"></i>SP</span><span><i style="background:#CCA24E"></i>MG</span><span><i style="background:#566"></i>neutro</span></div>
   <div class="overlay" id="ov"><div class="modal" id="md"></div></div>
@@ -57,34 +57,36 @@
 <script src="clara-ideias.js"></script>
 <script>
 const STATUS_URL='https://sp-tag-lead-filter-x7k2.pages.dev/status';
-const W=1180,H=905;
+const W=1480,H=1230;
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 ctx.imageSmoothingEnabled=true;
 const ESC={sp:'#3a8fd6', mg:'#CCA24E'}; // cor do escritório (anel na placa)
 
-// ---- agentes: 5 setores por função; esc = escritório (sp/mg/null) ----
+// ---- agentes: 3 setores MACRO (Marketing / Comercial / Operação). esc = sp/mg/null ----
 const AGENTES=[
-  // CAPTAÇÃO & CADASTRO
-  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     setor:'cap', esc:'sp', x:305,y:230, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#1f7fa6', role:'Tag Lead · capta lead do WhatsApp e cadastra no Pipedrive'},
-  {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', setor:'cap', esc:'sp', x:475,y:230, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#9a48d0', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta)'},
-  {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    setor:'cap', esc:'sp', x:305,y:365, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#e08a2a', role:'Cadastro de leads do FIES (Lead Form Meta)'},
-  {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSPENSÃO',setor:'cap', esc:'sp', x:475,y:365, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e9d5f', role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta)'},
-  // ANÁLISE & RELATÓRIO  (DUAS Ritas, uma por escritório)
-  {key:'rita-sp',nome:'RITA',tag:'RELAT. · SP',  setor:'ana', esc:'sp', x:720,y:230, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0f766e', role:'Relatórios de campanha do Silva Pimenta (Auxílio, FIES, Direito Médico). Google + Meta, benchmarks BR + quality gates.'},
-  {key:'rita-mg',nome:'RITA',tag:'RELAT. · MG',  setor:'ana', esc:'mg', x:920,y:230, shirt:'#7a4a22',shirt2:'#5a3618',hair:'#241a10',plate:'#8a5a2a', role:'Relatórios de campanha do Magalhães Gomes (Seguro). Google + Meta + Pipedrive, LIXO = persona errado.'},
-  {key:'diario',nome:'BENTO',tag:'RELAT. 20H',   setor:'ana', esc:null, x:720,y:365, shirt:'#d99a2c',shirt2:'#b3791a',hair:'#241a10',plate:'#cf8a2a', role:'Relatório Diário de Tráfego (SP + MG) · manda o resumo no WhatsApp todo dia às 20h'},
-  {key:'radar', nome:'NINA', tag:'RADAR',        setor:'ana', esc:null, x:920,y:365, shirt:'#b15cd6',shirt2:'#8a3fb0',hair:'#2a1a3a',plate:'#7b2cbf', role:'Radar de Conteúdo · varre notícias às 8h e sugere pautas pro Thainar'},
-  // CRIATIVO & COPY  (fluxo: cria → escreve → valida → saída)
-  {key:'creativemeta',nome:'CLARA',tag:'CRIATIVOS', setor:'cri', esc:null, x:335,y:532, shirt:'#d6457f',shirt2:'#a83260',hair:'#2a1a20',plate:'#c2557f', role:'Criativos Meta de lead qualificado no WhatsApp · filtro no criativo + diversidade Andromeda + gera a imagem via Higgsfield (com pré-custo). Início do fluxo.'},
-  {key:'redator',nome:'REDATOR',tag:'COPY',         setor:'cri', esc:null, x:585,y:532, shirt:'#3a6ea5',shirt2:'#274d75',hair:'#2a2018',plate:'#3a6ea5', role:'copy-leadgen-meta · escreve a copy que qualifica (PAS, qualificador no início, 3 ângulos). 2º do fluxo.'},
-  {key:'validador',nome:'VALIDADOR',tag:'🛡 GATE META',setor:'cri', esc:null, x:835,y:532, shirt:'#2e8b57',shirt2:'#1d6e41',hair:'#1a1a1a',plate:'#2e8b57', role:'compliance-meta · ÚLTIMO PORTÃO. Revisa contra a política oficial do Meta antes de subir. Nada chega em você sem passar por ele.'},
-  // EXECUÇÃO & AÇÕES
-  {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',  setor:'exe', esc:null, x:305,y:712, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', role:'Robô das Ações · todo ganho vira card no PÓS-FECHAMENTO e avisa o jurídico no Discord'},
-  {key:'executor',nome:'EXECUTOR',tag:'(futuro)', setor:'exe', esc:null, x:475,y:712, shirt:'#5a5f6e',shirt2:'#42454f',hair:'#2a2a2a',plate:'#5a5f6e', fixo:'zzz', role:'Executor de campanha · DESLIGADO por padrão (deny). Só age quando o William abrir a janela e aprovar item a item. Vê-lo acordar = a janela foi aberta.'},
-  // INFRA & ORQUESTRAÇÃO
-  {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', setor:'inf', esc:null, x:720,y:712, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', role:'Arquiteto de Agentes · monta agentes novos com o Gabarito ADAPTA + as skills certas injetadas'},
-  {key:'hubspot',nome:'HUGO', tag:'HUBSPOT',    setor:'inf', esc:'mg', x:860,y:712, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78', fixo:'zzz', role:'Integração HubSpot × Pipedrive da seguradora (Magalhães Gomes). Aguardando a seguradora.'},
-  {key:'botmag',nome:'GUI',  tag:'BOT MG',      setor:'inf', esc:'mg', x:990,y:712, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz', role:'Bot IA WhatsApp da Magalhães Gomes · atendimento (em dev, falta deploy no Fly.io)'},
+  // ===== MARKETING > ANÁLISE & RELATÓRIO =====
+  {key:'rita-sp',nome:'RITA',tag:'RELAT. · SP', setor:'mkt', esc:'sp', x:300,y:265, shirt:'#0f766e',shirt2:'#0a5249',hair:'#2a1d12',plate:'#0f766e', role:'Relatórios de campanha do Silva Pimenta (Auxílio, FIES, Direito Médico). Google + Meta, benchmarks BR + quality gates. INÍCIO do fluxo: manda o relatório pro William JR e pro William.'},
+  {key:'rita-mg',nome:'RITA',tag:'RELAT. · MG', setor:'mkt', esc:'mg', x:500,y:265, shirt:'#7a4a22',shirt2:'#5a3618',hair:'#241a10',plate:'#8a5a2a', role:'Relatórios de campanha do Magalhães Gomes (Seguro). Google + Meta + Pipedrive, LIXO = persona errado.'},
+  {key:'diario',nome:'BENTO',tag:'RELAT. 20H', setor:'mkt', esc:null, x:700,y:265, shirt:'#d99a2c',shirt2:'#b3791a',hair:'#241a10',plate:'#cf8a2a', role:'Relatório Diário de Tráfego (SP + MG), manda o resumo no WhatsApp todo dia às 20h.'},
+  {key:'radar', nome:'NINA', tag:'RADAR',     setor:'mkt', esc:null, x:890,y:265, shirt:'#b15cd6',shirt2:'#8a3fb0',hair:'#2a1a3a',plate:'#7b2cbf', role:'Radar de Conteúdo, varre notícias às 8h e sugere pautas pro Thainar.'},
+  // ===== MARKETING > TRÁFEGO (você + o gestor, como concorrentes) =====
+  {key:'gmeta',nome:'WILLIAM JR',tag:'TRÁFEGO META', setor:'mkt', esc:null, x:400,y:500, shirt:'#1877F2',shirt2:'#0f56b3',hair:'#241a12',plate:'#1877F2', role:'William JR · Gestor de Tráfego Meta. Recebe a análise da Rita, decide as melhorias EM PARALELO com você (concorrentes, visões diferentes de propósito), pede criativo pra Thainar, passa por copy + Validador, e monta a campanha NO TEU PADRÃO em PAUSED, só esperando tua aprovação. Sobe sempre pausado.'},
+  {key:'ggoogle',nome:'WILLIAM JR',tag:'TRÁFEGO GOOGLE', setor:'mkt', esc:null, x:720,y:500, shirt:'#34A853',shirt2:'#1e7e38',hair:'#241a12',plate:'#34A853', fixo:'zzz', role:'William JR · Gestor de Tráfego Google (em construção). Mesmo papel na Rede de Pesquisa: termos, Quality Score, lance, leis ONE_WEBSITE_PER_AD_GROUP e redes OFF. Acorda quando a gente montar ele.'},
+  // ===== MARKETING > CRIATIVO & COPY (fluxo: Thainar ▶ Redator ▶ Validador ▶ você) =====
+  {key:'creativemeta',nome:'THAINAR',tag:'CRIATIVOS', setor:'mkt', esc:null, x:320,y:760, shirt:'#d6457f',shirt2:'#a83260',hair:'#2a1a20',plate:'#c2557f', role:'Thainar · criativos Meta de lead qualificado no WhatsApp. Filtro no criativo + diversidade Andromeda + gera a imagem via Higgsfield (com pré-custo). O William e o William JR pedem criativo pra ela, por isso ela faz MUITOS. Início do fluxo de criativo.'},
+  {key:'redator',nome:'REDATOR',tag:'COPY', setor:'mkt', esc:null, x:570,y:760, shirt:'#3a6ea5',shirt2:'#274d75',hair:'#2a2018',plate:'#3a6ea5', role:'copy-leadgen-meta, escreve a copy que qualifica (PAS, qualificador no início, 3 ângulos). 2º do fluxo, depois do William aprovar o criativo.'},
+  {key:'validador',nome:'VALIDADOR',tag:'🛡 GATE META', setor:'mkt', esc:null, x:820,y:760, shirt:'#2e8b57',shirt2:'#1d6e41',hair:'#1a1a1a',plate:'#2e8b57', role:'compliance-meta, ÚLTIMO PORTÃO. Revisa contra a política oficial do Meta antes de subir. Nada sobe sem passar por ele. O William JR dá a visão dele aqui pra você comparar.'},
+  // ===== COMERCIAL > CAPTAÇÃO & CADASTRO =====
+  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     setor:'com', esc:'sp', x:1120,y:265, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#1f7fa6', role:'Tag Lead, capta lead do WhatsApp e cadastra no Pipedrive.'},
+  {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', setor:'com', esc:'sp', x:1340,y:265, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#9a48d0', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta).'},
+  {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    setor:'com', esc:'sp', x:1120,y:455, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#e08a2a', role:'Cadastro de leads do FIES (Lead Form Meta).'},
+  {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSP.',   setor:'com', esc:'sp', x:1340,y:455, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e9d5f', role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta).'},
+  {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',      setor:'com', esc:null, x:1230,y:645, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', role:'Robô das Ações, todo ganho vira card no PÓS-FECHAMENTO (dono Duda) e avisa o jurídico no Discord.'},
+  // ===== OPERAÇÃO & INFRA =====
+  {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', setor:'ope', esc:null, x:1120,y:860, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', role:'Arquiteto de Agentes, monta agentes novos com o Gabarito ADAPTA + as skills certas injetadas (montou o William JR).'},
+  {key:'hubspot',nome:'HUGO', tag:'HUBSPOT',    setor:'ope', esc:'mg', x:1340,y:860, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78', fixo:'zzz', role:'Integração HubSpot × Pipedrive da seguradora (Magalhães Gomes). Aguardando a seguradora.'},
+  {key:'executor',nome:'EXECUTOR',tag:'(futuro)', setor:'ope', esc:null, x:1120,y:1045, shirt:'#5a5f6e',shirt2:'#42454f',hair:'#2a2a2a',plate:'#5a5f6e', fixo:'zzz', role:'Executor de campanha, DESLIGADO por padrão (deny). Só age quando o William abre a janela e aprova item a item. Vê-lo acordar = a janela foi aberta.'},
+  {key:'botmag',nome:'GUI',  tag:'BOT MG',      setor:'ope', esc:'mg', x:1340,y:1045, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz', role:'Bot IA WhatsApp da Magalhães Gomes (atendimento, em dev, falta deploy no Fly.io).'},
 ];
 
 const TVS={
@@ -172,7 +174,6 @@ function drawGear(x,y,t){ ctx.save(); ctx.translate(x,y); ctx.rotate((t/600)%(Ma
 
 // ---- decorações ----
 function plant(x,y){ shadow(x,y+16,16); ro(x-9,y,18,14,'#a3502e',2); r(x-7,y+2,14,4,'#7c3a20'); ro(x-12,y-20,24,22,'#2e9d52',2); r(x-3,y-20,6,22,'#1d6e36'); }
-function pottedTall(x,y){ shadow(x,y+22,14); ro(x-8,y,16,22,'#c0703a',2); r(x-3,y-30,6,30,'#1d6e36'); r(x-12,y-22,10,5,'#2e9d52'); r(x+2,y-30,10,5,'#2e9d52'); r(x-14,y-12,12,5,'#2e9d52'); }
 function window_(x,y){ ro(x-40,y,80,46,'#5a5c68',3); r(x-36,y+4,72,38,'#8fd0f5'); r(x-36,y+22,72,4,'#5a5c68'); r(x-2,y+4,4,38,'#5a5c68'); r(x-30,y+9,16,6,'#cfeaff'); }
 function whiteboard(x,y){ ro(x-46,y,92,30,'#e8a33a',3); r(x-40,y+5,80,20,'#fff'); r(x-34,y+10,40,3,'#b0b0c0'); r(x-34,y+16,54,3,'#b0b0c0'); }
 function vending(x,y){ shadow(x,y+56,24); ro(x-26,y,52,72,'#c0202a',3); r(x-22,y+4,34,42,'#1b1f2e'); const c=['#ff5d5d','#ffd54a','#5fd0ff','#7be0a0']; for(let j=0;j<4;j++)for(let i=0;i<3;i++) r(x-19+i*11,y+8+j*9,8,6,c[(i+j)%4]); r(x+14,y+6,8,40,'#2a2f3e'); text('SNAX',x-4,y+62,6,'#ffd54a'); }
@@ -180,9 +181,9 @@ function tvWall(x,y,key,label){ shadow(x,y+30,30); ro(x-34,y,68,40,'#0c0c14',3);
 function pingpong(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,48); ro(x-48,y-14,96,34,'#2e8b57',3); r(x-2,y-14,4,34,'#fff'); r(x-48,y+2,96,3,'#fff'); r(x-52,y+18,6,16,'#3a2a18'); r(x+46,y+18,6,16,'#3a2a18'); if(!on) text('🏓',x,y+6,9,'#cfeee0'); ctx.globalAlpha=1; }
 function sofaDeco(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,52); ro(x-56,y,112,28,'#ffd54a',3); r(x-56,y-14,112,16,'#f0c63a'); r(x-56,y,9,28,'#e0b62a'); r(x+47,y,9,28,'#e0b62a'); if(!on) text('🛋️',x,y+18,9,'#7a6a18'); ctx.globalAlpha=1; }
 
-// ---- Mauro: patrulha pelos 5 setores ----
-const PATROL=[{x:390,y:300},{x:880,y:300},{x:900,y:560},{x:585,y:600},{x:390,y:560},{x:235,y:430}];
-const mauro={x:390,y:300,_px:0,_py:0,face:1,alvo:null,wp:0,pausa:0};
+// ---- Mauro: patrulha os 3 setores macro ----
+const PATROL=[{x:560,y:340},{x:560,y:600},{x:560,y:840},{x:1230,y:360},{x:1230,y:560},{x:1230,y:940}];
+const mauro={x:560,y:340,_px:0,_py:0,face:1,alvo:null,wp:0,pausa:0};
 function drawMauro(t){
   const x=mauro.x,y=mauro.y; shadow(x,y+26,20);
   const moving=Math.abs(mauro.x-mauro._px)+Math.abs(mauro.y-mauro._py)>0.4; const step=moving?Math.sin(t/120)*3:0;
@@ -197,34 +198,45 @@ function drawMauro(t){
 }
 
 // ---- armário de arquivos (lê pendencias.js) ----
-const armario={x:100,y:730};
+const armario={x:95,y:1080};
 function nPend(){ return (window.PENDENCIAS||[]).length; }
 function drawArmario(t){
   const {x,y}=armario; shadow(x,y+8,30);
   ro(x-26,y-86,52,90,'#8f969f',3); r(x-26,y-86,52,7,'#aeb4bc'); r(x-26,y-2,52,6,'#5f656d');
   for(let i=0;i<4;i++){ const gy=y-80+i*21; r(x-22,gy,44,18,'#9ba1aa'); r(x-22,gy+15,44,3,'#6a7079'); r(x-9,gy+6,18,5,'#3a3f48'); r(x-5,gy+2,10,2,'#c7cdd4'); }
-  ro(x-36,y+8,72,16,'#3a2c12',2); text('📁 '+nPend()+' PENDÊNCIAS',x,y+20,6.5,'#ffd98a');
-  armario._hit={x:x-36,y:y-86,w:72,h:112};
+  ro(x-44,y+8,88,16,'#3a2c12',2); text('📁 '+nPend()+' PENDÊNCIAS',x,y+20,6.5,'#ffd98a');
+  armario._hit={x:x-44,y:y-86,w:88,h:112};
 }
 
-// ---- setores (por função, com acento) ----
+// ---- setores MACRO + sub-setores + fluxo ----
+function macroBar(x,y,w,cor,label){ r(x,y,w,26,cor); text(label,x+w/2,y+17,8.5,'#0b1118'); }
 function setorBox(x,y,w,h,cor,label){
   ctx.fillStyle=cor+'14'; ctx.fillRect(x,y,w,h);
   ctx.strokeStyle=cor; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(x,y,w,h); ctx.setLineDash([]);
-  const lw=label.length*7.2+22; r(x,y-2,lw,20,cor); text(label,x+lw/2,y+13,7,'#0b1118');
+  const lw=label.length*6.6+20; r(x,y-2,lw,18,cor); text(label,x+lw/2,y+12,6.2,'#0b1118');
 }
+function flowDown(x,y){ ctx.strokeStyle='#13a89a'; ctx.lineWidth=4; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x,y+34); ctx.stroke(); ctx.fillStyle='#13a89a'; ctx.beginPath(); ctx.moveTo(x-7,y+30); ctx.lineTo(x+7,y+30); ctx.lineTo(x,y+44); ctx.closePath(); ctx.fill(); }
+function flowRight(x,y){ ctx.fillStyle='#d6457f'; ctx.font='800 24px Inter,Arial'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('▶',x,y); ctx.textBaseline='alphabetic'; }
 function drawSetores(){
-  setorBox(205,128,350,292,'#c6864f','CAPTAÇÃO & CADASTRO');
-  setorBox(615,128,430,292,'#13a89a','ANÁLISE & RELATÓRIO');
-  setorBox(205,430,840,166,'#d6457f','CRIATIVO & COPY');
-  setorBox(205,610,350,166,'#9a6ad0','EXECUÇÃO & AÇÕES');
-  setorBox(615,610,430,166,'#6b7a8f','INFRA & ORQUESTRAÇÃO');
-  // fluxo do criativo: Clara ▶ Redator ▶ Validador ▶ saída (Validador é o último portão)
-  flowArrow(460,532); flowArrow(710,532);
-  text('▶ SAÍDA p/ você',975,536,7,'#2e8b57');
-  ctx.strokeStyle='#2e8b57'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(900,531); ctx.lineTo(958,531); ctx.stroke();
+  // ===== MACRO 1: MARKETING (grande, esquerda) =====
+  macroBar(196,110,792,'#ffd54a','💡 MARKETING');
+  setorBox(204,176,776,182,'#13a89a','ANÁLISE & RELATÓRIO');
+  setorBox(204,410,776,182,'#3a8fd6','TRÁFEGO  ·  você + William JR (concorrentes)');
+  setorBox(204,648,776,372,'#d6457f','CRIATIVO & COPY');
+  // fluxo vertical do marketing: Análise ▶ Tráfego ▶ Criativo
+  flowDown(592,366); flowDown(592,598);
+  // fluxo do criativo: Thainar ▶ Redator ▶ Validador ▶ você
+  flowRight(445,760); flowRight(695,760);
+  ctx.strokeStyle='#2e8b57'; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(872,759); ctx.lineTo(940,759); ctx.stroke();
+  text('▶ você aprova',935,763,6.5,'#2e8b57','left');
+  // ===== MACRO 2: COMERCIAL (direita-cima, SEPARADO) =====
+  macroBar(1012,110,452,'#c6864f','💼 COMERCIAL');
+  setorBox(1020,176,436,380,'#c6864f','CAPTAÇÃO & CADASTRO');
+  setorBox(1020,584,436,156,'#0d6e64','AÇÕES / PÓS-VENDA');
+  // ===== MACRO 3: OPERAÇÃO & INFRA (direita-baixo, SEPARADO) =====
+  macroBar(1012,792,452,'#8fa0b5','⚙️ OPERAÇÃO & INFRA');
+  setorBox(1020,830,436,290,'#6b7a8f','SUPERVISÃO · ARQUITETO · BOTS');
 }
-function flowArrow(x,y){ ctx.fillStyle='#d6457f'; ctx.font='800 22px Inter,Arial'; ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.fillText('▶',x,y); ctx.textBaseline='alphabetic'; }
 
 // ---- estado ----
 let HITS=[]; let DADOS=null;
@@ -243,23 +255,25 @@ async function atualizar(){
       setEstado(a.key,e,a.ultima?`Última: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} ops`:'sem execuções recentes');
     });
     setEstado('hubspot','zzz','Em desenho — aguardando o formulário e o card de teste da seguradora (cartão 17). 😴');
-    setEstado('rita-sp','idle','📊 Relatórios SP (Auxílio, FIES, Direito Médico). Google + Meta, benchmarks BR + quality gates. Automação até 8h: pendente (nuvem, trava no token). Sob demanda hoje.');
-    setEstado('rita-mg','idle','📊 Relatórios MG (Seguro). Google + Meta + Pipedrive, cruzamento de lead real, LIXO = persona errado. Mesma automação (nuvem, pendente).');
+    setEstado('rita-sp','idle','📊 Relatórios SP (Auxílio, FIES, Direito Médico). Manda o relatório pro William JR e pro William, que analisam em paralelo. Clique pra abrir os relatórios.');
+    setEstado('rita-mg','idle','📊 Relatórios MG (Seguro). Google + Meta + Pipedrive, cruzamento de lead real, LIXO = persona errado.');
+    setEstado('gmeta','idle','🚀 William JR · Tráfego META. Recebe o relatório da Rita, decide melhorias (em paralelo com você), pede criativo pra Thainar, passa por copy + Validador e monta em PAUSED pra tua aprovação. Padrão fixo: ABO, zero Advantage+, só FB+IG, só Stories/Feed/Reels.');
+    setEstado('ggoogle','zzz','🔧 William JR · Tráfego GOOGLE. Em construção (mesmo padrão, na Rede de Pesquisa). 😴');
     const claraAtiva=(window.CLARA_IDEIAS||[]).length>0, redA=window.REDATOR_ULTIMA&&!window.REDATOR_ULTIMA.exemplo, valA=window.VALIDADOR_ULTIMO&&!window.VALIDADOR_ULTIMO.exemplo;
-    setEstado('creativemeta', claraAtiva?'typing':'idle', claraAtiva?('🎨 ATIVA. Última entrega: '+window.CLARA_IDEIAS[0].produto+' · '+window.CLARA_IDEIAS[0].data+' ('+window.CLARA_IDEIAS[0].n+' peças). Clique pra ver as ideias.'):'🎨 creative-leadgen-meta: pronta. Peça "Clara, cria criativos de <produto>".');
+    setEstado('creativemeta', claraAtiva?'typing':'idle', claraAtiva?('🎨 ATIVA. Última entrega: '+window.CLARA_IDEIAS[0].produto+' · '+window.CLARA_IDEIAS[0].data+' ('+window.CLARA_IDEIAS[0].n+' peças). Clique pra ver as ideias.'):'🎨 Thainar (creative-leadgen-meta): pronta. Peça "Thainar, cria criativos de <produto>".');
     setEstado('redator', redA?'typing':'idle', redA?('✍️ ATIVO. Última copy: '+window.REDATOR_ULTIMA.produto+' · '+window.REDATOR_ULTIMA.quando):'✍️ copy-leadgen-meta: pronto.');
     setEstado('validador', valA?'typing':'idle', valA?('🛡 ATIVO. Último veredito: '+window.VALIDADOR_ULTIMO.veredito+' — '+window.VALIDADOR_ULTIMO.item+' · '+window.VALIDADOR_ULTIMO.quando):'🛡 compliance-meta: pronto.');
-    setEstado('acoes','idle','🤖 Autônomo. Deal GANHO em qualquer funil → card no PÓS-FECHAMENTO + Discord. (cartão 19)');
+    setEstado('acoes','idle','🤖 Autônomo. Deal GANHO em qualquer funil → card no PÓS-FECHAMENTO (dono Duda) + Discord. (cartão 19)');
     setEstado('diario','idle','📥 Autônomo (Tarefa Windows). Resumo de tráfego SP + MG no WhatsApp às 20h. (cartão 21)');
     setEstado('radar','idle','📰 Autônomo (nuvem, 08:00). Pautas de conteúdo pro Thainar no Discord. (cartão 18)');
-    setEstado('arquiteto','idle','🏗️ Pede "cria um agente que faz X" que eu invoco ele: avalia, escolhe as skills e monta com o Gabarito ADAPTA.');
+    setEstado('arquiteto','idle','🏗️ Pede "cria um agente que faz X" que eu invoco ele: avalia, escolhe as skills e monta com o Gabarito ADAPTA. Montou o William JR.');
     setEstado('botmag','zzz','📱 Atendimento WhatsApp do Magalhães Gomes (Digisac + Claude). Dev local; falta deploy no Fly.io. 😴');
     setEstado('executor','zzz','🔒 DESLIGADO por padrão (deny). Quem executa mudança em campanha. Só acorda quando você abre a janela e aprova item a item. Vê-lo dormindo = a trava está de pé.');
     const cnt={typing:0,idle:0,erro:0,zzz:0}; AGENTES.forEach(a=>cnt[a.estado]=(cnt[a.estado]||0)+1);
     hWork.textContent=cnt.typing; hIdle.textContent=cnt.idle; hSleep.textContent=cnt.zzz; hErr.textContent=cnt.erro; hTime.textContent=new Date().toLocaleTimeString('pt-BR');
     const ag=AGENTES.find(a=>a.key===erroKey); mauro.alvo= ag?{x:ag.x,y:ag.y}:null;
     hBoss.textContent= ag?'socorrendo '+ag.nome:'vigiando todos';
-    toast.textContent= cnt.erro>0?'⚠️ Mauro foi até o agente com erro — clica nele':'✅ Mauro vigia todos os 5 setores · clique nos personagens pra ver o que cada um faz';
+    toast.textContent= cnt.erro>0?'⚠️ Mauro foi até o agente com erro — clica nele':'✅ 3 setores: Marketing · Comercial · Operação · clique nos personagens pra ver o que cada um faz';
   }catch(e){ toast.textContent='offline (sem feed do Make) · clique nos agentes mesmo assim'; }
 }
 
@@ -272,20 +286,20 @@ function update(dt){
   mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
 }
 
-// lounge: posições (faixa COPA embaixo)
-const PP=[{x:360,y:862},{x:455,y:862}]; const SOFA=[{x:790,y:862},{x:862,y:862},{x:934,y:862}];
+// lounge: faixa COPA embaixo
+const PP=[{x:430,y:1170},{x:540,y:1170}]; const SOFA=[{x:980,y:1170},{x:1070,y:1170},{x:1160,y:1170}];
 function draw(t){
   HITS=[]; drawFloor(); drawSetores();
-  window_(360,18); whiteboard(150,32); vending(1120,12);
-  tvWall(120,170,'orcamento','ORÇAMENTO'); tvWall(120,300,'juridico','JURÍDICO'); tvWall(120,430,'encerr','ENCERR.');
-  plant(60,560); plant(1130,200);
+  window_(120,30); whiteboard(280,34); vending(1420,12);
+  tvWall(95,180,'orcamento','ORÇAMENTO'); tvWall(95,320,'juridico','JURÍDICO'); tvWall(95,460,'encerr','ENCERR.');
+  plant(95,640); plant(95,920);
   // faixa COPA (descanso) — só enche com agente nela
-  ctx.fillStyle='#7a6a4a12'; ctx.fillRect(205,792,840,108); ctx.strokeStyle='#7a6a4a'; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(205,792,840,108); ctx.setLineDash([]);
-  { const lw='COPA · descanso'.length*7.2+22; r(205,790,lw,20,'#7a6a4a'); text('COPA · descanso',205+lw/2,803,7,'#0b1118'); }
-  // decoração = estado (Executor NUNCA sai da Execução: deny em pixel)
+  ctx.fillStyle='#7a6a4a12'; ctx.fillRect(196,1126,1268,96); ctx.strokeStyle='#7a6a4a'; ctx.lineWidth=2; ctx.setLineDash([9,7]); ctx.strokeRect(196,1126,1268,96); ctx.setLineDash([]);
+  { const lw='COPA · descanso'.length*7.2+22; r(196,1124,lw,20,'#7a6a4a'); text('COPA · descanso',196+lw/2,1137,7,'#0b1118'); }
+  // decoração = estado (Executor NUNCA sai da Operação: deny em pixel)
   const idlers=AGENTES.filter(a=>a.estado==='idle'); const sleepers=AGENTES.filter(a=>a.estado==='zzz' && a.key!=='executor');
   const ppPlayers= idlers.length>=2 ? idlers.slice(0,2):[]; const ppSet=new Set(ppPlayers.map(a=>a.key));
-  pingpong(408,858, ppPlayers.length>0); sofaDeco(862,858, sleepers.length>0);
+  pingpong(485,1166, ppPlayers.length>0); sofaDeco(1070,1166, sleepers.length>0);
   drawArmario(t);
   // atores ordenados por profundidade (y do desenho)
   const atores=[];
@@ -317,7 +331,7 @@ function ritaModal(esc){ const R='https://silvapimentadireitomedico-cpu.github.i
   if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${R}seguro.html" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 17/06 ✓</span></a></div>
     <p class="role" style="margin-top:8px">Relatório completo do dia em <code>magalhaes-gomes/analises/2026-06-17/</code>.</p>`;
-  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates.</p>
+  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Manda o relatório pro William JR e pro William.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
       <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
       <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
@@ -328,10 +342,10 @@ function ritaModal(esc){ const R='https://silvapimentadireitomedico-cpu.github.i
 function claraModal(){
   const I=window.CLARA_IDEIAS||[];
   const BASE = location.hostname.endsWith('pages.dev') ? '' : (location.pathname.includes('/automacoes/') ? '../../../' : '../../');
-  if(!I.length) return '<h2>🎨 CLARA · ideias de criativo</h2><p class="role">Ainda sem ideias registradas. Peça: "Clara, cria criativos de &lt;produto&gt;".</p>';
+  if(!I.length) return '<h2>🎨 THAINAR · ideias de criativo</h2><p class="role">Ainda sem ideias registradas. Peça: "Thainar, cria criativos de &lt;produto&gt;".</p>';
   const groups={}; I.forEach(x=>{ (groups[x.produto]=groups[x.produto]||[]).push(x); });
   const bt='display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none;background:#c2557f;color:#fff';
-  let html='<h2>🎨 CLARA · ideias de criativo</h2><p class="role">Briefings por produto. Clique pra abrir o conjunto (conceito + copy + diversidade Andromeda + veredito do Validador).</p>';
+  let html='<h2>🎨 THAINAR · ideias de criativo</h2><p class="role">Briefings por produto. Clique pra abrir o conjunto (conceito + copy + diversidade Andromeda + veredito do Validador).</p>';
   for(const prod of Object.keys(groups)){
     html+=`<h2 style="font-size:14px;margin-top:12px">${prod}</h2><div style="display:flex;flex-direction:column;gap:8px">`;
     groups[prod].forEach(x=>{ const href=/^https?:/i.test(x.link)?x.link:BASE+x.link; html+=`<a href="${href}" target="_blank" style="${bt}">📐 ${x.titulo}<span style="font-weight:400;font-size:11px;opacity:.85;white-space:nowrap">${x.data} · ${x.n} peças</span></a>`; });
@@ -347,7 +361,7 @@ cv.addEventListener('pointerdown',e=>{
   for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i]; if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
     if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
     if(h.pilha){ abrir(pend()); return; }
-    if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia <b>TODOS os agentes 24/7 na nuvem</b> e patrulha os 5 setores. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Em erro, ele vai até a mesa do agente.</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
+    if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia <b>TODOS os agentes 24/7 na nuvem</b> e patrulha os 3 setores. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Em erro, ele vai até a mesa do agente.</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
     if(h.key==='rita-sp'){ abrir(ritaModal('sp')); return; }
     if(h.key==='rita-mg'){ abrir(ritaModal('mg')); return; }
     if(h.key==='validador'){ const a=AGENTES.find(x=>x.key==='validador'); abrir(`<h2>🛡 ${a.nome} · ${a.tag}</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Último veredito</h2>${saidaModal(window.VALIDADOR_ULTIMO,'',[['Item','item'],['Veredito','veredito'],['Motivo','motivo'],['Risco','risco'],['Reescrita','reescrita']])}`); return; }
