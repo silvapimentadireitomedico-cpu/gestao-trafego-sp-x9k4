@@ -21,7 +21,13 @@ name: Rita - relatorio diario (Fase 2 + 3)
 
 on:
   schedule:
-    - cron: "50 10 * * *" # 10:50 UTC = 07:50 BRT (antes da entrega 8h)
+    # O agendador do GitHub atrasa/pula cron de baixa frequencia. Por isso VARIAS
+    # tentativas na janela da manha (seg-qui), e o gerador tem trava de idempotencia:
+    # a 1a que disparar gera+notifica, as outras viram no-op (nao duplica).
+    - cron: "30 10 * * 1-4" # 07:30 BRT
+    - cron: "0 11 * * 1-4"  # 08:00 BRT
+    - cron: "30 11 * * 1-4" # 08:30 BRT
+    - cron: "0 12 * * 1-4"  # 09:00 BRT
   workflow_dispatch:
     inputs:
       produto:

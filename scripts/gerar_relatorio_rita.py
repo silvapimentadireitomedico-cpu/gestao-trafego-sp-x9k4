@@ -215,6 +215,11 @@ def main():
             print(f"{datetime.now(BRT).date()}: sem cadência hoje (cadência é seg a qui). Nada a gerar.")
             return 0
         print(f"--auto: cadência do dia = {slug}")
+        # Idempotência: com várias tentativas de cron na manhã, só a 1a gera; as outras pulam.
+        ja = OUT_DIR / f"rita-{slug}-{datetime.now(BRT).date().isoformat()}.html"
+        if ja.exists():
+            print(f"--auto: relatório de hoje já existe ({ja.name}); pulando (idempotência, sem renotificar).")
+            return 0
     elif a.produto:
         slug = a.produto
     else:
