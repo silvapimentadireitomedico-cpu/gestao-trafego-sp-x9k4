@@ -208,8 +208,8 @@ function pingpong(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,48); ro(x-48,
 function sofaDeco(x,y,on){ ctx.globalAlpha=on?1:.32; shadow(x,y+22,52); ro(x-56,y,112,28,'#ffd54a',3); r(x-56,y-14,112,16,'#f0c63a'); r(x-56,y,9,28,'#e0b62a'); r(x+47,y,9,28,'#e0b62a'); if(!on) text('🛋️',x,y+18,9,'#7a6a18'); ctx.globalAlpha=1; }
 
 // ---- Mauro: patrulha os 3 setores macro ----
-const PATROL=[{x:560,y:340},{x:560,y:600},{x:560,y:840},{x:1230,y:360},{x:1230,y:560},{x:1230,y:940}];
-const mauro={x:560,y:340,_px:0,_py:0,face:1,alvo:null,wp:0,pausa:0};
+const VIGIA={x:998,y:585}; // posto de vigia: ponto central que enxerga Marketing + Comercial + Operação
+const mauro={x:998,y:585,_px:0,_py:0,face:1,alvo:null,scan:0};
 function drawMauro(t){
   const x=mauro.x,y=mauro.y; shadow(x,y+26,20);
   const moving=Math.abs(mauro.x-mauro._px)+Math.abs(mauro.y-mauro._py)>0.4; const step=moving?Math.sin(t/120)*3:0;
@@ -306,10 +306,15 @@ async function atualizar(){
 
 // ---- loop ----
 function update(dt){
-  let dest;
-  if(mauro.alvo){ dest={x:mauro.alvo.x,y:mauro.alvo.y+72}; }
-  else { dest=PATROL[mauro.wp]; if(Math.hypot(dest.x-mauro.x,dest.y-mauro.y)<10){ mauro.pausa+=dt; if(mauro.pausa>650){ mauro.pausa=0; mauro.wp=(mauro.wp+1)%PATROL.length; } } }
-  const k=Math.min(1,dt*0.0032); mauro.face=(dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
+  // Em pé no posto vigiando; só sai correndo até a mesa quando um agente dá erro.
+  const dest = mauro.alvo ? {x:mauro.alvo.x, y:mauro.alvo.y+72} : VIGIA;
+  const k=Math.min(1,dt*0.0032);
+  if(!mauro.alvo && Math.hypot(dest.x-mauro.x,dest.y-mauro.y)<6){
+    // parado no posto: varre o ambiente virando a cabeça devagar pros lados
+    mauro.scan+=dt; if(mauro.scan>1400){ mauro.scan=0; mauro.face=-mauro.face; }
+  } else {
+    mauro.face=(dest.x<mauro.x-0.5)?-1:(dest.x>mauro.x+0.5?1:mauro.face);
+  }
   mauro.x+=(dest.x-mauro.x)*k; mauro.y+=(dest.y-mauro.y)*k;
 }
 
@@ -388,7 +393,15 @@ cv.addEventListener('pointerdown',e=>{
   for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i]; if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
     if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
     if(h.pilha){ abrir(pend()); return; }
-    if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Vigia <b>TODOS os agentes 24/7 na nuvem</b> e patrulha os 3 setores. Se algum cair, religa sozinho, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>. Em erro, ele vai até a mesa do agente.</p><p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
+    if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Fica <b>em pé no posto vigiando</b> os 3 setores na nuvem. Quando um agente dá erro, ele corre até a mesa, religa sozinho o que dá pra religar, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>.</p>
+      <h2 style="font-size:14px;margin-top:12px">De quanto em quanto tempo ele olha cada um</h2>
+      <ul>
+        <li><b>Cenários Make</b> (Téo, Aurora, Fábio, Sueli): <b>de hora em hora</b>, 24/7 (minuto 5 de cada hora). Religa sozinho quem cai.</li>
+        <li><b>Rita e William JR</b>: <b>1x/dia</b>, na ronda das <b>9h</b>, confere se o relatório/proposta do dia saiu; se faltou, te chama no WhatsApp.</li>
+        <li><b>Erro/crash local</b> (Rita, William JR, Thainar): <b>na hora</b>, no WhatsApp (só pega com o PC ligado).</li>
+      </ul>
+      <p class="role">Não é tempo real: o ciclo base é de 1 em 1 hora (foi feito pra nunca passar de 1h sem ninguém ver).</p>
+      <p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }
     if(h.key==='rita-sp'){ abrir(ritaModal('sp')); return; }
     if(h.key==='rita-mg'){ abrir(ritaModal('mg')); return; }
     if(h.key==='validador'){ const a=AGENTES.find(x=>x.key==='validador'); abrir(`<h2>🛡 ${a.nome} · ${a.tag}</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Último veredito</h2>${saidaModal(window.VALIDADOR_ULTIMO,'',[['Item','item'],['Veredito','veredito'],['Motivo','motivo'],['Risco','risco'],['Reescrita','reescrita']])}`); return; }
