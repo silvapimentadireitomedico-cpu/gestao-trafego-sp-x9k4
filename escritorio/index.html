@@ -344,14 +344,14 @@ function pend(){ const P=window.PENDENCIAS||[],D=window.DECISOES||[]; const li=x
   <h2 style="font-size:14px">📂 ${P.length} pendências</h2><ul>${P.map(li).join('')}</ul>
   <h2 style="font-size:14px">🟡 ${D.length} decisões suas</h2><ul>${D.map(li).join('')}</ul>`; }
 function ritaModal(esc){ const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
-  if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado. O link abre sempre o relatório mais recente.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${ritaURL('seguro')}" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">mais recente ✓</span></a></div>`;
-  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Cada link abre o relatório <b>mais recente</b> do produto (rita-sp). Manda o relatório pro William JR e pro William.</p>
+  if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado. O link abre a lista de relatórios do produto, você escolhe qual.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${ritaURL('seguro')}" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a></div>`;
+  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Cada link abre a <b>lista de relatórios</b> do produto (você escolhe qual abrir). Manda o relatório pro William JR e pro William.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
       <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
-      <a href="${ritaURL('aux-moradia')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
-      <a href="${ritaURL('fies')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES</a>
-      <a href="${ritaURL('direito-medico')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico</a>
+      <a href="${ritaURL('aux-moradia')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
+      <a href="${ritaURL('fies')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
+      <a href="${ritaURL('direito-medico')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
     </div>`;
 }
 function wjModal(){ const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
