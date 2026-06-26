@@ -15,6 +15,12 @@
   .hud{display:flex;gap:8px;justify-content:center;margin-top:10px;flex-wrap:wrap;pointer-events:auto}
   .hud span{background:#1b2236;border:1px solid #36406a;padding:7px 13px;font-size:12.5px;font-weight:500;border-radius:20px;box-shadow:0 3px 10px rgba(0,0,0,.35)}
   .hud b{color:#ffd54a;font-weight:800}
+  .painel{display:flex;gap:7px;justify-content:center;margin-top:9px;flex-wrap:wrap;pointer-events:auto;font-size:12px}
+  .painel .lbl{background:#2a1f0e;border:1px solid #6b5520;color:#ffd98a;padding:7px 12px;border-radius:20px;font-weight:800}
+  .painel .lbl em{color:#bda36a;font-style:normal;font-weight:600}
+  .painel a{background:#1b2236;border:1px solid #36406a;color:#e8e2f5;padding:7px 12px;border-radius:20px;text-decoration:none;font-weight:700;display:inline-flex;gap:5px;align-items:center;box-shadow:0 3px 10px rgba(0,0,0,.35)}
+  .painel a:hover{border-color:#ffd54a;color:#fff}
+  .painel a b{color:#ffd54a;font-weight:800}
   #wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
   canvas{background:#9a9aa2;border-radius:6px;box-shadow:0 0 0 4px #0a0d18,0 18px 50px rgba(0,0,0,.7)}
   .foot{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:10;background:#1b2236;border:1px solid #36406a;color:#cdbbe2;font-size:12px;padding:8px 16px;border-radius:20px;box-shadow:0 3px 10px rgba(0,0,0,.35);text-align:center}
@@ -44,6 +50,7 @@
       <span>👔 MAURO <b id="hBoss">–</b></span>
       <span>🕐 <b id="hTime">–</b></span>
     </div>
+    <div class="painel" id="painel"></div>
   </div>
   <div id="wrap"><canvas id="cv" width="1480" height="1150"></canvas></div>
   <div class="foot" id="toast">conectando…</div>
@@ -94,6 +101,25 @@ const TVS={
   juridico:['📺 Dashboard Jurídico','Na TV do escritório 24/7, atualiza a cada 30s.','https://silvapimentadireitomedico-cpu.github.io/dashboard-juridico-silva-pimenta/'],
   encerr:['📺 Dashboard Encerramentos','Aba mensal automática.','https://silvapimentadireitomedico-cpu.github.io/dashboard-encerramentos-silva-pimenta/'],
 };
+
+// ---- ciclo do dia (cadencia) + LINKS ESTAVEIS dos outputs (sem 404 por data) ----
+const CAD={1:'aux-moradia',2:'fies',3:'seguro',4:'direito-medico'};                 // 1=seg ... 4=qui
+const PASTA={'aux-moradia':'auxilio-moradia','fies':'fies','seguro':'seguro','direito-medico':'direito-medico'};
+const DISP={'aux-moradia':'Auxílio Moradia','fies':'FIES','seguro':'Seguro · MG','direito-medico':'Direito Médico'};
+const RITA_BASE='https://rita-sp.pages.dev',WJ_BASE='https://william-jr-sp.pages.dev',TH_BASE='https://thainar-sp.pages.dev';
+function ritaURL(slug){return RITA_BASE+'/'+slug+'/';}            // index.html redireciona pro relatorio mais novo
+function wjURL(slug){return WJ_BASE+'/'+PASTA[slug]+'/';}         // index.html redireciona pra proposta mais nova
+function thURL(slug){return TH_BASE+'/'+PASTA[slug]+'/';}         // galeria das artes em novas-para-teste
+function cicloAtual(){ const d=new Date(); for(let i=0;i<7;i++){ const x=new Date(d); x.setDate(d.getDate()-i); const s=CAD[x.getDay()]; if(s) return {slug:s,hoje:i===0,dataLabel:x.toLocaleDateString('pt-BR')}; } return null; }
+function renderPainel(){
+  const el=document.getElementById('painel'); if(!el) return;
+  const c=cicloAtual();
+  if(!c){ el.innerHTML='<span class="lbl">🗓️ Sem ciclo na cadência hoje (cadência seg→qui)</span>'; return; }
+  el.innerHTML='<span class="lbl">📌 Ciclo: '+DISP[c.slug]+' <em>· '+c.dataLabel+' ('+(c.hoje?'hoje':'último')+')</em></span>'+
+    '<a href="'+ritaURL(c.slug)+'" target="_blank">📊 Relatório da <b>Rita</b></a>'+
+    '<a href="'+wjURL(c.slug)+'" target="_blank">🤖 Proposta do <b>William JR</b></a>'+
+    '<a href="'+thURL(c.slug)+'" target="_blank">🎨 Artes da <b>Thainar</b></a>';
+}
 
 // ---- helpers de desenho ----
 function r(x,y,w,h,c){ ctx.fillStyle=c; ctx.fillRect(x|0,y|0,w|0,h|0); }
@@ -244,6 +270,7 @@ function setEstado(key,estado,detalhe){ const a=AGENTES.find(x=>x.key===key); if
 AGENTES.forEach(a=>a.estado = a.fixo==='zzz'?'zzz':'idle');
 
 async function atualizar(){
+  renderPainel();
   try{
     const rr=await fetch(STATUS_URL+'?t='+Date.now()); DADOS=await rr.json();
     let erroKey=null;
@@ -273,8 +300,8 @@ async function atualizar(){
     hWork.textContent=cnt.typing; hIdle.textContent=cnt.idle; hSleep.textContent=cnt.zzz; hErr.textContent=cnt.erro; hTime.textContent=new Date().toLocaleTimeString('pt-BR');
     const ag=AGENTES.find(a=>a.key===erroKey); mauro.alvo= ag?{x:ag.x,y:ag.y}:null;
     hBoss.textContent= ag?'socorrendo '+ag.nome:'vigiando todos';
-    toast.textContent= cnt.erro>0?'⚠️ Mauro foi até o agente com erro — clica nele':'✅ 3 setores: Marketing · Comercial · Operação · clique nos personagens pra ver o que cada um faz';
-  }catch(e){ toast.textContent='offline (sem feed do Make) · clique nos agentes mesmo assim'; }
+    toast.textContent= cnt.erro>0?'⚠️ Mauro foi até o agente com erro, clica nele':'✅ Painel de cima = outputs do ciclo (Rita · William JR · Thainar) · clique nos personagens pra ver cada agente';
+  }catch(e){ toast.textContent='offline (sem feed do Make) · painel de cima e personagens funcionam mesmo assim'; }
 }
 
 // ---- loop ----
@@ -316,25 +343,36 @@ function pend(){ const P=window.PENDENCIAS||[],D=window.DECISOES||[]; const li=x
   return `<p style="margin-bottom:12px"><a href="quadro-status.html" target="_blank" style="display:inline-block;background:#e9c98f;color:#2a2310;font-weight:800;padding:10px 16px;border-radius:9px;text-decoration:none">📋 Abrir o Quadro de Status completo →</a></p>
   <h2 style="font-size:14px">📂 ${P.length} pendências</h2><ul>${P.map(li).join('')}</ul>
   <h2 style="font-size:14px">🟡 ${D.length} decisões suas</h2><ul>${D.map(li).join('')}</ul>`; }
-function ritaModal(esc){ const R='https://silvapimentadireitomedico-cpu.github.io/gestao-trafego-sp-x9k4/relatorios/'; const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
-  if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado.</p>
-    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${R}seguro.html" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">atualizado 17/06 ✓</span></a></div>
-    <p class="role" style="margin-top:8px">Relatório completo do dia em <code>magalhaes-gomes/analises/2026-06-17/</code>.</p>`;
-  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Manda o relatório pro William JR e pro William.</p>
+function ritaModal(esc){ const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
+  if(esc==='mg') return `<h2>📊 Rita · MG (Seguro)</h2><p class="role">Magalhães Gomes · Google + Meta + Pipedrive, LIXO = persona errado. O link abre sempre o relatório mais recente.</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${ritaURL('seguro')}" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">mais recente ✓</span></a></div>`;
+  return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Cada link abre o relatório <b>mais recente</b> do produto (rita-sp). Manda o relatório pro William JR e pro William.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
       <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
-      <a href="${R}aux-moradia.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
-      <a href="${R}fies.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">17/06 ✓</span></a>
-      <a href="${R}direito-medico.html" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.85">19/06 ✓</span></a>
-    </div><p style="margin-top:10px"><a href="${R}historico.html" target="_blank">📋 Histórico →</a></p>`;
+      <a href="${ritaURL('aux-moradia')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia</a>
+      <a href="${ritaURL('fies')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES</a>
+      <a href="${ritaURL('direito-medico')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico</a>
+    </div>`;
+}
+function wjModal(){ const bt='display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none';
+  return `<h2>🤖 William JR · Tráfego Meta</h2><p class="role">Lê o relatório da Rita, decide as melhorias em paralelo com você, pede arte pra Thainar, passa por copy + Validador e monta a campanha NO TEU PADRÃO em PAUSED. Cada link abre a <b>proposta mais recente</b> do produto (análise + decisão + pedido de criativo).</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+      <a href="${wjURL('aux-moradia')}" target="_blank" style="${bt};background:#1877F2;color:#fff">📋 Auxílio Moradia</a>
+      <a href="${wjURL('fies')}" target="_blank" style="${bt};background:#1877F2;color:#fff">📋 FIES</a>
+      <a href="${wjURL('seguro')}" target="_blank" style="${bt};background:#1877F2;color:#fff">📋 Seguro · MG</a>
+      <a href="${wjURL('direito-medico')}" target="_blank" style="${bt};background:#1877F2;color:#fff">📋 Direito Médico</a>
+    </div><p class="role" style="margin-top:8px">Nada sobe sem tua aprovação. Produto que ainda não rodou abre vazio até o ciclo dele.</p>`;
 }
 function claraModal(){
   const I=window.CLARA_IDEIAS||[];
   const BASE = location.hostname.endsWith('pages.dev') ? '' : (location.pathname.includes('/automacoes/') ? '../../../' : '../../');
-  if(!I.length) return '<h2>🎨 THAINAR · ideias de criativo</h2><p class="role">Ainda sem ideias registradas. Peça: "Thainar, cria criativos de &lt;produto&gt;".</p>';
+  const galeria='<div style="display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 4px">'+
+    ['aux-moradia','fies','seguro','direito-medico'].map(s=>`<a href="${thURL(s)}" target="_blank" style="background:#c2557f;color:#fff;padding:8px 11px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none">🖼 ${DISP[s]}</a>`).join('')+'</div>';
+  let html='<h2>🎨 THAINAR · criativos</h2><p class="role">🖼 <b>Galeria</b> = as artes em <code>novas-para-teste</code> aguardando tua revisão (thainar-sp). Abaixo, os briefings por produto.</p>'+galeria;
+  if(!I.length) return html+'<p class="role" style="margin-top:10px">Briefings ainda não registrados. Peça: "Thainar, cria criativos de &lt;produto&gt;".</p>';
   const groups={}; I.forEach(x=>{ (groups[x.produto]=groups[x.produto]||[]).push(x); });
   const bt='display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px 14px;border-radius:9px;font-weight:700;text-decoration:none;background:#c2557f;color:#fff';
-  let html='<h2>🎨 THAINAR · ideias de criativo</h2><p class="role">Briefings por produto. Clique pra abrir o conjunto (conceito + copy + diversidade Andromeda + veredito do Validador).</p>';
+  html+='<h2 style="font-size:14px;margin-top:14px">Briefings</h2>';
   for(const prod of Object.keys(groups)){
     html+=`<h2 style="font-size:14px;margin-top:12px">${prod}</h2><div style="display:flex;flex-direction:column;gap:8px">`;
     groups[prod].forEach(x=>{ const href=/^https?:/i.test(x.link)?x.link:BASE+x.link; html+=`<a href="${href}" target="_blank" style="${bt}">📐 ${x.titulo}<span style="font-weight:400;font-size:11px;opacity:.85;white-space:nowrap">${x.data} · ${x.n} peças</span></a>`; });
@@ -356,6 +394,7 @@ cv.addEventListener('pointerdown',e=>{
     if(h.key==='validador'){ const a=AGENTES.find(x=>x.key==='validador'); abrir(`<h2>🛡 ${a.nome} · ${a.tag}</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Último veredito</h2>${saidaModal(window.VALIDADOR_ULTIMO,'',[['Item','item'],['Veredito','veredito'],['Motivo','motivo'],['Risco','risco'],['Reescrita','reescrita']])}`); return; }
     if(h.key==='redator'){ const a=AGENTES.find(x=>x.key==='redator'); abrir(`<h2>✍️ ${a.nome} · copy</h2><p class="role">${a.role}</p><h2 style="font-size:14px;margin-top:12px">Última copy</h2>${saidaModal(window.REDATOR_ULTIMA,'',[['Produto','produto'],['Headline','headline'],['Texto','texto'],['CTA','cta'],['Caracteres','caracteres']])}`); return; }
     if(h.key==='creativemeta'){ abrir(claraModal()); return; }
+    if(h.key==='gmeta'){ abrir(wjModal()); return; }
     const a=AGENTES.find(x=>x.key===h.key); const d=(DADOS?.agentes||[]).find(x=>x.key===h.key);
     abrir(`<h2>👤 ${a.nome} <span class="role">· ${a.tag}${a.esc?' · '+(a.esc==='sp'?'Silva Pimenta':'Magalhães Gomes'):''}</span></h2><p class="role">${a.role}</p><p>${a.detalhe||'…'}</p>${d?`<p>Cenário Make: <a href="https://us2.make.com/436138/scenarios/${d.id}/edit" target="_blank">#${d.id}</a> · ativo: ${d.ativo?'sim':'NÃO'}</p>`:''}<p class="role">DIGITANDO = rodou nos últimos 10 min · ERRO = última falhou (Mauro religa) · 😴 DORMINDO = desligado · ☕ = na escuta.</p>`); return;
   } }
