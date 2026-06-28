@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-28T20:05:09Z",
+  "atualizadoEm": "2026-06-28T21:18:05Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1695,
@@ -11,9 +11,9 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 2089.38,
-      "meta": 19012.11,
-      "leads_novos": 303,
+      "google": 2103.37,
+      "meta": 19067.38,
+      "leads_novos": 304,
       "ganhos": 25,
       "valor_ganhos": 76374.1,
       "orcamento_diario_google": 60.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3693.78,
-      "meta": 22527.18,
+      "meta": 22597.84,
       "leads_novos": 449,
       "ganhos": 26,
       "valor_ganhos": 89652.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 1673.43,
+      "meta": 1674.42,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3781.0,
@@ -41,8 +41,8 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 6071.73,
-      "meta": 860.76,
+      "google": 6086.97,
+      "meta": 863.33,
       "leads_novos": 51,
       "ganhos": 3,
       "valor_ganhos": 10470.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 669.88,
+      "meta": 671.12,
       "leads_novos": 16,
       "ganhos": 4,
       "valor_ganhos": 7670.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 165.91,
+      "meta": 166.79,
       "leads_novos": 8,
       "ganhos": 3,
       "valor_ganhos": 6972.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 26213.39,
+      "google": 26264.67,
       "meta": 0.0,
-      "leads_novos": 502,
+      "leads_novos": 503,
       "ganhos": 53,
       "valor_ganhos": 141842.62,
       "orcamento_diario_google": 1075.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 3711.25,
-      "meta": 1651.44,
+      "google": 3715.05,
+      "meta": 1655.07,
       "leads_novos": 41,
       "ganhos": 5,
       "valor_ganhos": 20462.0,
