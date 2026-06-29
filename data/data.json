@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-06-29T18:26:09Z",
+  "atualizadoEm": "2026-06-29T20:27:16Z",
   "mesReferencia": "2026-06",
   "tipo": "corrente",
   "taxa_usd": 5.1717,
@@ -12,8 +12,8 @@
   "gastos": {
     "aux-moradia": {
       "google": 2116.22,
-      "meta": 19954.18,
-      "leads_novos": 326,
+      "meta": 20046.44,
+      "leads_novos": 327,
       "ganhos": 26,
       "valor_ganhos": 79065.1,
       "orcamento_diario_google": 60.0,
@@ -22,17 +22,17 @@
     },
     "fies": {
       "google": 3776.27,
-      "meta": 23298.59,
-      "leads_novos": 479,
-      "ganhos": 26,
-      "valor_ganhos": 89652.0,
+      "meta": 23405.9,
+      "leads_novos": 496,
+      "ganhos": 27,
+      "valor_ganhos": 94143.0,
       "orcamento_diario_google": 127.0,
       "orcamento_diario_meta": 779.5,
       "orcamento_diario": 906.5
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 1681.13,
+      "meta": 1681.31,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3781.0,
@@ -41,8 +41,8 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 6273.82,
-      "meta": 903.38,
+      "google": 6283.62,
+      "meta": 909.54,
       "leads_novos": 53,
       "ganhos": 4,
       "valor_ganhos": 12960.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 701.17,
+      "meta": 703.75,
       "leads_novos": 17,
       "ganhos": 4,
       "valor_ganhos": 7670.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 172.22,
+      "meta": 173.33,
       "leads_novos": 8,
       "ganhos": 3,
       "valor_ganhos": 6972.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 27110.26,
+      "google": 27145.71,
       "meta": 0.0,
       "leads_novos": 516,
       "ganhos": 53,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 3975.32,
-      "meta": 1712.03,
+      "meta": 1716.87,
       "leads_novos": 43,
       "ganhos": 5,
       "valor_ganhos": 20462.0,
