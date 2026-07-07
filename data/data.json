@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-07T08:58:01Z",
+  "atualizadoEm": "2026-07-07T12:06:16Z",
   "mesReferencia": "2026-07",
   "tipo": "corrente",
   "taxa_usd": 5.167,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 373.5,
-      "meta": 4364.91,
+      "meta": 4514.22,
       "leads_novos": 67,
       "ganhos": 8,
       "valor_ganhos": 22434.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 757.69,
-      "meta": 4593.47,
-      "leads_novos": 119,
+      "meta": 4731.8,
+      "leads_novos": 123,
       "ganhos": 8,
       "valor_ganhos": 23575.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 35.96,
+      "meta": 37.15,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 1480.64,
-      "meta": 330.66,
-      "leads_novos": 4,
+      "google": 1502.91,
+      "meta": 330.67,
+      "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 6990.0,
       "orcamento_diario_google": 245.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 135.3,
+      "meta": 142.17,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 35.27,
+      "meta": 36.98,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 5262.98,
+      "google": 5313.98,
       "meta": 0.0,
-      "leads_novos": 100,
+      "leads_novos": 102,
       "ganhos": 10,
       "valor_ganhos": 37854.0,
       "orcamento_diario_google": 1075.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 944.96,
-      "meta": 361.01,
+      "google": 995.51,
+      "meta": 366.7,
       "leads_novos": 5,
       "ganhos": 3,
       "valor_ganhos": 16969.98,
