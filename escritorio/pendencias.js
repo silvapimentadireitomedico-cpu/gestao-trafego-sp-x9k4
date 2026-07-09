@@ -5,7 +5,7 @@ window.PENDENCIAS = [
   { t: 'Otimizações a executar (relatório de hoje: Seguro + FIES)', s: 'pend' },
   { t: 'Rita · automação na nuvem (trava no token Cloudflare, chamado na TI)', s: 'wait' },
   { t: 'Relatório diário pro Flávio (ativar CallMeBot +34 611 021 695)', s: 'pend' },
-  { t: 'HubSpot × Pipedrive (#17) — aguardando formulário + card de teste', s: 'wait' },
+  { t: 'Hugo · HubSpot × Pipedrive Seguralta (#17) — NO AR; falta só o card de teste real da Seguralta + definir Eluria', s: 'wait' },
   { t: 'Bot IA Magalhães (#16) — deploy Fly.io', s: 'pend' },
   { t: 'Make Tag Lead (#01) — ajustes finos + expandir pro MG', s: 'pend' },
   { t: 'UTM Tracking enriquecido (#14) — nível 1', s: 'pend' },

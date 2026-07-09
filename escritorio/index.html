@@ -84,14 +84,14 @@ const AGENTES=[
   {key:'redator',nome:'REDATOR',tag:'COPY', setor:'mkt', esc:null, x:570,y:760, shirt:'#3a6ea5',shirt2:'#274d75',hair:'#2a2018',plate:'#3a6ea5', role:'copy-leadgen-meta, escreve a copy que qualifica (PAS, qualificador no início, 3 ângulos). 2º do fluxo, depois do William aprovar o criativo.'},
   {key:'validador',nome:'VALIDADOR',tag:'🛡 GATE META', setor:'mkt', esc:null, x:820,y:760, shirt:'#2e8b57',shirt2:'#1d6e41',hair:'#1a1a1a',plate:'#2e8b57', role:'compliance-meta, ÚLTIMO PORTÃO. Revisa contra a política oficial do Meta antes de subir. Nada sobe sem passar por ele. O William JR dá a visão dele aqui pra você comparar.'},
   // ===== COMERCIAL > CAPTAÇÃO & CADASTRO =====
-  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     setor:'com', esc:'sp', x:1120,y:265, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#1f7fa6', role:'Tag Lead, capta lead do WhatsApp e cadastra no Pipedrive.'},
+  {key:'taglead',nome:'TÉO',  tag:'TAG LEAD',     setor:'com', esc:'sp', x:1120,y:265, shirt:'#1f7fa6',shirt2:'#155b78',hair:'#3a2415',plate:'#1f7fa6', role:'Tag Lead (fluxo NOVO 09/07): lead DIRETO no WhatsApp (sem cadastro) cria pessoa+negócio na 1ª mensagem. Quem veio de CADASTRO Meta ou form do site NÃO cria nada — só conversa no DigiSac, e o SDR converte o Lead (que tem os campos de campanha). Se o lead diz o produto na conversa, o card do SEM FUNIL é MOVIDO pro funil certo (nunca duplica). Dedup por telefone (busca nacional).'},
   {key:'cadaux', nome:'AURORA',tag:'CAD. AUXÍLIO', setor:'com', esc:'sp', x:1340,y:265, shirt:'#9a48d0',shirt2:'#6f2ea0',hair:'#141414',plate:'#9a48d0', role:'Cadastro de leads do Auxílio Moradia (Lead Form Meta).'},
   {key:'cadfies',nome:'FÁBIO', tag:'CAD. FIES',    setor:'com', esc:'sp', x:1120,y:455, shirt:'#e08a2a',shirt2:'#b3691a',hair:'#5a3214',plate:'#e08a2a', role:'Cadastro de leads do FIES (Lead Form Meta).'},
   {key:'cadsusp',nome:'SUELI', tag:'CAD. SUSP.',   setor:'com', esc:'sp', x:1340,y:455, shirt:'#2e9d5f',shirt2:'#1d6e41',hair:'#241a10',plate:'#2e9d5f', role:'Cadastro de leads da Suspensão do FIES (Lead Form Meta).'},
   {key:'acoes', nome:'DOCA', tag:'AÇÕES/DOC',      setor:'com', esc:null, x:1230,y:645, shirt:'#2a8c7a',shirt2:'#1d6e60',hair:'#2a1d12',plate:'#0d6e64', role:'Robô das Ações, todo ganho vira card no PÓS-FECHAMENTO (dono Duda) e avisa o jurídico no Discord.'},
   // ===== OPERAÇÃO & INFRA =====
   {key:'arquiteto',nome:'ADÃO',tag:'ARQUITETO', setor:'ope', esc:null, x:1120,y:860, shirt:'#4a5a7a',shirt2:'#344158',hair:'#1a1a1a',plate:'#2b3a5a', role:'Arquiteto de Agentes, monta agentes novos com o Gabarito ADAPTA + as skills certas injetadas (montou o William JR).'},
-  {key:'hubspot',nome:'HUGO', tag:'HUBSPOT',    setor:'ope', esc:'mg', x:1340,y:860, shirt:'#7a7a8a',shirt2:'#55555f',hair:'#3a3a3a',plate:'#6b6b78', fixo:'zzz', role:'Integração HubSpot × Pipedrive da seguradora (Magalhães Gomes). Aguardando a seguradora.'},
+  {key:'hubspot',nome:'HUGO', tag:'HUBSPOT↔PD', setor:'ope', esc:'mg', x:1340,y:860, shirt:'#ff7a59',shirt2:'#d65f43',hair:'#3a3a3a',plate:'#ff7a59', role:'Hugo · integração HubSpot da seguradora Seguralta × Pipedrive (Magalhães Gomes). NO AR desde 06/07: lead do formulário deles vira negócio no funil SEGURALTA (rodízio 1 a 1 Dayvid/Emmanuel) e o movimento de etapa espelha nos 2 sentidos. Cartão 17.'},
   {key:'executor',nome:'EXECUTOR',tag:'(futuro)', setor:'ope', esc:null, x:1120,y:1045, shirt:'#5a5f6e',shirt2:'#42454f',hair:'#2a2a2a',plate:'#5a5f6e', fixo:'zzz', role:'Executor de campanha, DESLIGADO por padrão (deny). Só age quando o William abre a janela e aprova item a item. Vê-lo acordar = a janela foi aberta.'},
   {key:'botmag',nome:'GUI',  tag:'BOT MG',      setor:'ope', esc:'mg', x:1340,y:1045, shirt:'#8a5a3a',shirt2:'#6a4228',hair:'#2a1a10',plate:'#7a4a2a', fixo:'zzz', role:'Bot IA WhatsApp da Magalhães Gomes (atendimento, em dev, falta deploy no Fly.io).'},
 ];
@@ -281,7 +281,7 @@ async function atualizar(){
       if(e==='erro')erroKey=a.key;
       setEstado(a.key,e,a.ultima?`Última: ${new Date(a.ultima.ts).toLocaleString('pt-BR')} · ${a.ultima.status===1?'sucesso':'ERRO'} · ${a.ultima.ops} ops`:'sem execuções recentes');
     });
-    setEstado('hubspot','zzz','Em desenho — aguardando o formulário e o card de teste da seguradora (cartão 17). 😴');
+    setEstado('hubspot','idle','🔗 NO AR (06/07). HubSpot da Seguralta ↔ Pipedrive SEGURALTA: lead deles vira negócio (rodízio 1 a 1 Dayvid/Emmanuel) + contato no Digisac MG (etiqueta de origem, sem distribuir) + espelho de etapas nos 2 sentidos. Mauro vigia por healthcheck. (cartão 17)');
     setEstado('rita-sp','idle','📊 Relatórios SP (Auxílio, FIES, Direito Médico). Manda o relatório pro William JR e pro William, que analisam em paralelo. Clique pra abrir os relatórios.');
     setEstado('rita-mg','idle','📊 Relatórios MG (Seguro). Google + Meta + Pipedrive, cruzamento de lead real, LIXO = persona errado.');
     setEstado('gmeta','idle','🚀 William JR · Tráfego META. Recebe o relatório da Rita, decide melhorias (em paralelo com você), pede criativo pra Thainar, passa por copy + Validador e monta em PAUSED pra tua aprovação. Padrão fixo: ABO, zero Advantage+, só FB+IG, só Stories/Feed/Reels.');
@@ -323,8 +323,8 @@ const PP=[{x:430,y:1170},{x:540,y:1170}]; const SOFA=[{x:980,y:1170},{x:1070,y:1
 function draw(t){
   HITS=[]; drawFloor(); drawSetores();
   window_(120,30); whiteboard(280,34); vending(1420,12);
-  tvWall(95,180,'orcamento','ORÇAMENTO'); tvWall(95,320,'juridico','JURÍDICO'); tvWall(95,460,'encerr','ENCERR.');
-  plant(95,640); plant(95,920);
+  tvWall(95,180,'orcamento','ORÇAMENTO'); tvWall(95,320,'juridico','JURÍDICO'); tvWall(95,460,'encerr','ENCERR.'); tvWall(95,600,'conexoes','CONEXÕES');
+  plant(95,920);
   drawArmario(t);
   // todos ficam nas suas mesas (sem COPA): o estado aparece na tela da mesa + no balão
   const atores=[];
@@ -353,7 +353,7 @@ function ritaModal(esc){ const bt='display:flex;justify-content:space-between;al
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px"><a href="${ritaURL('seguro')}" target="_blank" style="${bt};background:#8a5a2a;color:#fff">📈 Seguro <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a></div>`;
   return `<h2>📊 Rita · SP</h2><p class="role">Silva Pimenta · Google + Meta, benchmarks BR + quality gates. Cada link abre a <b>lista de relatórios</b> do produto (você escolhe qual abrir). Manda o relatório pro William JR e pro William.</p>
     <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
-      <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">tempo real ✓</span></a>
+      <a href="https://relatorio-vendas-sp.pages.dev" target="_blank" style="${bt};background:#c8a86b;color:#2a2310">📊 Dashboard de Vendas <span style="font-weight:400;font-size:11px;opacity:.85">Tarefa Agendada no PC · 10 em 10 min</span></a>
       <a href="${ritaURL('aux-moradia')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Auxílio Moradia <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
       <a href="${ritaURL('fies')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 FIES <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
       <a href="${ritaURL('direito-medico')}" target="_blank" style="${bt};background:#0d6e64;color:#fff">📈 Direito Médico <span style="font-weight:400;font-size:11px;opacity:.85">ver relatórios →</span></a>
@@ -388,17 +388,29 @@ function claraModal(){
 function saidaModal(o,titulo,campos){ if(!o) return `<p>Ainda sem registro.</p>`;
   const tag= o.exemplo?'<p class="role">⚠️ exemplo (o agente ainda não rodou; quando rodar, grava o registro real aqui)</p>':`<p class="role">registro real · ${o.quando||''}</p>`;
   return tag+campos.map(c=>`<p><b>${c[0]}:</b> ${o[c[1]]||'—'}</p>`).join(''); }
+async function conexoesModal(){
+  abrir('<h2>📞 Conexões (Digisac, ao vivo)</h2><p class="role">consultando…</p>');
+  try{
+    const r=await fetch('https://sp-tag-lead-filter-x7k2.pages.dev/conexoes?t='+Date.now()); const j=await r.json();
+    const rows=(j.conexoes||[]).map(c=>`<li><b>${c.empresa==='Silva Pimenta'?'SP':'MG'}</b> · ${c.nome}${c.numero?(' · <b>'+c.numero+'</b>'):''} — ${c.ok?'🟢 conectado':'🔴 '+c.estado} <span class="role">(${c.tipo})</span></li>`).join('');
+    abrir(`<h2>📞 Conexões (Digisac, ao vivo)</h2><p class="role">Só as ATIVAS (conexão arquivada no Digisac não aparece). Fonte: API Digisac SP + MG via worker, cache 60s.</p><ul>${rows}</ul><p class="role">Inventário completo + plano de contingência: <code>_contingencia/INVENTARIO-WHATSAPP.md</code></p>`);
+  }catch(e){ abrir('<h2>📞 Conexões</h2><p>Não consegui consultar agora ('+String(e).slice(0,60)+').</p>'); }
+}
 cv.addEventListener('pointerdown',e=>{
   const rect=cv.getBoundingClientRect(); const mx=(e.clientX-rect.left)/scale, my=(e.clientY-rect.top)/scale;
   for(let i=HITS.length-1;i>=0;i--){ const h=HITS[i]; if(mx>=h.x&&mx<=h.x+h.w&&my>=h.y&&my<=h.y+h.h){
+    if(h.tv==='conexoes'){ conexoesModal(); return; }
     if(h.tv){ const t=TVS[h.tv]; abrir(`<h2>${t[0]}</h2><p>${t[1]}</p><p><a href="${t[2]}" target="_blank">abrir o painel →</a></p>`); return; }
     if(h.pilha){ abrir(pend()); return; }
     if(h.key==='mauro'){ abrir(`<h2>👔 Mauro, o Supervisor</h2><p>Fica <b>em pé no posto vigiando</b> os 3 setores na nuvem. Quando um agente dá erro, ele corre até a mesa, religa sozinho o que dá pra religar, ajusta a vazão e avisa no Discord <b>#🤖-automações</b>.</p>
-      <h2 style="font-size:14px;margin-top:12px">De quanto em quanto tempo ele olha cada um</h2>
+      <h2 style="font-size:14px;margin-top:12px">O que ele vigia (e o que faz em cada caso)</h2>
       <ul>
-        <li><b>Cenários Make</b> (Téo, Aurora, Fábio, Sueli): <b>de hora em hora</b>, 24/7 (minuto 5 de cada hora). Religa sozinho quem cai.</li>
-        <li><b>Rita e William JR</b>: <b>1x/dia</b>, na ronda das <b>9h</b>, confere se o relatório/proposta do dia saiu; se faltou, te chama no WhatsApp.</li>
-        <li><b>Erro/crash local</b> (Rita, William JR, Thainar): <b>na hora</b>, no WhatsApp (só pega com o PC ligado).</li>
+        <li><b>Cenário Make caído</b> (Téo, Aurora, Fábio, Sueli): <b>religa sozinho</b>, de hora em hora, 24/7. Se religar e não voltar, te chama (@here + WhatsApp).</li>
+        <li><b>Cenário Make INVÁLIDO</b> (blueprint quebrado, ex.: edição com fórmula errada — caso do Cad. Auxílio em 09/07): religar NÃO resolve. Ele te chama com o playbook: <b>restaurar o backup</b> em <code>operacao/backups/blueprint-&lt;id&gt;-*.json</code> e ativar de novo.</li>
+        <li><b>Cenário errando em série</b> (3+ erros na última hora, ex.: Digisac instável): avisa qual módulo está falhando — lead pode estar se perdendo; dá pra reprocessar no histórico do Make.</li>
+        <li><b>Dashboard de Vendas do comercial parado</b> (+45 min sem atualizar em horário comercial): avisa — a Tarefa Agendada "Dashboard Vendas SP" roda no PC do William de 10 em 10 min.</li>
+        <li><b>Rita e William JR</b>: 1x/dia na ronda das <b>9h</b>, confere se o relatório/proposta do dia saiu; se faltou, te chama no WhatsApp.</li>
+        <li><b>Hugo (Seguralta)</b>: healthcheck do acesso ao HubSpot a cada ronda.</li>
       </ul>
       <p class="role">Não é tempo real: o ciclo base é de 1 em 1 hora (foi feito pra nunca passar de 1h sem ninguém ver).</p>
       <p><a href="https://claude.ai/code/routines/trig_01P13QGf66X79wRyEipHuXbP" target="_blank">abrir a rotina do Mauro →</a></p>`); return; }

@@ -4,6 +4,14 @@
 // (silva-pimenta/); o escritório resolve o prefixo conforme a cópia.
 window.CLARA_IDEIAS = [
   {
+    produto: 'Auxílio Moradia · WhatsApp qualificado',
+    tag: 'sp',
+    data: '22/06/2026',
+    titulo: '3 estáticos (decreto · alojamento não é moradia · checklist) feed+stories + 4 roteiros de vídeo',
+    n: 6,
+    link: 'https://criativos-sp.pages.dev/clara.html',
+  },
+  {
     produto: 'FIES · abatimento',
     tag: 'sp',
     data: '19/06/2026',
