@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-10T17:13:05Z",
+  "atualizadoEm": "2026-07-10T18:48:46Z",
   "mesReferencia": "2026-07",
   "tipo": "corrente",
   "taxa_usd": 5.1088,
@@ -12,18 +12,18 @@
   "gastos": {
     "aux-moradia": {
       "google": 618.37,
-      "meta": 7176.05,
-      "leads_novos": 112,
-      "ganhos": 15,
-      "valor_ganhos": 49758.0,
+      "meta": 7241.88,
+      "leads_novos": 114,
+      "ganhos": 16,
+      "valor_ganhos": 53748.0,
       "orcamento_diario_google": 60.0,
       "orcamento_diario_meta": 805.68,
       "orcamento_diario": 865.68
     },
     "fies": {
-      "google": 1263.52,
-      "meta": 7299.5,
-      "leads_novos": 193,
+      "google": 1285.15,
+      "meta": 7360.38,
+      "leads_novos": 195,
       "ganhos": 12,
       "valor_ganhos": 37037.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 55.45,
+      "meta": 55.67,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 2344.97,
+      "google": 2381.08,
       "meta": 330.67,
       "leads_novos": 13,
       "ganhos": 1,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 223.43,
+      "meta": 225.23,
       "leads_novos": 3,
       "ganhos": 1,
       "valor_ganhos": 1743.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 56.34,
+      "meta": 57.07,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 8938.18,
+      "google": 9065.02,
       "meta": 0.0,
-      "leads_novos": 165,
+      "leads_novos": 166,
       "ganhos": 15,
       "valor_ganhos": 57424.0,
       "orcamento_diario_google": 1075.0,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 1527.93,
-      "meta": 554.35,
+      "meta": 559.97,
       "leads_novos": 10,
       "ganhos": 4,
       "valor_ganhos": 24969.98,
