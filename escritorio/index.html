@@ -79,6 +79,7 @@ const AGENTES=[
   // ===== MARKETING > TRÁFEGO (você + o gestor, como concorrentes) =====
   {key:'gmeta',nome:'WILLIAM JR',tag:'TRÁFEGO META', setor:'mkt', esc:null, x:400,y:500, shirt:'#1877F2',shirt2:'#0f56b3',hair:'#241a12',plate:'#1877F2', role:'William JR · Gestor de Tráfego Meta. Recebe a análise da Rita, decide as melhorias EM PARALELO com você (concorrentes, visões diferentes de propósito), pede criativo pra Thainar, passa por copy + Validador, e monta a campanha NO TEU PADRÃO em PAUSED, só esperando tua aprovação. Sobe sempre pausado.'},
   {key:'ggoogle',nome:'WILLIAM JR',tag:'TRÁFEGO GOOGLE', setor:'mkt', esc:null, x:720,y:500, shirt:'#34A853',shirt2:'#1e7e38',hair:'#241a12',plate:'#34A853', role:'William JR · Gestor de Tráfego Google (construído 30/06). Rede de Pesquisa: diagnóstico de Quality Score pelos 3 componentes, otimização por CPL, guarda-corpos AUTO/PROPÕE/NUNCA-SOZINHO, trava de conta (customer_id), lê antes de escrever via google-ads-ratos. Leis: ONE_WEBSITE_PER_AD_GROUP, Parceiros/Display OFF, não negativar cidade em conta nacional.'},
+  {key:'artigos',nome:'MACHADO',tag:'ARTIGOS SP+MG', setor:'mkt', esc:null, x:960,y:500, shirt:'#6b4f9e',shirt2:'#4d3775',hair:'#1a1a1a',plate:'#6b4f9e', role:'Machado · Agente de Artigos Jurídicos (skill artigos-juridicos). Todo dia: caça fato REAL dos últimos 7 dias (STJ, CFM, SUSEP...), escreve na voz do Flávio (SP, médicos) e do Paulo (MG, seguros), foto inédita do Pexels, e publica no blog dos 2 sites. Semana de treino: rascunho + aprovação do William no Discord antes de publicar. Venda invisível + Provimento 205 OAB.'},
   // ===== MARKETING > CRIATIVO & COPY (fluxo: Thainar ▶ Redator ▶ Validador ▶ você) =====
   {key:'creativemeta',nome:'THAINAR',tag:'CRIATIVOS', setor:'mkt', esc:null, x:320,y:760, shirt:'#d6457f',shirt2:'#a83260',hair:'#2a1a20',plate:'#c2557f', role:'Thainar · criativos Meta de lead qualificado no WhatsApp. Filtro no criativo + diversidade Andromeda + gera a imagem via Higgsfield (com pré-custo). O William e o William JR pedem criativo pra ela, por isso ela faz MUITOS. Início do fluxo de criativo.'},
   {key:'redator',nome:'REDATOR',tag:'COPY', setor:'mkt', esc:null, x:570,y:760, shirt:'#3a6ea5',shirt2:'#274d75',hair:'#2a2018',plate:'#3a6ea5', role:'copy-leadgen-meta, escreve a copy que qualifica (PAS, qualificador no início, 3 ângulos). 2º do fluxo, depois do William aprovar o criativo.'},
@@ -293,6 +294,20 @@ async function atualizar(){
     setEstado('acoes','idle','🤖 Autônomo. Deal GANHO em qualquer funil → card no PÓS-FECHAMENTO (dono Duda) + Discord. (cartão 19)');
     setEstado('diario','idle','📥 Autônomo (Tarefa Windows). Resumo de tráfego SP + MG no WhatsApp às 20h. (cartão 21)');
     setEstado('radar','idle','📰 Autônomo (nuvem, 08:00). Pautas de conteúdo pro Thainar no Discord. (cartão 18)');
+    try{
+      const hoje=new Date().toLocaleDateString('pt-BR');
+      const [spA,mgA]=await Promise.all([
+        fetch('https://silvapimenta.com.br/wp-json/wp/v2/posts?per_page=1&_fields=title,date,link').then(r=>r.json()).catch(()=>null),
+        fetch('https://magalhaesgomes.com.br/?rest_route=/wp/v2/posts&per_page=1&_fields=title,date,link').then(r=>r.json()).catch(()=>null)
+      ]);
+      const f=(p)=>p&&p[0]?{d:new Date(p[0].date),t:p[0].title.rendered}:null;
+      const sp=f(spA),mg=f(mgA);
+      const dsp=sp?sp.d.toLocaleDateString('pt-BR'):'?', dmg=mg?mg.d.toLocaleDateString('pt-BR'):'?';
+      const fezHoje=(dsp===hoje)||(dmg===hoje);
+      const atraso=sp&&mg&&(Date.now()-Math.max(sp.d,mg.d))>1000*3600*54;
+      setEstado('artigos', atraso?'erro':(fezHoje?'typing':'idle'),
+        '📝 Último SP: '+dsp+' — '+(sp?sp.t:'?')+'  ·  Último MG: '+dmg+' — '+(mg?mg.t:'?')+(fezHoje?'  ✅ artigo de hoje no ar':''));
+    }catch(e){}
     setEstado('arquiteto','idle','🏗️ Pede "cria um agente que faz X" que eu invoco ele: avalia, escolhe as skills e monta com o Gabarito ADAPTA. Montou o William JR.');
     setEstado('botmag','zzz','📱 Atendimento WhatsApp do Magalhães Gomes (Digisac + Claude). Dev local; falta deploy no Fly.io. 😴');
     setEstado('executor','zzz','🔒 DESLIGADO por padrão (deny). Quem executa mudança em campanha. Só acorda quando você abre a janela e aprova item a item. Vê-lo dormindo = a trava está de pé.');
