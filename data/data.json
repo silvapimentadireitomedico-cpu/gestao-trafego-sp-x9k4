@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-16T14:19:34Z",
+  "atualizadoEm": "2026-07-16T15:52:53Z",
   "mesReferencia": "2026-07",
   "tipo": "corrente",
   "taxa_usd": 5.0727,
@@ -11,9 +11,9 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 978.16,
-      "meta": 11904.05,
-      "leads_novos": 174,
+      "google": 989.67,
+      "meta": 12027.15,
+      "leads_novos": 171,
       "ganhos": 19,
       "valor_ganhos": 64920.0,
       "orcamento_diario_google": 60.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 2015.54,
-      "meta": 11876.43,
-      "leads_novos": 286,
+      "meta": 11962.68,
+      "leads_novos": 292,
       "ganhos": 15,
       "valor_ganhos": 48759.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 90.21,
+      "meta": 90.67,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 3838.07,
+      "google": 3848.83,
       "meta": 330.67,
       "leads_novos": 22,
       "ganhos": 2,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 371.09,
+      "meta": 373.39,
       "leads_novos": 9,
       "ganhos": 1,
       "valor_ganhos": 1743.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 94.3,
+      "meta": 94.94,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 14510.29,
+      "google": 14756.64,
       "meta": 0.0,
-      "leads_novos": 246,
+      "leads_novos": 248,
       "ganhos": 19,
       "valor_ganhos": 63384.0,
       "orcamento_diario_google": 1075.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 2291.64,
-      "meta": 910.63,
+      "google": 2305.81,
+      "meta": 913.13,
       "leads_novos": 16,
       "ganhos": 6,
       "valor_ganhos": 44450.98,
