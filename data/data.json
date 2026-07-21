@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-21T16:48:49Z",
+  "atualizadoEm": "2026-07-21T18:05:02Z",
   "mesReferencia": "2026-07",
   "tipo": "corrente",
   "taxa_usd": 5.078,
@@ -11,8 +11,8 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 1258.34,
-      "meta": 15722.5,
+      "google": 1303.54,
+      "meta": 15768.7,
       "leads_novos": 221,
       "ganhos": 20,
       "valor_ganhos": 67420.0,
@@ -21,9 +21,9 @@
       "orcamento_diario": 570.13
     },
     "fies": {
-      "google": 2750.57,
-      "meta": 15881.35,
-      "leads_novos": 372,
+      "google": 2793.61,
+      "meta": 15951.29,
+      "leads_novos": 379,
       "ganhos": 19,
       "valor_ganhos": 62721.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 121.41,
+      "meta": 122.7,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 4931.59,
+      "google": 4959.84,
       "meta": 330.67,
       "leads_novos": 29,
       "ganhos": 2,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 484.59,
+      "meta": 487.96,
       "leads_novos": 11,
       "ganhos": 1,
       "valor_ganhos": 1743.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 121.26,
+      "meta": 121.88,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 19113.96,
+      "google": 19319.18,
       "meta": 0.0,
-      "leads_novos": 317,
+      "leads_novos": 318,
       "ganhos": 23,
       "valor_ganhos": 72645.0,
       "orcamento_diario_google": 1075.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 2706.24,
-      "meta": 1218.29,
+      "google": 2762.33,
+      "meta": 1222.15,
       "leads_novos": 20,
       "ganhos": 8,
       "valor_ganhos": 52918.98,
