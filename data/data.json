@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-21T11:32:59Z",
+  "atualizadoEm": "2026-07-21T13:02:43Z",
   "mesReferencia": "2026-07",
   "tipo": "corrente",
   "taxa_usd": 5.0894,
@@ -12,8 +12,8 @@
   "gastos": {
     "aux-moradia": {
       "google": 1234.33,
-      "meta": 15563.27,
-      "leads_novos": 214,
+      "meta": 15607.19,
+      "leads_novos": 218,
       "ganhos": 20,
       "valor_ganhos": 67420.0,
       "orcamento_diario_google": 60.0,
@@ -21,9 +21,9 @@
       "orcamento_diario": 570.24
     },
     "fies": {
-      "google": 2703.84,
-      "meta": 15543.15,
-      "leads_novos": 368,
+      "google": 2730.83,
+      "meta": 15662.15,
+      "leads_novos": 369,
       "ganhos": 19,
       "valor_ganhos": 62721.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 119.7,
+      "meta": 119.72,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 4845.9,
+      "google": 4857.1,
       "meta": 330.67,
       "leads_novos": 27,
       "ganhos": 2,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 469.48,
+      "meta": 474.06,
       "leads_novos": 11,
       "ganhos": 1,
       "valor_ganhos": 1743.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 116.48,
+      "meta": 117.11,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 18567.38,
+      "google": 18738.9,
       "meta": 0.0,
       "leads_novos": 310,
       "ganhos": 22,
@@ -91,9 +91,9 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 2664.78,
-      "meta": 1205.42,
-      "leads_novos": 18,
+      "google": 2677.57,
+      "meta": 1209.37,
+      "leads_novos": 19,
       "ganhos": 8,
       "valor_ganhos": 52918.98,
       "orcamento_diario_google": 308.0,
