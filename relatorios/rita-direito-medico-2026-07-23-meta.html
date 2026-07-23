@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direito Médico · Meta Ads · Ciclo 6 · 2026-07-23</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1A4758;--teal-dark:#133544;--champagne:#C5A57A;--champagne-dark:#A88958;--bege:#f7f5f0;--texto:#1A1A1A;--texto-secundario:#555;--verde:#22c55e;--vermelho:#ef4444;--amarelo:#f59e0b;--azul:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--bege);color:var(--texto);line-height:1.6}
+.container{max-width:1180px;margin:0 auto;padding:48px 24px}
+header{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;padding:48px 24px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--champagne);font-weight:600;margin-bottom:12px}
+h1{font-size:32px;font-weight:700;margin-bottom:8px;line-height:1.15}
+.subtitle{font-size:16px;opacity:0.85;margin-top:6px}
+.status-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin:10px 6px 0 0}
+.status-badge.ok{background:var(--verde);color:#fff}
+.status-badge.warn{background:var(--amarelo);color:#fff}
+.status-badge.crit{background:var(--vermelho);color:#fff}
+.section-title{font-size:24px;font-weight:700;color:var(--teal);margin:48px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--champagne)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid var(--champagne)}
+.card h4{color:var(--teal);margin:4px 0 6px}
+.skill-type{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--champagne-dark);font-weight:700}
+.skill-desc{font-size:14px;color:var(--texto-secundario)}
+.alert-box{background:#fef2f2;border-left:4px solid var(--vermelho);padding:22px;border-radius:8px;margin-bottom:14px}
+.alert-box.warning{background:#fff8e1;border-left-color:var(--amarelo)}
+.alert-box.success{background:#f0fdf4;border-left-color:var(--verde)}
+.alert-box.info{background:#eff6ff;border-left-color:var(--azul)}
+.alert-box h3{font-size:17px;margin-bottom:8px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.summary-grid > div{background:#fff;padding:18px;border-radius:8px;text-align:center;border-top:3px solid var(--champagne)}
+.summary-grid .num{font-size:26px;font-weight:700;color:var(--teal);display:block;line-height:1.1}
+.summary-grid .num.danger{color:var(--vermelho)}
+.summary-grid .num.success{color:var(--verde)}
+.summary-grid .num.warn{color:var(--amarelo)}
+.summary-grid .label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--texto-secundario);margin-top:6px;display:block}
+.summary-grid .delta{font-size:11px;color:var(--texto-secundario);margin-top:3px;display:block}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:24px;font-size:14px}
+th{background:var(--teal);color:#fff;text-align:left;padding:12px 14px;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:11px 14px;border-bottom:1px solid #f0ebe2;vertical-align:middle}
+tr.row-best td{background:#f0fdf4}
+tr.row-bad td{background:#fef2f2}
+tr.row-warn td{background:#fff8e1}
+.pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.pill.ok{background:#dcfce7;color:#166534}
+.pill.warn{background:#fef3c7;color:#92400e}
+.pill.crit{background:#fee2e2;color:#991b1b}
+.pill.info{background:#dbeafe;color:#1e40af}
+.pill.neutral{background:#f1f5f9;color:#475569}
+.action-list{list-style:none;padding:0}
+.action-list li{background:#fff;padding:16px 20px;margin-bottom:10px;border-radius:8px;border-left:4px solid var(--teal)}
+.action-list li.crit{border-left-color:var(--vermelho)}
+.action-list li.warn{border-left-color:var(--amarelo)}
+.action-list li.okk{border-left-color:var(--azul)}
+.action-title{font-weight:600;color:var(--teal);margin-bottom:4px}
+.action-desc{font-size:14px;color:var(--texto-secundario)}
+.action-meta{font-size:12px;color:var(--champagne-dark);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.audit-log{background:#0f172a;color:#94a3b8;font-family:'Courier New',monospace;padding:22px;border-radius:8px;font-size:12px;line-height:1.7;overflow-x:auto}
+.audit-log .ts{color:#60a5fa}
+.audit-log .okl{color:#34d399}
+.audit-log .warnl{color:#fbbf24}
+.audit-log .critl{color:#f87171}
+footer{background:var(--teal-dark);color:#fff;padding:32px 24px;text-align:center;margin-top:60px;font-size:13px;opacity:0.92}
+@media (max-width:768px){.summary-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:24px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container" style="padding-top:0;padding-bottom:0">
+    <div class="eyebrow">Silva Pimenta &middot; Direito Médico &middot; Meta Ads</div>
+    <h1>Ciclo 6 &middot; Diagnóstico Semanal &middot; 23/07/2026</h1>
+    <p class="subtitle">Entrega real na janela: 23/06 a 06/07 (14 dias). Sem veiculação de 07/07 a 22/07.</p>
+    <div>
+      <span class="status-badge crit">CTWA PAUSADA desde 06/07</span>
+      <span class="status-badge ok">DM-82 Processo Ético: R$ 7,43/conversa</span>
+      <span class="status-badge warn">DM-80 Base saturou (freq 9,0)</span>
+    </div>
+  </div>
+</header>
+<div class="container">
+
+  <div class="alert-box" style="margin-top:0"><h3>⚠️ GATE: campanha PAUSADA há 17 dias, o motor de volume do produto está DESLIGADO</h3>A <b>[META] DIREITO MEDICO | CTWA | 2026-06</b> (única ativa do produto) parou de veicular em <b>06/07</b> e está PAUSED na conta. Janelas 14d e 7d vieram VAZIAS da API (zero entrega), então este relatório lê os 14 dias em que ela rodou (23/06 a 06/07). Consequência já visível: o ritmo de leads reais do produto caiu de ~49/mês (30d) pra ~39/mês (pace 14d) no Pipedrive, e a meta de operação é 50/mês com o Meta cruzando a linha. Se a pausa foi decisão consciente (verba, contingência de número), registrar o motivo; se não foi, religar é a ação nº 1 do produto.</div>
+
+  <h2 class="section-title">1. Skills usadas nesse diagnóstico</h2>
+  <div class="cards">
+    <div class="card"><span class="skill-type">Execução &middot; API</span><h4>meta-ads-ratos</h4><div class="skill-desc">campaigns (status), insights por adset 30/14/7d (spend, CTR, freq, actions de messaging, rankings), série diária pra datar a pausa.</div></div>
+    <div class="card"><span class="skill-type">Inteligência &middot; Régua</span><h4>ads-ratos + playbook DM</h4><div class="skill-desc">Kill rule freq &gt; 5 aplicada (DM-80 em 9,04). Formato CTWA validado como o certo (tráfego segue pausado, correto).</div></div>
+    <div class="card"><span class="skill-type">Verdade do lead</span><h4>Pipedrive (pipeline 6)</h4><div class="skill-desc">Tags de tema nos leads: PROCESSO ÉTICO 3 leads / 2 vendas na janela em que o DM-82 rodava.</div></div>
+  </div>
+  <div class="alert-box info"><h3>Skills não acionadas</h3>/criativo (a decisão de religar vem antes de criativo novo) &middot; rankings de qualidade vieram UNKNOWN (volume abaixo do mínimo do Meta, não é falha de coleta).</div>
+
+  <h2 class="section-title">2. Resumo executivo (14 dias de entrega real: 23/06 a 06/07)</h2>
+  <div class="summary-grid">
+    <div><span class="num">R$ 760,57</span><span class="label">Gasto total na janela</span><span class="delta">5 adsets ativos até 06/07</span></div>
+    <div><span class="num success">37</span><span class="label">Conversas iniciadas (7d click)</span><span class="delta">R$ 20,56 por conversa na média</span></div>
+    <div><span class="num success">R$ 7,43</span><span class="label">Custo/conversa DM-82 (Proc. Ético)</span><span class="delta">16 conversas, o melhor da conta</span></div>
+    <div><span class="num danger">0</span><span class="label">Entrega 07/07 a 22/07</span><span class="delta">campanha PAUSED</span></div>
+  </div>
+
+  <h2 class="section-title">3. Performance por conjunto (janela de entrega)</h2>
+  <table>
+    <tr><th>Conjunto</th><th>Gasto</th><th>Impr</th><th>CTR</th><th>Freq</th><th>Conversas</th><th>R$/conversa</th><th>Veredito</th></tr>
+    <tr class="row-best"><td>DM-82 &middot; Processo Ético CRM</td><td>R$ 118,82</td><td>4.332</td><td>2,68%</td><td>1,55</td><td>16</td><td>R$ 7,43</td><td><span class="pill ok">Vencedor: religar primeiro</span></td></tr>
+    <tr class="row-best"><td>DM-83 &middot; Erro Médico</td><td>R$ 112,08</td><td>2.416</td><td>1,95%</td><td>1,75</td><td>7</td><td>R$ 16,01</td><td><span class="pill ok">Bom: religar</span></td></tr>
+    <tr><td>DM-85 &middot; Publicidade Médica</td><td>R$ 117,22</td><td>6.179</td><td>0,74%</td><td>1,65</td><td>6</td><td>R$ 19,54</td><td><span class="pill warn">CTR fraco: religar em observação</span></td></tr>
+    <tr><td>DM-81 &middot; LAL 1% BR</td><td>R$ 235,13</td><td>4.051</td><td>2,62%</td><td>1,78</td><td>7</td><td>R$ 33,59</td><td><span class="pill warn">Caro vs irmãos: verba menor</span></td></tr>
+    <tr class="row-bad"><td>DM-80 &middot; Base Clientes</td><td>R$ 177,32</td><td>3.969</td><td>0,60%</td><td><b>9,04</b></td><td>1</td><td>R$ 177,32</td><td><span class="pill crit">Kill rule freq&gt;5: NÃO religar</span></td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--texto-secundario);margin-bottom:24px"><b>Leitura:</b> a segmentação por TEMA (novidade pós 12/06: DM-82/83/85) funcionou. Processo Ético entrega conversa a R$ 7,43 e é o mesmo tema das 2 vendas do Pipedrive na janela (atribuição por tag textual, calibrando; o campo NÚMERO DA CAMPANHA confirma no detalhe). A Base de clientes (DM-80) saturou de vez: frequência 9 num público pequeno, 1 conversa por R$ 177. Não volta.</p>
+
+  <h2 class="section-title">4. Ads WITH_ISSUES</h2>
+  <div class="alert-box info">Não verificado ad-a-ad neste ciclo: com a campanha pausada, a coleta de ads da janela recente veio vazia. Na religada, o Executor confere o effective_status de cada anúncio antes de ativar (checklist padrão).</div>
+
+  <h2 class="section-title">5. Comparação histórica</h2>
+  <table>
+    <tr><th>Ciclo</th><th>Situação Meta DM</th><th>Conversas</th><th>R$/conversa</th></tr>
+    <tr><td>11/06 (Ciclo 5)</td><td>CTWA recém-migrada (formato tráfego abandonado)</td><td>arrancando</td><td>&middot;</td></tr>
+    <tr class="row-best"><td>23/06 a 06/07 (entrega deste ciclo)</td><td>5 adsets por tema, CTWA</td><td>37</td><td>R$ 20,56 média &middot; R$ 7,43 no melhor</td></tr>
+    <tr class="row-bad"><td>07/07 a 22/07</td><td><b>PAUSADA, zero entrega</b></td><td>0</td><td>&middot;</td></tr>
+  </table>
+  <p style="font-size:14px;color:var(--texto-secundario);margin-bottom:24px"><b>Narrativa:</b> o Meta estava fazendo exatamente o papel desenhado pra ele (volume barato de conversa em tema quente) quando parou. Não há sinal de fadiga nos adsets por tema (freq 1,5 a 1,8): a pausa não foi "performance", foi decisão ou acidente. Isso muda a recomendação: não é reestruturar, é religar sem o DM-80.</p>
+
+  <h2 class="section-title">6. Diagnóstico</h2>
+  <div class="alert-box"><h3>1. Pausa de 17 dias na única fonte de volume escalável do produto</h3>Google é demanda finita (~1.100-1.300 buscas/mês no nicho). Sem Meta, o teto de ~40 leads/mês do Google vira o teto do produto, abaixo da meta de 50.</div>
+  <div class="alert-box warning"><h3>2. DM-80 Base Clientes saturado (freq 9,04)</h3>Base pequena revisitada 9x: 1 conversa por R$ 177. Kill rule da casa (freq &gt; 5). Reativar a campanha SEM esse conjunto.</div>
+  <div class="alert-box warning"><h3>3. DM-85 Publicidade Médica com CTR 0,74%</h3>Metade do CTR dos irmãos, custo/conversa ainda aceitável (R$ 19,54). Religa em observação com verba mínima; se CTR não passar de 1% em 7 dias, pausa e o tema volta com criativo novo.</div>
+  <div class="alert-box success"><h3>4. Sem fadiga nos adsets por tema</h3>Frequências 1,5 a 1,8 em 14 dias de entrega: público longe de saturar. Espaço pra escalar DM-82 antes de precisar de criativo novo.</div>
+
+  <h2 class="section-title">7. Plano de ação (3 camadas)</h2>
+  <ul class="action-list">
+    <li class="crit"><div class="action-title">HOJE &middot; Decidir e religar a CTWA sem o DM-80 (aprovação William)</div><div class="action-desc">Reativar campanha + DM-82, DM-83, DM-85 e DM-81. DM-80 fica PAUSED definitivo. Antes de ativar: conferir destino WhatsApp (7482) vivo e atendido + effective_status dos ads. Rita é read-only: execução via janela do Executor.</div><div class="action-meta">Impacto esperado: +15 a 20 conversas/semana, volta ao pace de 50 leads/mês</div></li>
+    <li class="warn"><div class="action-title">ESTA SEMANA &middot; Rebalancear verba a favor do vencedor</div><div class="action-desc">Proposta: DM-82 R$ 30/d &middot; DM-83 R$ 20/d &middot; DM-85 R$ 10/d (observação) &middot; DM-81 R$ 15/d. Total R$ 75/d (era ~R$ 54/d efetivo na janela). Valores em CENTAVOS na API (R$ 30 = 3000).</div><div class="action-meta">Aprovação William &middot; criar mudanças sempre com validate_only antes</div></li>
+    <li class="warn"><div class="action-title">ESTA SEMANA &middot; Confirmar atribuição: código do público na mensagem salva da UI</div><div class="action-desc">Padrão da casa (número do conjunto no fim da mensagem pré-preenchida). Garante que o lead do DM-82 chegue tagueado e o cruzamento com as vendas de Processo Ético fique exato, hoje a atribuição é por tag textual.</div><div class="action-meta">Reduz o Sem Funil (41 sem origem em 14d)</div></li>
+    <li class="okk"><div class="action-title">2 SEMANAS &middot; Criativo novo pro tema Processo Ético (Thainar via /criativo)</div><div class="action-desc">O tema que vende merece variação de ângulo antes que a frequência suba (hoje 1,55). Matriz persona x ângulo com diversidade real, não variação cosmética.</div><div class="action-meta">Briefing após 7 dias de campanha religada</div></li>
+    <li class="okk"><div class="action-title">2 SEMANAS &middot; Avaliar LAL 3% como reserva de escala</div><div class="action-desc">Só se DM-82/83 escalarem limpos. LAL já é exceção aprovada pelo William neste produto (não estender a outros sem perguntar).</div><div class="action-meta">Checkpoint 06/08</div></li>
+  </ul>
+
+  <h2 class="section-title">8. Validação de tracking</h2>
+  <table>
+    <tr><th>Item</th><th>Status</th><th>Observação</th></tr>
+    <tr><td>Eventos de messaging (conversation_started)</td><td><span class="pill ok">OK na janela de entrega</span></td><td>37 conversas contadas por adset</td></tr>
+    <tr><td>Destino WhatsApp (7482) vivo</td><td><span class="pill warn">CONFERIR na religada</span></td><td>Número voltou do ban em 12/06; revalidar antes de ativar</td></tr>
+    <tr><td>Código do público na mensagem (atribuição)</td><td><span class="pill warn">PARCIAL</span></td><td>Leads chegam com tag textual; campo NÚMERO nem sempre preenchido</td></tr>
+    <tr><td>Rankings de qualidade (quality/conv)</td><td><span class="pill neutral">UNKNOWN</span></td><td>Volume abaixo do mínimo do Meta pra ranking</td></tr>
+  </table>
+
+  <h2 class="section-title">9. Compliance OAB</h2>
+  <div class="alert-box info">Nenhum criativo novo neste ciclo (campanha pausada). Na religada, as peças voltam como estavam (já rodadas). Criativo novo de Processo Ético (camada 3) passa por copy com flag OAB + compliance-meta antes de subir.</div>
+
+  <h2 class="section-title">10. Audit log</h2>
+  <div class="audit-log">
+<span class="ts">23/07 &middot; coleta</span> meta-ads-ratos campaigns + insights adset last_30d/14d/7d + daily <span class="okl">OK</span><br>
+<span class="ts">23/07 &middot; gate 1</span> [META] DIREITO MEDICO CTWA status=PAUSED &middot; última entrega 06/07 <span class="critl">GATE QUEBRADO</span><br>
+<span class="ts">23/07 &middot; janela</span> 14d/7d sem dados (zero entrega) &middot; análise sobre 23/06 a 06/07 <span class="warnl">JANELA ADAPTADA</span><br>
+<span class="ts">23/07 &middot; kill rule</span> DM-80 freq 9,04 &gt; 5 <span class="critl">NÃO RELIGAR</span> &middot; demais adsets freq 1,5-1,8 <span class="okl">OK</span><br>
+<span class="ts">23/07 &middot; pipedrive</span> PROCESSO ÉTICO 3 leads / 2 won na janela de entrega do DM-82 <span class="okl">FILÃO CONFIRMADO</span>
+  </div>
+
+  <h2 class="section-title">11. Próximo ciclo</h2>
+  <div class="alert-box info"><b>Quinta 30/07</b> &middot; pré-requisito: decisão do William sobre a religada (hoje). Se religar, o ciclo 30/07 lê os primeiros 7 dias limpos; se não, o relatório vira só Google e a meta de 50/mês precisa ser revista.</div>
+</div>
+<footer>
+  Silva Pimenta &middot; Direito Médico &middot; Meta Ads &middot; Ciclo 6 &middot; gerado em 23/07/2026 pela Rita<br>
+  Skills: <code>meta-ads-ratos</code> + <code>ads-ratos</code> + <code>rita-relatorios/references/direito-medico.md</code> + Pipedrive<br>
+  Arquivo: <code>clientes/silva-pimenta/marketing/trafego-pago/otimizacoes/direito-medico/2026-07-23/analises/02-meta-ads.html</code>
+</footer>
+</body>
+</html>
