@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-04T20:21:04Z",
+  "atualizadoEm": "2026-08-04T21:47:04Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1053,
@@ -12,17 +12,17 @@
   "gastos": {
     "aux-moradia": {
       "google": 260.51,
-      "meta": 1894.01,
+      "meta": 1949.15,
       "leads_novos": 35,
-      "ganhos": 1,
-      "valor_ganhos": 3990.0,
+      "ganhos": 2,
+      "valor_ganhos": 7581.0,
       "orcamento_diario_google": 60.0,
       "orcamento_diario_meta": 688.45,
       "orcamento_diario": 748.45
     },
     "fies": {
-      "google": 483.27,
-      "meta": 2164.53,
+      "google": 514.35,
+      "meta": 2243.12,
       "leads_novos": 54,
       "ganhos": 1,
       "valor_ganhos": 4990.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 19.21,
+      "meta": 19.91,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 1170.73,
+      "google": 1185.92,
       "meta": 0.0,
       "leads_novos": 4,
       "ganhos": 2,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 93.17,
+      "meta": 96.19,
       "leads_novos": 5,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 22.44,
+      "meta": 22.8,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,11 +71,11 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 3475.01,
+      "google": 3593.49,
       "meta": 0.0,
-      "leads_novos": 66,
-      "ganhos": 4,
-      "valor_ganhos": 19960.0,
+      "leads_novos": 67,
+      "ganhos": 6,
+      "valor_ganhos": 23741.0,
       "orcamento_diario_google": 988.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 988.0
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 427.56,
-      "meta": 212.34,
+      "meta": 216.15,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
