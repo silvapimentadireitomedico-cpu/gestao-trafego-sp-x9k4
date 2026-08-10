@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-10T09:49:41Z",
+  "atualizadoEm": "2026-08-10T10:54:55Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.0908,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 533.91,
-      "meta": 5599.06,
+      "meta": 5630.62,
       "leads_novos": 76,
       "ganhos": 11,
       "valor_ganhos": 35918.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1177.11,
-      "meta": 5377.55,
+      "meta": 5402.26,
       "leads_novos": 106,
       "ganhos": 5,
       "valor_ganhos": 20753.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 2691.86,
+      "google": 2702.57,
       "meta": 0.0,
       "leads_novos": 16,
       "ganhos": 3,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 208.87,
+      "meta": 209.81,
       "leads_novos": 7,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 52.94,
+      "meta": 53.11,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 7968.09,
+      "google": 7989.64,
       "meta": 0.0,
       "leads_novos": 156,
       "ganhos": 14,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 1168.96,
-      "meta": 551.21,
+      "meta": 552.47,
       "leads_novos": 9,
       "ganhos": 1,
       "valor_ganhos": 10000.0,
