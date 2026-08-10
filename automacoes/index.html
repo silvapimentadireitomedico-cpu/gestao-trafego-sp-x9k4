@@ -431,15 +431,15 @@ const DATA = [
   pend:["Avisar Duda + jurídico do fluxo (no anúncio do Discord)","Avaliar ligar pro MG depois"]
 },
 {
-  id:28, cat:"Atendimento & Leads", title:"Form site Seguro MG → Pipedrive (rodízio SDR)", status:"warn",
-  valid:"Criada e testada 10/08/2026 · worker no ar · tag GTM aguardando OK pra publicar",
+  id:28, cat:"Atendimento & Leads", title:"Form site Seguro MG → Pipedrive (rodízio SDR)", status:"live",
+  valid:"No ar desde 10/08/2026 · GTM v34 publicada · testado no site real ponta a ponta",
   tagline:"Cadastro do form do site de seguro MG vira lead SEGURO no Pipedrive com anti-spam e rodízio 1-a-1 Emmanuel → Dayvid.",
   oque:"O form Elementor da home do site de seguro (magalhaesgomes.com.br) manda o cadastro pra rota /lead-form-mg do worker. A rota trunca tudo em 255 chars (lição do incidente 08/08 no Auxílio), descarta spam em inglês/link (aviso 🧹 no Discord), acha ou cria a pessoa (dedup por telefone e e-mail; pessoa nova já nasce com o proprietário = SDR do rodízio), preenche ORIGEM/UTM/gclid e cria o LEAD com etiqueta SEGURO alternando o dono 1-a-1: Emmanuel → Dayvid. Nota completa no lead + aviso ✅ no #automações. O Mauro checa o healthcheck da rota de hora em hora.",
   fluxo:"Form Elementor (site MG)\n  → tag GTM (GTM-WR57KL43) captura no submit → sendBeacon\n  → worker /lead-form-mg: anti-spam → dedup → person → rodízio → LEAD SEGURO + nota\n  → Discord ✅/🧹/🔴 · Mauro vigia o GET",
   stack:"GTM (Custom HTML, workspace 35 NÃO publicado) · Worker Cloudflare sp-tag-lead-filter · Pipedrive API · Discord",
   vive:["tag-lead-filter/_worker.js (rota /lead-form-mg)","Tag GTM: .claude/skills/gtm-ratos/scripts/_criar_tag_form_mg.py (workspace 35, container 173762840)","_organizacao/automacoes/28-lead-form-mg.md"],
   exec:"Roda sozinha após publicar a tag GTM. Healthcheck: GET /lead-form-mg → {ok:true}. Deploy do worker: cópia local + wrangler --branch main.",
-  pend:["PUBLICAR o workspace GTM 35 (precisa OK do William)","Retroativo: importar cadastros antigos (histórico só no e-mail do form — William dizer qual)","Teste real no site em produção após publicar","Painel: cards 20-27 ainda faltam neste painel (defasado)"]
+  pend:["Retroativo: importar cadastros antigos pelo e-mail de notificação do form (descobrir/acessar a caixa)","Painel: cards 20-27 ainda faltam neste painel (defasado)"]
 }
 ];
 
