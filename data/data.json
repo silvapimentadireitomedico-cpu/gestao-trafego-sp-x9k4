@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-12T17:36:10Z",
+  "atualizadoEm": "2026-08-12T18:34:28Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1639,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 710.2,
-      "meta": 7375.21,
+      "meta": 7417.76,
       "leads_novos": 131,
       "ganhos": 16,
       "valor_ganhos": 52771.0,
@@ -21,9 +21,9 @@
       "orcamento_diario": 682.35
     },
     "fies": {
-      "google": 1519.27,
-      "meta": 7108.85,
-      "leads_novos": 135,
+      "google": 1546.25,
+      "meta": 7174.83,
+      "leads_novos": 136,
       "ganhos": 6,
       "valor_ganhos": 22544.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 69.94,
+      "meta": 70.08,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 3811.07,
+      "google": 3848.05,
       "meta": 0.0,
-      "leads_novos": 19,
+      "leads_novos": 21,
       "ganhos": 4,
       "valor_ganhos": 18960.0,
       "orcamento_diario_google": 315.0,
@@ -52,8 +52,8 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 292.53,
-      "leads_novos": 10,
+      "meta": 293.2,
+      "leads_novos": 12,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
       "orcamento_diario_google": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 75.93,
+      "meta": 75.97,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 11507.26,
+      "google": 11558.3,
       "meta": 0.0,
-      "leads_novos": 302,
+      "leads_novos": 306,
       "ganhos": 19,
       "valor_ganhos": 58613.5,
       "orcamento_diario_google": 988.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 1465.36,
-      "meta": 695.82,
+      "google": 1472.34,
+      "meta": 697.48,
       "leads_novos": 18,
       "ganhos": 2,
       "valor_ganhos": 12241.0,
