@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-15T07:26:33Z",
+  "atualizadoEm": "2026-08-15T07:54:23Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.2236,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 826.77,
-      "meta": 8898.25,
+      "meta": 8900.94,
       "leads_novos": 150,
       "ganhos": 21,
       "valor_ganhos": 66330.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 726.11
     },
     "fies": {
-      "google": 1859.72,
-      "meta": 9047.36,
+      "google": 1882.92,
+      "meta": 9050.92,
       "leads_novos": 185,
       "ganhos": 8,
       "valor_ganhos": 31526.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 336.22,
+      "meta": 336.47,
       "leads_novos": 14,
       "ganhos": 3,
       "valor_ganhos": 5771.0,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 1787.9,
-      "meta": 833.81,
+      "meta": 834.08,
       "leads_novos": 21,
       "ganhos": 5,
       "valor_ganhos": 18822.0,
