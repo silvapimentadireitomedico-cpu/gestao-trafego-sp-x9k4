@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-19T19:54:46Z",
+  "atualizadoEm": "2026-08-19T20:28:23Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1714,
@@ -12,8 +12,8 @@
   "gastos": {
     "aux-moradia": {
       "google": 1160.96,
-      "meta": 12081.57,
-      "leads_novos": 193,
+      "meta": 12110.0,
+      "leads_novos": 194,
       "ganhos": 21,
       "valor_ganhos": 66330.0,
       "orcamento_diario_google": 60.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 2429.01,
-      "meta": 12807.93,
-      "leads_novos": 258,
+      "meta": 12831.21,
+      "leads_novos": 259,
       "ganhos": 11,
       "valor_ganhos": 43747.0,
       "orcamento_diario_google": 127.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 108.55,
+      "meta": 108.84,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 6274.51,
+      "google": 6327.2,
       "meta": 0.0,
       "leads_novos": 38,
       "ganhos": 4,
@@ -52,8 +52,8 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 456.9,
-      "leads_novos": 15,
+      "meta": 457.17,
+      "leads_novos": 16,
       "ganhos": 4,
       "valor_ganhos": 7562.0,
       "orcamento_diario_google": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 100.5,
+      "meta": 101.18,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,11 +71,11 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 18726.41,
+      "google": 18779.24,
       "meta": 0.0,
       "leads_novos": 442,
-      "ganhos": 29,
-      "valor_ganhos": 99734.5,
+      "ganhos": 30,
+      "valor_ganhos": 109724.5,
       "orcamento_diario_google": 988.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 988.0
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 2433.99,
-      "meta": 1106.74,
+      "meta": 1108.61,
       "leads_novos": 24,
       "ganhos": 5,
       "valor_ganhos": 18822.0,
