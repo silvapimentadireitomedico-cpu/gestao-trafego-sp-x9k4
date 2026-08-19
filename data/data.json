@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-19T20:28:23Z",
+  "atualizadoEm": "2026-08-19T20:57:09Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1714,
@@ -12,8 +12,8 @@
   "gastos": {
     "aux-moradia": {
       "google": 1160.96,
-      "meta": 12110.0,
-      "leads_novos": 194,
+      "meta": 12123.65,
+      "leads_novos": 196,
       "ganhos": 21,
       "valor_ganhos": 66330.0,
       "orcamento_diario_google": 60.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 724.54
     },
     "fies": {
-      "google": 2429.01,
-      "meta": 12831.21,
+      "google": 2443.83,
+      "meta": 12852.5,
       "leads_novos": 259,
       "ganhos": 11,
       "valor_ganhos": 43747.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 108.84,
+      "meta": 109.14,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 6327.2,
+      "google": 6320.22,
       "meta": 0.0,
-      "leads_novos": 38,
+      "leads_novos": 37,
       "ganhos": 4,
       "valor_ganhos": 18960.0,
       "orcamento_diario_google": 330.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 457.17,
+      "meta": 457.53,
       "leads_novos": 16,
       "ganhos": 4,
       "valor_ganhos": 7562.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 101.18,
+      "meta": 102.49,
       "leads_novos": 1,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 18779.24,
+      "google": 18815.8,
       "meta": 0.0,
-      "leads_novos": 442,
+      "leads_novos": 443,
       "ganhos": 30,
       "valor_ganhos": 109724.5,
       "orcamento_diario_google": 988.0,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 2433.99,
-      "meta": 1108.61,
+      "meta": 1109.64,
       "leads_novos": 24,
       "ganhos": 5,
       "valor_ganhos": 18822.0,
