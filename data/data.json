@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-23T09:12:43Z",
+  "atualizadoEm": "2026-08-23T09:45:57Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1625,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1270.0,
-      "meta": 14425.16,
+      "meta": 14430.26,
       "leads_novos": 217,
       "ganhos": 24,
       "valor_ganhos": 73101.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 2821.81,
-      "meta": 15582.15,
+      "meta": 15588.74,
       "leads_novos": 277,
       "ganhos": 15,
       "valor_ganhos": 57010.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 514.29,
+      "meta": 514.46,
       "leads_novos": 19,
       "ganhos": 4,
       "valor_ganhos": 7562.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 129.66,
+      "meta": 129.67,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 2750.81,
-      "meta": 1326.74,
+      "meta": 1327.5,
       "leads_novos": 24,
       "ganhos": 5,
       "valor_ganhos": 18822.0,
