@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-25T14:13:55Z",
+  "atualizadoEm": "2026-08-25T15:08:51Z",
   "mesReferencia": "2026-08",
   "tipo": "corrente",
   "taxa_usd": 5.1512,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1373.72,
-      "meta": 16048.97,
+      "meta": 16089.37,
       "leads_novos": 247,
       "ganhos": 26,
       "valor_ganhos": 80682.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 823.94
     },
     "fies": {
-      "google": 3113.3,
-      "meta": 17798.81,
+      "google": 3175.7,
+      "meta": 17856.49,
       "leads_novos": 308,
       "ganhos": 17,
       "valor_ganhos": 64491.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 145.25,
+      "meta": 145.82,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 8019.0,
+      "google": 8055.81,
       "meta": 0.0,
-      "leads_novos": 44,
+      "leads_novos": 45,
       "ganhos": 7,
       "valor_ganhos": 24954.0,
       "orcamento_diario_google": 330.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 585.16,
+      "meta": 586.77,
       "leads_novos": 23,
       "ganhos": 4,
       "valor_ganhos": 7562.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 149.23,
+      "meta": 149.79,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 23134.33,
+      "google": 23224.23,
       "meta": 0.0,
-      "leads_novos": 464,
+      "leads_novos": 463,
       "ganhos": 33,
       "valor_ganhos": 115204.5,
       "orcamento_diario_google": 988.0,
@@ -92,8 +92,8 @@
     },
     "seg-vida": {
       "google": 2898.1,
-      "meta": 1474.45,
-      "leads_novos": 28,
+      "meta": 1478.82,
+      "leads_novos": 29,
       "ganhos": 5,
       "valor_ganhos": 18822.0,
       "orcamento_diario_google": 141.0,
