@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-02T20:05:18Z",
+  "atualizadoEm": "2026-09-02T22:36:21Z",
   "mesReferencia": "2026-09",
   "tipo": "corrente",
   "taxa_usd": 5.1273,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 99.7,
-      "meta": 178.69,
+      "meta": 207.81,
       "leads_novos": 21,
       "ganhos": 1,
       "valor_ganhos": 1490.0,
@@ -22,17 +22,17 @@
     },
     "fies": {
       "google": 335.54,
-      "meta": 1657.69,
+      "meta": 1729.95,
       "leads_novos": 22,
-      "ganhos": 3,
-      "valor_ganhos": 8321.0,
+      "ganhos": 4,
+      "valor_ganhos": 10562.0,
       "orcamento_diario_google": 127.0,
       "orcamento_diario_meta": 875.84,
       "orcamento_diario": 1002.84
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 7.71,
+      "meta": 9.15,
       "leads_novos": 0,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 680.69,
+      "google": 726.15,
       "meta": 0.0,
       "leads_novos": 5,
       "ganhos": 1,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 62.08,
+      "meta": 63.25,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 2241.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 14.53,
+      "meta": 15.96,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,11 +71,11 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 1949.78,
+      "google": 2078.88,
       "meta": 0.0,
-      "leads_novos": 53,
-      "ganhos": 2,
-      "valor_ganhos": 9980.0,
+      "leads_novos": 57,
+      "ganhos": 3,
+      "valor_ganhos": 13970.0,
       "orcamento_diario_google": 988.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 988.0
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 166.6,
-      "meta": 98.59,
+      "google": 172.4,
+      "meta": 105.83,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 10000.0,
