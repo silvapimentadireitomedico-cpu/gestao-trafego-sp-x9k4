@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-03T17:45:00Z",
+  "atualizadoEm": "2026-09-03T20:09:03Z",
   "mesReferencia": "2026-09",
   "tipo": "corrente",
   "taxa_usd": 5.0962,
@@ -11,8 +11,8 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 124.71,
-      "meta": 1674.27,
+      "google": 162.74,
+      "meta": 1734.68,
       "leads_novos": 28,
       "ganhos": 1,
       "valor_ganhos": 1490.0,
@@ -21,18 +21,18 @@
       "orcamento_diario": 711.89
     },
     "fies": {
-      "google": 470.68,
-      "meta": 2136.69,
-      "leads_novos": 25,
-      "ganhos": 4,
-      "valor_ganhos": 10562.0,
+      "google": 479.63,
+      "meta": 2296.44,
+      "leads_novos": 26,
+      "ganhos": 5,
+      "valor_ganhos": 13552.0,
       "orcamento_diario_google": 127.0,
-      "orcamento_diario_meta": 874.06,
-      "orcamento_diario": 1001.06
+      "orcamento_diario_meta": 618.44,
+      "orcamento_diario": 745.44
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 13.3,
+      "meta": 13.98,
       "leads_novos": 0,
       "ganhos": 1,
       "valor_ganhos": 1990.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 1036.67,
+      "google": 1084.42,
       "meta": 0.0,
-      "leads_novos": 7,
+      "leads_novos": 8,
       "ganhos": 2,
       "valor_ganhos": 4637.0,
       "orcamento_diario_google": 330.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 79.05,
+      "meta": 85.7,
       "leads_novos": 2,
       "ganhos": 1,
       "valor_ganhos": 2241.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 20.77,
+      "meta": 22.0,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 2752.2,
+      "google": 3041.9,
       "meta": 0.0,
-      "leads_novos": 69,
+      "leads_novos": 78,
       "ganhos": 4,
       "valor_ganhos": 15960.0,
       "orcamento_diario_google": 988.0,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 232.43,
-      "meta": 141.21,
+      "google": 265.16,
+      "meta": 144.42,
       "leads_novos": 2,
       "ganhos": 1,
       "valor_ganhos": 10000.0,
