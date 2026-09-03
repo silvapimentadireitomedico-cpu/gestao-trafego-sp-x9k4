@@ -37,7 +37,9 @@ def _http_get(url: str) -> dict:
 def _slug_por_nome(nome: str) -> str | None:
     """Mapeia nome de campanha (BM SP Brasil CA-01) pra slug de produto."""
     u = nome.upper()
-    if "AUXÍLIO MORADIA" in u or "AUXILIO MORADIA" in u or u.startswith("AM "):
+    if "MORADIA" in u or u.startswith("AM "):
+        # 03/09: "MORADIA" basta — a campanha "SP - TOPO - Aux Moradia - CADASTROS" (nomenclatura nova,
+        # criada 06/08) escapava da regra antiga e R$ 1.300+/3d sumiam do painel (e do fechamento de agosto)
         return "aux-moradia"
     if "SUSPENSÃO" in u or "SUSPENSAO" in u:
         return "fies-suspensao"
