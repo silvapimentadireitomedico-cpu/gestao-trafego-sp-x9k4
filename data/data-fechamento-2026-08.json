@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1675.42,
-      "meta": 21080.55,
+      "meta": 21095.29,
       "leads_novos": 300,
       "ganhos": 32,
       "valor_ganhos": 97625.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3888.93,
-      "meta": 23550.58,
+      "meta": 23592.36,
       "leads_novos": 358,
       "ganhos": 27,
       "valor_ganhos": 103647.0,
@@ -42,7 +42,7 @@
     },
     "direito-medico": {
       "google": 10395.99,
-      "meta": 0.0,
+      "meta": 69.77,
       "leads_novos": 62,
       "ganhos": 8,
       "valor_ganhos": 25563.0,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 3724.83,
+      "google": 3724.84,
       "meta": 1862.26,
       "leads_novos": 40,
       "ganhos": 8,
@@ -99,6 +99,48 @@
       "orcamento_diario_google": 0.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 0.0
+    },
+    "nao-mapeado": {
+      "google": 298.18,
+      "meta": 133.71,
+      "leads_novos": 0,
+      "ganhos": 0,
+      "valor_ganhos": 0.0,
+      "orcamento_diario_google": 0.0,
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 0.0
     }
+  },
+  "mapa_gasto": {
+    "versao_regras": "2026-09-28",
+    "regravado_em": "2026-09-28T13:29:26Z",
+    "nota": "gasto regravado pelo mapa único (Pipedrive e orçamento diário mantidos como no fechamento original)",
+    "nao_mapeado": [
+      {
+        "canal": "google",
+        "conta": "1301598996",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": 298.18
+      },
+      {
+        "canal": "meta",
+        "conta": "act_320965166251046",
+        "campanha": "Post do Instagram: 15 reais é a hora do médico...",
+        "gasto_brl": 76.23
+      },
+      {
+        "canal": "meta",
+        "conta": "act_320965166251046",
+        "campanha": "Post do Instagram: Você viu esse vídeo que...",
+        "gasto_brl": 57.48
+      }
+    ],
+    "avisos": [
+      "google 6351554556: total da conta 10395.99 x soma das campanhas 10017.03 (dif 378.96) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 27552.47 x soma das campanhas 27254.29 (dif 298.18) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 298.18",
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: 15 reais é a hora do médico...\" R$ 76.23",
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Você viu esse vídeo que...\" R$ 57.48"
+    ]
   }
 }

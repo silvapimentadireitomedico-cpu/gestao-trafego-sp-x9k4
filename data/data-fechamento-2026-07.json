@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1860.51,
-      "meta": 20998.06,
+      "meta": 21191.12,
       "leads_novos": 334,
       "ganhos": 37,
       "valor_ganhos": 117471.0,
@@ -41,8 +41,8 @@
       "orcamento_diario": 0.0
     },
     "direito-medico": {
-      "google": 7731.52,
-      "meta": 330.67,
+      "google": 7731.53,
+      "meta": 396.47,
       "leads_novos": 46,
       "ganhos": 7,
       "valor_ganhos": 36541.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 0.0
     },
     "seguro": {
-      "google": 28728.57,
+      "google": 28728.58,
       "meta": 0.0,
       "leads_novos": 513,
       "ganhos": 36,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 3856.97,
+      "google": 3856.96,
       "meta": 1852.08,
       "leads_novos": 29,
       "ganhos": 10,
@@ -99,6 +99,34 @@
       "orcamento_diario_google": 0.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 0.0
+    },
+    "nao-mapeado": {
+      "google": 165.7,
+      "meta": 0.0,
+      "leads_novos": 0,
+      "ganhos": 0,
+      "valor_ganhos": 0.0,
+      "orcamento_diario_google": 0.0,
+      "orcamento_diario_meta": 0.0,
+      "orcamento_diario": 0.0
     }
+  },
+  "mapa_gasto": {
+    "versao_regras": "2026-09-28",
+    "regravado_em": "2026-09-28T13:29:08Z",
+    "nota": "gasto regravado pelo mapa único (Pipedrive e orçamento diário mantidos como no fechamento original)",
+    "nao_mapeado": [
+      {
+        "canal": "google",
+        "conta": "1301598996",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": 165.7
+      }
+    ],
+    "avisos": [
+      "google 6351554556: total da conta 7731.52 x soma das campanhas 7625.85 (dif 105.68) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 25860.64 x soma das campanhas 25694.94 (dif 165.70) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 165.70"
+    ]
   }
 }
