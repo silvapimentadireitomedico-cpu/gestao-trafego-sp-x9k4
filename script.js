@@ -583,7 +583,8 @@ async function carregar() {
   );
   let totalMeta = 0, totalGoogle = 0;
   Object.entries(dados.gastos || {}).forEach(([id, g]) => {
-    if (!idsAtivosNoMes.has(id)) return; // pula produto que NÃO está ativo nesse mês
+    // 28/09/2026: 'nao-mapeado' (gasto sem produto no mapa único de gasto) entra no TOTAL, nunca some
+    if (!idsAtivosNoMes.has(id) && id !== 'nao-mapeado') return; // pula produto que NÃO está ativo nesse mês
     totalMeta += g.meta || 0;
     totalGoogle += g.google || 0;
   });
