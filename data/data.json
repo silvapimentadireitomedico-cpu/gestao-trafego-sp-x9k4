@@ -1,12 +1,12 @@
 {
-  "atualizadoEm": "2026-10-02T00:48:58Z",
+  "atualizadoEm": "2026-10-02T01:19:17Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.2079,
   "fonte_usd": "BCB 01/10/2026",
   "fontes": {
     "google": "ok",
-    "meta": "ok",
+    "meta": "erro",
     "pipedrive": "ok"
   },
   "gastos": {
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 755.9,
+      "google": 775.76,
       "meta": 0.0,
       "leads_novos": 9,
       "ganhos": 0,
