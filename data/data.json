@@ -1,9 +1,9 @@
 {
-  "atualizadoEm": "2026-10-02T15:48:55Z",
+  "atualizadoEm": "2026-10-02T16:18:58Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
-  "taxa_usd": 5.2079,
-  "fonte_usd": "BCB 01/10/2026",
+  "taxa_usd": 5.2238,
+  "fonte_usd": "BCB 02/10/2026",
   "fontes": {
     "google": "ok",
     "meta": "ok",
@@ -12,27 +12,27 @@
   "gastos": {
     "aux-moradia": {
       "google": 86.1,
-      "meta": 612.9,
+      "meta": 639.72,
       "leads_novos": 13,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 45.0,
-      "orcamento_diario_meta": 581.08,
-      "orcamento_diario": 626.08
+      "orcamento_diario_meta": 581.24,
+      "orcamento_diario": 626.24
     },
     "fies": {
       "google": 686.25,
-      "meta": 1166.79,
+      "meta": 1195.19,
       "leads_novos": 25,
       "ganhos": 2,
       "valor_ganhos": 9980.0,
       "orcamento_diario_google": 295.0,
-      "orcamento_diario_meta": 863.49,
-      "orcamento_diario": 1158.49
+      "orcamento_diario_meta": 863.69,
+      "orcamento_diario": 1158.69
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 7.33,
+      "meta": 7.37,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -42,7 +42,7 @@
     },
     "direito-medico": {
       "google": 682.07,
-      "meta": 35.94,
+      "meta": 38.39,
       "leads_novos": 6,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 28.7,
+      "meta": 29.2,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 8.36,
+      "meta": 8.43,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 1150.35,
+      "google": 1261.16,
       "meta": 0.0,
       "leads_novos": 20,
       "ganhos": 1,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 139.13,
-      "meta": 84.32,
+      "meta": 85.64,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
