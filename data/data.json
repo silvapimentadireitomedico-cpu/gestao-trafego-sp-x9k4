@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-05T20:19:49Z",
+  "atualizadoEm": "2026-10-05T20:49:08Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 4.9859,
@@ -11,8 +11,8 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 183.0,
-      "meta": 2630.33,
+      "google": 199.64,
+      "meta": 2643.28,
       "leads_novos": 48,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1185.57,
-      "meta": 3168.55,
+      "meta": 3183.7,
       "leads_novos": 47,
       "ganhos": 6,
       "valor_ganhos": 27440.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 32.45,
+      "meta": 32.56,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -41,8 +41,8 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 2166.94,
-      "meta": 125.19,
+      "google": 2225.09,
+      "meta": 125.46,
       "leads_novos": 9,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 91.9,
+      "meta": 92.32,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 20.64,
+      "meta": 21.03,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 2630.06,
+      "google": 2669.02,
       "meta": 0.0,
       "leads_novos": 31,
       "ganhos": 4,
@@ -91,8 +91,8 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 430.49,
-      "meta": 223.2,
+      "google": 440.37,
+      "meta": 224.21,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 14990.0,
@@ -114,6 +114,8 @@
   "mapa_gasto": {
     "versao_regras": "2026-09-28",
     "nao_mapeado": [],
-    "avisos": []
+    "avisos": [
+      "meta act_1271698078245722: total da conta 41.96 x soma das campanhas 41.94 (dif 0.02) -> diferença lançada em AUXÍLIO-MORADIA"
+    ]
   }
 }
