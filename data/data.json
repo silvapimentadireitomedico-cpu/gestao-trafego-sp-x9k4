@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-07T07:49:03Z",
+  "atualizadoEm": "2026-10-07T08:19:02Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 4.9698,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 282.34,
-      "meta": 3396.72,
+      "meta": 3397.65,
       "leads_novos": 60,
       "ganhos": 1,
       "valor_ganhos": 3591.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1384.88,
-      "meta": 4232.49,
+      "meta": 4234.73,
       "leads_novos": 68,
       "ganhos": 10,
       "valor_ganhos": 36751.0,
@@ -41,8 +41,8 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 3061.22,
-      "meta": 188.21,
+      "google": 3061.29,
+      "meta": 189.33,
       "leads_novos": 17,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 141.43,
+      "meta": 141.58,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 34.96,
+      "meta": 35.0,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -92,7 +92,7 @@
     },
     "seg-vida": {
       "google": 633.77,
-      "meta": 304.33,
+      "meta": 304.75,
       "leads_novos": 3,
       "ganhos": 2,
       "valor_ganhos": 16980.0,
@@ -128,7 +128,7 @@
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 3061.22 x soma das campanhas 3054.57 (dif 6.65) -> diferença lançada em DIREITO MÉDICO",
+      "google 6351554556: total da conta 3061.29 x soma das campanhas 3054.57 (dif 6.72) -> diferença lançada em DIREITO MÉDICO",
       "google 1301598996: total da conta 3442.27 x soma das campanhas 3436.66 (dif 5.61) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 5.61",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 10.76"
