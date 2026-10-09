@@ -51,7 +51,12 @@ const PRODUTOS = [
   // Magalhães Gomes
   { id: 'seguro',          escritorio: 'magalhaes', nome: 'Seguro',        orcamento: 20534.15, plats: ['google'] },
   { id: 'livre-ir',        escritorio: 'magalhaes', nome: 'Livre IR',      orcamento: 15000.00, plats: ['meta', 'google'], encerrado: true, encerradoEm: '2026-05-26' },
-  { id: 'seg-vida',        escritorio: 'magalhaes', nome: 'Seg Vida',      orcamento:  3000.00, plats: ['meta', 'google'] }
+  { id: 'seg-vida',        escritorio: 'magalhaes', nome: 'Seg Vida',      orcamento:  3000.00, plats: ['meta', 'google'] },
+  // 09/10/2026: funil 14 ERRO MÉDICO (lado do paciente, Magalhães Gomes). Orçamento AINDA NÃO DEFINIDO pelo William:
+  // semOrcamento = o card só aparece quando houver gasto no mês, sem percentual nem "pode gastar" (não há base),
+  // e o gasto entra no total consumido. Definido o orçamento: pôr o valor em `orcamento` e apagar `semOrcamento`.
+  // NÃO confundir com 'direito-medico' (defesa do médico, Silva Pimenta).
+  { id: 'erro-medico',     escritorio: 'magalhaes', nome: 'Erro Médico',   orcamento:     0.00, plats: ['meta', 'google'], semOrcamento: true }
 ];
 
 // Um produto encerrado conta no total ATÉ o mês em que foi encerrado.
@@ -167,6 +172,41 @@ function renderTotal(gastoTotal, diaAtual, diasMes, totalOrcamento) {
 function renderProdutoCard(p, gastoMeta, gastoGoogle, diaAtual, diasMes, orcamentoDiario) {
   const gasto = gastoMeta + gastoGoogle;
   orcamentoDiario = Number(orcamentoDiario) || 0;
+
+  // Produto sem orçamento definido (ex.: Erro Médico em 09/10/2026): mostra o gasto real, sem % nem ritmo
+  if (p.semOrcamento) {
+    const platBarsSO = p.plats.map(plat => {
+      const v = plat === 'meta' ? gastoMeta : gastoGoogle;
+      const icon = plat === 'meta' ? 'Ⓜ' : 'G';
+      const nome = plat === 'meta' ? 'Meta' : 'Google';
+      const cls = plat === 'meta' ? 'plat-meta' : 'plat-google';
+      const empty = v === 0 ? 'empty' : '';
+      return `
+        <div class="plat-row ${cls} ${empty}">
+          <div class="plat-row-head">
+            <span class="plat-row-icon">${icon}</span>
+            <span class="plat-row-name">${nome}</span>
+          </div>
+          <span class="plat-row-value">${fmtBRL(v)}</span>
+        </div>`;
+    }).join('');
+    return `
+      <div class="produto-card ${p.escritorio === 'magalhaes' ? 'magalhaes' : ''} status-warn" data-id="${p.id}">
+        <div class="produto-head">
+          <div class="produto-head-left">
+            <span class="produto-nome">${p.nome}</span>
+            <span class="produto-status-pill warn">SEM ORÇAMENTO</span>
+          </div>
+        </div>
+        <div class="produto-valores">
+          <span class="produto-gasto">${fmtBRL(gasto)}</span>
+          <span class="produto-de">gasto no mês</span>
+        </div>
+        <div class="produto-encerrado-info">Orçamento mensal ainda não definido · o gasto já entra no total</div>
+        <div class="produto-plats-separados">${platBarsSO}</div>
+      </div>
+    `;
+  }
 
   // Produto encerrado: render simplificado, sem métricas diárias nem barra
   if (p.encerrado) {
@@ -341,6 +381,8 @@ function renderEscritorios(dados, diaAtual, diasMes, ano, mes) {
   PRODUTOS.forEach(p => {
     if (!produtoAtivoNoMes(p, ano, mes)) return; // some o card de produtos encerrados em meses pós-encerramento
     const g = (dados.gastos && dados.gastos[p.id]) || { meta: 0, google: 0 };
+    // produto sem orçamento definido só ganha card quando gasta (não ocupa a TV à toa)
+    if (p.semOrcamento && !((g.meta || 0) + (g.google || 0))) return;
     const html = renderProdutoCard(p, g.meta || 0, g.google || 0, diaAtual, diasMes, g.orcamento_diario || 0);
     if (p.escritorio === 'silva') silvaEl.insertAdjacentHTML('beforeend', html);
     else magalhaesEl.insertAdjacentHTML('beforeend', html);
@@ -432,9 +474,15 @@ function renderResumoExecutivo(dados, diaAtual, diasMes, ano, mes) {
   let totalOrcamento = 0;
   const folgas = [];
   const estouros = [];
+  const semOrcamento = [];
   PRODUTOS.filter(p => produtoAtivoNoMes(p, ano, mes)).forEach(p => {
     const g = (dados.gastos && dados.gastos[p.id]) || { meta: 0, google: 0 };
     const gasto = (g.meta || 0) + (g.google || 0);
+    if (p.semOrcamento) {          // sem base pra percentual: soma o gasto e avisa
+      totalGasto += gasto;
+      if (gasto > 0) semOrcamento.push(p.nome);
+      return;
+    }
     const perc = (gasto / p.orcamento) * 100;
     totalGasto += gasto;
     totalOrcamento += p.orcamento;
@@ -461,6 +509,9 @@ function renderResumoExecutivo(dados, diaAtual, diasMes, ano, mes) {
   }
   if (estouros.length === 0 && folgas.length === 0) {
     partes.push(`<span class="ok-txt">todos os produtos rodando dentro da margem</span>`);
+  }
+  if (semOrcamento.length > 0) {
+    partes.push(`gasto sem orçamento definido em <span class="alert-txt">${semOrcamento.join(', ')}</span>`);
   }
   el.innerHTML = frase + ' ' + partes.join('; ') + '.';
 }
