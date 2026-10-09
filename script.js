@@ -52,11 +52,11 @@ const PRODUTOS = [
   { id: 'seguro',          escritorio: 'magalhaes', nome: 'Seguro',        orcamento: 20534.15, plats: ['google'] },
   { id: 'livre-ir',        escritorio: 'magalhaes', nome: 'Livre IR',      orcamento: 15000.00, plats: ['meta', 'google'], encerrado: true, encerradoEm: '2026-05-26' },
   { id: 'seg-vida',        escritorio: 'magalhaes', nome: 'Seg Vida',      orcamento:  3000.00, plats: ['meta', 'google'] },
-  // 09/10/2026: funil 14 ERRO MÉDICO (lado do paciente, Magalhães Gomes). Orçamento AINDA NÃO DEFINIDO pelo William:
-  // semOrcamento = o card só aparece quando houver gasto no mês, sem percentual nem "pode gastar" (não há base),
-  // e o gasto entra no total consumido. Definido o orçamento: pôr o valor em `orcamento` e apagar `semOrcamento`.
+  // 09/10/2026: funil 14 ERRO MÉDICO (lado do paciente, Magalhães Gomes). Orçamento de R$ 15 mil/mês definido pelo
+  // William em 09/10, POR FORA dos R$ 95 mil: o teto de mídia SP+MG passou a R$ 110 mil. (`semOrcamento: true` segue
+  // valendo para produto novo sem orçamento: o card só aparece com gasto, sem percentual.)
   // NÃO confundir com 'direito-medico' (defesa do médico, Silva Pimenta).
-  { id: 'erro-medico',     escritorio: 'magalhaes', nome: 'Erro Médico',   orcamento:     0.00, plats: ['meta', 'google'], semOrcamento: true }
+  { id: 'erro-medico',     escritorio: 'magalhaes', nome: 'Erro Médico',   orcamento: 15000.00, plats: ['meta', 'google'] }
 ];
 
 // Um produto encerrado conta no total ATÉ o mês em que foi encerrado.
