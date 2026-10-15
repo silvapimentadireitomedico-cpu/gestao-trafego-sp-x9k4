@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direito Médico · Rita · Ciclo 15/10/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1A4758;--teal-dark:#133544;--champagne:#C5A57A;--champagne-dark:#A88958;--bege:#f7f5f0;--texto:#1A1A1A;--texto-secundario:#555;--verde:#22c55e;--vermelho:#ef4444;--amarelo:#f59e0b;--azul:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--bege);color:var(--texto);line-height:1.6}
+.container{max-width:1180px;margin:0 auto;padding:48px 24px}
+header{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;padding:48px 24px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--champagne);font-weight:600;margin-bottom:12px}
+h1{font-size:32px;font-weight:700;margin-bottom:8px;line-height:1.15}
+.subtitle{font-size:16px;opacity:0.85;margin-top:6px}
+.status-badges{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.status-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.ok{background:var(--verde);color:#fff}
+.status-badge.warn{background:var(--amarelo);color:#fff}
+.status-badge.crit{background:var(--vermelho);color:#fff}
+.section-title{font-size:24px;font-weight:700;color:var(--teal);margin:48px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--champagne)}
+.sub{font-size:18px;font-weight:700;color:var(--teal-dark);margin:28px 0 12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid var(--champagne)}
+.skill-type{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--champagne-dark);font-weight:700}
+.card h4{font-size:17px;color:var(--teal);margin:4px 0 8px}
+.skill-desc{font-size:13px;color:var(--texto-secundario)}
+.alert-box{background:#fef2f2;border-left:4px solid var(--vermelho);padding:22px;border-radius:8px;margin-bottom:14px}
+.alert-box.warning{background:#fff8e1;border-left-color:var(--amarelo)}
+.alert-box.success{background:#f0fdf4;border-left-color:var(--verde)}
+.alert-box.info{background:#eff6ff;border-left-color:var(--azul)}
+.alert-box h3{font-size:17px;margin-bottom:8px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.summary-grid > div{background:#fff;padding:18px;border-radius:8px;text-align:center;border-top:3px solid var(--champagne)}
+.summary-grid .num{font-size:24px;font-weight:700;color:var(--teal);display:block;line-height:1.1}
+.summary-grid .num.danger{color:var(--vermelho)}
+.summary-grid .num.success{color:var(--verde)}
+.summary-grid .num.warn{color:var(--amarelo)}
+.summary-grid .label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--texto-secundario);margin-top:6px;display:block}
+.summary-grid .delta{font-size:11px;color:var(--texto-secundario);margin-top:3px;display:block}
+.summary-grid .delta.up{color:var(--verde)}
+.summary-grid .delta.down{color:var(--vermelho)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:24px;font-size:13.5px}
+th{background:var(--teal);color:#fff;text-align:left;padding:11px 12px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:10px 12px;border-bottom:1px solid #f0ebe2;vertical-align:middle}
+tr.row-best td{background:#f0fdf4}
+tr.row-bad td{background:#fef2f2}
+tr.row-warn td{background:#fff8e1}
+.qs-bad{color:#991b1b;font-weight:800;background:#fee2e2;padding:1px 7px;border-radius:10px}
+.qs-ok{color:#166534;font-weight:700}
+.pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.pill.ok{background:#dcfce7;color:#166534}
+.pill.warn{background:#fef3c7;color:#92400e}
+.pill.crit{background:#fee2e2;color:#991b1b}
+.pill.info{background:#dbeafe;color:#1e40af}
+.pill.neutral{background:#f1f5f9;color:#475569}
+.action-list{list-style:none;padding:0}
+.action-list li{background:#fff;padding:16px 20px;margin-bottom:10px;border-radius:8px;border-left:4px solid var(--teal)}
+.action-list li.crit{border-left-color:var(--vermelho)}
+.action-list li.warn{border-left-color:var(--amarelo)}
+.action-list li.ok{border-left-color:var(--verde)}
+.action-list li.info{border-left-color:var(--azul)}
+.action-title{font-weight:700;color:var(--teal);margin-bottom:4px}
+.action-desc{font-size:14px;color:var(--texto-secundario)}
+.action-meta{font-size:12px;color:var(--champagne-dark);font-weight:700;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.tbl-foot{background:#fff7ec;border-left:4px solid var(--champagne-dark);padding:13px 16px;border-radius:0 8px 8px 0;margin:-14px 0 28px;font-size:13.5px}
+.audit-log{background:#0f172a;color:#94a3b8;font-family:'Courier New',monospace;padding:22px;border-radius:8px;font-size:12px;line-height:1.75;overflow-x:auto}
+.audit-log .ts{color:#60a5fa}
+.audit-log .ok{color:#34d399}
+.audit-log .warn{color:#fbbf24}
+.audit-log .crit{color:#f87171}
+footer{background:var(--teal-dark);color:#fff;padding:32px 24px;text-align:center;margin-top:60px;font-size:13px;opacity:0.92}
+code{background:rgba(0,0,0,0.06);padding:1px 6px;border-radius:4px;font-size:12px}
+@media (max-width:768px){.summary-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:24px}table{font-size:11.5px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="eyebrow">Silva Pimenta &middot; Direito Médico (Defesa) &middot; Google + Meta</div>
+    <h1>Diagnóstico Semanal &middot; 15/10/2026</h1>
+    <p class="subtitle">Janelas 30d (15/09 a 14/10), 14d (01/10 a 14/10) e 7d (08/10 a 14/10) &middot; cohort Pipedrive por add_time</p>
+    <div class="status-badges">
+      <span class="status-badge ok">Google motor vivo (CPL real R$ 163/lead)</span>
+      <span class="status-badge crit">Meta quase parada (R$ 9,71 em 7d)</span>
+      <span class="status-badge warn">LIXO = 44% das perdas no Pipedrive</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 1 -->
+  <h2 class="section-title">1. Skills usadas nesse diagnóstico</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="skill-type">Execução &middot; dados prontos</span>
+      <h4>google-ads-ratos + meta-ads-ratos</h4>
+      <div class="skill-desc">Coleta já entregue em JSON (modo nuvem, read-only). Customer Google <code>6351554556</code> e conta Meta <code>act_320965166251046</code>, janelas 30/14/7d, campanhas, ad groups, keywords com QS, termos de pesquisa, gate de aprovação dos anúncios e insights Meta com rankings e frequência.</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Inteligência &middot; Benchmarks</span>
+      <h4>ads-ratos + playbook direito-medico</h4>
+      <div class="skill-desc">Régua REAL do produto (CPL ~R$ 180, QS baseline 4,8, conversão conta clique e não conversa), blindagem anti-paciente, regra de nunca negativar cidade nem termo de produto, leitura das 6 armadilhas históricas.</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Workflow &middot; Diagnóstico</span>
+      <h4>/otimizar (13 passos) + regra 5.1</h4>
+      <div class="skill-desc">Gate de confiança antes de otimizar, validação de volume, sazonalidade de outubro, tendência 30 para 14 para 7, perdas por MOTIVO do Pipedrive (LIXO = público errado), plano 3 camadas e compliance OAB.</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <h2 class="section-title">2. Skills não acionadas</h2>
+  <div class="alert-box info">
+    <h3>O que ficou de fora e por quê</h3>
+    <p><strong>paid-ads/conversion-tracking</strong> e <strong>audience-targeting</strong>: não aprofundadas porque o tracking de clique está vivo (Google APPROVED, Pipedrive recebendo lead) e o gargalo de público já está diagnosticado pelos termos de pesquisa. <strong>/criativo</strong>: não há copy nova nesse ciclo, nada a redigir. Operação é 100% read-only: nenhuma API foi chamada, todo número vem do JSON de coleta (verificação em cadeia satisfeita na coleta).</p>
+  </div>
+
+  <!-- 3 -->
+  <h2 class="section-title">3. Achados que mudam decisão</h2>
+  <div class="alert-box warning">
+    <h3>Gate 1 (está servindo?) &middot; Meta praticamente desligou na última semana</h3>
+    <p>A campanha CTWA Meta gastou R$ 654 em 30d, R$ 234 em 14d e apenas <strong>R$ 9,71 em 7d</strong> (521 impressões, 5 cliques). Não é fadiga (frequência máxima 2,54), é verba que secou. As métricas de Meta nesse ciclo são ruído por volume baixo: aparecem marcadas, mas <span class="pill warn">não otimizar ranking</span>. Decisão necessária: reativar budget ou pausar formalmente.</p>
+  </div>
+  <div class="alert-box">
+    <h3>Vazamento de público: a campanha Sindicância capta quem busca SOFTWARE de CRM</h3>
+    <p>Termos como <code>crm para escritório de advocacia</code>, <code>crm advocacia</code>, <code>crm advogados</code>, <code>advbox crm</code>, <code>crm para advogado</code> estão gastando sem nenhuma conversão. Isso é LIXO de targeting (pessoa quer sistema de gestão, não defesa no Conselho). Puxa o CPL da Sindicância para R$ 330 e explica boa parte dos 17 leads marcados LIXO no Pipedrive.</p>
+  </div>
+  <div class="alert-box">
+    <h3>LIXO é 44% das perdas (17 de 39) em 30d</h3>
+    <p>Pela régua 5.1, LIXO é persona errada, então é problema de direcionamento (keyword + anúncio + LP), não de oferta. Concentra na ambiguidade da palavra CRM. Corrigir negativas antes de mexer em verba.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>CPC e CPL subindo na cadeia 30 para 7</h3>
+    <p>CPC médio Google 11,63 para 14,08 para 19,00. Custo por conversão 86,78 para 102,84 para 105,94. Processo Ético explodiu para R$ 359/conv no 7d (keyword <code>advogado processo ético</code> a R$ 35,54 de CPC). Semana coincide com feriadão de 12/10 (Aparecida + Dia das Crianças), parte da alta é sazonal, parte é lance/QS.</p>
+  </div>
+  <div class="alert-box success">
+    <h3>O motor funciona: Erro Médico entrega e as vendas chegaram</h3>
+    <p>A campanha Erro Médico roda a R$ 50 a R$ 63 por conversão, puxada por <code>advogado causa medica</code> (QS5, 69 conv) e <code>advogado erro médico</code> (QS7, 24 conv). No Pipedrive, 2 vendas (R$ 9.432) caíram na última semana, 8 vendas no total de 30d (R$ 32.973).</p>
+  </div>
+
+  <!-- 4 -->
+  <h2 class="section-title">4. Resumo executivo &middot; KPIs do ciclo</h2>
+  <div class="summary-grid">
+    <div>
+      <span class="num success">R$ 162,53</span>
+      <span class="label">CPL real por lead (Pipedrive 30d)</span>
+      <span class="delta">gasto total R$ 15.928 / 98 leads &middot; abaixo da régua R$ 180</span>
+    </div>
+    <div>
+      <span class="num">98</span>
+      <span class="label">Leads reais 30d (funil DM 6)</span>
+      <span class="delta">51 abertos &middot; 8 ganhos &middot; 39 perdidos</span>
+    </div>
+    <div>
+      <span class="num success">8</span>
+      <span class="label">Vendas (won) no cohort 30d</span>
+      <span class="delta up">R$ 32.973 &middot; ticket médio R$ 4.122</span>
+    </div>
+    <div>
+      <span class="num warn">17</span>
+      <span class="label">Perdas por LIXO (público errado)</span>
+      <span class="delta down">44% das 39 perdas</span>
+    </div>
+  </div>
+  <div class="summary-grid">
+    <div>
+      <span class="num">176</span>
+      <span class="label">Conversões Google 30d (conta clique)</span>
+      <span class="delta down">topo de funil, não é lead</span>
+    </div>
+    <div>
+      <span class="num warn">3</span>
+      <span class="label">Conversas Meta 30d (CTWA)</span>
+      <span class="delta down">CPL aprox R$ 218 &middot; imaturo</span>
+    </div>
+    <div>
+      <span class="num danger">R$ 105,94</span>
+      <span class="label">Custo/conv Google 7d</span>
+      <span class="delta down">+22% vs 30d (86,78)</span>
+    </div>
+    <div>
+      <span class="num">0</span>
+      <span class="label">Anúncios reprovados (Google + Meta)</span>
+      <span class="delta up">todos APPROVED / sem issue</span>
+    </div>
+  </div>
+  <div class="alert-box info">
+    <p><strong>Leitura do funil de verdade:</strong> 176 conversões Google + 3 conversas Meta são clique/intenção (topo). A verdade é o Pipedrive: 98 leads reais entraram em 30d, com 8 vendas fechadas. O gap clique para lead é esperado no produto (a conversão conta o clique no WhatsApp, não a conversa enviada). Com o funil vivo e vendas chegando, o gap aqui é normal, não vazamento de tracking.</p>
+  </div>
+
+  <!-- 5 -->
+  <h2 class="section-title">5. Google &middot; performance por campanha (30d)</h2>
+  <table>
+    <thead><tr><th>Campanha</th><th>Custo</th><th>Cliques</th><th>CTR</th><th>CPC</th><th>Conv</th><th>Custo/conv</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>SP | Erro Médico &middot; Defesa do Médico</td><td>R$ 6.328</td><td>502</td><td>10,86%</td><td>R$ 12,61</td><td>125</td><td>R$ 50,62</td><td><span class="pill ok">Motor, manter e escalar</span></td></tr>
+      <tr class="row-warn"><td>SP | Advogado para Médicos</td><td>R$ 4.184</td><td>276</td><td>12,78%</td><td>R$ 15,16</td><td>30</td><td>R$ 139,47</td><td><span class="pill warn">Aceitável, vigiar CPC</span></td></tr>
+      <tr class="row-warn"><td>SP | Processo Ético CRM</td><td>R$ 2.119</td><td>217</td><td>6,21%</td><td>R$ 9,76</td><td>13</td><td>R$ 162,98</td><td><span class="pill warn">CPL piorando (359 no 7d)</span></td></tr>
+      <tr class="row-bad"><td>SP | Sindicância CRM</td><td>R$ 2.643</td><td>318</td><td>7,18%</td><td>R$ 8,31</td><td>8</td><td>R$ 330,35</td><td><span class="pill crit">Vazamento software CRM</span></td></tr>
+    </tbody>
+  </table>
+  <p class="action-desc" style="margin-bottom:28px">A Sindicância tem o CPC mais barato (R$ 8,31) mas o pior CPL (R$ 330): compra tráfego errado barato. Erro Médico sustenta a conta sozinha (125 das 176 conversões). Nenhuma campanha é cortada por ser produto, a correção é de termo e de LP.</p>
+
+  <!-- 6: tabela cirúrgica 1 -->
+  <h2 class="section-title">6. Google &middot; AÇÃO por palavra-chave (30d)</h2>
+  <p class="action-desc" style="margin-bottom:12px">QS abaixo de 4 em destaque vermelho (gate crítico). Keyword-âncora do produto (erro médico, advogado direito médico, sindicância, processo ético, defesa médica) é intocável: se não converte, corrige por LP/RSA/lance, nunca por pausa.</p>
+  <table>
+    <thead><tr><th>Keyword</th><th>Match</th><th>QS</th><th>Custo</th><th>Conv</th><th>CPL</th><th>Ação + motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>advogado causa medica</td><td>PHRASE</td><td class="qs-ok">5</td><td>R$ 3.451</td><td>69</td><td>R$ 50,02</td><td><span class="pill ok">Manter/escalar</span> maior volume e converte</td></tr>
+      <tr class="row-bad"><td>advocacia médica</td><td>PHRASE</td><td><span class="qs-bad">3</span></td><td>R$ 1.513</td><td>14</td><td>R$ 108,07</td><td><span class="pill warn">Ajustar</span> QS baixo, melhorar relevância LP/RSA (produto, não pausar)</td></tr>
+      <tr><td>advogado para médico</td><td>PHRASE</td><td>n/d</td><td>R$ 1.306</td><td>9</td><td>R$ 145,11</td><td><span class="pill info">Manter</span> monitorar CPC (24 no 7d)</td></tr>
+      <tr class="row-best"><td>advogado erro médico</td><td>PHRASE</td><td class="qs-ok">7</td><td>R$ 1.166</td><td>24</td><td>R$ 48,59</td><td><span class="pill ok">Manter/escalar</span> âncora forte</td></tr>
+      <tr class="row-bad"><td>advogado processo ético</td><td>PHRASE</td><td>n/d</td><td>R$ 894</td><td>3</td><td>R$ 298,09</td><td><span class="pill warn">Ajustar lance</span> CPC disparou p/ 35 no 7d (produto, não negativar)</td></tr>
+      <tr class="row-bad"><td>sindicância crm</td><td>PHRASE</td><td><span class="qs-bad">3</span></td><td>R$ 627</td><td>2</td><td>R$ 313,35</td><td><span class="pill warn">Ajustar</span> QS baixo + leak software CRM, subir LP (âncora)</td></tr>
+      <tr><td>advogado especialista em erro médico</td><td>PHRASE</td><td>4</td><td>R$ 622</td><td>7</td><td>R$ 88,81</td><td><span class="pill ok">Manter</span></td></tr>
+      <tr class="row-bad"><td>responder sindicância</td><td>PHRASE</td><td><span class="qs-bad">2</span></td><td>R$ 546</td><td>1</td><td>R$ 545,92</td><td><span class="pill crit">QS crítico</span> avatar quente, NÃO negativar, revisar LP e teto de lance</td></tr>
+      <tr class="row-bad"><td>processo ético profissional</td><td>PHRASE</td><td><span class="qs-bad">3</span></td><td>R$ 544</td><td>5</td><td>R$ 108,75</td><td><span class="pill warn">Ajustar</span> QS baixo (produto)</td></tr>
+      <tr class="row-best"><td>advogado de erro medico</td><td>EXACT</td><td class="qs-ok">5</td><td>R$ 532</td><td>14</td><td>R$ 37,96</td><td><span class="pill ok">Manter/escalar</span> melhor CPL da conta</td></tr>
+      <tr class="row-warn"><td>processo ético crm</td><td>PHRASE</td><td class="qs-ok">7</td><td>R$ 374</td><td>1</td><td>R$ 373,64</td><td><span class="pill warn">Monitorar</span> QS bom, CPL caro, vigiar 14d</td></tr>
+      <tr><td>advogado especialista em direito médico</td><td>PHRASE</td><td>4</td><td>R$ 357</td><td>4</td><td>R$ 89,29</td><td><span class="pill ok">Manter</span></td></tr>
+      <tr class="row-bad"><td>sindicância cremesp</td><td>PHRASE</td><td><span class="qs-bad">2</span></td><td>R$ 228</td><td>0</td><td>sem conv</td><td><span class="pill warn">Ajustar</span> QS crítico, produto, melhorar LP Sindicância</td></tr>
+      <tr class="row-bad"><td>advogado crm</td><td>PHRASE</td><td><span class="qs-bad">2</span></td><td>R$ 212</td><td>0</td><td>sem conv</td><td><span class="pill warn">Revisar</span> ambíguo (Conselho x software), QS crítico</td></tr>
+      <tr class="row-bad"><td>advogado conselho de medicina</td><td>PHRASE</td><td><span class="qs-bad">1</span></td><td>R$ 122</td><td>2</td><td>R$ 60,92</td><td><span class="pill crit">QS 1</span> LP/RSA urgente, converte então não pausar (produto)</td></tr>
+      <tr class="row-bad"><td>crm advogado</td><td>EXACT</td><td><span class="qs-bad">2</span></td><td>R$ 143</td><td>0</td><td>sem conv</td><td><span class="pill warn">Revisar</span> QS crítico, foco do leak software CRM</td></tr>
+      <tr><td>advogado direito médico</td><td>PHRASE</td><td>5</td><td>R$ 252</td><td>0</td><td>sem conv</td><td><span class="pill info">Âncora intocável</span> monitorar, corrigir por RSA se seguir sem conv</td></tr>
+    </tbody>
+  </table>
+  <div class="tbl-foot"><strong>Ação recomendada hoje (Camada 1):</strong> nenhuma keyword de produto pausada. Subir prioridade de LP/RSA para o cluster Sindicância (QS 1 a 3) e segurar lance em <code>advogado processo ético</code> e <code>responder sindicância</code>. Amarra ao Plano 3 camadas, itens HOJE e SEMANA.</div>
+
+  <!-- 7: tabela cirúrgica 2 -->
+  <h2 class="section-title">7. Google &middot; AÇÃO por termo de pesquisa (30d, maior gasto primeiro)</h2>
+  <p class="action-desc" style="margin-bottom:12px">LIXO = público errado (targeting). Nunca negativar cidade (atuação nacional) nem termo direto do produto. Nomes próprios que são a marca (Silva Pimenta) ficam.</p>
+  <table>
+    <thead><tr><th>Termo</th><th>Status</th><th>Custo</th><th>Conv</th><th>Ação + classificação</th></tr></thead>
+    <tbody>
+      <tr class="row-warn"><td>advogado especialista em cirurgia plastica</td><td>NONE</td><td>R$ 77,61</td><td>2</td><td><span class="pill warn">Monitorar</span> converteu, cirurgião pode ser persona médico, checar anti-paciente antes de qualquer corte</td></tr>
+      <tr class="row-best"><td>processo ético profissional médico</td><td>NONE</td><td>R$ 58,35</td><td>0</td><td><span class="pill ok">Virar keyword</span> avatar qualificado, levar p/ ad group Processo Ético</td></tr>
+      <tr><td>flavio silva pimenta</td><td>NONE</td><td>R$ 57,97</td><td>2</td><td><span class="pill info">Manter</span> marca própria (branded), não mexer</td></tr>
+      <tr class="row-best"><td>sindicancia cremesp</td><td>NONE</td><td>R$ 44,90</td><td>0</td><td><span class="pill ok">Virar keyword</span> variação qualificada do produto (Sindicância)</td></tr>
+      <tr class="row-bad"><td>advogados de causas hospitalares</td><td>NONE</td><td>R$ 49,45</td><td>0</td><td><span class="pill crit">Avaliar negativar</span> gasto sem conv, cheiro de paciente/hospital, confirmar persona</td></tr>
+      <tr class="row-bad"><td>crm para escritório de advocacia</td><td>NONE</td><td>R$ 27,96</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> busca software de gestão, público errado</td></tr>
+      <tr class="row-bad"><td>advogados especialistas em planos de saúde oliveira &amp; santos advogados</td><td>NONE</td><td>R$ 17,85</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> concorrente + plano de saúde, off-persona</td></tr>
+      <tr class="row-bad"><td>crm advocacia</td><td>NONE</td><td>R$ 18,83</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> software CRM</td></tr>
+      <tr class="row-bad"><td>crm advogados</td><td>NONE</td><td>R$ 17,86</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> software CRM</td></tr>
+      <tr class="row-bad"><td>luciano correia bueno brandão</td><td>NONE</td><td>R$ 16,14</td><td>0</td><td><span class="pill crit">Negativar</span> nome de terceiro/concorrente, sem conv</td></tr>
+      <tr class="row-bad"><td>crm para advogado / crm para advogados</td><td>NONE</td><td>R$ 14,26 / 8,00</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> software CRM</td></tr>
+      <tr class="row-bad"><td>advbox crm</td><td>NONE</td><td>R$ 7,80</td><td>0</td><td><span class="pill crit">Negativar (LIXO)</span> AdvBox é software jurídico, público errado</td></tr>
+      <tr class="row-warn"><td>advogado de negligência médica</td><td>NONE</td><td>R$ 37,99</td><td>1</td><td><span class="pill warn">Monitorar</span> ambíguo (defesa x paciente), converteu, vigiar com anti-paciente</td></tr>
+      <tr class="row-warn"><td>defesa representação oab</td><td>NONE</td><td>R$ 15,85</td><td>1</td><td><span class="pill warn">Avaliar negativar</span> é advogado buscando defesa OAB, não médico, apesar de 1 conv</td></tr>
+      <tr class="row-warn"><td>advogado especialista em direito a saude</td><td>NONE</td><td>R$ 28,40</td><td>0</td><td><span class="pill warn">Avaliar</span> direito à saúde tende a paciente/plano, sem conv</td></tr>
+      <tr><td>advogado erro médico rj / porto alegre / bh / curitiba</td><td>NONE</td><td>vários</td><td>alguns conv</td><td><span class="pill info">Manter</span> cidade nunca é desqualificação (atuação nacional)</td></tr>
+    </tbody>
+  </table>
+  <div class="tbl-foot"><strong>Ação recomendada hoje (Camada 1):</strong> negativar em frase o cluster de software CRM (<code>crm para escritório de advocacia</code>, <code>crm advocacia</code>, <code>crm advogados</code>, <code>crm para advogado</code>, <code>advbox crm</code>) e nomes de concorrentes, aplicando na lista <code>Negativas | Direito Médico</code>. Virar keyword <code>processo ético profissional médico</code> e <code>sindicancia cremesp</code>. Tudo como recomendação para aprovação item a item (read-only).</div>
+
+  <!-- 8: tabela cirúrgica 3 + ads with issues -->
+  <h2 class="section-title">8. Qualidade dos anúncios (Google + Meta)</h2>
+  <p class="sub">Google &middot; status de aprovação</p>
+  <table>
+    <thead><tr><th>Campanha</th><th>Anúncios</th><th>Aprovação</th><th>Review</th><th>Ação + motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>SP | Erro Médico (ALTA/MÉDIA/TESTE + Erro Médico FRASE)</td><td>APPROVED</td><td><span class="pill ok">APPROVED</span></td><td>REVIEWED</td><td><span class="pill ok">Manter</span> servindo, campanha motor</td></tr>
+      <tr class="row-best"><td>SP | Advogado para Médicos</td><td>3 APPROVED</td><td><span class="pill ok">APPROVED</span></td><td>REVIEWED</td><td><span class="pill ok">Manter</span></td></tr>
+      <tr class="row-best"><td>SP | Sindicância CRM</td><td>3 APPROVED</td><td><span class="pill ok">APPROVED</span></td><td>REVIEWED</td><td><span class="pill warn">Revisar criativo</span> RSA com keyword no título p/ subir QS (1 a 3)</td></tr>
+      <tr class="row-best"><td>SP | Processo Ético CRM</td><td>3 APPROVED</td><td><span class="pill ok">APPROVED</span></td><td>REVIEWED</td><td><span class="pill ok">Manter</span></td></tr>
+      <tr class="row-warn"><td>ZZ consolidada (27/08) e [PESQUISA] DM Sindicância/Defesa Judicial</td><td>APPROVED sem gasto</td><td><span class="pill ok">APPROVED</span></td><td>REVIEWED</td><td><span class="pill neutral">Sinalizar</span> aprovadas mas sem veiculação nas janelas, confirmar se pausadas de propósito</td></tr>
+    </tbody>
+  </table>
+  <div class="tbl-foot"><strong>Ação recomendada hoje:</strong> nenhum anúncio Google reprovado (gate 1 OK no Search). A oportunidade é RSA da Sindicância, que puxa QS baixo. Amarra ao item de 2 semanas (LP + RSA).</div>
+
+  <p class="sub">Meta &middot; rankings e frequência (CTWA)</p>
+  <table>
+    <thead><tr><th>Anúncio</th><th>Gasto 30d</th><th>Freq</th><th>Conversas</th><th>Rankings</th><th>Ação + motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-warn"><td>AD10 Citado em Indenizacao (Acao Civel)</td><td>R$ 138,99</td><td>2,54</td><td>1</td><td><span class="pill neutral">UNKNOWN</span></td><td><span class="pill neutral">Sem veredito</span> campanha de mensagem + volume baixo</td></tr>
+      <tr class="row-warn"><td>AD4 Intimado pelo CRM (Sindicancia)</td><td>R$ 88,85</td><td>1,94</td><td>1</td><td><span class="pill neutral">UNKNOWN</span></td><td><span class="pill neutral">Sem veredito</span> melhor CTR (0,89%), sinal leve</td></tr>
+      <tr class="row-warn"><td>AD19 Primeira Prova (Prontuario e TCLE)</td><td>R$ 17,82</td><td>1,38</td><td>1</td><td><span class="pill neutral">UNKNOWN</span></td><td><span class="pill neutral">Sem veredito</span> 1 conversa a R$ 17,82</td></tr>
+      <tr><td>Demais 22 anúncios (T2 a T8)</td><td>baixo</td><td>1,0 a 2,5</td><td>0</td><td><span class="pill neutral">UNKNOWN</span></td><td><span class="pill neutral">Imaturo</span> volume insuficiente, não dar veredito</td></tr>
+    </tbody>
+  </table>
+  <div class="tbl-foot"><strong>Ação recomendada hoje:</strong> rankings UNKNOWN em toda a conta Meta é o valor real da API (CTWA + volume baixo), então NÃO se otimiza ranking aqui. Frequência está baixa, logo não há fadiga. O problema é verba que secou (R$ 9,71 em 7d), decisão vai no item de SEMANA.</p></div>
+
+  <h2 class="section-title">9. Anúncios WITH_ISSUES</h2>
+  <div class="alert-box success">
+    <h3>Nenhum anúncio reprovado nesse ciclo</h3>
+    <p>Google <code>ads_reprovados</code> vazio (todos APPROVED, review REVIEWED). Meta <code>ads_com_problema</code> vazio. Gate 1 (está servindo?) OK em criativo nas duas plataformas. A ressalva é operacional, não de política: a conta Meta está quase sem veiculação por verba, não por rejeição.</p>
+  </div>
+
+  <!-- 10 -->
+  <h2 class="section-title">10. Comparação histórica &middot; tendência 30 para 14 para 7</h2>
+  <table>
+    <thead><tr><th>Métrica</th><th>30d (15/09 a 14/10)</th><th>14d (01/10 a 14/10)</th><th>7d (08/10 a 14/10)</th><th>Direção</th></tr></thead>
+    <tbody>
+      <tr><td>Custo Google</td><td>R$ 15.274</td><td>R$ 7.096</td><td>R$ 3.496</td><td><span class="pill neutral">ritmo estável</span></td></tr>
+      <tr><td>Conversões Google (clique)</td><td>176</td><td>69</td><td>33</td><td><span class="pill neutral">estável</span></td></tr>
+      <tr class="row-bad"><td>CPC médio Google</td><td>R$ 11,63</td><td>R$ 14,08</td><td>R$ 19,00</td><td><span class="pill crit">subindo</span></td></tr>
+      <tr class="row-warn"><td>Custo/conv Google</td><td>R$ 86,78</td><td>R$ 102,84</td><td>R$ 105,94</td><td><span class="pill warn">piorando</span></td></tr>
+      <tr class="row-best"><td>CPL Erro Médico</td><td>R$ 50,62</td><td>R$ 63,11</td><td>R$ 61,35</td><td><span class="pill ok">bom e estável</span></td></tr>
+      <tr class="row-bad"><td>CPL Processo Ético</td><td>R$ 162,98</td><td>R$ 203,29</td><td>R$ 359,31</td><td><span class="pill crit">deteriorando</span></td></tr>
+      <tr class="row-bad"><td>CPL Sindicância</td><td>R$ 330,35</td><td>R$ 204,25</td><td>R$ 213,33</td><td><span class="pill crit">caro crônico</span></td></tr>
+      <tr class="row-bad"><td>Gasto Meta</td><td>R$ 654</td><td>R$ 234</td><td>R$ 9,71</td><td><span class="pill crit">secando</span></td></tr>
+      <tr><td>Leads reais Pipedrive</td><td>98</td><td>34</td><td>19</td><td><span class="pill ok">ritmo bom</span></td></tr>
+      <tr class="row-best"><td>Vendas (won) cohort</td><td>8 (R$ 32.973)</td><td>2 (R$ 9.432)</td><td>2 (R$ 9.432)</td><td><span class="pill ok">as 2 na última semana</span></td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box info">
+    <h3>Narrativa</h3>
+    <p>O volume de leads reais segue saudável (19 em 7d projeta cerca de 80 a 95/mês, dentro da meta de 50/mês folgado). O custo por clique sobe na ponta, puxado por Processo Ético e pela keyword <code>advogado processo ético</code> (CPC R$ 35 no 7d), e a semana cruza o feriadão de 12/10, o que infla CPC quando o estoque de busca qualificada encolhe. O CPL real por lead (R$ 163) continua abaixo da régua do produto (R$ 180), então a conta está saudável no agregado. O risco não é preço, é desperdício concentrado na Sindicância e a Meta que parou de rodar.</p>
+  </div>
+
+  <!-- 11 -->
+  <h2 class="section-title">11. Sazonalidade do período</h2>
+  <table>
+    <thead><tr><th>Evento</th><th>Janela</th><th>Impacto no ciclo</th></tr></thead>
+    <tbody>
+      <tr><td>Nossa Senhora Aparecida + Dia das Crianças</td><td>12/10 (feriado nacional, emenda 11 a 12/10)</td><td>Queda de busca qualificada e de atendimento SDR na semana de 7d, ajuda a explicar CPC e CPL mais altos e a Meta quase parada</td></tr>
+      <tr><td>Dia do Professor</td><td>15/10</td><td>Baixo impacto direto no persona médico</td></tr>
+      <tr><td>Dia do Médico</td><td>18/10 (logo após a janela)</td><td>Oportunidade: pico de atenção do público médico, bom gatilho de criativo/mensagem no Meta e nas extensões Google</td></tr>
+      <tr><td>Finados</td><td>02/11 (fora da janela)</td><td>Novo feriado chegando, monitorar queda de atendimento no próximo ciclo</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 12 -->
+  <h2 class="section-title">12. Diagnóstico &middot; gargalos priorizados</h2>
+  <div class="alert-box">
+    <h3>Gargalo 1 (alto) &middot; Vazamento de público na Sindicância pela ambiguidade de CRM</h3>
+    <p>Buscas por software de gestão (crm para escritório, advbox crm, crm advocacia) entram barato e não convertem, elevando o CPL para R$ 330 e alimentando o LIXO do Pipedrive. Correção: negativas de frase, sem tocar os termos de Conselho (sindicância, cremesp, conselho de medicina continuam avatar quente).</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 2 (médio-alto) &middot; CPL do Processo Ético e lance de keywords caras</h3>
+    <p><code>advogado processo ético</code> a R$ 35,54 de CPC no 7d levou o CPL do grupo a R$ 359. QS misto (processo ético crm QS7, processo ético profissional QS3). Correção: teto de lance e reforço de RSA, sem pausar termo de produto.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 3 (médio) &middot; Meta sem verba efetiva</h3>
+    <p>R$ 9,71 em 7d é praticamente fora do ar. Com 3 conversas em 30d, o canal está imaturo e não ajuda a cruzar a meta. Decisão binária: reativar com budget e checar número WhatsApp vivo na LP antes, ou pausar formal e concentrar no Google.</p>
+  </div>
+  <div class="alert-box">
+    <h3>Gargalo 4 (médio) &middot; QS baixo generalizado em termos de produto</h3>
+    <p>Vários termos legítimos estão em QS 1 a 3 (responder sindicância QS2, advogado conselho de medicina QS1, sindicância cremesp QS2). O gargalo é relevância de LP e RSA, não orçamento. Baseline da casa é 4,8, meta 8. Subir QS baixa o CPC sem tirar verba.</p>
+  </div>
+
+  <!-- 13 -->
+  <h2 class="section-title">13. Plano de ação &middot; 3 camadas</h2>
+  <p class="sub">Camada 1 &middot; HOJE (zero risco, recomendação para aprovar)</p>
+  <ul class="action-list">
+    <li class="crit"><div class="action-title">Negativar em frase o cluster de software CRM</div><div class="action-desc">crm para escritório de advocacia, crm advocacia, crm advogados, crm para advogado, crm para advogados, advbox crm. Aplicar na lista Negativas | Direito Médico. Mantém intactos sindicância, cremesp, conselho de medicina.</div><div class="action-meta">Impacto: corta LIXO e derruba CPL da Sindicância</div></li>
+    <li class="crit"><div class="action-title">Negativar nomes de concorrentes/terceiros</div><div class="action-desc">oliveira &amp; santos advogados, rayana leitão, luciano correia bueno brandão e similares sem conversão. Preservar a marca própria (flavio silva pimenta).</div><div class="action-meta">Impacto: gasto só no persona certo</div></li>
+    <li class="warn"><div class="action-title">Proteger âncoras e segurar lance das caras</div><div class="action-desc">Nenhum termo de produto pausado. Avaliar teto de lance em advogado processo ético e responder sindicância (CPC alto, QS baixo).</div><div class="action-meta">Impacto: estanca o CPL do Processo Ético</div></li>
+  </ul>
+  <p class="sub">Camada 2 &middot; ESTA SEMANA (decisão)</p>
+  <ul class="action-list">
+    <li class="warn"><div class="action-title">Decidir a Meta: reativar budget ou pausar formal</div><div class="action-desc">Antes de reativar, confirmar número WhatsApp vivo na LP (gate 2, pendente). Se mantiver, repor budget mínimo para sair do ruído. Se não, pausar a campanha.</div><div class="action-meta">Impacto: parar de pagar meia veiculação sem decisão</div></li>
+    <li class="warn"><div class="action-title">Virar keyword os termos qualificados</div><div class="action-desc">processo ético profissional médico (ad group Processo Ético) e sindicancia cremesp (Sindicância). Avaliar com cuidado negligência médica (ambíguo, anti-paciente).</div><div class="action-meta">Impacto: captura demanda quente que hoje entra solta</div></li>
+    <li class="info"><div class="action-title">Cruzar os 17 LIXO por número da campanha</div><div class="action-desc">Quando o campo NÚMERO DA CAMPANHA (pessoa) estabilizar, atribuir o LIXO à campanha de origem. Hoje atribuído por sinal de plataforma (termos de software CRM).</div><div class="action-meta">Impacto: fecha o diagnóstico de targeting</div></li>
+  </ul>
+  <p class="sub">Camada 3 &middot; PRÓXIMAS 2 SEMANAS (testes)</p>
+  <ul class="action-list">
+    <li class="info"><div class="action-title">Subir QS do grupo Sindicância (LP + RSA)</div><div class="action-desc">RSA com keyword no título, LP de sindicância mais relevante. Alvo: tirar QS 1 a 3 do patamar crítico rumo à meta 8. Reage lento, medir em 14 dias.</div><div class="action-meta">Impacto: baixa CPC sem cortar verba</div></li>
+    <li class="info"><div class="action-title">Criativo/mensagem do Dia do Médico (18/10)</div><div class="action-desc">Gatilho oportuno para Meta (se reativada) e extensões Google. Flag OAB obrigatória na copy nova.</div><div class="action-meta">Impacto: aproveitar pico de atenção do persona</div></li>
+    <li class="info"><div class="action-title">Checar número WhatsApp vivo na LP e varrer Sem Funil</div><div class="action-desc">Fechar as duas lacunas de tracking desse ciclo (LP não lida; Sem Funil não coletado).</div><div class="action-meta">Impacto: garantir que não há lead escondido nem destino morto</div></li>
+  </ul>
+
+  <!-- 14 -->
+  <h2 class="section-title">14. Validação de tracking</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Status</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Gate 1 &middot; anúncios servindo (Google)</td><td><span class="pill ok">OK</span></td><td>Todos APPROVED/REVIEWED, zero reprovados</td></tr>
+      <tr><td>Gate 1 &middot; veiculação Meta</td><td><span class="pill warn">ATENÇÃO</span></td><td>Aprovada mas quase sem verba (R$ 9,71 em 7d), métrica vira ruído</td></tr>
+      <tr><td>Gate 2 &middot; número WhatsApp vivo na LP</td><td><span class="pill crit">PENDENTE</span></td><td>Lacuna v1: exige leitura da LP, não coletado nesse JSON</td></tr>
+      <tr><td>Gate 2 &middot; conversão biddable = a que a LP dispara</td><td><span class="pill warn">PENDENTE</span></td><td>Não validado nesse ciclo (depende do gate 2 acima)</td></tr>
+      <tr><td>Gate 3 &middot; lead real no Pipedrive (funil DM 6)</td><td><span class="pill ok">OK</span></td><td>98 leads, 8 vendas, cohort consistente</td></tr>
+      <tr><td>Gate 3 &middot; varredura Sem Funil (pipeline 5)</td><td><span class="pill warn">PENDENTE</span></td><td>Só o funil DM veio no JSON, pode haver lead sem código escondido</td></tr>
+      <tr><td>Quebra de LIXO por número da campanha</td><td><span class="pill warn">PENDENTE</span></td><td>Lacuna v1: cruzamento ainda calibrando pós 16/06</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 15 -->
+  <h2 class="section-title">15. Compliance OAB</h2>
+  <div class="alert-box info">
+    <h3>Não aplicável nesse ciclo (sem copy nova)</h3>
+    <p>Nenhuma peça nova foi redigida. Lembretes ativos para quando a copy do Dia do Médico (Camada 3) for criada: sem promessa de resultado, sem mercantilismo, sem captação irregular. Blindagem anti-paciente obrigatória nos grupos de Defesa Judicial e Erro Médico (negativas como vítima, indenização, como processar, direitos do paciente). Os termos ambíguos sinalizados (negligência médica, causas hospitalares, direito à saúde) devem ser revistos com essa lente antes de virar keyword.</p>
+  </div>
+
+  <!-- 16 -->
+  <h2 class="section-title">16. Audit log</h2>
+  <div class="audit-log">
+    <span class="ts">15/10 15:34</span> DM ANALISE | produto=direito-medico | fonte=JSON coleta (read-only, sem API) <span class="ok">OK</span><br>
+    <span class="ts">15/10 15:34</span> GATE1 Google | 32 ads APPROVED/REVIEWED | reprovados=0 <span class="ok">OK</span><br>
+    <span class="ts">15/10 15:34</span> GATE1 Meta | gasto 7d=R$9,71 | veiculacao quase nula <span class="warn">WARN</span><br>
+    <span class="ts">15/10 15:34</span> GATE2 WhatsApp na LP | nao coletado (lacuna v1) <span class="crit">PENDENTE</span><br>
+    <span class="ts">15/10 15:34</span> GATE2 conversao biddable | nao validado <span class="warn">WARN</span><br>
+    <span class="ts">15/10 15:34</span> GATE3 Pipedrive funil DM | leads30d=98 won=8 R$32.973 <span class="ok">OK</span><br>
+    <span class="ts">15/10 15:34</span> GATE3 Sem Funil (pipeline 5) | nao coletado <span class="warn">WARN</span><br>
+    <span class="ts">15/10 15:34</span> VOLUME | Google 1313 cliques/30d | recorte valido <span class="ok">OK</span><br>
+    <span class="ts">15/10 15:34</span> CPL real | R$162,53/lead | regua produto R$180 <span class="ok">ABAIXO/OK</span><br>
+    <span class="ts">15/10 15:34</span> LIXO Pipedrive | 17/39 perdas (44%) | origem=software CRM <span class="crit">CRIT</span><br>
+    <span class="ts">15/10 15:34</span> QS | multiplos termos QS1-3 (cluster Sindicancia) <span class="warn">WARN</span><br>
+    <span class="ts">15/10 15:34</span> TENDENCIA | CPC 11,63>14,08>19,00 | feriadao 12/10 <span class="warn">WARN</span><br>
+    <span class="ts">15/10 15:34</span> PLANO | 3 camadas gerado | execucao=handoff Executor (aprovar item a item) <span class="ok">OK</span><br>
+    <span class="ts">15/10 15:34</span> READ-ONLY | nenhuma mudanca executada <span class="ok">OK</span>
+  </div>
+
+  <!-- 17 INDEX embutido -->
+  <h2 class="section-title">17. Próximo ciclo + INDEX da pasta</h2>
+  <div class="alert-box info">
+    <h3>Próxima revisão: quinta 22/10/2026</h3>
+    <p>Foco: medir efeito das negativas de software CRM no CPL da Sindicância, decisão da Meta aplicada (reativada ou pausada), QS do grupo Sindicância após ajuste de LP/RSA, e leitura do Dia do Médico (18/10). Pré-requisito: fechar gate 2 (WhatsApp vivo na LP) e varrer o Sem Funil.</p>
+  </div>
+  <div class="alert-box">
+    <h3>Conteúdo do INDEX.html da pasta (para registro)</h3>
+    <p>Pasta: <code>clientes/silva-pimenta/marketing/trafego-pago/otimizacoes/direito-medico/2026-10-15/</code></p>
+    <p>Card 1: <code>analises/01-google-ads.html</code> &middot; Google Search 4 campanhas, CPL real R$ 163/lead, Sindicância com vazamento de software CRM, 3 tabelas cirúrgicas (keyword, termo, anúncio).<br>
+    Card 2: <code>analises/02-meta-ads.html</code> &middot; CTWA quase parada (R$ 9,71/7d), 3 conversas em 30d, rankings UNKNOWN, decisão reativar ou pausar.</p>
+    <p>Histórico preservado: pastas de datas anteriores não são tocadas (uma pasta por data).</p>
+  </div>
+
+</div>
+
+<footer>
+  Silva Pimenta &middot; Direito Médico (Defesa) &middot; Google + Meta &middot; Ciclo 15/10/2026<br>
+  Gerado via skills <code>google-ads-ratos</code> + <code>meta-ads-ratos</code> + <code>ads-ratos</code> + <code>/otimizar</code> (modo nuvem, read-only)<br>
+  Arquivo: <code>clientes/silva-pimenta/marketing/trafego-pago/otimizacoes/direito-medico/2026-10-15/analises/01-google-ads.html</code>
+</footer>
+</body>
+</html>
