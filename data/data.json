@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-17T06:18:56Z",
+  "atualizadoEm": "2026-10-17T06:49:00Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.0826,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 727.67,
-      "meta": 10274.74,
+      "meta": 10278.34,
       "leads_novos": 178,
       "ganhos": 10,
       "valor_ganhos": 30706.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 2908.31,
-      "meta": 10979.11,
+      "meta": 10982.88,
       "leads_novos": 167,
       "ganhos": 26,
       "valor_ganhos": 90591.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 7821.25,
+      "google": 7840.42,
       "meta": 233.76,
       "leads_novos": 49,
       "ganhos": 3,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 368.5,
+      "meta": 368.54,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 92.68,
+      "meta": 92.69,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 10797.84,
+      "google": 10830.47,
       "meta": 0.0,
       "leads_novos": 272,
       "ganhos": 11,
@@ -138,8 +138,8 @@
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 7821.26 x soma das campanhas 7751.22 (dif 70.04) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 10935.33 x soma das campanhas 10865.49 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
+      "google 6351554556: total da conta 7840.43 x soma das campanhas 7770.39 (dif 70.04) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 10967.97 x soma das campanhas 10898.13 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 69.84",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60"
     ]
