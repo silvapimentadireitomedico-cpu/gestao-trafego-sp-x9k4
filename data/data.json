@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-17T22:49:05Z",
+  "atualizadoEm": "2026-10-17T23:19:04Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.0826,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 740.4,
-      "meta": 10700.04,
+      "meta": 10716.51,
       "leads_novos": 178,
       "ganhos": 10,
       "valor_ganhos": 30706.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 724.0
     },
     "fies": {
-      "google": 2986.92,
-      "meta": 11370.04,
+      "google": 2991.19,
+      "meta": 11378.8,
       "leads_novos": 167,
       "ganhos": 26,
       "valor_ganhos": 90591.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 99.94,
+      "meta": 100.04,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 378.45,
+      "meta": 378.68,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -73,7 +73,7 @@
     "seguro": {
       "google": 11041.35,
       "meta": 0.0,
-      "leads_novos": 278,
+      "leads_novos": 279,
       "ganhos": 11,
       "valor_ganhos": 44495.0,
       "orcamento_diario_google": 1148.0,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 1617.53,
+      "google": 1634.66,
       "meta": 750.33,
       "leads_novos": 14,
       "ganhos": 9,
@@ -139,7 +139,7 @@
     ],
     "avisos": [
       "google 6351554556: total da conta 8035.01 x soma das campanhas 7964.97 (dif 70.04) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 11193.81 x soma das campanhas 11123.97 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 11210.94 x soma das campanhas 11141.10 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 69.84",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60"
     ]
