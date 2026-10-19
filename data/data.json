@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-19T02:49:05Z",
+  "atualizadoEm": "2026-10-19T03:19:03Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.0826,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 747.08,
-      "meta": 11549.67,
+      "meta": 11568.99,
       "leads_novos": 180,
       "ganhos": 10,
       "valor_ganhos": 30706.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 724.0
     },
     "fies": {
-      "google": 3134.57,
-      "meta": 12029.47,
+      "google": 3150.35,
+      "meta": 12035.22,
       "leads_novos": 170,
       "ganhos": 26,
       "valor_ganhos": 90591.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 411.53,
+      "meta": 412.1,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 101.51,
+      "meta": 101.52,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 11519.52,
+      "google": 11513.99,
       "meta": 0.0,
       "leads_novos": 287,
       "ganhos": 11,
@@ -139,7 +139,7 @@
     ],
     "avisos": [
       "google 6351554556: total da conta 8264.99 x soma das campanhas 8194.95 (dif 70.04) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 11691.93 x soma das campanhas 11622.09 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 11686.40 x soma das campanhas 11616.56 (dif 69.84) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 69.84",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60"
     ]
