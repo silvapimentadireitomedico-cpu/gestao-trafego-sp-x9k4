@@ -1,9 +1,9 @@
 {
-  "atualizadoEm": "2026-10-20T15:49:06Z",
+  "atualizadoEm": "2026-10-20T16:19:05Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
-  "taxa_usd": 5.0564,
-  "fonte_usd": "BCB 19/10/2026",
+  "taxa_usd": 5.014,
+  "fonte_usd": "BCB 20/10/2026",
   "fontes": {
     "google": "ok",
     "meta": "ok",
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 834.61,
-      "meta": 12395.33,
+      "meta": 12415.24,
       "leads_novos": 216,
       "ganhos": 11,
       "valor_ganhos": 32696.0,
@@ -21,18 +21,18 @@
       "orcamento_diario": 694.0
     },
     "fies": {
-      "google": 3470.58,
-      "meta": 13137.64,
+      "google": 3476.09,
+      "meta": 13155.93,
       "leads_novos": 197,
       "ganhos": 27,
       "valor_ganhos": 92581.0,
       "orcamento_diario_google": 150.0,
-      "orcamento_diario_meta": 689.68,
-      "orcamento_diario": 839.68
+      "orcamento_diario_meta": 689.17,
+      "orcamento_diario": 839.17
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 117.91,
+      "meta": 118.02,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 9357.17,
+      "google": 9357.34,
       "meta": 233.76,
       "leads_novos": 54,
       "ganhos": 4,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 456.69,
+      "meta": 457.34,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 112.36,
+      "meta": 112.72,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 13240.1,
+      "google": 13316.97,
       "meta": 0.0,
-      "leads_novos": 323,
+      "leads_novos": 325,
       "ganhos": 15,
       "valor_ganhos": 66059.0,
       "orcamento_diario_google": 1148.0,
@@ -93,7 +93,7 @@
     "seg-vida": {
       "google": 1780.81,
       "meta": 750.33,
-      "leads_novos": 15,
+      "leads_novos": 16,
       "ganhos": 9,
       "valor_ganhos": 50942.0,
       "orcamento_diario_google": 141.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 1666.29,
+      "google": 1668.51,
       "meta": 0.0,
       "leads_novos": 42,
       "ganhos": 3,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 87.42,
-      "meta": 85.43,
+      "google": 87.66,
+      "meta": 85.91,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 87.42
+        "gasto_brl": 87.66
       },
       {
         "canal": "meta",
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Está respondendo a uma...",
-        "gasto_brl": 15.83
+        "gasto_brl": 16.31
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 9357.17 x soma das campanhas 9270.84 (dif 86.34) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 13573.42 x soma das campanhas 13486.00 (dif 87.42) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 87.42",
+      "google 6351554556: total da conta 9357.35 x soma das campanhas 9270.84 (dif 86.51) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 13650.53 x soma das campanhas 13562.87 (dif 87.66) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 87.66",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 15.83"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 16.31"
     ]
   }
 }
