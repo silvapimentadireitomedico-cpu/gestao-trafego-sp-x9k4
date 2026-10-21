@@ -1,9 +1,9 @@
 {
-  "atualizadoEm": "2026-10-21T15:49:14Z",
+  "atualizadoEm": "2026-10-21T16:19:03Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
-  "taxa_usd": 5.014,
-  "fonte_usd": "BCB 20/10/2026",
+  "taxa_usd": 5.0277,
+  "fonte_usd": "BCB 21/10/2026",
   "fontes": {
     "google": "ok",
     "meta": "ok",
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 896.36,
-      "meta": 13083.75,
+      "meta": 13112.49,
       "leads_novos": 229,
       "ganhos": 11,
       "valor_ganhos": 32696.0,
@@ -22,17 +22,17 @@
     },
     "fies": {
       "google": 3642.33,
-      "meta": 13870.34,
-      "leads_novos": 208,
+      "meta": 13898.18,
+      "leads_novos": 209,
       "ganhos": 30,
       "valor_ganhos": 102551.0,
       "orcamento_diario_google": 150.0,
-      "orcamento_diario_meta": 689.17,
-      "orcamento_diario": 839.17
+      "orcamento_diario_meta": 689.33,
+      "orcamento_diario": 839.33
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 123.24,
+      "meta": 123.57,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 10305.19,
+      "google": 10305.49,
       "meta": 233.76,
       "leads_novos": 56,
       "ganhos": 4,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 481.79,
+      "meta": 483.62,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 119.26,
+      "meta": 119.59,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 14621.35,
+      "google": 14670.37,
       "meta": 0.0,
-      "leads_novos": 345,
+      "leads_novos": 347,
       "ganhos": 16,
       "valor_ganhos": 69559.0,
       "orcamento_diario_google": 1148.0,
@@ -101,9 +101,9 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 1920.43,
+      "google": 1924.31,
       "meta": 0.0,
-      "leads_novos": 48,
+      "leads_novos": 49,
       "ganhos": 3,
       "valor_ganhos": 11171.0,
       "orcamento_diario_google": 250.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 102.82,
-      "meta": 95.87,
+      "google": 103.47,
+      "meta": 96.83,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 102.82
+        "gasto_brl": 103.47
       },
       {
         "canal": "meta",
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Está respondendo a uma...",
-        "gasto_brl": 26.27
+        "gasto_brl": 27.23
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 10305.20 x soma das campanhas 10200.41 (dif 104.79) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 15020.85 x soma das campanhas 14918.02 (dif 102.82) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 102.82",
+      "google 6351554556: total da conta 10305.49 x soma das campanhas 10200.41 (dif 105.09) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 15070.52 x soma das campanhas 14967.04 (dif 103.47) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 103.47",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 26.27"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 27.23"
     ]
   }
 }
