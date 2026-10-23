@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-23T14:19:05Z",
+  "atualizadoEm": "2026-10-23T14:49:05Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.0383,
@@ -12,17 +12,17 @@
   "gastos": {
     "aux-moradia": {
       "google": 984.39,
-      "meta": 14340.22,
+      "meta": 14354.29,
       "leads_novos": 243,
-      "ganhos": 14,
-      "valor_ganhos": 43868.0,
+      "ganhos": 15,
+      "valor_ganhos": 45358.0,
       "orcamento_diario_google": 54.0,
       "orcamento_diario_meta": 640.0,
       "orcamento_diario": 694.0
     },
     "fies": {
       "google": 3753.09,
-      "meta": 15301.69,
+      "meta": 15321.18,
       "leads_novos": 228,
       "ganhos": 32,
       "valor_ganhos": 109031.0,
@@ -41,18 +41,18 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 11374.45,
+      "google": 11446.91,
       "meta": 233.76,
       "leads_novos": 59,
-      "ganhos": 6,
-      "valor_ganhos": 47902.0,
+      "ganhos": 7,
+      "valor_ganhos": 48592.0,
       "orcamento_diario_google": 465.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 465.0
     },
     "inss": {
       "google": 0.0,
-      "meta": 522.93,
+      "meta": 523.53,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 131.37,
+      "meta": 131.41,
       "leads_novos": 2,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 17043.79,
+      "google": 17082.09,
       "meta": 0.0,
-      "leads_novos": 389,
+      "leads_novos": 390,
       "ganhos": 19,
       "valor_ganhos": 79219.0,
       "orcamento_diario_google": 1148.0,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 1973.53,
+      "google": 2008.77,
       "meta": 750.33,
       "leads_novos": 22,
       "ganhos": 9,
@@ -101,9 +101,9 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2397.45,
+      "google": 2403.06,
       "meta": 0.0,
-      "leads_novos": 55,
+      "leads_novos": 57,
       "ganhos": 3,
       "valor_ganhos": 11171.0,
       "orcamento_diario_google": 250.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 139.57,
-      "meta": 126.82,
+      "google": 139.69,
+      "meta": 126.88,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 139.57
+        "gasto_brl": 139.69
       },
       {
         "canal": "meta",
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Está respondendo a uma...",
-        "gasto_brl": 57.22
+        "gasto_brl": 57.28
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 11374.46 x soma das campanhas 11232.89 (dif 141.56) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 17621.97 x soma das campanhas 17482.40 (dif 139.57) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 139.57",
+      "google 6351554556: total da conta 11446.91 x soma das campanhas 11304.57 (dif 142.34) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 17695.63 x soma das campanhas 17555.94 (dif 139.69) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 139.69",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 57.22"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 57.28"
     ]
   }
 }
