@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-25T20:49:06Z",
+  "atualizadoEm": "2026-10-25T21:18:58Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.0377,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1042.39,
-      "meta": 16285.21,
+      "meta": 16314.37,
       "leads_novos": 247,
       "ganhos": 15,
       "valor_ganhos": 45358.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3897.62,
-      "meta": 16913.2,
+      "meta": 16940.62,
       "leads_novos": 237,
       "ganhos": 33,
       "valor_ganhos": 113023.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 12470.3,
+      "google": 12476.26,
       "meta": 233.76,
       "leads_novos": 61,
       "ganhos": 7,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 568.5,
+      "meta": 569.05,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 140.77,
+      "meta": 141.29,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 18281.8,
+      "google": 18286.93,
       "meta": 0.0,
       "leads_novos": 415,
       "ganhos": 20,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 3000.6,
+      "google": 3011.81,
       "meta": 0.0,
       "leads_novos": 69,
       "ganhos": 3,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 183.63,
-      "meta": 146.26,
+      "google": 184.03,
+      "meta": 146.28,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 183.63
+        "gasto_brl": 184.03
       },
       {
         "canal": "meta",
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Está respondendo a uma...",
-        "gasto_brl": 76.66
+        "gasto_brl": 76.68
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 12470.31 x soma das campanhas 12286.42 (dif 183.89) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 19048.66 x soma das campanhas 18865.03 (dif 183.63) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 183.63",
+      "google 6351554556: total da conta 12476.27 x soma das campanhas 12292.34 (dif 183.93) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 19054.19 x soma das campanhas 18870.16 (dif 184.03) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 184.03",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.66"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.68"
     ]
   }
 }
