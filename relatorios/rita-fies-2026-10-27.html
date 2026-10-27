@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIES · Rita · Ciclo 27/10/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1A4758;--teal-dark:#133544;--champagne:#C5A57A;--champagne-dark:#A88958;--bege:#f7f5f0;--texto:#1A1A1A;--texto-secundario:#555;--verde:#22c55e;--vermelho:#ef4444;--amarelo:#f59e0b;--azul:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--bege);color:var(--texto);line-height:1.6}
+.container{max-width:1180px;margin:0 auto;padding:48px 24px}
+header{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;padding:48px 24px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--champagne);font-weight:600;margin-bottom:12px}
+h1{font-size:32px;font-weight:700;margin-bottom:8px;line-height:1.15}
+.subtitle{font-size:16px;opacity:.85;margin-top:6px}
+.status-badges{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.status-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.ok{background:var(--verde);color:#fff}
+.status-badge.warn{background:var(--amarelo);color:#fff}
+.status-badge.crit{background:var(--vermelho);color:#fff}
+.section-title{font-size:24px;font-weight:700;color:var(--teal);margin:48px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--champagne)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:4px solid var(--champagne)}
+.card h4{color:var(--teal);font-size:17px;margin:6px 0}
+.skill-type{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--champagne-dark);font-weight:700}
+.skill-desc{font-size:13px;color:var(--texto-secundario);margin-top:6px}
+.alert-box{background:#fef2f2;border-left:4px solid var(--vermelho);padding:22px;border-radius:8px;margin-bottom:14px}
+.alert-box.warning{background:#fff8e1;border-left-color:var(--amarelo)}
+.alert-box.success{background:#f0fdf4;border-left-color:var(--verde)}
+.alert-box.info{background:#eff6ff;border-left-color:var(--azul)}
+.alert-box h3{font-size:17px;margin-bottom:8px;color:var(--teal)}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.summary-grid>div{background:#fff;padding:18px;border-radius:8px;text-align:center;border-top:3px solid var(--champagne)}
+.summary-grid .num{font-size:26px;font-weight:700;color:var(--teal);display:block;line-height:1.1}
+.summary-grid .num.danger{color:var(--vermelho)}
+.summary-grid .num.success{color:var(--verde)}
+.summary-grid .num.warn{color:var(--amarelo)}
+.summary-grid .label{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--texto-secundario);margin-top:6px;display:block}
+.summary-grid .delta{font-size:11px;color:var(--texto-secundario);margin-top:3px;display:block}
+.summary-grid .delta.up{color:var(--verde)}
+.summary-grid .delta.down{color:var(--vermelho)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);margin-bottom:24px;font-size:13.5px}
+th{background:var(--teal);color:#fff;text-align:left;padding:11px 12px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 12px;border-bottom:1px solid #f0ebe2;vertical-align:middle}
+tr.row-best td{background:#f0fdf4}
+tr.row-bad td{background:#fef2f2}
+tr.row-warn td{background:#fff8e1}
+.qs-crit{background:var(--vermelho);color:#fff;font-weight:700;padding:2px 8px;border-radius:10px;font-size:12px}
+.qs-warn{background:var(--amarelo);color:#fff;font-weight:700;padding:2px 8px;border-radius:10px;font-size:12px}
+.qs-ok{background:var(--verde);color:#fff;font-weight:700;padding:2px 8px;border-radius:10px;font-size:12px}
+.pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.pill.ok{background:#dcfce7;color:#166534}
+.pill.warn{background:#fef3c7;color:#92400e}
+.pill.crit{background:#fee2e2;color:#991b1b}
+.pill.info{background:#dbeafe;color:#1e40af}
+.pill.neutral{background:#f1f5f9;color:#475569}
+.action-list{list-style:none;padding:0}
+.action-list li{background:#fff;padding:16px 20px;margin-bottom:10px;border-radius:8px;border-left:4px solid var(--teal)}
+.action-list li.crit{border-left-color:var(--vermelho)}
+.action-list li.warn{border-left-color:var(--amarelo)}
+.action-list li.info{border-left-color:var(--azul)}
+.action-title{font-weight:600;color:var(--teal);margin-bottom:4px}
+.action-desc{font-size:14px;color:var(--texto-secundario)}
+.action-meta{font-size:12px;color:var(--champagne-dark);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:.5px}
+.foot-row td{font-weight:700;background:#faf7f1;color:var(--teal)}
+.audit-log{background:#0f172a;color:#94a3b8;font-family:'Courier New',monospace;padding:22px;border-radius:8px;font-size:12px;line-height:1.7;overflow-x:auto}
+.audit-log .ts{color:#60a5fa}
+.audit-log .ok{color:#34d399}
+.audit-log .warn{color:#fbbf24}
+.audit-log .crit{color:#f87171}
+footer{background:var(--teal-dark);color:#fff;padding:32px 24px;text-align:center;margin-top:60px;font-size:13px;opacity:.92}
+.banner-gate{background:#7f1d1d;color:#fff;padding:20px 24px;border-radius:8px;margin-bottom:20px;border-left:6px solid #fbbf24}
+.banner-gate h3{color:#fff;margin-bottom:6px}
+@media(max-width:768px){.summary-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:24px}table{font-size:11.5px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="eyebrow">Silva Pimenta &middot; FIES (Abatimento + Suspensão) &middot; Google + Meta</div>
+    <h1>Ciclo FIES &middot; Diagnóstico Semanal &middot; 27/10/2026</h1>
+    <p class="subtitle">Janelas 30d (27/09 a 26/10), 14d (13/10 a 26/10) e 7d (20/10 a 26/10) &middot; fonte única: coleta pronta (read-only), taxa USD 5,5007</p>
+    <div class="status-badges">
+      <span class="status-badge ok">Google saudável (CPA 14d R$ 53)</span>
+      <span class="status-badge warn">Meta BR ruído (CTWA, CPL não isolável)</span>
+      <span class="status-badge crit">Gate QS crítico + AÇÃO INVIÁVEL 44%</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- BANNERS DE GATE NO TOPO -->
+  <div class="banner-gate">
+    <h3>⚠️ ACHADO QUE SAI AGINDO HOJE: 44% das perdas no Pipedrive são AÇÃO INVIÁVEL</h3>
+    <p>No funil FIES Abatimento, o maior motivo de perda é AÇÃO INVIÁVEL (caso sem viabilidade jurídica): 60 de 137 perdas em 30d, 26 de 52 em 14d, 11 de 19 em 7d (tendência subindo). Pela seção 5.1 isto é <b>expectativa criada no anúncio</b>. Amarra direto com os criativos Meta de promessa forte ("Zerar 100%", "Um por Cento", "Lei Permite Zerar Selo") e headlines Google OAB-borderline. Ação: revisar promessa dos criativos (ver Plano, camada ESTA SEMANA). Não é falha de plataforma, é qualidade de entrada.</p>
+  </div>
+  <div class="banner-gate" style="background:#78350f">
+    <h3>⚠️ GATE 2 (tracking) NÃO VERIFICÁVEL nesta coleta + GATE 1 Meta parcial</h3>
+    <p>Lacunas v1 declaradas no JSON: (1) checagem de WhatsApp vivo na LP exige ler a página e não veio na coleta, fica PENDENTE; (2) quebra de perdas por "número da campanha" dentro do funil segue calibrando pós 16/06. Além disso, 40 anúncios Meta estão com problema (1 DISAPPROVED e 18 ACTIVE em WITH_ISSUES na campanha "10 Trafego LP Blog" e "SUSPENSÃO FIES WhatsApp"): onde estiver ACTIVE + WITH_ISSUES a métrica é ruído até corrigir. Detalhe na seção 8.</p>
+  </div>
+
+  <!-- 1. SKILLS USADAS -->
+  <h2 class="section-title">1. Skills usadas neste diagnóstico</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="skill-type">Execução &middot; dados prontos</span>
+      <h4>google-ads-ratos + meta-ads-ratos</h4>
+      <div class="skill-desc">Leitura (read-only) do pacote já coletado: campanhas, ad groups, keywords com QS, search terms, gate de aprovação (Google) e insights ad a ad com quality/conversion ranking e frequência (Meta BR e EUA). Nenhuma API foi chamada aqui.</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Inteligência &middot; Benchmarks</span>
+      <h4>ads-ratos</h4>
+      <div class="skill-desc">Régua real do FIES (CPA 50 a 90 saudável, 90 a 130 atenção, acima de 130 crítico) e quality gates (QS abaixo de 4 crítico no Google, frequência acima de 5 kill rule e ranking BELOW no Meta).</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Workflow &middot; Diagnóstico</span>
+      <h4>/otimizar + playbook FIES</h4>
+      <div class="skill-desc">Gate de confiança, desagregação por ad group (FIES é multi sub-produto), leitura das perdas por motivo (5.1), comparação 30/14/7, sazonalidade e plano em 3 camadas sem executar nada.</div>
+    </div>
+  </div>
+
+  <!-- 2. SKILLS NÃO ACIONADAS -->
+  <h2 class="section-title">2. Skills não acionadas</h2>
+  <div class="alert-box info">
+    <h3>O que não entrou neste ciclo e por quê</h3>
+    <p><b>paid-ads / conversion-tracking:</b> o tracking merecia auditoria completa (CAPI, dedupe, WhatsApp vivo), mas gate 2 depende de ler a LP, que não veio na coleta. Fica como pendência, não como veredito. <b>/criativo:</b> não produzimos peças novas neste ciclo, só recomendamos revisão de promessa (seção 12 e 14). <b>Executor:</b> tudo aqui é recomendação, execução depende de aprovação item a item do William e de janela de escrita aberta.</p>
+  </div>
+
+  <!-- 3. RESUMO EXECUTIVO -->
+  <h2 class="section-title">3. Resumo executivo &middot; 4 KPIs</h2>
+  <div class="summary-grid">
+    <div>
+      <span class="num success">R$ 53,41</span>
+      <span class="label">CPA Google 14d</span>
+      <span class="delta up">de R$ 63,36 (30d), dentro da régua</span>
+    </div>
+    <div>
+      <span class="num warn">R$ 44,24</span>
+      <span class="label">CPL Meta BR 14d (ruído CTWA)</span>
+      <span class="delta">435 "leads" 30d x 305 reais Pipedrive</span>
+    </div>
+    <div>
+      <span class="num success">19</span>
+      <span class="label">Vendas Pipedrive 30d (R$ 64,1 mil)</span>
+      <span class="delta">cohort por add_time, 149 ainda abertos</span>
+    </div>
+    <div>
+      <span class="num danger">40</span>
+      <span class="label">Ads Meta com problema</span>
+      <span class="delta down">1 DISAPPROVED + 18 ACTIVE WITH_ISSUES</span>
+    </div>
+  </div>
+  <div class="alert-box info">
+    <h3>Leitura de caixa do ciclo</h3>
+    <p>Gasto total 30d: Google R$ 5.385, Meta BR R$ 20.009, Meta EUA R$ 2.063 (valores EUA já convertidos à taxa 5,5007). Total aproximado R$ 27.457 para 19 vendas no cohort de 30d (R$ 64,1 mil ganhos) mais 149 negócios ainda abertos. A conta fecha positiva, mas o cohort é imaturo (só 1 venda no recorte de 7d, 45 abertos). Não é hora de declarar ROI fechado, é hora de melhorar a QUALIDADE de entrada.</p>
+  </div>
+
+  <!-- 4. ACHADOS -->
+  <h2 class="section-title">4. Achados que mudam decisão</h2>
+  <div class="alert-box">
+    <h3>1. Promessa forte vira lead inviável</h3>
+    <p>AÇÃO INVIÁVEL é o maior motivo de perda (44% em 30d) e está crescendo (11 de 19 em 7d). Os criativos campeões de gasto no Meta prometem zerar 100% ou "1%". Captam muito, qualificam pouco. É gargalo de FUNDO disfarçado de CPL baixo.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>2. LIXO navegacional no Google</h3>
+    <p>Termos "fiesmed site", "fies med", "provi whatsapp", "provi soluções e serviços ltda", "desenrola fies 2026" somam mais de R$ 390 em 30d com quase nenhuma conversão. São buscas pelo portal oficial do programa FIESMED e por outra empresa (Provi), público errado (targeting), não desempenho. Negativar o token navegacional, nunca a cidade nem o termo do produto.</p>
+  </div>
+  <div class="alert-box">
+    <h3>3. QS 1 crônico nos termos de dívida</h3>
+    <p>"como quitar o fies" (QS 1, R$ 525, 5 conv) e "diminuir divida fies" (QS 1, R$ 333, 3 conv) seguem com Quality Score no chão. Gargalo é a LP que não confirma o ângulo de dívida, igual ao histórico. Não se pausa termo do produto, corrige LP e RSA.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>4. Fadiga no CJ64 (Lista C19)</h3>
+    <p>No Meta BR, AD4 NOT2 (freq 5,02) e AD5 LEI3 (freq 4,67) no conjunto CJ64 cruzaram o kill rule de frequência com quality e conversion ranking BELOW. CPA conversa de R$ 89 a R$ 193. Em paralelo, CJ56 (AD5 LEI3, CPA R$ 18) e CJ77 (AD4 NOT2, CPA R$ 24) são vencedores limpos. Rotacionar a verba do saturado pro vencedor, sem matar o que traz contato.</p>
+  </div>
+  <div class="alert-box success">
+    <h3>5. Google segurou o CPA</h3>
+    <p>CPA Google caiu de R$ 63 (30d) para R$ 53 (14d), dentro da faixa saudável do FIES. "advogado para fies" EXACT (CPA R$ 32, QS 4) e a marca "silva pimenta advogados" (QS 10) puxam o resultado. O 7d subiu para R$ 77 por volume baixo de semana, não é tendência ainda.</p>
+  </div>
+
+  <!-- 5. GOOGLE: AD GROUPS -->
+  <h2 class="section-title">5. Google &middot; performance por ad group (30d, não agregar por campanha)</h2>
+  <table>
+    <thead><tr><th>Ad group / sub-produto</th><th>Campanha</th><th>Custo</th><th>Conv</th><th>CPA</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>Grupo 1 Revisão/Abatimento/Advogado</td><td>Sudeste, Sul e Bahia</td><td>R$ 1.783,81</td><td>35,0</td><td>R$ 50,97</td><td><span class="pill ok">motor</span></td></tr>
+      <tr class="row-best"><td>Grupo 2 Dívida/Critério Legal</td><td>Demais regiões</td><td>R$ 270,75</td><td>10,0</td><td>R$ 27,07</td><td><span class="pill ok">melhor CPA</span></td></tr>
+      <tr class="row-best"><td>Grupo 3 Comparação/Autoridade/Marca</td><td>Sudeste, Sul e Bahia</td><td>R$ 191,91</td><td>6,0</td><td>R$ 31,98</td><td><span class="pill ok">marca</span></td></tr>
+      <tr><td>Grupo 1 Revisão/Abatimento/Advogado</td><td>Demais regiões</td><td>R$ 892,87</td><td>13,0</td><td>R$ 68,68</td><td><span class="pill ok">saudável</span></td></tr>
+      <tr class="row-warn"><td>AD GROUP 3 Reduzir Dívida</td><td>Pesquisa Brasil (PAUSED)</td><td>R$ 1.152,55</td><td>11,0</td><td>R$ 104,78</td><td><span class="pill warn">campanha pausada</span></td></tr>
+      <tr class="row-warn"><td>AD GROUP 1 Abatimento Médico</td><td>Pesquisa Brasil (PAUSED)</td><td>R$ 307,23</td><td>3,0</td><td>R$ 102,41</td><td><span class="pill warn">não pausar o grupo</span></td></tr>
+      <tr class="row-bad"><td>Grupo 2 Dívida/Critério Legal</td><td>Sudeste, Sul e Bahia</td><td>R$ 781,03</td><td>6,0</td><td>R$ 130,17</td><td><span class="pill crit">CPA no limite</span></td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box info"><p>A estrutura migrou: as campanhas ativas hoje são as regionais "[M] [Search] [Leads] [FIES]" (Sudeste/Sul/Bahia e Demais regiões), com a antiga "Pesquisa Brasil" em PAUSED (ainda registrou custo no 30d). O Grupo 2 no Sudeste tem CPA R$ 130 contra R$ 27 do mesmo Grupo 2 em Demais regiões, puxado pelas keywords "como quitar o fies" QS 1. É problema de QS/LP, não de verba.</p></div>
+
+  <!-- 6. TABELA 1 KEYWORDS -->
+  <h2 class="section-title">6. Google &middot; AÇÃO por PALAVRA-CHAVE (30d)</h2>
+  <table>
+    <thead><tr><th>Keyword</th><th>Match</th><th>QS</th><th>Custo</th><th>Conv</th><th>CPA</th><th>Ação</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-bad"><td>como quitar o fies</td><td>PHRASE</td><td><span class="qs-crit">1</span></td><td>R$ 525,31</td><td>5,0</td><td>R$ 105</td><td><span class="pill warn">manter + corrigir LP</span></td><td>QS 1 crítico pela LP, termo de intent de dívida, não negativar</td></tr>
+      <tr class="row-best"><td>advogado para fies</td><td>EXACT</td><td><span class="qs-warn">4</span></td><td>R$ 339,95</td><td>10,5</td><td>R$ 32</td><td><span class="pill ok">manter / subir lance</span></td><td>vencedor, âncora do produto, melhor CPA</td></tr>
+      <tr class="row-best"><td>advogado para fies</td><td>PHRASE</td><td><span class="qs-warn">4</span></td><td>R$ 410,31</td><td>7,5</td><td>R$ 55</td><td><span class="pill ok">manter</span></td><td>âncora advogado, QS aceitável, converte</td></tr>
+      <tr class="row-best"><td>advogado especialista em fies</td><td>PHRASE</td><td><span class="qs-warn">3</span></td><td>R$ 365,52</td><td>7,0</td><td>R$ 52</td><td><span class="pill ok">manter + QS via LP</span></td><td>produto, converte bem apesar de QS 3</td></tr>
+      <tr class="row-warn"><td>advogado para fies</td><td>PHRASE</td><td><span class="qs-warn">3</span></td><td>R$ 384,80</td><td>7,0</td><td>R$ 55</td><td><span class="pill ok">manter + QS via LP</span></td><td>âncora, Demais regiões, CPC alto (R$ 15), LP puxa QS</td></tr>
+      <tr class="row-bad"><td>diminuir divida fies</td><td>EXACT</td><td><span class="qs-crit">1</span></td><td>R$ 333,17</td><td>3,0</td><td>R$ 111</td><td><span class="pill warn">manter + corrigir LP</span></td><td>QS 1 crítico, termo do produto Reduzir Dívida, nunca negativar</td></tr>
+      <tr><td>abatimento fies médico</td><td>PHRASE</td><td><span class="pill neutral">n/d</span></td><td>R$ 261,68</td><td>3,0</td><td>R$ 87</td><td><span class="pill ok">manter</span></td><td>termo direto do produto, âncora intocável</td></tr>
+      <tr class="row-bad"><td>abatimento fies médico</td><td>PHRASE</td><td><span class="pill neutral">n/d</span></td><td>R$ 217,72</td><td>0,0</td><td>sem conv</td><td><span class="pill ok">não pausar, revisar RSA/LP</span></td><td>âncora do produto com zero conv, LP não confirma ângulo (regra do playbook)</td></tr>
+      <tr class="row-bad"><td>redução fies</td><td>EXACT</td><td><span class="qs-warn">3</span></td><td>R$ 213,17</td><td>1,0</td><td>R$ 213</td><td><span class="pill warn">baixar lance</span></td><td>CPA muito alto, termo produto, reduzir exposição sem cortar</td></tr>
+      <tr class="row-best"><td>silva pimenta advogados</td><td>EXACT</td><td><span class="qs-ok">10</span></td><td>R$ 191,91</td><td>6,0</td><td>R$ 32</td><td><span class="pill ok">manter</span></td><td>marca, QS 10, CPC R$ 3,76</td></tr>
+      <tr class="row-bad"><td>negociar fies</td><td>EXACT/PHRASE</td><td><span class="qs-crit">2</span></td><td>R$ 326,44</td><td>5,0</td><td>R$ 65</td><td><span class="pill ok">manter + QS via LP</span></td><td>convertedor descoberto antes, QS 2 é LP, não negativar produto</td></tr>
+      <tr class="row-bad"><td>abater divida fies</td><td>EXACT</td><td><span class="qs-crit">2</span></td><td>R$ 82,67</td><td>1,0</td><td>R$ 83</td><td><span class="pill ok">manter</span></td><td>termo do produto, QS 2 pela LP</td></tr>
+      <tr class="foot-row"><td colspan="8">Ação recomendada hoje: nenhuma keyword do produto é pausada. Os QS 1 e 2 são sintoma de LP, atacar via camada ESTA SEMANA (LP por ângulo de dívida). Único ajuste de lance hoje é reduzir "redução fies" (CPA R$ 213). Amarra com Plano camada 1 e 2.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 7. TABELA 2 SEARCH TERMS -->
+  <h2 class="section-title">7. Google &middot; AÇÃO por TERMO DE PESQUISA (30d, maior gasto primeiro)</h2>
+  <table>
+    <thead><tr><th>Termo</th><th>Custo</th><th>Cliques</th><th>Conv</th><th>Ação</th><th>Classificação / motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>advogado fies</td><td>R$ 155,60</td><td>14</td><td>3,0</td><td><span class="pill ok">virar keyword nova</span></td><td>converte e ainda não é keyword, intent de produto</td></tr>
+      <tr class="row-bad"><td>fiesmed site</td><td>R$ 146,80</td><td>2</td><td>0,0</td><td><span class="pill crit">negativar "fiesmed"</span></td><td>LIXO targeting: busca o portal oficial do programa, não advogado</td></tr>
+      <tr><td>silva pimenta advogados</td><td>R$ 118,56</td><td>38</td><td>2,0</td><td><span class="pill neutral">manter (já ADDED)</span></td><td>marca, já é keyword</td></tr>
+      <tr class="row-warn"><td>renegociação de fies</td><td>R$ 116,16</td><td>2</td><td>0,0</td><td><span class="pill warn">manter / observar</span></td><td>termo do produto, só 2 cliques, não negativar</td></tr>
+      <tr class="row-best"><td>fies negóciar divida</td><td>R$ 82,37</td><td>6</td><td>2,0</td><td><span class="pill ok">virar keyword nova</span></td><td>converte, "negociar" é convertedor do produto</td></tr>
+      <tr class="row-bad"><td>fies med</td><td>R$ 70,86</td><td>6</td><td>0,0</td><td><span class="pill warn">monitorar, não negativar solto</span></td><td>navegacional do programa FIESMED mas ambíguo com produto, isolar via RSA</td></tr>
+      <tr class="row-bad"><td>provi whatsapp</td><td>R$ 64,06</td><td>1</td><td>1,0</td><td><span class="pill crit">negativar "provi"</span></td><td>LIXO targeting: Provi é outra empresa (fintech), off-persona</td></tr>
+      <tr><td>advogado especialista em fies sp</td><td>R$ 46,71</td><td>5</td><td>1,0</td><td><span class="pill ok">manter / virar keyword</span></td><td>produto + cidade, cidade nunca se negativa (atuação nacional)</td></tr>
+      <tr class="row-bad"><td>provi soluções e serviços ltda</td><td>R$ 28,46</td><td>1</td><td>0,0</td><td><span class="pill crit">negativar "provi"</span></td><td>LIXO targeting: nome de empresa terceira</td></tr>
+      <tr class="row-bad"><td>desenrola fies 2026</td><td>R$ 27,98</td><td>6</td><td>0,0</td><td><span class="pill crit">negativar "desenrola"</span></td><td>LIXO: programa de governo, já na lista histórica de negativas</td></tr>
+      <tr class="row-bad"><td>empréstimo para negativado liberado na hora</td><td>R$ 21,64</td><td>1</td><td>0,0</td><td><span class="pill crit">negativar "empréstimo"</span></td><td>LIXO targeting: busca crédito, persona errado</td></tr>
+      <tr class="row-bad"><td>fies inscrição 2026</td><td>R$ 20,66</td><td>1</td><td>0,0</td><td><span class="pill crit">negativar "inscrição"</span></td><td>LIXO: quer entrar no FIES, não é devedor médico formado</td></tr>
+      <tr class="row-bad"><td>fies concurso / fies quem criou</td><td>R$ 28,73</td><td>4</td><td>0,0</td><td><span class="pill crit">negativar informacional</span></td><td>LIXO: busca informativa, fora do funil de contratação</td></tr>
+      <tr class="foot-row"><td colspan="6">Ação recomendada hoje: virar keyword "advogado fies" e "fies negociar divida" (convertem); negativar como frase "fiesmed", "provi", "desenrola", "empréstimo", "inscrição", "concurso", "quem criou". Nenhuma cidade (sp, mg, curitiba, bh, rj, porto alegre) e nenhum termo de produto entram na negativa. Amarra com Plano camada 1 (HOJE).</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 8. QUALIDADE DOS ANÚNCIOS -->
+  <h2 class="section-title">8. Qualidade dos anúncios (Google aprovação/QS + Meta ranking/freq)</h2>
+  <h4 style="color:var(--teal);margin-bottom:10px">8.1 Google</h4>
+  <table>
+    <thead><tr><th>Anúncio / grupo</th><th>Aprovação</th><th>Ação</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>RSAs Search (Grupos 1/2/3, Sudeste e Demais)</td><td>APPROVED</td><td><span class="pill ok">manter</span></td><td>todos aprovados e revisados, nenhum reprovado</td></tr>
+      <tr><td>RSAs Pesquisa Brasil (AD GROUP 1/2/3)</td><td>APPROVED</td><td><span class="pill neutral">campanha pausada</span></td><td>aprovados, só não servem porque a campanha está PAUSED</td></tr>
+      <tr class="row-warn"><td>YT LEADS FIES (AD01/02/03 Fernanda)</td><td>APPROVED_LIMITED</td><td><span class="pill warn">sem veredito</span></td><td>limitado por política, campanha YT sem gasto no período</td></tr>
+      <tr><td>RSAs "(sem nome)"</td><td>APPROVED</td><td><span class="pill warn">nomear + ad strength</span></td><td>higiene: dar nome e checar força do anúncio</td></tr>
+      <tr class="foot-row"><td colspan="4">Google: zero anúncio reprovado. Gate 1 OK do lado Google. Ação hoje: nenhuma pausa; higiene de nome fica na camada 2 semanas.</td></tr>
+    </tbody>
+  </table>
+  <h4 style="color:var(--teal);margin:18px 0 10px">8.2 Meta BR (quality / conversion ranking + frequência)</h4>
+  <table>
+    <thead><tr><th>Anúncio</th><th>Conjunto</th><th>Gasto 30d</th><th>Freq</th><th>Q / Conv rank</th><th>CPA conversa/lead</th><th>Ação</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>AD5 LEI3 So Juros</td><td>CJ56 LAL Contato</td><td>R$ 1.631,11</td><td>1,78</td><td>AVERAGE / AVERAGE</td><td>R$ 18,12</td><td><span class="pill ok">escalar</span></td></tr>
+      <tr class="row-best"><td>AD4 NOT2 Um por Cento</td><td>CJ77 LAL 1% Compr.</td><td>R$ 875,92</td><td>1,38</td><td>ABOVE / AVERAGE</td><td>R$ 24,33</td><td><span class="pill ok">escalar</span></td></tr>
+      <tr class="row-bad"><td>AD4 NOT2 Um por Cento</td><td>CJ64 Lista C19</td><td>R$ 2.677,96</td><td>5,02</td><td>BELOW / BELOW_35</td><td>R$ 89,27</td><td><span class="pill crit">revisar criativo (fadiga)</span></td></tr>
+      <tr class="row-bad"><td>AD5 LEI3 So Juros</td><td>CJ64 Lista C19</td><td>R$ 1.161,31</td><td>4,67</td><td>BELOW / BELOW_35</td><td>R$ 193,55</td><td><span class="pill crit">revisar criativo (fadiga)</span></td></tr>
+      <tr class="row-warn"><td>AD54 VAL Governo (cadastro)</td><td>CJ07 Lista C19</td><td>R$ 2.482,87</td><td>4,02</td><td>BELOW / BELOW_20</td><td>R$ 95,50 (lead)</td><td><span class="pill warn">revisar criativo</span></td></tr>
+      <tr class="row-warn"><td>AD69 LEI4C Zerar Selo</td><td>CJ64 Lista C19</td><td>R$ 2.471,79</td><td>3,52</td><td>BELOW / BELOW_10</td><td>R$ 112,35</td><td><span class="pill warn">revisar criativo</span></td></tr>
+      <tr><td>AD65 Portal Zerar (CA2 7482)</td><td>CJ95 Lista C19</td><td>R$ 1.160,46</td><td>3,00</td><td>UNKNOWN</td><td>R$ 48,35</td><td><span class="pill info">sem veredito (CTWA)</span></td></tr>
+      <tr><td>AD Suspensão 04 Notícia</td><td>Listas residentes</td><td>R$ 127,93</td><td>1,13</td><td>UNKNOWN</td><td>R$ 21,32 (lead)</td><td><span class="pill info">sem veredito (volume baixo)</span></td></tr>
+      <tr class="foot-row"><td colspan="7">Ação recomendada hoje: zero pausa cega. Rotacionar verba do CJ64 saturado (freq acima de 4,5 + BELOW) pros vencedores CJ56 e CJ77. UNKNOWN de campanha de mensagem não vira veredito. Amarra com Plano camada 2.</td></tr>
+    </tbody>
+  </table>
+  <h4 style="color:var(--teal);margin:18px 0 10px">8.3 Meta &middot; anúncios WITH_ISSUES / DISAPPROVED (gate 1)</h4>
+  <table>
+    <thead><tr><th>Campanha</th><th>Situação</th><th>Qtd</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr class="row-bad"><td>SP MEIO Abatimento CADASTROS (CA1)</td><td>1 DISAPPROVED + 8 WITH_ISSUES</td><td>9</td><td>PAUSED, não servem, baixo impacto</td></tr>
+      <tr class="row-warn"><td>SP FUNIL Abatimento MENSAGENS (CA1)</td><td>WITH_ISSUES</td><td>3</td><td>PAUSED, criativos notícia 100%</td></tr>
+      <tr class="row-bad"><td>10 Trafego LP Blog (FIES+AM+DM)</td><td>WITH_ISSUES</td><td>~22</td><td><b>vários ACTIVE</b>: servindo com ressalva, métrica ruído</td></tr>
+      <tr class="row-bad"><td>SUSPENSÃO FIES WhatsApp</td><td>WITH_ISSUES</td><td>4</td><td><b>ACTIVE</b>: servindo com ressalva</td></tr>
+      <tr class="foot-row"><td colspan="4">Total 40 (1 DISAPPROVED, 18 ACTIVE WITH_ISSUES). Ação: revisar/corrigir os ACTIVE em "10 Trafego LP Blog" e "SUSPENSÃO WhatsApp" antes de ler qualquer métrica deles. Os PAUSED não gastam, higiene de limpeza.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 9. META EUA -->
+  <h2 class="section-title">9. Meta EUA (act_758844583486507, convertido à taxa 5,5007)</h2>
+  <table>
+    <thead><tr><th>Janela</th><th>Gasto</th><th>Leads aprox</th><th>CPL aprox</th><th>Ad campeão</th><th>Ranking</th></tr></thead>
+    <tbody>
+      <tr><td>30d</td><td>R$ 2.062,77</td><td>97</td><td>R$ 21,27</td><td>AD69 LEI4C Zerar Selo</td><td>Q: AVERAGE / conv: UNKNOWN</td></tr>
+      <tr><td>14d</td><td>R$ 1.005,87</td><td>65</td><td>R$ 15,47</td><td>AD69 LEI4C Zerar Selo</td><td>Q: AVERAGE</td></tr>
+      <tr><td>7d</td><td>R$ 541,17</td><td>37</td><td>R$ 14,63</td><td>AD69 LEI4C Zerar Selo</td><td>Q: AVERAGE</td></tr>
+      <tr class="foot-row"><td colspan="6">CPL EUA aparenta excelente e melhorando, mas um único ad concentra quase todo o gasto e os leads EUA não têm funil Pipedrive mapeado nesta coleta. Leitura: volume bom, qualificação não confirmada. Sem veredito de qualidade até cruzar com o Pipedrive.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 10. PIPEDRIVE PERDAS -->
+  <h2 class="section-title">10. Pipedrive &middot; qualidade da safra (cohort por add_time, 5.1)</h2>
+  <table>
+    <thead><tr><th>Funil / janela</th><th>Leads novos</th><th>Abertos</th><th>Ganhos (R$)</th><th>Perdidos</th><th>Perdas por motivo</th></tr></thead>
+    <tbody>
+      <tr><td>FIES Abatimento 30d</td><td>305</td><td>149</td><td>19 (R$ 64.114)</td><td>137</td><td>AÇÃO INVIÁVEL 60, LIXO 42, SEM RESPOSTA 18, SEM INTERESSE 9, VALOR BAIXO 5, CONCORRENTE 2, BLOQUEADO 1</td></tr>
+      <tr><td>FIES Abatimento 14d</td><td>147</td><td>89</td><td>6 (R$ 16.442)</td><td>52</td><td>AÇÃO INVIÁVEL 26, LIXO 18, SEM RESPOSTA 6, SEM INTERESSE 1, VALOR BAIXO 1</td></tr>
+      <tr><td>FIES Abatimento 7d</td><td>65</td><td>45</td><td>1 (R$ 3.992)</td><td>19</td><td>AÇÃO INVIÁVEL 11, LIXO 8</td></tr>
+      <tr class="row-warn"><td>FIES Suspensão 30d</td><td>1</td><td>0</td><td>1 (R$ 995)</td><td>0</td><td>sem perdas, volume quase nulo</td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box warning">
+    <h3>Tradução dos motivos em ação</h3>
+    <p><b>AÇÃO INVIÁVEL (44%, subindo):</b> expectativa criada no anúncio, caso sem viabilidade jurídica. Atacar a promessa dos criativos (Meta e headlines Google), não o targeting. <b>LIXO (31%):</b> público errado, atacar targeting: no Google pelas negativas navegacionais (seção 7), no Meta pelo público amplo das listas saturadas. <b>SEM RESPOSTA (13%):</b> lead esfriou, é velocidade do SDR, não a campanha. <b>VALOR BAIXO / SEM INTERESSE:</b> qualificação/oferta, pontual. <b>Suspensão:</b> praticamente morta (1 lead em 30d), decisão pendente de ativar ou encerrar.</p>
+  </div>
+  <div class="alert-box info"><p>Cruzamento plataforma x Pipedrive: o Meta BR contou cerca de 435 "leads" (conversas iniciadas + cadastros) em 30d, mas o funil FIES Abatimento recebeu 305 leads novos no mesmo recorte. Conversa iniciada no CTWA não é lead real, ruído alto. Quebra por "número da campanha" dentro do funil segue como pendência (lacuna v1).</p></div>
+
+  <!-- 11. HISTÓRICO -->
+  <h2 class="section-title">11. Comparação histórica (30 → 14 → 7)</h2>
+  <table>
+    <thead><tr><th>Métrica</th><th>30d (27/09-26/10)</th><th>14d (13/10-26/10)</th><th>7d (20/10-26/10)</th><th>Tendência</th></tr></thead>
+    <tbody>
+      <tr><td>Google CPA</td><td>R$ 63,36</td><td><span class="pill ok">R$ 53,41</span></td><td>R$ 77,15</td><td>melhora no 14d, 7d sobe por volume baixo</td></tr>
+      <tr><td>Google conversões</td><td>85,0</td><td>34,0</td><td>10,5</td><td>ritmo estável (ponderado por dias)</td></tr>
+      <tr><td>Google CTR</td><td>8,9%</td><td>10,4%</td><td>9,43%</td><td>forte, acima do range do nicho</td></tr>
+      <tr><td>Meta BR CPL aprox</td><td>R$ 46,00</td><td>R$ 44,24</td><td>R$ 49,78</td><td>estável, leve piora no 7d (ruído CTWA)</td></tr>
+      <tr><td>Meta EUA CPL aprox</td><td>R$ 21,27</td><td>R$ 15,47</td><td>R$ 14,63</td><td>melhorando, qualificação não confirmada</td></tr>
+      <tr><td>Pipedrive ganhos</td><td>19</td><td>6</td><td>1</td><td>cohort imaturo no 7d (45 abertos)</td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box info"><p><b>Narrativa:</b> o motor Google segue saudável e barato (CPA 14d R$ 53, dentro da régua 50 a 90), com a marca e "advogado para fies" sustentando. O Meta entrega volume constante mas a qualidade de entrada caiu: AÇÃO INVIÁVEL e LIXO crescem proporcionalmente no 7d. A conta fecha positiva no caixa (R$ 64 mil ganhos x R$ 27 mil gasto), mas o cohort recente ainda tem 149 negócios abertos, então o veredito final de ROI é prematuro.</p></div>
+
+  <!-- 12. SAZONALIDADE -->
+  <h2 class="section-title">12. Sazonalidade do período</h2>
+  <table>
+    <thead><tr><th>Evento</th><th>Janela</th><th>Impacto</th></tr></thead>
+    <tbody>
+      <tr><td>Nossa Senhora Aparecida / Dia das Crianças (12/10)</td><td>dentro do 30d</td><td>feriado nacional, provável queda pontual de volume e atendimento</td></tr>
+      <tr><td>Dia do Professor (15/10)</td><td>dentro do 30d</td><td>data comercial fraca, efeito menor</td></tr>
+      <tr><td>Black Friday se aproximando (fim de novembro)</td><td>pós janela</td><td>CPM Meta tende a subir nas próximas semanas, planejar verba</td></tr>
+      <tr><td>Ciclo de residência médica (inscrições nov-jan)</td><td>pós janela</td><td>relevante pro sub-produto Suspensão (residentes), janela de reativação</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 13. DIAGNÓSTICO -->
+  <h2 class="section-title">13. Diagnóstico (gargalos priorizados)</h2>
+  <div class="alert-box">
+    <h3>Gargalo 1 (alto) &middot; fundo: promessa cria lead inviável</h3>
+    <p>AÇÃO INVIÁVEL em 44% das perdas e subindo. Criativos de zerar 100% e "1%" trazem quem não tem caso. Corrigir a promessa reduz desperdício de SDR e melhora win rate sem mexer em verba.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 2 (médio-alto) &middot; topo: LIXO navegacional e público amplo</h3>
+    <p>Google gasta em "fiesmed", "provi", "desenrola"; Meta satura listas C19 no CJ64. LIXO em 31% das perdas. Ação por negativa no Google e por rotação de público/criativo no Meta.</p>
+  </div>
+  <div class="alert-box">
+    <h3>Gargalo 3 (médio) &middot; meio: QS 1 crônico pela LP de dívida</h3>
+    <p>"como quitar o fies" e "diminuir divida fies" presas em QS 1. A LP genérica não confirma o ângulo de dívida. Sem LP por ângulo, o CPA desses termos não desce.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 4 (médio) &middot; fadiga no CJ64</h3>
+    <p>Frequência acima de 4,5 com quality e conversion ranking BELOW. Mesma lista C19 que entrega bem no CJ56/CJ77 está cansada no CJ64. Rotacionar, não matar.</p>
+  </div>
+
+  <!-- 14. PLANO 3 CAMADAS -->
+  <h2 class="section-title">14. Plano de ação em 3 camadas</h2>
+  <ul class="action-list">
+    <li class="crit">
+      <div class="action-title">HOJE (zero risco, Google, via API com aprovação)</div>
+      <div class="action-desc">Negativar como frase os navegacionais e off-persona: "fiesmed", "provi", "desenrola", "empréstimo", "inscrição", "concurso", "quem criou". Adicionar como keyword nova os convertedores "advogado fies" e "fies negociar divida". Baixar lance de "redução fies" (CPA R$ 213). Nenhuma cidade, nenhum termo de produto, nenhuma pausa de ad group.</div>
+      <div class="action-meta">Impacto esperado: cortar cerca de R$ 390/mês de desperdício e capturar termos que já convertem</div>
+    </li>
+    <li class="warn">
+      <div class="action-title">ESTA SEMANA (decisão do William)</div>
+      <div class="action-desc">1) Revisar a promessa dos criativos Meta de maior gasto (AD4 NOT2, AD5 LEI3, AD69 LEI4C) para reduzir AÇÃO INVIÁVEL: suavizar "zerar 100%/1%" para linguagem de análise de direito, amarrando qualidade e flag OAB. 2) Rotacionar verba do CJ64 (saturado) pros vencedores CJ56 (CPA R$ 18) e CJ77 (CPA R$ 24). 3) Priorizar a subida das LPs por ângulo de dívida no WordPress para destravar o QS 1.</div>
+      <div class="action-meta">Impacto esperado: menos lead inviável, CPA conversa mais estável, QS dos termos de dívida saindo de 1</div>
+    </li>
+    <li class="info">
+      <div class="action-title">PRÓXIMAS 2 SEMANAS (testes e higiene)</div>
+      <div class="action-desc">1) Decidir Suspensão FIES: reativar com criativo dedicado aproveitando a janela de inscrição de residência, ou encerrar (1 lead em 30d). 2) Corrigir os anúncios ACTIVE WITH_ISSUES em "10 Trafego LP Blog" e "SUSPENSÃO WhatsApp". 3) Nomear os RSAs "(sem nome)" e checar ad strength. 4) Testar RSA do Grupo 2 que confirme explicitamente o ângulo quitar/diminuir.</div>
+      <div class="action-meta">Impacto esperado: decisão sobre sub-produto morto, fim do ruído de métrica, higiene de conta</div>
+    </li>
+  </ul>
+
+  <!-- 15. TRACKING -->
+  <h2 class="section-title">15. Validação de tracking</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Status</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Google: anúncios servindo</td><td><span class="pill ok">OK</span></td><td>zero reprovado, gate 1 Google limpo</td></tr>
+      <tr><td>Meta: anúncios servindo</td><td><span class="pill warn">PARCIAL</span></td><td>1 DISAPPROVED + 18 ACTIVE WITH_ISSUES, ruído nessas peças</td></tr>
+      <tr><td>WhatsApp vivo na LP (gate 2)</td><td><span class="pill crit">PENDENTE</span></td><td>lacuna v1: exige ler a LP, não veio na coleta</td></tr>
+      <tr><td>Google conv x Pipedrive</td><td><span class="pill warn">CALIBRANDO</span></td><td>85 conv Google dentro dos 305 leads do funil, cruzamento em maturação</td></tr>
+      <tr><td>Meta conversas x leads reais</td><td><span class="pill warn">RUÍDO</span></td><td>435 conversas CTWA x 305 leads reais, não otimizar por CPL isolado</td></tr>
+      <tr><td>Quebra por número da campanha</td><td><span class="pill crit">PENDENTE</span></td><td>lacuna v1: campo da pessoa, calibrando pós 16/06</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 16. OAB -->
+  <h2 class="section-title">16. Compliance OAB</h2>
+  <div class="alert-box warning">
+    <h3>Flag ativa neste ciclo</h3>
+    <p>Criativos e headlines de promessa forte seguem no ar: "Zerar 100%", "Lei Permite Zerar Selo", "Portal Zerar Divida", "Um por Cento", e headlines Google de 100%/30 dias. O risco regulatório é assumido conscientemente pelo William (memória de risco assumido), então aqui não se impõe pausa. Mas neste ciclo há um motivo de NEGÓCIO
