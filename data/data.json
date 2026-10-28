@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-28T10:19:03Z",
+  "atualizadoEm": "2026-10-28T10:49:06Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.3346,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1156.45,
-      "meta": 18075.68,
+      "meta": 18085.53,
       "leads_novos": 297,
       "ganhos": 15,
       "valor_ganhos": 45358.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 841.0
     },
     "fies": {
-      "google": 4415.61,
-      "meta": 19130.28,
+      "google": 4422.94,
+      "meta": 19145.53,
       "leads_novos": 274,
       "ganhos": 39,
       "valor_ganhos": 133963.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 636.13,
+      "meta": 636.93,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 159.43,
+      "meta": 159.55,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3735.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 3554.82,
+      "google": 3560.86,
       "meta": 0.0,
       "leads_novos": 83,
       "ganhos": 3,
