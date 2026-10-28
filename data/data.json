@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-28T01:49:04Z",
+  "atualizadoEm": "2026-10-28T02:19:08Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.3346,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1156.45,
-      "meta": 18010.07,
+      "meta": 18022.09,
       "leads_novos": 297,
       "ganhos": 15,
       "valor_ganhos": 45358.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 4402.85,
-      "meta": 19038.26,
+      "meta": 19049.48,
       "leads_novos": 274,
       "ganhos": 39,
       "valor_ganhos": 133963.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 158.25,
+      "meta": 158.45,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 630.08,
+      "meta": 630.83,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 157.55,
+      "meta": 157.56,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3735.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 20588.33,
+      "google": 20614.97,
       "meta": 0.0,
       "leads_novos": 464,
       "ganhos": 21,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 3511.58,
+      "google": 3518.4,
       "meta": 0.0,
       "leads_novos": 82,
       "ganhos": 3,
@@ -145,7 +145,7 @@
     ],
     "avisos": [
       "google 6351554556: total da conta 14157.95 x soma das campanhas 13948.64 (dif 209.32) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 21570.12 x soma das campanhas 21360.57 (dif 209.55) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 21596.76 x soma das campanhas 21387.21 (dif 209.55) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 209.55",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.97"
