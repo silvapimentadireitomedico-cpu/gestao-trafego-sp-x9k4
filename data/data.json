@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-28T06:49:01Z",
+  "atualizadoEm": "2026-10-28T07:19:04Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.3346,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1156.45,
-      "meta": 18062.21,
+      "meta": 18062.89,
       "leads_novos": 297,
       "ganhos": 15,
       "valor_ganhos": 45358.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 4415.61,
-      "meta": 19094.74,
+      "meta": 19096.07,
       "leads_novos": 274,
       "ganhos": 39,
       "valor_ganhos": 133963.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 634.09,
+      "meta": 634.25,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 158.25,
+      "meta": 158.49,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3735.0,
@@ -148,7 +148,8 @@
       "google 1301598996: total da conta 21628.90 x soma das campanhas 21419.35 (dif 209.55) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 209.55",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.97"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.97",
+      "meta act_758844583486507: total da conta 342.63 x soma das campanhas 342.62 (dif 0.01) -> diferença lançada em FIES"
     ]
   }
 }
