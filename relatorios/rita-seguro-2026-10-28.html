@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seguro &middot; Magalhães Gomes &middot; Google Ads &middot; 28/10/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --marrom:#3E2818;
+  --marrom-noite:#181410;
+  --bronze:#CCA24E;
+  --bronze-dark:#A8812F;
+  --lacre:#B3422E;
+  --creme:#F7F2E9;
+  --texto:#1E1712;
+  --texto-sec:#5c4e42;
+  --verde:#2f855a;
+  --vermelho:#B3422E;
+  --amarelo:#B8860B;
+  --azul:#2c5282;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Archivo',sans-serif;background:var(--creme);color:var(--texto);line-height:1.6}
+.container{max-width:1180px;margin:0 auto;padding:40px 24px}
+header{background:linear-gradient(135deg,var(--marrom) 0%,var(--marrom-noite) 100%);color:#fff;padding:46px 24px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--bronze);font-weight:700;margin-bottom:12px}
+h1{font-family:'Fraunces',serif;font-size:31px;font-weight:700;margin-bottom:8px;line-height:1.15}
+.subtitle{font-size:15px;opacity:0.88;margin-top:6px}
+.status-badges{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.status-badge{display:inline-block;padding:6px 15px;border-radius:20px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.ok{background:var(--verde);color:#fff}
+.status-badge.warn{background:var(--amarelo);color:#fff}
+.status-badge.crit{background:var(--lacre);color:#fff}
+.status-badge.neutral{background:#6b5d4f;color:#fff}
+.section-title{font-family:'Fraunces',serif;font-size:23px;font-weight:700;color:var(--marrom);margin:46px 0 16px;padding-bottom:11px;border-bottom:2px solid var(--bronze)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-bottom:28px}
+.card{background:#fff;border-radius:12px;padding:22px;box-shadow:0 2px 8px rgba(62,40,24,0.08);border-left:4px solid var(--bronze)}
+.card h4{font-family:'Fraunces',serif;font-size:17px;color:var(--marrom);margin:6px 0}
+.skill-type{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--bronze-dark);font-weight:700}
+.skill-desc{font-size:13px;color:var(--texto-sec);margin-top:6px}
+.alert-box{background:#fdeeea;border-left:4px solid var(--lacre);padding:20px;border-radius:8px;margin-bottom:14px}
+.alert-box.warning{background:#fbf3df;border-left-color:var(--amarelo)}
+.alert-box.success{background:#eaf6ef;border-left-color:var(--verde)}
+.alert-box.info{background:#e9f0f7;border-left-color:var(--azul)}
+.alert-box h3{font-family:'Fraunces',serif;font-size:17px;margin-bottom:7px;color:var(--marrom)}
+.alert-box p{font-size:14px;color:var(--texto-sec)}
+.banner-top{background:#2a1b10;border:2px solid var(--bronze);border-radius:10px;padding:22px;margin-bottom:16px;color:#fff}
+.banner-top h3{font-family:'Fraunces',serif;color:var(--bronze);font-size:18px;margin-bottom:8px}
+.banner-top p{font-size:14px;opacity:0.92}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:30px}
+.summary-grid > div{background:#fff;padding:18px;border-radius:8px;text-align:center;border-top:3px solid var(--bronze)}
+.summary-grid .num{font-family:'Fraunces',serif;font-size:25px;font-weight:700;color:var(--marrom);display:block;line-height:1.1}
+.summary-grid .num.danger{color:var(--lacre)}
+.summary-grid .num.success{color:var(--verde)}
+.summary-grid .num.warn{color:var(--amarelo)}
+.summary-grid .label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--texto-sec);margin-top:6px;display:block}
+.summary-grid .delta{font-size:11px;color:var(--texto-sec);margin-top:3px;display:block}
+.summary-grid .delta.up{color:var(--verde)}
+.summary-grid .delta.down{color:var(--lacre)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(62,40,24,0.06);margin-bottom:22px;font-size:13px}
+th{background:var(--marrom);color:#fff;text-align:left;padding:11px 12px;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:10px 12px;border-bottom:1px solid #efe6d6;vertical-align:middle}
+tr.row-best td{background:#eaf6ef}
+tr.row-bad td{background:#fdeeea}
+tr.row-warn td{background:#fbf3df}
+.qs-crit{background:var(--lacre);color:#fff;font-weight:700;padding:2px 8px;border-radius:10px;font-size:11px}
+.pill{display:inline-block;padding:3px 9px;border-radius:12px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px}
+.pill.ok{background:#d6f0e0;color:#1d5c3a}
+.pill.warn{background:#faeccb;color:#7a5a00}
+.pill.crit{background:#f7dcd4;color:#8a2d1c}
+.pill.info{background:#dce8f5;color:#234668}
+.pill.neutral{background:#ece5d8;color:#5c4e42}
+.action-list{list-style:none;padding:0}
+.action-list li{background:#fff;padding:15px 18px;margin-bottom:10px;border-radius:8px;border-left:4px solid var(--marrom);display:flex;gap:12px;align-items:flex-start}
+.action-list li.crit{border-left-color:var(--lacre)}
+.action-list li.warn{border-left-color:var(--amarelo)}
+.action-list li.ok{border-left-color:var(--verde)}
+.action-list li.info{border-left-color:var(--azul)}
+.action-title{font-family:'Fraunces',serif;font-weight:600;color:var(--marrom);margin-bottom:3px}
+.action-desc{font-size:13px;color:var(--texto-sec)}
+.action-meta{font-size:11px;color:var(--bronze-dark);font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:0.5px}
+.audit-log{background:#181410;color:#b8a888;font-family:'Courier New',monospace;padding:20px;border-radius:8px;font-size:12px;line-height:1.7;overflow-x:auto}
+.audit-log .ts{color:#CCA24E}
+.audit-log .ok{color:#6ab98a}
+.audit-log .warn{color:#d9af4e}
+.audit-log .crit{color:#d98060}
+footer{background:var(--marrom-noite);color:#fff;padding:30px 24px;text-align:center;margin-top:56px;font-size:13px;opacity:0.94}
+footer code{color:var(--bronze)}
+.note{font-size:12px;color:var(--texto-sec);font-style:italic;margin:4px 0 18px}
+@media (max-width:768px){.summary-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:23px}table{font-size:11px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="eyebrow">Magalhães Gomes &middot; Seguro &middot; Google Ads</div>
+    <h1>Diagnóstico Semanal &middot; 28/10/2026</h1>
+    <p class="subtitle">Janela base 30 dias (28/09 a 27/10/2026), com recortes 14d (14/10 a 27/10) e 7d (21/10 a 27/10). Comparação de tendência 30 &rarr; 14 &rarr; 7.</p>
+    <div class="status-badges">
+      <span class="status-badge warn">Institucional CPA R$ 35,85 (limite saudável)</span>
+      <span class="status-badge neutral">Contingência PAUSADA (zero em 14d e 7d)</span>
+      <span class="status-badge crit">Gate 2 (WhatsApp na LP) não verificado</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- BANNER TOPO / GATES -->
+  <div class="banner-top">
+    <h3>Leia antes de otimizar: 2 pontos de atenção no topo</h3>
+    <p><strong>1. Gate 2 de tracking NÃO verificado nesta coleta (lacuna v1).</strong> A checagem de número de WhatsApp vivo na LP exige ler a página e não entrou neste JSON. O bug histórico do número morto <code>5531993061519</code> (caiu em 27/05) pode estar sangrando conversão sem aviso. Antes de confiar em qualquer CPA, abrir as LPs no ar e confirmar que o botão aponta pro número vivo <code>5511966629852</code>. Métricas de conversão ficam marcadas como "a confirmar" até esta checagem.</p>
+    <p style="margin-top:10px"><strong>2. Quebra de perdas por "número da campanha" indisponível (lacuna v1).</strong> O cruzamento perda por número da pessoa dentro do funil ainda está calibrando pós 16/06. As perdas aqui aparecem só por funil (Seguro Geral), não por campanha específica. Tratar as leituras de público errado pelos sinais da plataforma (termos de busca, QS), não pelo número.</p>
+  </div>
+
+  <!-- 1 SKILLS USADAS -->
+  <h2 class="section-title">1. Skills usadas neste diagnóstico</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="skill-type">Execução &middot; dados prontos</span>
+      <h4>google-ads-ratos</h4>
+      <div class="skill-desc">Dados das 2 contas (Institucional 1301598996 e Contingência 2903149800): campanhas, ad groups, keywords com QS, search terms, gate de aprovação de anúncios. Janelas 30/14/7d já consolidadas no JSON (coleta read-only, sem chamada de API aqui).</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Inteligência &middot; régua real</span>
+      <h4>rita/references/seguro.md + ads-ratos</h4>
+      <div class="skill-desc">Régua REAL do Seguro (Inst saudável R$ 20 a 35, atenção R$ 35 a 55, crítico acima de R$ 90). Gate de QS (QS menor que 4 é crítico). Regras invioláveis: não consolidar contas, não negativar cidade, não negativar termo de produto, trânsito só com validação.</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Workflow &middot; diagnóstico</span>
+      <h4>/otimizar (13 passos) + Pipedrive</h4>
+      <div class="skill-desc">Validação de volume, tracking, sazonalidade, comparação de 3 recortes, leitura de perdas por motivo (seção 5.1), plano 3 camadas, compliance OAB. Funil Seguro Geral por cohort (add_time).</div>
+    </div>
+  </div>
+
+  <!-- 2 SKILLS NAO ACIONADAS -->
+  <h2 class="section-title">2. Skills não acionadas</h2>
+  <div class="alert-box info">
+    <h3>Meta Ads e análise de criativo pulados neste ciclo</h3>
+    <p><strong>meta-ads-ratos:</strong> Meta não está mapeado para o produto Seguro neste JSON (campo <code>meta.nota</code>: "Meta não mapeado pra este produto"). Nada de Meta a reportar, só Google Search nas 2 contas. <strong>paid-ads/conversion-tracking:</strong> sob demanda, não acionado em profundidade porque a checagem de LP ao vivo (gate 2) não foi coletada. Fica como pendência no topo.</p>
+  </div>
+
+  <!-- 3 RESUMO EXECUTIVO -->
+  <h2 class="section-title">3. Resumo executivo &middot; 4 KPIs</h2>
+  <div class="summary-grid">
+    <div>
+      <span class="num">R$ 23.800,78</span>
+      <span class="label">Gasto Google 30d (combinado)</span>
+      <span class="delta">Inst R$ 22.478,90 + Cont R$ 1.321,88</span>
+    </div>
+    <div>
+      <span class="num warn">R$ 35,85</span>
+      <span class="label">CPA Institucional 30d</span>
+      <span class="delta down">piora p/ R$ 40,46 no 7d</span>
+    </div>
+    <div>
+      <span class="num">R$ 42,88</span>
+      <span class="label">CPL real Pipedrive 30d (combinado)</span>
+      <span class="delta">abaixo do histórico R$ 74, cohort imaturo</span>
+    </div>
+    <div>
+      <span class="num success">555 / 20</span>
+      <span class="label">Leads novos / ganhos (cohort 30d)</span>
+      <span class="delta">R$ 90.822 em won, 271 ainda abertos</span>
+    </div>
+  </div>
+  <p class="note">CPA do Google conta clique de WhatsApp/chamada, não lead qualificado. CPL real vem do Pipedrive. A conversão não foi validada enquanto o gate 2 (número vivo) não é checado.</p>
+
+  <!-- 4 ACHADOS -->
+  <h2 class="section-title">4. Achados que mudam decisão</h2>
+
+  <div class="alert-box warning">
+    <h3>CPA da Institucional subindo no recorte curto</h3>
+    <p>CPA 30d R$ 35,85, 14d R$ 38,42, 7d R$ 40,46. Subida de cerca de 13% do mês para a última semana, puxada pela campanha NEGATIVA SEGURO Brasil 02 (CPA R$ 48,98 no 30d, R$ 53,27 no 7d) e pelo ad group "advogado securitário" no recorte SP 03 (CPA R$ 86,44 no 30d, R$ 114,46 no 7d). CPC estável perto de R$ 10,2, logo a piora é de taxa de conversão, não de leilão.</p>
+  </div>
+
+  <div class="alert-box">
+    <h3>A maior perda não é público errado, é viabilidade do caso</h3>
+    <p>Nas 264 perdas do funil em 30d, LIXO (público totalmente fora do persona) é só 29 (11% das perdas, 5,2% dos leads novos), sinal de targeting bem feito. O bloco pesado é INVIÁVEL (76) mais AÇÃO INVIÁVEL (41), total 117 perdas, que é "expectativa criada no anúncio" (caso sem viabilidade jurídica). Some JUIZADO ESPECIAL (25, baixo valor). Diagnóstico: o anúncio e a LP atraem gente certa mas sem filtro de viabilidade. A alavanca está na copy/LP, não no público.</p>
+  </div>
+
+  <div class="alert-box info">
+    <h3>Sinal forte de demanda VIDA no grupo diagnóstico</h3>
+    <p>Na campanha NEGATIVA SEGURO DIAGNÓSTICO 10, a keyword "advogado seguro de vida" (EXACT, QS 5) trouxe 11 conversões no 14d a CPC de R$ 3,46, e o termo "seguro de vida negado por doença preexistente" aparece convertendo. O funil deste JSON é só Seguro Geral (não-VIDA), então essa demanda VIDA não está sendo medida por aqui. Vale avaliar um recorte dedicado SEG VIDA (sub-produto conhecido do playbook).</p>
+  </div>
+
+  <div class="alert-box warning">
+    <h3>Contingência parada: tese de cobertura de leilão suspensa</h3>
+    <p>As 2 campanhas da conta Contingência estão PAUSED e com zero gasto no 14d e no 7d. Rodaram parte do 30d (R$ 1.321,88, 40 conv, VEICULAR a R$ 21,80 e SEGURO a R$ 111,74) e pararam. Com a Cont desligada, a cobertura de leilão das 2 contas (a razão de existirem duplicadas) não está ativa, e o protocolo "testar tudo na Cont primeiro" fica inviável. Isso é decisão estratégica a confirmar com o William, não é consolidação (as 2 contas continuam separadas de propósito).</p>
+  </div>
+
+  <!-- 5 PERFORMANCE POR CONTA -->
+  <h2 class="section-title">5. Performance por conta e campanha (30d)</h2>
+  <p class="note">Institucional (1301598996), todas ENABLED exceto as 3 marcadas [PARAR]. Régua real: saudável R$ 20 a 35, atenção R$ 35 a 55, crítico acima de R$ 90.</p>
+  <table>
+    <thead><tr><th>Campanha</th><th>Status</th><th>Custo</th><th>Cliques</th><th>CPC</th><th>Conv</th><th>CPA</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr class="row-warn"><td>NEGATIVA SEGURO Brasil 02</td><td>ENABLED</td><td>R$ 9.796,61</td><td>737</td><td>R$ 13,29</td><td>200</td><td>R$ 48,98</td><td><span class="pill warn">cara, puxa a média</span></td></tr>
+      <tr><td>NEGATIVA SEGURO CARRO Brasil 09</td><td>ENABLED</td><td>R$ 3.064,84</td><td>220</td><td>R$ 13,93</td><td>80</td><td>R$ 38,31</td><td><span class="pill neutral">saudável</span></td></tr>
+      <tr class="row-best"><td>NEGATIVA SEGURO SP 03</td><td>ENABLED</td><td>R$ 2.550,08</td><td>238</td><td>R$ 10,71</td><td>77</td><td>R$ 33,12</td><td><span class="pill ok">boa</span></td></tr>
+      <tr><td>NEGATIVA SEGURO MG 04</td><td>ENABLED</td><td>R$ 2.178,54</td><td>195</td><td>R$ 11,17</td><td>61</td><td>R$ 35,71</td><td><span class="pill neutral">saudável</span></td></tr>
+      <tr class="row-best"><td>NEGATIVA VEICULAR Brasil 00</td><td>ENABLED</td><td>R$ 1.880,39</td><td>239</td><td>R$ 7,87</td><td>80</td><td>R$ 23,50</td><td><span class="pill ok">campeã barata</span></td></tr>
+      <tr class="row-best"><td>NEGATIVA SEGURO DIAGNÓSTICO 10</td><td>ENABLED</td><td>R$ 1.520,42</td><td>406</td><td>R$ 3,74</td><td>68</td><td>R$ 22,36</td><td><span class="pill ok">CPC baixíssimo</span></td></tr>
+      <tr class="row-best"><td>NEGATIVA VEICULAR SP 01</td><td>ENABLED</td><td>R$ 1.144,53</td><td>122</td><td>R$ 9,38</td><td>51</td><td>R$ 22,44</td><td><span class="pill ok">barata</span></td></tr>
+      <tr><td>[PARAR] SEGURO Brasil 02</td><td>PAUSED</td><td>R$ 183,76</td><td>14</td><td>R$ 13,13</td><td>5</td><td>R$ 36,75</td><td><span class="pill neutral">resíduo, já pausada</span></td></tr>
+      <tr><td>[PARAR] SEGURO SP 03</td><td>PAUSED</td><td>R$ 114,44</td><td>10</td><td>R$ 11,44</td><td>4</td><td>R$ 28,61</td><td><span class="pill neutral">resíduo, já pausada</span></td></tr>
+      <tr><td>[PARAR] SEGURO MG 04</td><td>PAUSED</td><td>R$ 45,29</td><td>5</td><td>R$ 9,06</td><td>1</td><td>R$ 45,29</td><td><span class="pill neutral">resíduo, já pausada</span></td></tr>
+    </tbody>
+  </table>
+
+  <p class="note">Contingência (2903149800): rodou só parte do 30d, zero no 14d e no 7d. Histórico abaixo, sem veredito de otimização por estar parada.</p>
+  <table>
+    <thead><tr><th>Campanha</th><th>Status</th><th>Custo 30d</th><th>Cliques</th><th>CPC</th><th>Conv</th><th>CPA</th><th>Leitura</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>NEGATIVA VEICULAR Brasil 00</td><td>PAUSED</td><td>R$ 763,17</td><td>104</td><td>R$ 7,34</td><td>35</td><td>R$ 21,80</td><td><span class="pill neutral">parada, era barata</span></td></tr>
+      <tr class="row-bad"><td>NEGATIVA SEGURO Brasil 02</td><td>PAUSED</td><td>R$ 558,71</td><td>47</td><td>R$ 11,89</td><td>5</td><td>R$ 111,74</td><td><span class="pill crit">parada, CPA era alto</span></td></tr>
+    </tbody>
+  </table>
+
+  <!-- 6 DISTORCAO CPC -->
+  <h2 class="section-title">6. Distorção de CPC entre contas</h2>
+  <div class="alert-box info">
+    <h3>Não mensurável neste ciclo</h3>
+    <p>A distorção clássica (Contingência pagando 2 a 4 vezes o CPC da Institucional por falta de teto) não pode ser medida porque a Contingência está com zero gasto no 14d e no 7d. Enquanto a Cont estiver parada, só a Institucional roda e não há par de comparação. No histórico 30d a VEICULAR Cont teve CPC R$ 7,34 (igual ou menor que a Inst), e a SEGURO Cont CPC R$ 11,89 (perto da Inst), sem a distorção aguda de ciclos anteriores. Reabrir a análise quando (e se) a Cont voltar a servir.</p>
+  </div>
+
+  <!-- 7 ENTREGAVEL 1: PALAVRAS-CHAVE -->
+  <h2 class="section-title">7. Ação por palavra-chave (Google Institucional)</h2>
+  <p class="note">QS menor que 4 em destaque vermelho (gate crítico). Keywords-âncora do produto (advogado securitário, seguro negado, advogado contra seguradora, especialista em seguros) são intocáveis: QS baixo nelas se corrige por LP/anúncio, nunca por pausa. Maior gasto primeiro.</p>
+  <table>
+    <thead><tr><th>Keyword</th><th>Match</th><th>QS</th><th>Custo 30d</th><th>Conv</th><th>CPA</th><th>Ação</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr><td>advogados de seguros</td><td>PHRASE</td><td>5</td><td>R$ 1.532,09</td><td>37</td><td>R$ 41,41</td><td><span class="pill ok">manter</span></td><td>Âncora de produto, QS ok, volume alto</td></tr>
+      <tr><td>advogado especialista em seguros</td><td>PHRASE</td><td>5</td><td>R$ 1.340,12</td><td>30</td><td>R$ 44,67</td><td><span class="pill ok">manter</span></td><td>Âncora de produto, CPA no limite</td></tr>
+      <tr class="row-bad"><td>ações contra seguradoras</td><td>PHRASE</td><td><span class="qs-crit">3</span></td><td>R$ 1.088,64</td><td>22</td><td>R$ 49,50</td><td><span class="pill warn">corrigir LP</span></td><td>QS 3 (gate), termo de produto, não negativar. LP rasa derruba QS, CPA alto</td></tr>
+      <tr class="row-warn"><td>advogado direito securitário</td><td>PHRASE</td><td>5</td><td>R$ 1.028,75</td><td>16</td><td>R$ 64,30</td><td><span class="pill warn">ajustar lance</span></td><td>Âncora, CPA acima da régua, reduzir lance no 02</td></tr>
+      <tr class="row-best"><td>advogado contra seguradora de carro</td><td>PHRASE</td><td>6</td><td>R$ 906,04</td><td>33</td><td>R$ 27,46</td><td><span class="pill ok">manter, escalar</span></td><td>Melhor custo-conversão do bloco veicular</td></tr>
+      <tr class="row-warn"><td>advogado seguro de carro</td><td>PHRASE</td><td>7</td><td>R$ 860,98</td><td>15</td><td>R$ 57,40</td><td><span class="pill warn">monitorar</span></td><td>QS alto, mas CPA acima da régua, vigiar</td></tr>
+      <tr><td>advogado securitário</td><td>EXACT</td><td>7</td><td>R$ 687,42</td><td>14</td><td>R$ 49,10</td><td><span class="pill ok">manter (âncora)</span></td><td>Keyword-âncora intocável</td></tr>
+      <tr class="row-warn"><td>advogado seguro</td><td>PHRASE</td><td>5</td><td>R$ 665,36</td><td>11</td><td>R$ 60,49</td><td><span class="pill warn">ajustar lance</span></td><td>Genérico, CPA alto, reduzir lance</td></tr>
+      <tr class="row-warn"><td>ações contra seguradoras (MG 04)</td><td>PHRASE</td><td><span class="qs-crit">2</span></td><td>R$ 183,62</td><td>7</td><td>R$ 26,23</td><td><span class="pill warn">corrigir LP</span></td><td>QS 2 (gate), termo de produto, CPA ok mas QS afunda relevância</td></tr>
+      <tr class="row-bad"><td>advogado especializado em seguros</td><td>PHRASE</td><td><span class="qs-crit">3</span></td><td>R$ 159,60</td><td>4</td><td>R$ 39,90</td><td><span class="pill warn">corrigir LP</span></td><td>QS 3 (gate), termo de produto, não negativar</td></tr>
+      <tr class="row-bad"><td>advogado automotivo</td><td>EXACT</td><td><span class="qs-crit">1</span></td><td>R$ 132,51</td><td>4</td><td>R$ 33,13</td><td><span class="pill crit">pausar</span></td><td>QS 1 (gate), genérico de carro (compra/venda), fora do persona securitário</td></tr>
+      <tr class="row-bad"><td>advogado de veículos</td><td>EXACT</td><td><span class="qs-crit">1</span></td><td>R$ 127,78</td><td>2</td><td>R$ 63,89</td><td><span class="pill crit">pausar</span></td><td>QS 1 (gate), genérico off-persona, CPA alto</td></tr>
+      <tr class="row-bad"><td>advogado veicular</td><td>EXACT</td><td><span class="qs-crit">1</span></td><td>R$ 119,62</td><td>2</td><td>R$ 59,81</td><td><span class="pill crit">pausar</span></td><td>QS 1 (gate), genérico off-persona</td></tr>
+      <tr class="row-bad"><td>advogado para carro</td><td>EXACT</td><td><span class="qs-crit">1</span></td><td>R$ 117,68</td><td>3</td><td>R$ 39,23</td><td><span class="pill crit">pausar</span></td><td>QS 1 (gate), genérico off-persona</td></tr>
+      <tr class="row-bad"><td>ação contra seguradora (DS 10)</td><td>PHRASE</td><td><span class="qs-crit">1</span></td><td>R$ 105,85</td><td>4</td><td>R$ 26,46</td><td><span class="pill warn">corrigir LP</span></td><td>QS 1 (gate), termo de produto, não negativar, LP do diagnóstico fraca</td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box warning">
+    <p><strong>Ação recomendada hoje (amarra no Plano camada 2):</strong> pausar as 4 EXACT genéricas QS 1 do ad group "VEICULAR Genérico (filtro) EXATA" (advogado automotivo, advogado de veículos, advogado veicular, advogado para carro) por QS crítico somado a público de compra/venda de carro. As keywords de produto com QS baixo (ações contra seguradoras, especializado em seguros, ação contra seguradora) NÃO se pausam: entram na fila de correção de LP (camada 3).</p>
+  </div>
+
+  <!-- 8 ENTREGAVEL 2: TERMOS DE PESQUISA -->
+  <h2 class="section-title">8. Ação por termo de pesquisa (Google Institucional)</h2>
+  <p class="note">Maior gasto primeiro. Nunca negativar cidade (atuação nacional) nem termo direto do produto. Marca própria (Magalhães Gomes) se mantém. Trânsito e genérico de carro só viram negativa após validação de qualidade com a SDR (regra do playbook).</p>
+  <table>
+    <thead><tr><th>Termo</th><th>Status atual</th><th>Custo 30d</th><th>Conv</th><th>Ação</th><th>Classe / motivo</th></tr></thead>
+    <tbody>
+      <tr><td>advogado securitário</td><td>ADDED</td><td>R$ 156,45</td><td>3</td><td><span class="pill ok">manter</span></td><td>Produto, já é keyword</td></tr>
+      <tr><td>advogado especialista em seguros</td><td>ADDED</td><td>R$ 140,83</td><td>1</td><td><span class="pill ok">manter</span></td><td>Produto, já é keyword</td></tr>
+      <tr class="row-warn"><td>advogado especialista em sinistro</td><td>NONE</td><td>R$ 81,51</td><td>1</td><td><span class="pill info">virar keyword</span></td><td>Desempenho: converte, ainda não é keyword, on-persona</td></tr>
+      <tr class="row-best"><td>advogado especialista em seguro de carro</td><td>ADDED</td><td>R$ 76,87</td><td>5</td><td><span class="pill ok">manter</span></td><td>Produto veicular, ótima conversão</td></tr>
+      <tr><td>advogado veicular</td><td>ADDED</td><td>R$ 82,43</td><td>1</td><td><span class="pill warn">revisar</span></td><td>Genérico de carro, baixa conversão, candidato a filtro pós-validação SDR</td></tr>
+      <tr class="row-bad"><td>jusbrasil</td><td>NONE</td><td>R$ 31,65</td><td>0</td><td><span class="pill crit">negativar</span></td><td>LIXO targeting: busca de conteúdo jurídico, não cliente</td></tr>
+      <tr class="row-bad"><td>nigro franciscatto sociedade individual de advocacia</td><td>NONE</td><td>R$ 11,05</td><td>0</td><td><span class="pill crit">negativar</span></td><td>LIXO targeting: nome de escritório concorrente</td></tr>
+      <tr class="row-bad"><td>ariosto cunha &amp; guimaro advogados associados</td><td>NONE</td><td>R$ 18,64</td><td>0</td><td><span class="pill crit">negativar</span></td><td>LIXO targeting: nome de escritório concorrente</td></tr>
+      <tr class="row-bad"><td>advogado compra e venda de veículos</td><td>NONE</td><td>R$ 12,88</td><td>1</td><td><span class="pill crit">negativar</span></td><td>LIXO targeting: compra/venda de carro, não defesa de segurado</td></tr>
+      <tr class="row-bad"><td>advogado venda de carro</td><td>NONE</td><td>R$ 8,18</td><td>0</td><td><span class="pill crit">negativar</span></td><td>LIXO targeting: compra/venda, off-persona</td></tr>
+      <tr class="row-best"><td>seguro de vida negado por doença preexistente</td><td>ADDED</td><td>R$ 7,98</td><td>0</td><td><span class="pill info">observar VIDA</span></td><td>Demanda SEG VIDA, sinal de sub-produto a desenvolver</td></tr>
+      <tr><td>magalhães gomes advogados</td><td>NONE</td><td>R$ 13,22</td><td>2</td><td><span class="pill ok">manter</span></td><td>Marca própria (brand), converte, nunca negativar</td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box warning">
+    <p><strong>Ação recomendada hoje (amarra no Plano camada 1):</strong> negativar em FRASE os termos de LIXO claro (jusbrasil, nomes dos escritórios concorrentes, compra/venda de carro) na Institucional, ganho imediato sem risco. Adicionar "advogado especialista em sinistro" como keyword nova (Frase) no ad group geral. Os genéricos de carro (advogado veicular) e qualquer termo de trânsito ficam para validação com a SDR antes de negativar.</p>
+  </div>
+
+  <!-- 9 ENTREGAVEL 3: QUALIDADE DOS ANUNCIOS -->
+  <h2 class="section-title">9. Qualidade dos anúncios (Google)</h2>
+  <p class="note">Gate 1 de serviço: anúncio reprovado vira ruído. Nas 2 contas, <strong>zero anúncios reprovados</strong> (ads_reprovados vazio). Todos APPROVED, com uma exceção APPROVED_LIMITED (vídeo). O gargalo de qualidade do Seguro não está na aprovação do anúncio, está no QS por LP (seção 7).</p>
+  <table>
+    <thead><tr><th>Recorte</th><th>Aprovação</th><th>Observação</th><th>Ação</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>Institucional (72 anúncios revisados)</td><td>APPROVED</td><td>Todos aprovados e revisados, RSAs sem nome próprio</td><td><span class="pill ok">manter</span></td></tr>
+      <tr class="row-warn"><td>Vídeo "Seguro negado" (campanha 30 VIDEO)</td><td>APPROVED_LIMITED</td><td>Veiculação limitada (política ou formato), não é reprovação</td><td><span class="pill warn">revisar alcance</span></td></tr>
+      <tr class="row-best"><td>Contingência (18 anúncios revisados)</td><td>APPROVED</td><td>Todos aprovados, mas conta parada (sem veiculação)</td><td><span class="pill neutral">sem dado ativo</span></td></tr>
+      <tr class="row-warn"><td>Ad groups fantasma (Residencial, Vida, Carro, Agrícola, motorista app)</td><td>APPROVED</td><td>Têm anúncio aprovado mas sem gasto/keyword ativa no período</td><td><span class="pill warn">limpar</span></td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box info">
+    <p><strong>Ação recomendada hoje (amarra no Plano camada 3):</strong> reescrever os RSAs dos ad groups cujas keywords de produto estão com QS 1 a 3 (ações contra seguradoras, especializado em seguros, ação contra seguradora) usando a keyword exata no headline, e casar com a LP correta. A qualidade do anúncio em si está boa, o que puxa o QS pra baixo é a página de destino (experiência na LP). Nenhum veredito de ranking aqui porque Google não usa quality_ranking de Meta, e o gate de aprovação está limpo.</p>
+  </div>
+
+  <!-- 10 CRUZAMENTO PIPEDRIVE -->
+  <h2 class="section-title">10. Cruzamento com Pipedrive (funil Seguro Geral, cohort por add_time)</h2>
+  <p class="note">Cohort: leads que entraram na janela e a situação ATUAL deles. Vendas (won) e perdas por MOTIVO vêm daqui, não do CPA do Google. VIDA fica fora (funil próprio não presente neste JSON).</p>
+  <table>
+    <thead><tr><th>Janela</th><th>Leads novos</th><th>Abertos</th><th>Ganhos</th><th>Valor won</th><th>Perdidos</th><th>LIXO (público errado)</th><th>INVIÁVEL + AÇÃO INVIÁVEL</th></tr></thead>
+    <tbody>
+      <tr><td>30d (28/09 a 27/10)</td><td>555</td><td>271</td><td>20</td><td>R$ 90.822</td><td>264</td><td>29 (5,2% dos leads)</td><td>117</td></tr>
+      <tr><td>14d (14/10 a 27/10)</td><td>279</td><td>159</td><td>6</td><td>R$ 35.043</td><td>114</td><td>13</td><td>52</td></tr>
+      <tr><td>7d (21/10 a 27/10)</td><td>131</td><td>75</td><td>3</td><td>R$ 8.970</td><td>53</td><td>5</td><td>24</td></tr>
+    </tbody>
+  </table>
+  <div class="alert-box">
+    <h3>Leitura das perdas (seção 5.1): o anúncio acerta o público, erra a expectativa</h3>
+    <p>LIXO baixo e estável (29, 13, 5) confirma que o targeting não está trazendo gente fora do persona, logo não é caso de trocar keyword por público errado. O volume está em INVIÁVEL (76 em 30d, caso sem viabilidade jurídica) e AÇÃO INVIÁVEL (41), somando 117 perdas, mais JUIZADO ESPECIAL (25, baixo valor que não compensa ação). Isso é expectativa criada no anúncio e na LP: a página precisa qualificar melhor (em que casos o escritório realmente reverte a negativa). VALOR BAIXO (13) e SEM RESPOSTA (27) são menores e vão para qualificação/oferta e velocidade de SDR, não para a campanha. CPL combinado de R$ 42,88 está abaixo do histórico R$ 74, mas CPL baixo não é qualidade, e com 271 leads ainda abertos o cohort não maturou: evitar escalar só pelo CPL.</p>
+  </div>
+
+  <!-- 11 COMPARACAO HISTORICA -->
+  <h2 class="section-title">11. Comparação dos 3 recortes e tendência</h2>
+  <table>
+    <thead><tr><th>Métrica (Institucional + funil)</th><th>30d</th><th>14d</th><th>7d</th><th>Tendência</th></tr></thead>
+    <tbody>
+      <tr><td>Gasto Google Inst</td><td>R$ 22.478,90</td><td>R$ 12.717,65</td><td>R$ 6.514,08</td><td><span class="pill neutral">ritmo estável</span></td></tr>
+      <tr class="row-warn"><td>CPA Google Inst</td><td>R$ 35,85</td><td>R$ 38,42</td><td>R$ 40,46</td><td><span class="pill warn">subindo</span></td></tr>
+      <tr><td>CTR Inst</td><td>9,44%</td><td>9,66%</td><td>9,61%</td><td><span class="pill ok">estável e alto</span></td></tr>
+      <tr><td>CPC médio Inst</td><td>R$ 10,28</td><td>R$ 10,20</td><td>R$ 10,29</td><td><span class="pill ok">estável</span></td></tr>
+      <tr><td>Leads novos (funil)</td><td>555</td><td>279</td><td>131</td><td><span class="pill ok">ritmo constante</span></td></tr>
+      <tr class="row-warn"><td>CPL real combinado</td><td>R$ 42,88</td><td>R$ 45,58</td><td>R$ 49,73</td><td><span class="pill warn">subindo</span></td></tr>
+      <tr><td>Ganhos cohort</td><td>20</td><td>6</td><td>3</td><td><span class="pill info">maturando</span></td></tr>
+    </tbody>
+  </table>
+  <p class="note"><strong>Narrativa:</strong> o motor roda estável em volume e CTR, mas o custo de aquisição está num leve movimento de alta (CPA Google de R$ 35,85 para R$ 40,46, CPL combinado de R$ 42,88 para R$ 49,73 na última semana). A causa não é leilão (CPC parado), é taxa de conversão caindo em pontos específicos: a campanha 02 e o ad group "advogado securitário" no recorte SP. Os recortes curtos têm menos ganhos só por cohort imaturo (leads de outubro ainda abertos), não por piora de qualidade. Comparação com baseline anterior ao 27/05 continua proibida (PageView inflava a conversão até a correção de tracking).</p>
+
+  <!-- 12 SAZONALIDADE -->
+  <h2 class="section-title">12. Sazonalidade do período</h2>
+  <table>
+    <thead><tr><th>Evento</th><th>Janela</th><th>Impacto no Seguro</th></tr></thead>
+    <tbody>
+      <tr><td>Nossa Senhora Aparecida + Dia das Crianças</td><td>12/10</td><td>Baixo. Feriado nacional reduz busca por 1 dia, sem efeito no nicho securitário</td></tr>
+      <tr><td>Dia do Professor / Servidor Público</td><td>15/10 e 28/10</td><td>Nulo para o produto</td></tr>
+      <tr><td>Véspera de Finados</td><td>fim de 27/10</td><td>Marginal, feriado 02/11 fora da janela</td></tr>
+      <tr><td>Rampa para Black Friday</td><td>fim de outubro</td><td>Neutro. Black Friday não move demanda de defesa de segurado, não justifica mexer em verba por sazonalidade</td></tr>
+    </tbody>
+  </table>
+  <p class="note">Outubro foi mês sem sazonalidade relevante para Seguro. A alta de CPA é operacional, não de calendário.</p>
+
+  <!-- 13 DIAGNOSTICO -->
+  <h2 class="section-title">13. Diagnóstico de gargalos</h2>
+  <div class="alert-box">
+    <h3>Gargalo 1 (alto impacto): expectativa criada no anúncio e na LP</h3>
+    <p>117 perdas por INVIÁVEL/AÇÃO INVIÁVEL mais 25 por JUIZADO ESPECIAL. Público certo, caso errado. A LP não filtra viabilidade. É o maior desperdício de atendimento do funil.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 2 (médio impacto): CPA subindo na campanha 02 e no ad group securitário SP</h3>
+    <p>Campanha 02 a R$ 48,98 (R$ 53,27 no 7d) e ad group "advogado securitário" no SP 03 a R$ 86,44 (R$ 114,46 no 7d). CPC alto (R$ 22 a 26 na âncora securitário EXACT), poucas conversões no recorte SP. Concentrar a âncora onde ela performa (02 e MG) e aliviar o lance no recorte SP.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 3 (médio impacto): QS crítico por LP nas keywords de produto</h3>
+    <p>"ações contra seguradoras" (QS 2 e 3), "especializado em seguros" (QS 3), "ação contra seguradora" (QS 1). Todas termos de produto que não se pausam. QS baixo vem da experiência na LP, que segue genérica e rasa. É o mesmo diagnóstico de LP do playbook, ainda não resolvido.</p>
+  </div>
+  <div class="alert-box">
+    <h3>Gargalo 4 (baixo custo, risco de imagem): genéricos de carro QS 1 drenando verba</h3>
+    <p>4 keywords EXACT genéricas (advogado automotivo/veicular/para carro/de veículos) com QS 1, R$ 497 somados em 30d, trazendo busca de compra/venda de veículo (confirmado nos search terms). Não é o persona de defesa de segurado.</p>
+  </div>
+
+  <!-- 14 PLANO 3 CAMADAS -->
+  <h2 class="section-title">14. Plano de ação, 3 camadas</h2>
+  <ul class="action-list">
+    <li class="crit">
+      <div>
+        <div class="action-title">HOJE &middot; checar número de WhatsApp vivo nas LPs</div>
+        <div class="action-desc">Gate 2 não foi verificado nesta coleta. Abrir as LPs no ar (seguro-negado, seguro-automovel, seguro-de-vida) e confirmar que o botão aponta pro vivo 5511966629852, não pro morto 5531993061519. Se morto, consertar antes de qualquer otimização.</div>
+        <div class="action-meta">Pré-requisito de confiança &middot; zero risco</div>
+      </div>
+    </li>
+    <li class="crit">
+      <div>
+        <div class="action-title">HOJE &middot; negativar LIXO claro (Institucional)</div>
+        <div class="action-desc">Negativar em Frase: jusbrasil, nigro franciscatto, ariosto cunha guimaro, advogado compra e venda de veículos, advogado venda de carro. Público errado puro, zero conversão, risco nulo.</div>
+        <div class="action-meta">Ganho imediato &middot; via create.py negative, status conservador, após aprovação</div>
+      </div>
+    </li>
+    <li class="ok">
+      <div>
+        <div class="action-title">HOJE &middot; adicionar keyword que já converte</div>
+        <div class="action-desc">"advogado especialista em sinistro" (Frase) no ad group geral. Converte como termo e ainda não é keyword.</div>
+        <div class="action-meta">On-persona &middot; via create.py keyword, após aprovação</div>
+      </div>
+    </li>
+    <li class="warn">
+      <div>
+        <div class="action-title">ESTA SEMANA &middot; pausar 4 EXACT genéricas QS 1</div>
+        <div class="action-desc">advogado automotivo, advogado de veículos, advogado veicular, advogado para carro. QS crítico somado a público de compra/venda de carro. NÃO são termo direto do produto securitário.</div>
+        <div class="action-meta">Decisão &middot; libera cerca de R$ 497/30d</div>
+      </div>
+    </li>
+    <li class="warn">
+      <div>
+        <div class="action-title">ESTA SEMANA &middot; aliviar lance da âncora no recorte SP</div>
+        <div class="action-desc">Ad group "advogado securitário" no SP 03 está a CPA R$ 86 a 114. Reduzir lance (não pausar a âncora) e concentrar investimento no 02 e MG, onde a mesma keyword rende melhor.</div>
+        <div class="action-meta">Decisão &middot; corta o pico de CPA do 7d</div>
+      </div>
+    </li>
+    <li class="warn">
+      <div>
+        <div class="action-title">ESTA SEMANA &middot; validar qualidade com a SDR</div>
+        <div class="action-desc">Confirmar com a Yasmim se os leads do ad group VEICULAR GENERICO e do grupo DIAGNÓSTICO viram caso real de seguro. Só depois decidir sobre genéricos de carro e trânsito. Regra do playbook: trânsito não se negativa sem validação.</div>
+        <div class="action-meta">Decisão &middot; destrava a limpeza do veicular genérico</div>
+      </div>
+    </li>
+    <li class="info">
+      <div>
+        <div class="action-title">2 SEMANAS &middot; reescrever LP para filtrar viabilidade</div>
+        <div class="action-desc">Atacar as 117 perdas por INVIÁVEL/AÇÃO INVIÁVEL: a LP precisa dizer em que casos o escritório reverte a negativa (súmulas STJ, exemplos típicos) para o lead chegar já qualificado. Mesma reescrita sobe o QS das keywords de produto travadas em QS 1 a 3.</div>
+        <div class="action-meta">Teste &middot; medir INVIÁVEL e QS em 14 dias</div>
+      </div>
+    </li>
+    <li class="info">
+      <div>
+        <div class="action-title">2 SEMANAS &middot; avaliar recorte dedicado SEG VIDA</div>
+        <div class="action-desc">"advogado seguro de vida" e "seguro de vida negado por doença preexistente" convertem no DIAGNÓSTICO a CPC baixo. Avaliar ad group/campanha VIDA e habilitar o funil SEG VIDA no cruzamento.</div>
+        <div class="action-meta">Teste &middot; sub-produto com demanda comprovada</div>
+      </div>
+    </li>
+    <li class="info">
+      <div>
+        <div class="action-title">2 SEMANAS &middot; decidir status da Contingência</div>
+        <div class="action-desc">Cont está PAUSED com zero em 14d e 7d. Confirmar com o William: reativar para cobertura de leilão (razão das 2 contas) ou manter desligada de propósito. Não consolidar nunca.</div>
+        <div class="action-meta">Decisão estratégica &middot; pergunta antes de executar</div>
+      </div>
+    </li>
+  </ul>
+
+  <!-- 15 VALIDACAO TRACKING -->
+  <h2 class="section-title">15. Validação de tracking</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Status</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Anúncios servindo (gate 1)</td><td><span class="pill ok">OK</span></td><td>Zero reprovados nas 2 contas, 1 APPROVED_LIMITED (vídeo)</td></tr>
+      <tr><td>Número WhatsApp vivo na LP (gate 2)</td><td><span class="pill crit">NÃO VERIFICADO</span></td><td>Lacuna v1: LP não lida nesta coleta. Risco do número morto 5531993061519. Checar hoje</td></tr>
+      <tr><td>Conversão biddable correta (gate 2)</td><td><span class="pill warn">A CONFIRMAR</span></td><td>Conversão Google conta clique de WhatsApp/chamada, não lead. Confirmar junto da LP</td></tr>
+      <tr><td>Lead real no Pipedrive (gate 3)</td><td><span class="pill ok">OK</span></td><td>Funil Seguro Geral com 555 leads, 20 won, perdas por motivo. VIDA fora deste JSON</td></tr>
+      <tr><td>Quebra de perda por número da campanha</td><td><span class="pill warn">PENDENTE</span></td><td>Lacuna v1: cruzamento por número da pessoa ainda calibrando pós 16/06</td></tr>
+      <tr><td>Tracking de fechamento gclid (projeto)</td><td><span class="pill info">EM ROADMAP</span></td><td>Auto-tagging ativo, conversão offline de won ainda a implementar</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 16 COMPLIANCE OAB -->
+  <h2 class="section-title">16. Compliance OAB</h2>
+  <div class="alert-box warning">
+    <h3>Flags ativas (sem copy nova aprovada neste ciclo)</h3>
+    <p>Não há criativo novo proposto hoje, só revisão de LP (camada 3). Ao reescrever a LP, respeitar: sem promessa de resultado (nada de "90% de aprovação"), sem mercantilismo, sem captação irregular. Atenção ao destaque "análise gratuita" (prática comum mas flagável pelo Provimento 205, e já apareceu 1 perda marcada ANÁLISE GRATUITA no funil). Tom civil leigo, didático e empático, não o tom par-a-par do Silva Pimenta. Números auditáveis do MG: mais de 20 anos, mais de 15.000 processos acompanhados. O William decide o risco assumido, a Rita só sinaliza.</p>
+  </div>
+
+  <!-- 17 AUDIT LOG -->
+  <h2 class="section-title">17. Audit log</h2>
+  <div class="audit-log">
+<span class="ts">28/10 17:07</span> SEGURO-MG ANALISE | produto=seguro cliente=magalhaes-gomes | fonte=JSON read-only (sem API)<br>
+<span class="ts">28/10 17:07</span> JANELAS | 30d 28/09-27/10 | 14d 14/10-27/10 | 7d 21/10-27/10 | taxa_usd=5.342<br>
+<span class="ts">28/10 17:07</span> GATE-1 anuncios | Inst=0 reprovados (72 ok, 1 APPROVED_LIMITED) | Cont=0 reprovados (18 ok) <span class="ok">OK</span><br>
+<span class="ts">28/10 17:07</span> GATE-2 whatsapp-LP | <span class="crit">NAO VERIFICADO (lacuna v1)</span> | banner topo acionado<br>
+<span class="ts">28/10 17:07</span> GATE-3 pipedrive | funil Seguro Geral | 555 leads 30d | 20 won R$90.822 <span class="ok">OK</span><br>
+<span class="ts">28/10 17:07</span> CONTAS | Inst ENABLED R$22.478,90/30d CPA R$35,85 | Cont <span class="warn">PAUSED (0 em 14d/7d)</span><br>
+<span class="ts">28/10 17:07</span> TENDENCIA CPA Inst | 35,85 -> 38,42 -> 40,46 <span class="warn">subindo</span><br>
+<span class="ts">28/10 17:07</span> CPL combinado | 42,88 -> 45,58 -> 49,73 | abaixo do historico R$74, cohort imaturo<br>
+<span class="ts">28/10 17:07</span> QS-GATE | QS&lt;4: acoes contra seguradoras(2/3), especializado(3), acao contra seguradora(1), 4 genericas EXACT(1)<br>
+<span class="ts">28/10 17:07</span> PERDAS | LIXO=29(5,2%) | INVIAVEL+ACAO INVIAVEL=117 <span class="warn">expectativa no anuncio</span> | JUIZADO=25<br>
+<span class="ts">28/10 17:07</span> SINAL | demanda VIDA no DIAGNOSTICO (advogado seguro de vida 11 conv/14d)<br>
+<span class="ts">28/10 17:07</span> PLANO | HOJE: checar LP, negativar lixo, add 1 kw | SEMANA: pausar 4 QS1, aliviar SP, validar SDR | 2SEM: LP, VIDA, status Cont<br>
+<span class="ts">28/10 17:07</span> OAB | sem copy nova | flags: analise gratuita, sem 90%, sem promessa<br>
+<span class="ts">28/10 17:07</span> SAIDA | read-only, nenhuma mudanca executada | aguarda aprovacao item a item <span class="ok">DONE</span>
+  </div>
+
+  <!-- PROXIMO CICLO -->
+  <h2 class="section-title">Próximo ciclo</h2>
+  <div class="alert-box info">
+    <h3>Próxima revisão de Seguro: 04/11/2026</h3>
+    <p>Foco: (1) confirmar correção do gate 2 (número WhatsApp) e reconferir CPA já limpo, (2) efeito das negativas e das 4 EXACT QS 1 pausadas, (3) decisão do William sobre reativar a Contingência e sobre abrir recorte VIDA. Pré-requisito: checagem da LP ao vivo feita e retorno da SDR sobre a qualidade do veicular genérico. Ritmo híbrido: mudança estrutural nova só depois de 14 dias de leitura limpa, não empilhar sobre o que for aplicado agora.</p>
+  </div>
+
+</div>
+
+<footer>
+  Magalhães Gomes &middot; Seguro &middot; Google Ads &middot; Diagnóstico de 28/10/2026<br>
+  Gerado via skills <code>google-ads-ratos</code> + <code>ads-ratos</code> + <code>/otimizar</code> (modo nuvem, read-only)<br>
+  Destino sugerido: <code>clientes/magalhaes-gomes/analises/2026-10-28/analises/01-google-ads.html</code> &middot; INDEX.html da data com card navegável para este relatório<br>
+  Rita recomenda, não executa. Execução só com janela aberta pelo William, item a item.
+</footer>
+
+</body>
+</html>
