@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-29T03:49:03Z",
+  "atualizadoEm": "2026-10-29T04:19:11Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.342,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1242.72,
-      "meta": 18696.41,
+      "meta": 18701.64,
       "leads_novos": 300,
       "ganhos": 16,
       "valor_ganhos": 48049.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 4573.23,
-      "meta": 19744.21,
+      "meta": 19749.64,
       "leads_novos": 283,
       "ganhos": 39,
       "valor_ganhos": 133963.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 167.14,
+      "meta": 167.16,
       "leads_novos": 1,
       "ganhos": 1,
       "valor_ganhos": 995.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 14703.24,
+      "google": 14733.97,
       "meta": 233.76,
       "leads_novos": 70,
       "ganhos": 8,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 663.59,
+      "meta": 664.73,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 165.81,
+      "meta": 165.87,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3735.0,
@@ -144,7 +144,7 @@
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 14703.23 x soma das campanhas 14493.92 (dif 209.32) -> diferença lançada em DIREITO MÉDICO",
+      "google 6351554556: total da conta 14733.96 x soma das campanhas 14524.65 (dif 209.32) -> diferença lançada em DIREITO MÉDICO",
       "google 1301598996: total da conta 22863.63 x soma das campanhas 22654.08 (dif 209.55) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 209.55",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
