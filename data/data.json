@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-31T06:48:34Z",
+  "atualizadoEm": "2026-10-31T07:19:00Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.4212,
@@ -7,12 +7,12 @@
   "fontes": {
     "google": "ok",
     "meta": "ok",
-    "pipedrive": "erro"
+    "pipedrive": "ok"
   },
   "gastos": {
     "aux-moradia": {
-      "google": 1344.71,
-      "meta": 20431.69,
+      "google": 1350.41,
+      "meta": 20439.78,
       "leads_novos": 326,
       "ganhos": 23,
       "valor_ganhos": 62431.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 4936.65,
-      "meta": 21053.33,
+      "meta": 21054.97,
       "leads_novos": 297,
       "ganhos": 42,
       "valor_ganhos": 142925.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 23422.0,
+      "google": 23434.77,
       "meta": 0.0,
       "leads_novos": 523,
       "ganhos": 24,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 4342.75,
+      "google": 4344.95,
       "meta": 0.0,
       "leads_novos": 107,
       "ganhos": 4,
@@ -145,10 +145,11 @@
     ],
     "avisos": [
       "google 6351554556: total da conta 15646.60 x soma das campanhas 15437.29 (dif 209.31) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 24553.51 x soma das campanhas 24343.97 (dif 209.54) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 24566.28 x soma das campanhas 24356.74 (dif 209.54) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 209.54",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.97"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Está respondendo a uma...\" R$ 76.97",
+      "meta act_758844583486507: total da conta 383.91 x soma das campanhas 383.90 (dif 0.01) -> diferença lançada em FIES"
     ]
   }
 }
