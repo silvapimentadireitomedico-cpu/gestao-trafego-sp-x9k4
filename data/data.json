@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-10-31T01:19:02Z",
+  "atualizadoEm": "2026-10-31T01:49:05Z",
   "mesReferencia": "2026-10",
   "tipo": "corrente",
   "taxa_usd": 5.4212,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1344.71,
-      "meta": 20275.53,
+      "meta": 20292.79,
       "leads_novos": 326,
       "ganhos": 23,
       "valor_ganhos": 62431.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 4936.65,
-      "meta": 20970.85,
-      "leads_novos": 296,
+      "meta": 20987.89,
+      "leads_novos": 297,
       "ganhos": 42,
       "valor_ganhos": 142925.0,
       "orcamento_diario_google": 150.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 15619.08,
+      "google": 15624.73,
       "meta": 233.76,
       "leads_novos": 74,
       "ganhos": 12,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 705.09,
+      "meta": 705.15,
       "leads_novos": 5,
       "ganhos": 2,
       "valor_ganhos": 3984.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 175.99,
+      "meta": 176.0,
       "leads_novos": 4,
       "ganhos": 2,
       "valor_ganhos": 3735.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 4305.54,
+      "google": 4311.94,
       "meta": 0.0,
       "leads_novos": 106,
       "ganhos": 4,
@@ -144,7 +144,7 @@
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 15619.07 x soma das campanhas 15409.76 (dif 209.31) -> diferença lançada em DIREITO MÉDICO",
+      "google 6351554556: total da conta 15624.72 x soma das campanhas 15415.41 (dif 209.31) -> diferença lançada em DIREITO MÉDICO",
       "google 1301598996: total da conta 24529.55 x soma das campanhas 24320.01 (dif 209.54) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 209.54",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, você recebeu uma...\" R$ 69.60",
