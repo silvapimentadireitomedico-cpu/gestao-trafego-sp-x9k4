@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aux Moradia · Rita · 02/11/2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1A4758;--teal-dark:#133544;--champagne:#C5A57A;--champagne-dark:#A88958;--bege:#f7f5f0;--texto:#1A1A1A;--texto-secundario:#555;--verde:#22c55e;--vermelho:#ef4444;--amarelo:#f59e0b;--azul:#3b82f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Jost',sans-serif;background:var(--bege);color:var(--texto);line-height:1.6}
+.container{max-width:1180px;margin:0 auto;padding:48px 24px}
+header{background:linear-gradient(135deg,var(--teal) 0%,var(--teal-dark) 100%);color:#fff;padding:48px 24px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--champagne);font-weight:600;margin-bottom:12px}
+h1{font-size:32px;font-weight:700;margin-bottom:8px;line-height:1.15}
+.subtitle{font-size:16px;opacity:0.85;margin-top:6px}
+.status-badges{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.status-badge{display:inline-block;padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.status-badge.ok{background:var(--verde);color:#fff}
+.status-badge.warn{background:var(--amarelo);color:#fff}
+.status-badge.crit{background:var(--vermelho);color:#fff}
+.section-title{font-size:24px;font-weight:700;color:var(--teal);margin:48px 0 18px;padding-bottom:12px;border-bottom:2px solid var(--champagne)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:32px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(0,0,0,0.06);border-left:4px solid var(--champagne)}
+.card h4{color:var(--teal);font-size:17px;margin:6px 0}
+.skill-type{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--champagne-dark);font-weight:700}
+.skill-desc{font-size:13px;color:var(--texto-secundario);margin-top:6px}
+.alert-box{background:#fef2f2;border-left:4px solid var(--vermelho);padding:22px;border-radius:8px;margin-bottom:14px}
+.alert-box.warning{background:#fff8e1;border-left-color:var(--amarelo)}
+.alert-box.success{background:#f0fdf4;border-left-color:var(--verde)}
+.alert-box.info{background:#eff6ff;border-left-color:var(--azul)}
+.alert-box h3{font-size:17px;margin-bottom:8px}
+.summary-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.summary-grid > div{background:#fff;padding:18px;border-radius:8px;text-align:center;border-top:3px solid var(--champagne)}
+.summary-grid .num{font-size:26px;font-weight:700;color:var(--teal);display:block;line-height:1.1}
+.summary-grid .num.danger{color:var(--vermelho)}
+.summary-grid .num.success{color:var(--verde)}
+.summary-grid .num.warn{color:var(--amarelo)}
+.summary-grid .label{font-size:11px;text-transform:uppercase;letter-spacing:0.5px;color:var(--texto-secundario);margin-top:6px;display:block}
+.summary-grid .delta{font-size:11px;color:var(--texto-secundario);margin-top:3px;display:block}
+.summary-grid .delta.up{color:var(--verde)}
+.summary-grid .delta.down{color:var(--vermelho)}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.04);margin-bottom:24px;font-size:14px}
+th{background:var(--teal);color:#fff;text-align:left;padding:12px 14px;font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:0.5px}
+td{padding:11px 14px;border-bottom:1px solid #f0ebe2;vertical-align:middle}
+tr.row-best td{background:#f0fdf4}
+tr.row-bad td{background:#fef2f2}
+tr.row-warn td{background:#fff8e1}
+.qs-crit{color:#991b1b;font-weight:800;background:#fee2e2;padding:2px 8px;border-radius:10px}
+.pill{display:inline-block;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px}
+.pill.ok{background:#dcfce7;color:#166534}
+.pill.warn{background:#fef3c7;color:#92400e}
+.pill.crit{background:#fee2e2;color:#991b1b}
+.pill.info{background:#dbeafe;color:#1e40af}
+.pill.neutral{background:#f1f5f9;color:#475569}
+.action-list{list-style:none;padding:0}
+.action-list li{background:#fff;padding:16px 20px;margin-bottom:10px;border-radius:8px;border-left:4px solid var(--teal)}
+.action-list li.crit{border-left-color:var(--vermelho)}
+.action-list li.warn{border-left-color:var(--amarelo)}
+.action-list li.ok{border-left-color:var(--verde)}
+.action-list .action-title{font-weight:600;color:var(--teal);margin-bottom:4px}
+.action-list .action-desc{font-size:14px;color:var(--texto-secundario)}
+.action-list .action-meta{font-size:12px;color:var(--champagne-dark);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:0.5px}
+.audit-log{background:#0f172a;color:#94a3b8;font-family:'Courier New',monospace;padding:22px;border-radius:8px;font-size:12px;line-height:1.7;overflow-x:auto;white-space:pre-wrap}
+.audit-log .ts{color:#60a5fa}
+.audit-log .ok{color:#34d399}
+.audit-log .warn{color:#fbbf24}
+.audit-log .crit{color:#f87171}
+.tbl-note{font-size:12px;color:var(--texto-secundario);margin:-16px 0 26px;font-style:italic}
+footer{background:var(--teal-dark);color:#fff;padding:32px 24px;text-align:center;margin-top:60px;font-size:13px;opacity:0.92}
+.index-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.index-cards a{display:block;background:#fff;padding:20px;border-radius:10px;border-left:4px solid var(--champagne);text-decoration:none;color:var(--texto)}
+.index-cards a:hover{box-shadow:0 4px 14px rgba(0,0,0,0.1)}
+@media (max-width:768px){.summary-grid{grid-template-columns:repeat(2,1fr)}h1{font-size:24px}table{font-size:12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="eyebrow">Silva Pimenta &middot; Auxílio Moradia &middot; Google + Meta</div>
+    <h1>Diagnóstico Semanal &middot; 02/11/2026</h1>
+    <p class="subtitle">Janelas 30d (03/10 a 01/11) &middot; 14d (19/10 a 01/11) &middot; 7d (26/10 a 01/11). Fonte única: coleta READ-ONLY entregue em JSON (verificação em cadeia OK na coleta).</p>
+    <div class="status-badges">
+      <span class="status-badge ok">Meta BR Saudável (CPL R$ 38,89)</span>
+      <span class="status-badge warn">EUA parado (só 30d, ruído)</span>
+      <span class="status-badge warn">Google eficiência a apertar</span>
+      <span class="status-badge crit">115+ ads Meta WITH_ISSUES</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- 1 -->
+  <h2 class="section-title">1. Skills usadas neste diagnóstico</h2>
+  <div class="cards">
+    <div class="card">
+      <span class="skill-type">Execução &middot; dados prontos</span>
+      <h4>google-ads-ratos + meta-ads-ratos</h4>
+      <div class="skill-desc">Números de campanhas, ad groups, keywords, search terms, status de aprovação (Google) e ads com rankings/frequência/actions (Meta BR e EUA) já coletados na origem. Rita operou 100% read-only sobre o JSON, sem chamar API.</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Inteligência &middot; Benchmarks</span>
+      <h4>ads-ratos + playbook aux-moradia</h4>
+      <div class="skill-desc">Régua real de CPL R$ 76 aplicada (memória cpl-aux-moradia), quality gates (QS Google &lt; 4 crítico, freq + rankings Meta), regra "otimização por qualidade, não por CPL", tese de produto de interrupção (Google nunca se mata).</div>
+    </div>
+    <div class="card">
+      <span class="skill-type">Workflow &middot; Diagnóstico</span>
+      <h4>/otimizar (13 passos) + seção 5.1</h4>
+      <div class="skill-desc">Gates de confiança, validação de volume, tendência 30&rarr;14&rarr;7, cruzamento Pipedrive por cohort (add_time) e por ORIGEM verificada lead a lead (passo 2b), perdas por motivo, plano 3 camadas.</div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <h2 class="section-title">2. Skills não acionadas</h2>
+  <div class="alert-box info">
+    <h3>O que ficou de fora e por quê</h3>
+    <p><strong>/criativo</strong> não foi chamada: este é relatório de diagnóstico, não de produção de peça. Briefings de troca de criativo entram no Plano camada 3 para o time.<br>
+    <strong>paid-ads/conversion-tracking</strong> não aprofundada porque o gate 2 (WhatsApp vivo na LP) exige leitura da LP, que não veio no snapshot desta coleta v1 (ver pendência na seção 13).</p>
+  </div>
+
+  <!-- 3 GATE banner -->
+  <h2 class="section-title">3. Gate de confiança &middot; leia antes de agir</h2>
+  <div class="alert-box warning">
+    <h3>⚠️ 2 lacunas da coleta v1 (pendência declarada, não invalida o relatório)</h3>
+    <p><strong>(1) WhatsApp vivo na LP não checado</strong> (gate 2 de tracking exige ler a landing page). Os leads Meta de campanha de mensagem/WhatsApp dependem do número certo respondendo. Enquanto não se confirma o número na LP, trate o volume de "messaging" como indicativo, não como verdade de contato.<br>
+    <strong>(2) Quebra de perdas por "número da campanha" (campo da pessoa) dentro do funil não veio</strong> (cruzamento ainda calibrando pós 16/06). Suprimos com a atribuição de ORIGEM lead a lead (campanha + público + criativo gravados pelo Tag Lead), que já permite acusar fonte de LIXO com número, ver seção 5.</p>
+  </div>
+  <div class="alert-box success">
+    <h3>Gates que passaram</h3>
+    <p><strong>Servindo (gate 1):</strong> Google sem nenhum anúncio reprovado (ads_reprovados vazio). A campanha de performance Meta BR (SP TOPO CADASTROS) está ACTIVE e entregando. <strong>Lead real (gate 3):</strong> cruzado com Pipedrive, 15 ganhos em 30d (R$ 41.208), não é só "conversão de plataforma".</p>
+  </div>
+
+  <!-- 4 -->
+  <h2 class="section-title">4. Resumo executivo &middot; 4 KPIs</h2>
+  <div class="summary-grid">
+    <div>
+      <span class="num success">R$ 38,89</span>
+      <span class="label">CPL Meta BR (7d)</span>
+      <span class="delta up">-3,1% vs 14d (R$ 40,13) &middot; saudável (≤76)</span>
+    </div>
+    <div>
+      <span class="num">139</span>
+      <span class="label">Leads Meta BR (7d)</span>
+      <span class="delta">19,9/dia &middot; estável (30d: 19,2/dia)</span>
+    </div>
+    <div>
+      <span class="num success">15</span>
+      <span class="label">Ganhos Pipedrive (30d)</span>
+      <span class="delta up">R$ 41.208 em won &middot; safra da campanha</span>
+    </div>
+    <div>
+      <span class="num danger">115+</span>
+      <span class="label">Ads Meta WITH_ISSUES</span>
+      <span class="delta down">1 DISAPPROVED servindo &middot; higiene urgente</span>
+    </div>
+  </div>
+  <p class="tbl-note">CPL EUA (30d) = US$ 20,89 = R$ 113,25 pela taxa 5,4212, mas campanha zerou em 14d e 7d: tratado como ruído, sem veredito. Google custo por conversão 30d R$ 324,30 (7d R$ 165,44): alto, porém é a natureza do canal neste produto de interrupção (ver seção 11), budget enxuto é a meta, não matar.</p>
+
+  <!-- 5 -->
+  <h2 class="section-title">5. Achados que mudam decisão</h2>
+
+  <div class="alert-box success">
+    <h3>✅ LIXO caindo na safra: 17% &rarr; 12% &rarr; 6% dos leads</h3>
+    <p>Pela cohort Pipedrive (add_time), o motivo LIXO foi 54 de 315 leads (17%) em 30d, 18 de 151 (12%) em 14d e 5 de 83 (6%) em 7d. A qualidade da entrada está melhorando semana a semana. CPL BR continua saudável no mesmo movimento. Motor estável.</p>
+  </div>
+
+  <div class="alert-box">
+    <h3>🔴 Fonte de LIXO com nome e número (origem verificada, não suspeita)</h3>
+    <p>Cruzando os leads perdidos com a ORIGEM gravada no Pipedrive (passo 2b do playbook), o criativo <strong>AD6 &middot; V27 Editorial Boletim</strong> no conjunto <strong>CJ08 LAL Público Alvo (R$ 374/dia)</strong> gerou 27 leads em 30d, <strong>18 LIXO, 0 won</strong> (67% lixo). O <strong>AD1 V18 Editorial Jornal</strong> no mesmo CJ08 gerou 105 leads com 27 lixo e só 1 won. O conjunto CJ08 é o maior gasto e o maior produtor de lixo ao mesmo tempo.</p>
+  </div>
+
+  <div class="alert-box success">
+    <h3>🏆 Melhor qualidade verificada: CJ08C (Ot.Análise)</h3>
+    <p>O conjunto <strong>CJ08C &middot; Imagem AM Editorial Jornal V18</strong> gerou 59 leads em 30d com <strong>4 ganhos</strong> e só 6 lixo, CPL 7d de R$ 42,37 (o melhor com volume). É o público otimizado para o evento de Análise. Candidato natural a receber o budget que sai do lixo do CJ08.</p>
+  </div>
+
+  <div class="alert-box warning">
+    <h3>⚠️ Sinais de fadiga no AD1 V18 do CJ08 (maior gasto)</h3>
+    <p>AD1 V18 Editorial Jornal (CJ08, R$ 374/dia) tem frequência 2,7 (30d), engagement_rate_ranking e conversion_rate_ranking em BELOW_AVERAGE_20. São 2 dos 3 indicadores de fadiga disparados. Mas é o que mais gera leads (108 em 30d, 1 won). Regra de ouro: não pausar quem vende, planejar troca de criativo (camada 3), nunca kill cego.</p>
+  </div>
+
+  <div class="alert-box info">
+    <h3>ℹ️ EUA parado e Google caro por conversão, ambos esperados</h3>
+    <p>A campanha EUA (CTWA WhatsApp) só rodou início de outubro (US$ 188, 9 conversas) e zerou em 14d/7d: ruído, não otimizar ranking. Google tem custo por conversão alto porque é o canal de interrupção/defesa de nome deste produto (mercado de busca minúsculo), não um canal de volume.</p>
+  </div>
+
+  <!-- 6 -->
+  <h2 class="section-title">6. Performance ad a ad &middot; Meta BR (30d)</h2>
+  <table>
+    <thead><tr><th>Criativo</th><th>Conjunto</th><th>Gasto</th><th>Leads</th><th>CPL</th><th>Freq</th><th>Qual / Conv rank</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>Imagem AM Editorial Jornal V18</td><td>CJ08C Ot.Análise R$70</td><td>R$ 3.751</td><td>68</td><td>R$ 55,16</td><td>1,68</td><td>AVERAGE / UNKNOWN</td><td><span class="pill ok">Vencedor, escalar</span></td></tr>
+      <tr class="row-warn"><td>AD1 V18 Editorial Jornal</td><td>CJ08 LAL R$374</td><td>R$ 7.982</td><td>108</td><td>R$ 73,90</td><td>2,70</td><td>AVERAGE / BELOW_20</td><td><span class="pill warn">Vende mas satura + lixo</span></td></tr>
+      <tr class="row-best"><td>AD6 V27 Editorial Boletim</td><td>CJ08 LAL R$374</td><td>R$ 1.131</td><td>22</td><td>R$ 51,40</td><td>1,48</td><td>AVERAGE / BELOW_20</td><td><span class="pill crit">Pausar, 67% lixo 0 won</span></td></tr>
+      <tr class="row-warn"><td>AD1 V18 Editorial Jornal</td><td>CJ08D Ot.Contrato R$70</td><td>R$ 3.220</td><td>39</td><td>R$ 82,55</td><td>1,67</td><td>AVERAGE / UNKNOWN</td><td><span class="pill warn">Atenção, CPL acima</span></td></tr>
+      <tr><td>E1C V18 cirúrgico</td><td>CJ08C2 R$50</td><td>R$ 1.017</td><td>11</td><td>R$ 92,46</td><td>1,54</td><td>UNKNOWN</td><td><span class="pill warn">Monitorar</span></td></tr>
+      <tr><td>E4C Portal Saúde em Pauta</td><td>CJ08-2 R$50</td><td>R$ 985</td><td>12</td><td>R$ 82,07</td><td>1,69</td><td>UNKNOWN</td><td><span class="pill warn">Monitorar</span></td></tr>
+      <tr class="row-best"><td>AD2 V4 Tabela Verde 22-26</td><td>CJ08D Ot.Contrato R$70</td><td>R$ 592</td><td>9</td><td>R$ 65,81</td><td>1,44</td><td>BELOW_35 / UNKNOWN</td><td><span class="pill ok">2 won, revisar visual</span></td></tr>
+      <tr class="row-bad"><td>E3C Dois passos</td><td>CJ08D2 R$50</td><td>R$ 732</td><td>6</td><td>R$ 121,97</td><td>1,74</td><td>UNKNOWN</td><td><span class="pill crit">CPL crítico</span></td></tr>
+      <tr class="row-bad"><td>E10C Jornal Medicina Hoje</td><td>CJ08D2 R$50</td><td>R$ 558</td><td>3</td><td>R$ 185,85</td><td>1,44</td><td>UNKNOWN</td><td><span class="pill crit">CPL crítico</span></td></tr>
+      <tr class="row-bad"><td>E5C Capa tabloide</td><td>CJ08-2 R$50</td><td>R$ 325</td><td>2</td><td>R$ 162,38</td><td>1,58</td><td>UNKNOWN</td><td><span class="pill crit">CPL crítico</span></td></tr>
+      <tr class="row-bad"><td>E6C Checklist 3 pontos</td><td>CJ08C2 R$50</td><td>R$ 160</td><td>1</td><td>R$ 159,63</td><td>1,38</td><td>UNKNOWN</td><td><span class="pill crit">Baixo retorno</span></td></tr>
+      <tr class="row-best"><td>AD3 STJ1 80k STJ (vídeo)</td><td>CJ08C R$70</td><td>R$ 61</td><td>2</td><td>R$ 30,34</td><td>1,32</td><td>BELOW_35 / UNKNOWN</td><td><span class="pill info">Imaturo, CPL bom</span></td></tr>
+      <tr><td>E8C / E9C / E7C / E2C / AD4 (estáticos+vídeo residuais)</td><td>CJ08C2 / CJ08-2 / CJ08C</td><td>&lt; R$ 141 cada</td><td>0</td><td>&mdash;</td><td>1,0-1,2</td><td>UNKNOWN</td><td><span class="pill neutral">Imaturo, sem dado</span></td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">CPL BR = custo por lead (actions.lead). Rankings UNKNOWN = volume baixo ou natureza da campanha, não dão veredito de ranking (não otimizar ranking nesse caso). "Lixo" e "won" por criativo vêm da origem Pipedrive, seção 5 e abaixo.</p>
+
+  <!-- 7 -->
+  <h2 class="section-title">7. Performance &middot; Meta EUA (CTWA WhatsApp)</h2>
+  <table>
+    <thead><tr><th>Criativo</th><th>Conjunto</th><th>Gasto 30d</th><th>Conversas</th><th>Custo/conversa</th><th>Rankings</th><th>Veredito</th></tr></thead>
+    <tbody>
+      <tr class="row-warn"><td>AD1 NOTICIA Editorial Notícia (filtro)</td><td>CJ92 Listas Méd. Residentes US$15/dia</td><td>US$ 188 (R$ 1.019)</td><td>9</td><td>US$ 20,89 (R$ 113,25)</td><td>Qual BELOW_35 / Conv BELOW_35 / Eng AVERAGE</td><td><span class="pill warn">Ruído: parou em 14d/7d</span></td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">Única campanha EUA ativa no período, e só na 1ª metade (14d e 7d = zero gasto). Campanha de mensagem com rankings penalizados, mas sem continuidade e volume baixo: não dar veredito de CPA, só sinalizar que precisa reativar ou encerrar com decisão do William. Não há a dupla Original/Duplicada ativa neste snapshot, então sem avaliação de canibalização EUA neste ciclo.</p>
+
+  <!-- 8 -->
+  <h2 class="section-title">8. Ads WITH_ISSUES &middot; Meta BR</h2>
+  <div class="alert-box warning">
+    <h3>115+ anúncios WITH_ISSUES, 1 DISAPPROVED servindo</h3>
+    <p>Quase todos concentrados em <strong>AUXÍLIO MORADIA | ENGAJAMENTO | WHATSAPP</strong> e <strong>AUXÍLIO MORADIA | DIRECT ANTIGA</strong> (campanhas de engajamento/direct, não as de performance CADASTROS). Não contaminam o CPL BR analisado acima, que vem da campanha SP TOPO CADASTROS. São entulho de gerenciador.</p>
+  </div>
+  <table>
+    <thead><tr><th>Campanha</th><th>Situação</th><th>Qtd</th><th>Ação recomendada</th></tr></thead>
+    <tbody>
+      <tr class="row-warn"><td>AUXÍLIO MORADIA | ENGAJAMENTO | WHATSAPP</td><td>WITH_ISSUES (configured ACTIVE/PAUSED)</td><td>~100</td><td>Arquivar (nunca deletar) só os que não gastam há +14d; confirmar spend 14d por ad antes</td></tr>
+      <tr class="row-bad"><td>AUXÍLIO MORADIA | ENGAJAMENTO | WHATSAPP &middot; AD [AM] 36 Vídeo 01 Fernanda</td><td><span class="pill crit">DISAPPROVED + configured ACTIVE</span></td><td>1</td><td>Está configurado para servir e foi reprovado: pausar e mandar revisar o criativo (não arquivar)</td></tr>
+      <tr class="row-warn"><td>AUXÍLIO MORADIA | DIRECT ANTIGA</td><td>WITH_ISSUES (configured ACTIVE)</td><td>~9</td><td>Campanha antiga: arquivar inventário morto após checar spend 14d</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">Regra armadilha #7 do playbook: só arquivar (nunca deletar), só o que comprovadamente não gasta há +2 semanas, verificando o spend de cada ad antes. DISAPPROVED que está servindo = pausar e revisar criativo, não arquivar. Não arquivar criativo recém-subido em revisão temporária. A verificação de spend por ad não veio nesta coleta: entregar lista final ao Executor exige esse recorte antes de qualquer arquivamento.</p>
+
+  <!-- 9 -->
+  <h2 class="section-title">9. Comparação de janelas (30 &rarr; 14 &rarr; 7)</h2>
+  <table>
+    <thead><tr><th>Métrica</th><th>30d (03/10-01/11)</th><th>14d (19/10-01/11)</th><th>7d (26/10-01/11)</th></tr></thead>
+    <tbody>
+      <tr><td>CPL Meta BR</td><td>R$ 35,97</td><td>R$ 40,13</td><td><span class="pill ok">R$ 38,89</span></td></tr>
+      <tr><td>Leads Meta BR / dia</td><td>19,2</td><td>18,6</td><td>19,9</td></tr>
+      <tr><td>Gasto Meta BR</td><td>R$ 20.717</td><td>R$ 10.474</td><td>R$ 5.405</td></tr>
+      <tr><td>LIXO (% dos leads Pipedrive)</td><td>17,1%</td><td>11,9%</td><td><span class="pill ok">6,0%</span></td></tr>
+      <tr><td>Ganhos Pipedrive (cohort)</td><td>15 (R$ 41.208)</td><td>7 (R$ 16.583)</td><td>4 (R$ 7.512)</td></tr>
+      <tr><td>Google custo/conversão</td><td>R$ 324,30</td><td>R$ 217,25</td><td>R$ 165,44</td></tr>
+      <tr><td>Google CTR</td><td>5,47%</td><td>5,84%</td><td>5,21%</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note"><strong>Narrativa:</strong> o motor está saudável e melhorando no que importa. CPL BR oscila dentro da faixa saudável (R$ 36-40, teto da régua é R$ 76), leads/dia estável perto de 19, e a qualidade da safra sobe forte (LIXO de 17% para 6%). Google reduz o custo por conversão de R$ 324 para R$ 165 nas janelas mais recentes, sinal de que a keyword-âncora QS7 segura a eficiência enquanto as keywords QS baixo arrastam o número. Observação de honestidade: este snapshot traz apenas as 3 janelas do ciclo atual; ciclos anteriores nomeados não vieram na coleta, então a tendência aqui é 30&rarr;14&rarr;7 e não C(N-3)...C(N).</p>
+
+  <!-- 10 -->
+  <h2 class="section-title">10. Sazonalidade do período</h2>
+  <table>
+    <thead><tr><th>Evento</th><th>Janela</th><th>Impacto no período 03/10-01/11</th></tr></thead>
+    <tbody>
+      <tr><td>Dia das Crianças</td><td>12/10</td><td>CPMs +10-15% por alguns dias dentro do período (pressão leve no custo Meta)</td></tr>
+      <tr><td>Temporada de prova de residência médica</td><td>Outubro a Janeiro</td><td>Atenção do avatar migra para FIES/prova, tende a reduzir demanda de busca por Aux Moradia (reforça a tese de que o Google é fundo de funil, não volume)</td></tr>
+      <tr><td>Finados</td><td>02/11</td><td>Feriado logo após o fim da janela (01/11): leitura do próximo ciclo pode vir com 1 dia mais fraco</td></tr>
+      <tr><td>Black Friday</td><td>última semana de novembro</td><td>Ainda fora do período, mas aproximando: CPMs +30-50% chegam no fim de novembro, planejar budget</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 11 -->
+  <h2 class="section-title">11. Diagnóstico &middot; gargalos priorizados</h2>
+  <div class="alert-box">
+    <h3>Gargalo 1 (alto impacto) &middot; budget grande no público que mais traz lixo</h3>
+    <p>O CJ08 LAL Público Alvo (R$ 374/dia, o maior) concentra gasto e lixo. O criativo AD6 V27 Boletim é lixeira pura (67% lixo, 0 won) e o AD1 V18 do CJ08 mostra fadiga (freq 2,7 + 2 rankings BELOW_20). Há dinheiro parado em entrega de baixa qualidade que o CJ08C (Ot.Análise, 4 won) converteria melhor.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 2 (médio) &middot; estáticos novos de CPL crítico no CJ08D2/CJ08-2</h3>
+    <p>E3C (R$ 121,97), E10C (R$ 185,85), E5C (R$ 162,38) e E6C (R$ 159,63) estão bem acima da régua R$ 76, com pouco ou nenhum won. São testes de 06/10 que não vingaram. Enxugar os de pior CPL e sem won.</p>
+  </div>
+  <div class="alert-box warning">
+    <h3>Gargalo 3 (médio) &middot; Quality Score crítico em 3 keywords âncora do Google</h3>
+    <p>"auxilio moradia residencia" (QS3), "residencia medica auxilio moradia" (QS3) e "auxílio moradia residência médica retroativo" (QS3) estão abaixo do piso. São termos diretos do produto (não negativar, não pausar), a correção é melhorar RSA + concordância com a LP, não cortar.</p>
+  </div>
+  <div class="alert-box success">
+    <h3>Sem gargalo &middot; eficiência de entrada e Google existencial</h3>
+    <p>CPL BR saudável, LIXO caindo, keyword-âncora QS7 convertendo. Google segue no ar por regra de negócio (defesa de nome + fundo de funil), sem questionamento de existência: o trabalho é só manter o budget enxuto e o QS das não-âncora sob controle.</p>
+  </div>
+
+  <!-- ENTREGÁVEIS GOOGLE -->
+  <h2 class="section-title">12. Google &middot; Tabela de ação 1: Palavras-chave (30d)</h2>
+  <table>
+    <thead><tr><th>Keyword</th><th>Match</th><th>QS</th><th>Impr</th><th>Cliq</th><th>Custo</th><th>Conv</th><th>Ação</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>auxilio moradia medico residente</td><td>PHRASE</td><td>7</td><td>1407</td><td>82</td><td>R$ 997,09</td><td>3</td><td><span class="pill ok">Manter</span></td><td>Keyword-âncora intocável, QS saudável, única que converte com volume</td></tr>
+      <tr class="row-bad"><td>auxilio moradia residencia</td><td>EXACT</td><td><span class="qs-crit">3</span></td><td>181</td><td>11</td><td>R$ 137,76</td><td>1</td><td><span class="pill warn">Ajustar (não pausar)</span></td><td>QS 3 gate crítico, mas é termo direto do produto: melhorar RSA + LP, nunca negativar</td></tr>
+      <tr class="row-warn"><td>auxilio moradia residencia medica</td><td>PHRASE</td><td>5</td><td>297</td><td>9</td><td>R$ 101,35</td><td>0</td><td><span class="pill warn">Ajustar lance</span></td><td>R$ 101 sem conversão, QS mediano: baixar lance para conter custo, segue no ar</td></tr>
+      <tr><td>auxilio moradia medicos residentes</td><td>PHRASE</td><td>5</td><td>66</td><td>5</td><td>R$ 45,56</td><td>0</td><td><span class="pill info">Manter</span></td><td>Variação da âncora, volume pequeno, sem desperdício relevante</td></tr>
+      <tr><td>processo auxilio moradia residencia medica</td><td>PHRASE</td><td>4</td><td>4</td><td>1</td><td>R$ 15,44</td><td>0</td><td><span class="pill info">Manter</span></td><td>Volume ínfimo, termo direto, no limite do QS mínimo</td></tr>
+      <tr class="row-bad"><td>residencia medica auxilio moradia</td><td>PHRASE</td><td><span class="qs-crit">3</span></td><td>6</td><td>0</td><td>R$ 0</td><td>0</td><td><span class="pill warn">Ajustar QS</span></td><td>QS 3 crítico, sem gasto, termo direto: corrigir via RSA/LP, não negativar</td></tr>
+      <tr class="row-bad"><td>auxílio moradia residência médica retroativo</td><td>EXACT</td><td><span class="qs-crit">3</span></td><td>15</td><td>0</td><td>R$ 0</td><td>0</td><td><span class="pill warn">Ajustar QS</span></td><td>QS 3 crítico, 0 clique, termo direto de alta intenção: melhorar anúncio/relevância</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note"><strong>Ação recomendada hoje:</strong> nenhuma keyword pausa ou negativa (todas são termo direto do produto). Abrir tarefa de RSA/LP para subir o QS das 3 em vermelho. Amarra à camada 2 do plano.</p>
+
+  <h2 class="section-title">13. Google &middot; Tabela de ação 2: Termos de pesquisa (30d, maior gasto primeiro)</h2>
+  <table>
+    <thead><tr><th>Termo</th><th>Status</th><th>Custo</th><th>Cliq</th><th>Conv</th><th>Ação</th><th>Motivo (LIXO=targeting / desempenho)</th></tr></thead>
+    <tbody>
+      <tr><td>auxilio moradia residencia</td><td>ADDED</td><td>R$ 48,36</td><td>3</td><td>0</td><td><span class="pill ok">Manter</span></td><td>Termo direto, já é keyword</td></tr>
+      <tr class="row-bad"><td>processo socioeconômico para classificação de prioridade na moradia dos residentes</td><td>NONE</td><td>R$ 20,38</td><td>2</td><td>0</td><td><span class="pill crit">Negativar</span></td><td>LIXO (targeting): busca sobre processo de priorização socioeconômica de vaga de moradia em universidade, não a ação judicial. Negativar "socioeconômico"/"classificação"</td></tr>
+      <tr class="row-bad"><td>auxilio permanencia residencia</td><td>NONE</td><td>R$ 15,87</td><td>1</td><td>0</td><td><span class="pill crit">Negativar</span></td><td>Desempenho + off: "auxílio permanência" é outro benefício, não auxílio-moradia. Negativar "permanencia"</td></tr>
+      <tr><td>processo auxilio moradia residencia medica</td><td>ADDED</td><td>R$ 15,44</td><td>1</td><td>0</td><td><span class="pill ok">Manter</span></td><td>Termo direto, já keyword</td></tr>
+      <tr><td>auxilio moradia médico residente (e variações com acento)</td><td>NONE</td><td>~R$ 15,36</td><td>1</td><td>0</td><td><span class="pill ok">Manter</span></td><td>Termo direto, já coberto pela âncora PHRASE</td></tr>
+      <tr class="row-best"><td>auxilio moradia residencia médica</td><td>NONE</td><td>R$ 8,70</td><td>1</td><td>1</td><td><span class="pill info">Virar keyword nova</span></td><td>Converteu e ainda não é keyword própria: adicionar como PHRASE no ad group âncora</td></tr>
+      <tr><td>auxilio moradia medico / residentes / direito auxilio moradia... (demais)</td><td>NONE/ADDED</td><td>&lt; R$ 11 cada</td><td>0-1</td><td>0</td><td><span class="pill ok">Manter</span></td><td>Todos termo direto do produto, variações da intenção certa, baixo gasto</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">Nenhuma cidade aparece nos termos, e se aparecesse não se negativaria (atuação nacional SP+MG). <strong>Ação recomendada hoje:</strong> negativar "socioeconômico/classificação" e "permanencia" (2 negativas de targeting); promover "auxilio moradia residencia médica" a keyword. Amarra à camada 1 do plano.</p>
+
+  <h2 class="section-title">14. Google &middot; Tabela de ação 3: Qualidade dos anúncios</h2>
+  <table>
+    <thead><tr><th>Anúncio / grupo</th><th>Campanha</th><th>Aprovação</th><th>Review</th><th>Ação</th><th>Motivo</th></tr></thead>
+    <tbody>
+      <tr class="row-best"><td>GA01 RSA 01 / GA02 RSA 01 (núcleo + médico residente)</td><td>Pesquisa | 01 | BRASIL - AM</td><td>APPROVED</td><td>REVIEWED</td><td><span class="pill ok">Manter</span></td><td>Novos RSAs aprovados e servindo na campanha ativa, sustentam o QS7 da âncora</td></tr>
+      <tr class="row-best"><td>Demais RSAs da campanha AM (822015313128, 823115439980/983, 810229504784, etc.)</td><td>Pesquisa | 01 | BRASIL - AM</td><td>APPROVED</td><td>REVIEWED</td><td><span class="pill ok">Manter</span></td><td>Todos aprovados, sem pendência de política</td></tr>
+      <tr class="row-warn"><td>Anúncio 673879180978</td><td>Pesquisa | 00 | SP</td><td>UNKNOWN</td><td>REVIEW_IN_PROGRESS</td><td><span class="pill warn">Monitorar</span></td><td>Em análise do Google, campanha SP (não a ativa AM): aguardar veredito, sem ação ainda</td></tr>
+      <tr><td>Campanhas YT LEADS / RECONHECIMENTO / SP / RJ / MG (demais)</td><td>várias pausadas/secundárias</td><td>APPROVED</td><td>REVIEWED</td><td><span class="pill neutral">Sem dado de spend aqui</span></td><td>Aprovados; fora do recorte de performance desta janela</td></tr>
+    </tbody>
+  </table>
+  <p class="tbl-note">Zero anúncios reprovados no Google (gate 1 OK). <strong>Ação recomendada hoje:</strong> nenhuma intervenção, apenas acompanhar o anúncio em REVIEW_IN_PROGRESS. QS da campanha âncora saudável (7). Amarra à camada 3 (acompanhamento).</p>
+
+  <!-- 15 Plano -->
+  <h2 class="section-title">15. Plano de ação &middot; 3 camadas</h2>
+  <ul class="action-list">
+    <li class="crit">
+      <div class="action-title">HOJE &middot; zero risco (Google)</div>
+      <div class="action-desc">Negativar os 2 termos de LIXO de targeting ("socioeconômico/classificação" e "permanencia"). Promover "auxilio moradia residencia médica" a keyword PHRASE no grupo âncora (converteu 1 e ainda não é keyword).</div>
+      <div class="action-meta">Impacto esperado: conter ~R$ 36/mês de desperdício e capturar intenção que já converte</div>
+    </li>
+    <li class="crit">
+      <div class="action-title">HOJE &middot; zero risco (Meta BR)</div>
+      <div class="action-desc">Pausar o criativo AD6 V27 Editorial Boletim no CJ08 (67% lixo, 0 won em 30d, origem verificada). Pausar o AD [AM] 36 DISAPPROVED que está configurado ACTIVE e mandar revisar.</div>
+      <div class="action-meta">Impacto: liberar ~R$ 1.131/30d do pior criativo para o público que converte, sem tocar no que vende</div>
+    </li>
+    <li class="warn">
+      <div class="action-title">ESTA SEMANA &middot; decisão (Meta BR)</div>
+      <div class="action-desc">Realocar parte do budget do CJ08 LAL (R$ 374/dia, maior lixo + fadiga no AD1) para o CJ08C Ot.Análise (4 won, CPL R$ 42, melhor qualidade verificada). Enxugar estáticos de CPL crítico sem won (E10C, E5C, E6C). Decidir com o William antes de executar (não é LAL novo, é remanejo entre conjuntos existentes, respeita a regra público puro).</div>
+      <div class="action-meta">Impacto: subir a fração do gasto que gera won, manter CPL na faixa saudável</div>
+    </li>
+    <li class="warn">
+      <div class="action-title">ESTA SEMANA &middot; decisão (Google)</div>
+      <div class="action-desc">Abrir melhoria de RSA + concordância com a LP nas 3 keywords de QS 3 (termos diretos, não pausar). Baixar lance de "auxilio moradia residencia medica" (R$ 101 sem conversão). Confirmar budget enxuto continua em R$ 60/dia.</div>
+      <div class="action-meta">Impacto: subir QS das âncoras secundárias, reduzir custo por conversão (hoje R$ 165 em 7d)</div>
+    </li>
+    <li>
+      <div class="action-title">PRÓXIMAS 2 SEMANAS &middot; testes e higiene</div>
+      <div class="action-desc">Briefar troca do criativo AD1 V18 do CJ08 (fadiga: freq 2,7 + 2 rankings BELOW_20) via /criativo, sem pausar antes de ter o substituto. Rodar a verificação de spend 14d por ad das campanhas ENGAJAMENTO/DIRECT ANTIGA e arquivar (nunca deletar) só os mortos. Decidir reativar ou encerrar a campanha EUA CTWA (parada em 14d/7d).</div>
+      <div class="action-meta">Impacto: renovar o maior gerador de leads antes de saturar, desentupir gerenciador com segurança</div>
+    </li>
+  </ul>
+
+  <!-- 16 tracking -->
+  <h2 class="section-title">16. Validação de tracking</h2>
+  <table>
+    <thead><tr><th>Item</th><th>Status</th><th>Observação</th></tr></thead>
+    <tbody>
+      <tr><td>Anúncios servindo (Google)</td><td><span class="pill ok">OK</span></td><td>Nenhum reprovado; 1 em review (campanha SP)</td></tr>
+      <tr><td>Leads reais cruzados (Pipedrive)</td><td><span class="pill ok">OK</span></td><td>15 won em 30d, origem gravada em 289 de 315 leads (92% de cobertura)</td></tr>
+      <tr><td>Atribuição de origem por criativo</td><td><span class="pill ok">OK</span></td><td>Tag Lead gravando campanha+público+criativo, permitiu acusar lixo com nome</td></tr>
+      <tr><td>Número do WhatsApp vivo na LP (gate 2)</td><td><span class="pill warn">PENDENTE</span></td><td>Lacuna v1: exige ler a LP, não veio no snapshot. Checar antes de confiar em leads de mensagem</td></tr>
+      <tr><td>Quebra de perda por "número da campanha" no funil</td><td><span class="pill warn">PENDENTE</span></td><td>Lacuna v1: cruzamento ainda calibrando pós 16/06. Suprido pela origem lead a lead</td></tr>
+      <tr><td>Meta ads WITH_ISSUES / DISAPPROVED</td><td><span class="pill crit">FALHA</span></td><td>115+ em campanhas de engajamento/direct; 1 DISAPPROVED servindo (ação na seção 8 e plano)</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 17 OAB -->
+  <h2 class="section-title">17. Compliance OAB</h2>
+  <div class="alert-box info">
+    <h3>Sem copy nova neste ciclo</h3>
+    <p>Relatório de diagnóstico read-only, nenhuma peça nova proposta aqui. Quando o briefing do novo criativo do AD1 V18 entrar (camada 3), aplicar o checklist OAB por copy. Lembretes ativos: números institucionais (+5.000 médicos, 98% de aprovação, 256 avaliações 5★) são reais e auditáveis, risco de "promessa" assumido conscientemente pelo William, sempre flaggar. Nunca prometer resultado garantido ("tem direito" sim, "vai receber" não). Sem linguagem mercantilista no CTA.</p>
+  </div>
+
+  <!-- audit -->
+  <h2 class="section-title">18. Audit log</h2>
+  <div class="audit-log"><span class="ts">02/11 20:28</span> COLETA     ENTREGUE   | Aux Moradia · JSON read-only · fontes google+meta+pipedrive OK
+<span class="ts">02/11 20:30</span> GATE-1     <span class="ok">OK</span>         | Google 0 reprovados · Meta campanha CADASTROS ACTIVE
+<span class="ts">02/11 20:30</span> GATE-2     <span class="warn">PENDENTE</span>   | WhatsApp vivo na LP não checado (lacuna v1)
+<span class="ts">02/11 20:31</span> GATE-3     <span class="ok">OK</span>         | Pipedrive 15 won/30d · leads reais confirmados
+<span class="ts">02/11 20:32</span> META-BR    DIAGNOSTICO| CPL 7d R$ 38,89 · SAUDAVEL · LIXO 17%→6%
+<span class="ts">02/11 20:33</span> META-BR    ORIGEM     | AD6 V27 Boletim (CJ08) 67% lixo 0 won · CJ08C 4 won
+<span class="ts">02/11 20:33</span> META-BR    FADIGA     | AD1 V18 CJ08 freq 2,7 + 2 rankings BELOW_20
+<span class="ts">02/11 20:34</span> META-US    <span class="warn">RUIDO</span>      | CTWA parou 14d/7d · sem veredito
+<span class="ts">02/11 20:34</span> GOOGLE     <span class="warn">QS</span>         | 3 keywords QS3 (termos diretos, nao negativar)
+<span class="ts">02/11 20:35</span> META-BR    <span class="crit">WITH_ISSUES</span>| 115+ ads · 1 DISAPPROVED servindo
+
+<span class="ts">02/11 20:36</span> propor GOOGLE  NEGATIVAR  | socioeconomico/classificacao + permanencia · aguardando ok
+<span class="ts">02/11 20:36</span> propor GOOGLE  ADD-KW     | auxilio moradia residencia medica (converteu) · aguardando ok
+<span class="ts">02/11 20:37</span> propor META-BR PAUSAR_AD  | AD6 V27 Boletim CJ08 + AD[AM]36 DISAPPROVED · aguardando ok
+<span class="ts">02/11 20:37</span> propor META-BR REMANEJO   | CJ08 LAL → CJ08C Ot.Analise · decidir com William
+<span class="ts">02/11 20:38</span> manual EXECUTOR CHECK-SPEND| verificar spend 14d por ad antes de arquivar WITH_ISSUES
+READ-ONLY: nenhuma alteracao executada. Tudo sob aprovacao item a item.</div>
+
+  <!-- proximo -->
+  <h2 class="section-title">19. Próximo ciclo</h2>
+  <div class="alert-box info">
+    <h3>Segunda, 09/11/2026 &middot; Auxílio Moradia</h3>
+    <p><strong>Foco:</strong> (1) medir efeito da pausa do AD6 V27 e do remanejo CJ08&rarr;CJ08C no CPL e na taxa de won; (2) conferir subida de QS das 3 keywords após ajuste de RSA; (3) confirmar número do WhatsApp na LP (fechar gate 2).<br>
+    <strong>Pré-requisito:</strong> William aprovar item a item o plano camada 1 e 2; coleta v2 trazer leitura da LP e, se possível, quebra por número da campanha no funil.</p>
+  </div>
+
+  <!-- INDEX embutido -->
+  <h2 class="section-title">20. INDEX da pasta (navegação)</h2>
+  <div class="index-cards">
+    <a href="analises/01-google-ads.html">
+      <div style="font-size:26px">🔍</div>
+      <div style="font-weight:700;color:var(--teal);margin:6px 0">Google Ads &middot; Ciclo 02/11</div>
+      <div style="font-size:13px;color:var(--texto-secundario)">1 campanha ENABLED, 2 ad groups. Custo/conv 7d R$ 165. 3 keywords QS3 (termo direto). 2 negativas + 1 keyword nova propostas.</div>
+    </a>
+    <a href="analises/02-meta-ads.html">
+      <div style="font-size:26px">📱</div>
+      <div style="font-weight:700;color:var(--teal);margin:6px 0">Meta Ads &middot; Ciclo 02/11</div>
+      <div style="font-size:13px;color:var(--texto-secundario)">CPL BR R$ 38,89 saudável. CJ08C vencedor (4 won). AD6 Boletim lixeira. 115+ WITH_ISSUES. EUA parado.</div>
+    </a>
+  </div>
+  <p class="tbl-note">Estrutura: clientes/silva-pimenta/marketing/trafego-pago/otimizacoes/auxilio-moradia/2026-11-02/ com INDEX.html + analises/01-google-ads.html + analises/02-meta-ads.html. Pastas de datas anteriores não são tocadas (histórico preservado).</p>
+
+</div>
+
+<footer>
+  Silva Pimenta &middot; Auxílio Moradia &middot; Rita (relatórios e otimização) &middot; Ciclo 02/11/2026<br>
+  Gerado via skills <code>google-ads-ratos</code> + <code>meta-ads-ratos</code> + <code>ads-ratos</code> + <code>/otimizar</code> (modo nuvem, read-only sobre JSON)<br>
+  Arquivo: <code>clientes/silva-pimenta/marketing/trafego-pago/otimizacoes/auxilio-moradia/2026-11-02/analises/02-meta-ads.html</code><br>
+  Zero travessões. Nenhuma mudança executada: tudo sob aprovação item a item do William.
+</footer>
+</body>
+</html>
