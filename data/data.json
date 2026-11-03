@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-03T03:49:08Z",
+  "atualizadoEm": "2026-11-03T04:19:04Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4212,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 30.94,
-      "meta": 1748.45,
+      "meta": 1754.03,
       "leads_novos": 12,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 242.49,
-      "meta": 1323.83,
+      "meta": 1327.17,
       "leads_novos": 7,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 17.13,
+      "meta": 17.35,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 60.19,
+      "meta": 60.9,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 10.14,
+      "meta": 10.15,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 634.96,
+      "google": 644.92,
       "meta": 0.0,
       "leads_novos": 9,
       "ganhos": 0,
@@ -112,7 +112,7 @@
     },
     "nao-mapeado": {
       "google": 0.0,
-      "meta": 0.0,
+      "meta": 0.78,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -123,7 +123,17 @@
   },
   "mapa_gasto": {
     "versao_regras": "2026-10-09",
-    "nao_mapeado": [],
-    "avisos": []
+    "nao_mapeado": [
+      {
+        "canal": "meta",
+        "conta": "act_320965166251046",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": 0.78
+      }
+    ],
+    "avisos": [
+      "meta act_320965166251046: total da conta 2989.75 x soma das campanhas 2988.97 (dif 0.78) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 0.78"
+    ]
   }
 }
