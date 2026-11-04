@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-04T08:19:03Z",
+  "atualizadoEm": "2026-11-04T08:49:05Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4935,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 93.06,
-      "meta": 2416.08,
+      "meta": 2422.02,
       "leads_novos": 54,
       "ganhos": 3,
       "valor_ganhos": 9975.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 440.79,
-      "meta": 2400.04,
+      "meta": 2407.14,
       "leads_novos": 18,
       "ganhos": 2,
       "valor_ganhos": 6781.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 20.51,
+      "meta": 20.61,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -43,7 +43,7 @@
     "direito-medico": {
       "google": 1685.44,
       "meta": 0.0,
-      "leads_novos": 2,
+      "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 498.5,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 94.11,
+      "meta": 94.87,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 15.6,
+      "meta": 15.62,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -112,7 +112,7 @@
     },
     "nao-mapeado": {
       "google": 0.0,
-      "meta": 0.51,
+      "meta": 0.0,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -123,17 +123,7 @@
   },
   "mapa_gasto": {
     "versao_regras": "2026-10-09",
-    "nao_mapeado": [
-      {
-        "canal": "meta",
-        "conta": "act_320965166251046",
-        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 0.51
-      }
-    ],
-    "avisos": [
-      "meta act_320965166251046: total da conta 4693.76 x soma das campanhas 4693.25 (dif 0.51) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 0.51"
-    ]
+    "nao_mapeado": [],
+    "avisos": []
   }
 }
