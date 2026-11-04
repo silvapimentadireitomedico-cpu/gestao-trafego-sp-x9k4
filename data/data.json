@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-04T03:48:54Z",
+  "atualizadoEm": "2026-11-04T04:19:05Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4935,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 93.06,
-      "meta": 2381.17,
+      "meta": 2388.81,
       "leads_novos": 54,
       "ganhos": 3,
       "valor_ganhos": 9975.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 429.43,
-      "meta": 2339.31,
+      "meta": 2351.72,
       "leads_novos": 17,
       "ganhos": 2,
       "valor_ganhos": 6781.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 19.97,
+      "meta": 20.04,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 88.43,
+      "meta": 89.35,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 14.96,
+      "meta": 15.1,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 2162.14,
+      "google": 2166.38,
       "meta": 0.0,
       "leads_novos": 39,
       "ganhos": 1,
@@ -112,7 +112,7 @@
     },
     "nao-mapeado": {
       "google": 0.0,
-      "meta": -0.83,
+      "meta": 0.0,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -123,17 +123,7 @@
   },
   "mapa_gasto": {
     "versao_regras": "2026-10-09",
-    "nao_mapeado": [
-      {
-        "canal": "meta",
-        "conta": "act_320965166251046",
-        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": -0.83
-      }
-    ],
-    "avisos": [
-      "meta act_320965166251046: total da conta 4594.10 x soma das campanhas 4594.93 (dif -0.83) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ -0.83"
-    ]
+    "nao_mapeado": [],
+    "avisos": []
   }
 }
