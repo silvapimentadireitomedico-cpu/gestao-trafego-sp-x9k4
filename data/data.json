@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-05T08:49:02Z",
+  "atualizadoEm": "2026-11-05T09:18:57Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4778,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 186.96,
-      "meta": 3327.19,
+      "meta": 3335.74,
       "leads_novos": 66,
       "ganhos": 5,
       "valor_ganhos": 17157.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 607.4,
-      "meta": 3197.5,
+      "meta": 3202.48,
       "leads_novos": 33,
       "ganhos": 2,
       "valor_ganhos": 6781.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 120.46,
+      "meta": 120.97,
       "leads_novos": 3,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 26.02,
+      "meta": 26.2,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 0.0,
-      "meta": 0.44,
+      "google": 0.02,
+      "meta": 0.73,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -125,14 +125,22 @@
     "versao_regras": "2026-10-09",
     "nao_mapeado": [
       {
+        "canal": "google",
+        "conta": "1301598996",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": 0.02
+      },
+      {
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um vereador constrange uma...",
-        "gasto_brl": 0.44
+        "gasto_brl": 0.73
       }
     ],
     "avisos": [
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 0.44"
+      "google 1301598996: total da conta 4034.45 x soma das campanhas 4034.43 (dif 0.02) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 0.02",
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 0.73"
     ]
   }
 }
