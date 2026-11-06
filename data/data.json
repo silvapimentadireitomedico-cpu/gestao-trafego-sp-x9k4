@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-06T00:49:04Z",
+  "atualizadoEm": "2026-11-06T01:18:58Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4621,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 255.11,
-      "meta": 3919.87,
+      "meta": 3943.82,
       "leads_novos": 74,
       "ganhos": 5,
       "valor_ganhos": 17157.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 691.67,
-      "meta": 3795.95,
+      "meta": 3810.31,
       "leads_novos": 46,
       "ganhos": 3,
       "valor_ganhos": 11771.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 32.39,
+      "meta": 32.55,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 140.92,
+      "meta": 141.09,
       "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 32.89,
+      "meta": 33.07,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 5175.88,
+      "google": 5182.95,
       "meta": 0.0,
       "leads_novos": 85,
       "ganhos": 6,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 1381.4,
+      "google": 1383.94,
       "meta": 0.0,
       "leads_novos": 18,
       "ganhos": 0,
@@ -138,7 +138,7 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 5489.63 x soma das campanhas 5472.95 (dif 16.68) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 5496.70 x soma das campanhas 5480.02 (dif 16.68) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 16.68",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
