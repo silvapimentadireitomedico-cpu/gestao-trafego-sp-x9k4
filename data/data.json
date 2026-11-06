@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-06T01:18:58Z",
+  "atualizadoEm": "2026-11-06T01:49:01Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4621,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 255.11,
-      "meta": 3943.82,
+      "meta": 3960.08,
       "leads_novos": 74,
       "ganhos": 5,
       "valor_ganhos": 17157.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 691.67,
-      "meta": 3810.31,
-      "leads_novos": 46,
+      "meta": 3825.15,
+      "leads_novos": 47,
       "ganhos": 3,
       "valor_ganhos": 11771.0,
       "orcamento_diario_google": 150.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 2656.94,
+      "google": 2705.64,
       "meta": 0.0,
       "leads_novos": 5,
       "ganhos": 0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 141.09,
+      "meta": 141.16,
       "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 33.07,
+      "meta": 33.12,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 5182.95,
+      "google": 5180.36,
       "meta": 0.0,
       "leads_novos": 85,
       "ganhos": 6,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 1383.94,
+      "google": 1389.68,
       "meta": 0.0,
       "leads_novos": 18,
       "ganhos": 0,
@@ -138,7 +138,7 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 5496.70 x soma das campanhas 5480.02 (dif 16.68) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 5494.11 x soma das campanhas 5477.43 (dif 16.68) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 16.68",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
