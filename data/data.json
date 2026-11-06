@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-06T03:19:07Z",
+  "atualizadoEm": "2026-11-06T03:48:56Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.4621,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 255.11,
-      "meta": 4000.03,
+      "meta": 4008.38,
       "leads_novos": 74,
       "ganhos": 5,
       "valor_ganhos": 17157.0,
@@ -22,8 +22,8 @@
     },
     "fies": {
       "google": 701.92,
-      "meta": 3859.41,
-      "leads_novos": 48,
+      "meta": 3867.14,
+      "leads_novos": 49,
       "ganhos": 3,
       "valor_ganhos": 11771.0,
       "orcamento_diario_google": 150.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 32.88,
+      "meta": 33.06,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 141.43,
+      "meta": 141.73,
       "leads_novos": 5,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 33.24,
+      "meta": 33.34,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 5196.51,
+      "google": 5200.69,
       "meta": 0.0,
       "leads_novos": 86,
       "ganhos": 6,
@@ -111,7 +111,7 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 16.68,
+      "google": 16.94,
       "meta": 6.83,
       "leads_novos": 0,
       "ganhos": 0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 16.68
+        "gasto_brl": 16.94
       },
       {
         "canal": "meta",
@@ -138,8 +138,8 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 5519.19 x soma das campanhas 5502.51 (dif 16.68) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 16.68",
+      "google 1301598996: total da conta 5523.63 x soma das campanhas 5506.69 (dif 16.94) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 16.94",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
   }
