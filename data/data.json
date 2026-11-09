@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-09T05:19:03Z",
+  "atualizadoEm": "2026-11-09T05:48:59Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.5013,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 364.12,
-      "meta": 6318.06,
+      "meta": 6322.25,
       "leads_novos": 82,
       "ganhos": 8,
       "valor_ganhos": 29127.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1107.76,
-      "meta": 5781.84,
+      "meta": 5783.29,
       "leads_novos": 63,
       "ganhos": 5,
       "valor_ganhos": 16751.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 199.45,
+      "meta": 199.81,
       "leads_novos": 6,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2048.87,
+      "google": 2054.73,
       "meta": 0.0,
       "leads_novos": 34,
       "ganhos": 1,
@@ -111,7 +111,7 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 67.42,
+      "google": 67.44,
       "meta": 6.83,
       "leads_novos": 0,
       "ganhos": 0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 67.42
+        "gasto_brl": 67.44
       },
       {
         "canal": "meta",
@@ -138,8 +138,8 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 7771.20 x soma das campanhas 7703.77 (dif 67.42) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 67.42",
+      "google 1301598996: total da conta 7771.22 x soma das campanhas 7703.77 (dif 67.44) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 67.44",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
   }
