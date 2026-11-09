@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-09T18:49:25Z",
+  "atualizadoEm": "2026-11-09T19:19:08Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.5146,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 364.12,
-      "meta": 6763.33,
+      "meta": 6785.83,
       "leads_novos": 105,
       "ganhos": 8,
       "valor_ganhos": 29127.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1260.96,
-      "meta": 6194.25,
+      "meta": 6234.43,
       "leads_novos": 77,
       "ganhos": 7,
       "valor_ganhos": 24231.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 55.27,
+      "meta": 55.42,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -43,7 +43,7 @@
     "direito-medico": {
       "google": 4007.68,
       "meta": 0.0,
-      "leads_novos": 7,
+      "leads_novos": 8,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 446.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 214.2,
+      "meta": 215.63,
       "leads_novos": 7,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 56.42,
+      "meta": 56.74,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,14 +71,14 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 8102.43,
+      "google": 8185.49,
       "meta": 0.0,
-      "leads_novos": 131,
-      "ganhos": 13,
-      "valor_ganhos": 47835.0,
-      "orcamento_diario_google": 1216.0,
+      "leads_novos": 132,
+      "ganhos": 12,
+      "valor_ganhos": 47310.0,
+      "orcamento_diario_google": 1286.0,
       "orcamento_diario_meta": 0.0,
-      "orcamento_diario": 1216.0
+      "orcamento_diario": 1286.0
     },
     "livre-ir": {
       "google": 0.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2251.62,
+      "google": 2266.91,
       "meta": 0.0,
       "leads_novos": 38,
       "ganhos": 1,
@@ -111,7 +111,7 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 72.4,
+      "google": 72.57,
       "meta": 6.83,
       "leads_novos": 0,
       "ganhos": 0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 72.4
+        "gasto_brl": 72.57
       },
       {
         "canal": "meta",
@@ -138,8 +138,8 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 8690.14 x soma das campanhas 8617.75 (dif 72.40) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 72.40",
+      "google 1301598996: total da conta 8773.38 x soma das campanhas 8700.81 (dif 72.57) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 72.57",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
   }
