@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-09T20:49:04Z",
+  "atualizadoEm": "2026-11-09T21:19:02Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.5146,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 364.12,
-      "meta": 6843.24,
+      "meta": 6875.84,
       "leads_novos": 105,
       "ganhos": 8,
       "valor_ganhos": 29127.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 858.66
     },
     "fies": {
-      "google": 1273.85,
-      "meta": 6413.86,
+      "google": 1293.21,
+      "meta": 6459.32,
       "leads_novos": 77,
       "ganhos": 9,
       "valor_ganhos": 34211.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 55.45,
+      "meta": 55.59,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 4111.68,
+      "google": 4120.0,
       "meta": 0.0,
-      "leads_novos": 9,
+      "leads_novos": 10,
       "ganhos": 0,
       "valor_ganhos": 0.0,
       "orcamento_diario_google": 446.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 218.96,
+      "meta": 219.83,
       "leads_novos": 7,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 57.08,
+      "meta": 57.15,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 8378.02,
+      "google": 8401.74,
       "meta": 0.0,
       "leads_novos": 136,
       "ganhos": 12,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 523.36,
+      "google": 527.4,
       "meta": 0.0,
       "leads_novos": 3,
       "ganhos": 1,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2306.98,
+      "google": 2322.89,
       "meta": 0.0,
       "leads_novos": 38,
       "ganhos": 1,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 75.02,
-      "meta": 1.59,
+      "google": 75.88,
+      "meta": 6.83,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,27 +128,19 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 75.02
+        "gasto_brl": 75.88
       },
       {
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um vereador constrange uma...",
         "gasto_brl": 6.83
-      },
-      {
-        "canal": "meta",
-        "conta": "act_320965166251046",
-        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": -5.24
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 8976.41 x soma das campanhas 8901.38 (dif 75.02) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 75.02",
-      "meta act_320965166251046: total da conta 12846.43 x soma das campanhas 12851.67 (dif -5.24) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
-      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ -5.24"
+      "google 1301598996: total da conta 9005.03 x soma das campanhas 8929.14 (dif 75.88) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 75.88",
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
   }
 }
