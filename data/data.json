@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-11T10:19:05Z",
+  "atualizadoEm": "2026-11-11T10:49:06Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.584,
@@ -11,8 +11,8 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 486.42,
-      "meta": 7992.53,
+      "google": 503.38,
+      "meta": 8007.93,
       "leads_novos": 110,
       "ganhos": 10,
       "valor_ganhos": 37718.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1595.67,
-      "meta": 7778.99,
+      "meta": 7792.78,
       "leads_novos": 93,
       "ganhos": 10,
       "valor_ganhos": 36201.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 4857.49,
+      "google": 4892.65,
       "meta": 0.0,
       "leads_novos": 10,
       "ganhos": 0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 273.55,
+      "meta": 274.85,
       "leads_novos": 10,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 67.6,
+      "meta": 68.2,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 750.86,
+      "google": 759.14,
       "meta": 0.0,
       "leads_novos": 4,
       "ganhos": 1,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2725.71,
+      "google": 2737.56,
       "meta": 0.0,
       "leads_novos": 40,
       "ganhos": 3,
@@ -138,7 +138,7 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 10777.70 x soma das campanhas 10678.14 (dif 99.56) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 10785.98 x soma das campanhas 10686.42 (dif 99.56) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 99.56",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
