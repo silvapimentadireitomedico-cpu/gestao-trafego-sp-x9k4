@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-11T03:48:54Z",
+  "atualizadoEm": "2026-11-11T04:18:28Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.584,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 486.42,
-      "meta": 7907.0,
+      "meta": 7921.29,
       "leads_novos": 110,
       "ganhos": 10,
       "valor_ganhos": 37718.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1549.56,
-      "meta": 7728.26,
+      "meta": 7733.14,
       "leads_novos": 93,
       "ganhos": 10,
       "valor_ganhos": 36201.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 65.84,
+      "meta": 65.96,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 268.22,
+      "meta": 269.38,
       "leads_novos": 10,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 66.32,
+      "meta": 66.37,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 9881.59,
+      "google": 9889.67,
       "meta": 0.0,
       "leads_novos": 156,
       "ganhos": 15,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 2681.48,
+      "google": 2714.36,
       "meta": 0.0,
       "leads_novos": 40,
       "ganhos": 3,
@@ -138,7 +138,7 @@
       }
     ],
     "avisos": [
-      "google 1301598996: total da conta 10664.96 x soma das campanhas 10565.40 (dif 99.56) -> diferença lançada em NÃO MAPEADO",
+      "google 1301598996: total da conta 10673.04 x soma das campanhas 10573.48 (dif 99.56) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 99.56",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83"
     ]
