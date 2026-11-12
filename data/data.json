@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-12T07:18:28Z",
+  "atualizadoEm": "2026-11-12T07:48:34Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.5606,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 559.4,
-      "meta": 8801.77,
+      "meta": 8807.09,
       "leads_novos": 112,
       "ganhos": 10,
       "valor_ganhos": 37718.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 1699.48,
-      "meta": 8417.55,
+      "meta": 8420.47,
       "leads_novos": 97,
       "ganhos": 11,
       "valor_ganhos": 41191.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 70.87,
+      "meta": 70.99,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 5301.37,
+      "google": 5301.85,
       "meta": 0.0,
       "leads_novos": 11,
       "ganhos": 0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 294.08,
+      "meta": 294.11,
       "leads_novos": 10,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -112,7 +112,7 @@
     },
     "nao-mapeado": {
       "google": 100.24,
-      "meta": 20.41,
+      "meta": 20.42,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Médico, cuidado: você pode...",
-        "gasto_brl": 13.58
+        "gasto_brl": 13.59
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 5301.37 x soma das campanhas 5294.39 (dif 6.98) -> diferença lançada em DIREITO MÉDICO",
+      "google 6351554556: total da conta 5301.85 x soma das campanhas 5294.39 (dif 7.46) -> diferença lançada em DIREITO MÉDICO",
       "google 1301598996: total da conta 12001.67 x soma das campanhas 11901.43 (dif 100.24) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 100.24",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 13.58"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 13.59"
     ]
   }
 }
