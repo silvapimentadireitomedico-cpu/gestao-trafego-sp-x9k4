@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-13T19:19:02Z",
+  "atualizadoEm": "2026-11-13T20:19:03Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.6518,
@@ -11,9 +11,9 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 672.43,
-      "meta": 10045.52,
-      "leads_novos": 134,
+      "google": 684.59,
+      "meta": 10081.34,
+      "leads_novos": 135,
       "ganhos": 11,
       "valor_ganhos": 41708.0,
       "orcamento_diario_google": 54.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 858.66
     },
     "fies": {
-      "google": 1953.87,
-      "meta": 9556.01,
+      "google": 1998.65,
+      "meta": 9580.56,
       "leads_novos": 118,
       "ganhos": 13,
       "valor_ganhos": 50672.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 79.94,
+      "meta": 80.89,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 6034.16,
+      "google": 6067.35,
       "meta": 0.0,
       "leads_novos": 15,
       "ganhos": 1,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 324.71,
+      "meta": 325.18,
       "leads_novos": 11,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 80.07,
+      "meta": 80.51,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 13120.69,
+      "google": 13206.8,
       "meta": 0.0,
-      "leads_novos": 214,
+      "leads_novos": 216,
       "ganhos": 20,
       "valor_ganhos": 79840.02,
       "orcamento_diario_google": 1393.0,
@@ -91,7 +91,7 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 958.23,
+      "google": 999.07,
       "meta": 0.0,
       "leads_novos": 7,
       "ganhos": 1,
@@ -101,9 +101,9 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 3432.71,
+      "google": 3454.28,
       "meta": 0.0,
-      "leads_novos": 52,
+      "leads_novos": 53,
       "ganhos": 4,
       "valor_ganhos": 14578.0,
       "orcamento_diario_google": 250.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 110.88,
-      "meta": 37.68,
+      "google": 111.01,
+      "meta": 38.16,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 110.88
+        "gasto_brl": 111.01
       },
       {
         "canal": "meta",
@@ -140,15 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Médico, cuidado: você pode...",
-        "gasto_brl": 30.85
+        "gasto_brl": 31.33
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 6034.16 x soma das campanhas 6016.53 (dif 17.63) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 14189.80 x soma das campanhas 14078.92 (dif 110.88) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 110.88",
+      "google 6351554556: total da conta 6067.35 x soma das campanhas 6049.53 (dif 17.82) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 14316.89 x soma das campanhas 14205.88 (dif 111.01) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 111.01",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 30.85"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 31.33"
     ]
   }
 }
