@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-18T00:19:09Z",
+  "atualizadoEm": "2026-11-18T01:19:10Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.7851,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 807.51,
-      "meta": 13601.63,
+      "meta": 13653.63,
       "leads_novos": 163,
       "ganhos": 11,
       "valor_ganhos": 41708.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 2657.59,
-      "meta": 12622.42,
+      "meta": 12647.31,
       "leads_novos": 144,
       "ganhos": 16,
       "valor_ganhos": 62142.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 109.06,
+      "meta": 109.18,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 7762.26,
+      "google": 7776.43,
       "meta": 0.0,
       "leads_novos": 18,
       "ganhos": 2,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 431.38,
+      "meta": 431.96,
       "leads_novos": 12,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 107.99,
+      "meta": 108.02,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 17253.71,
+      "google": 17277.12,
       "meta": 0.0,
-      "leads_novos": 283,
+      "leads_novos": 285,
       "ganhos": 24,
       "valor_ganhos": 95032.02,
       "orcamento_diario_google": 1393.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 4635.66,
+      "google": 4652.98,
       "meta": 0.0,
       "leads_novos": 64,
       "ganhos": 5,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 156.71,
-      "meta": 87.75,
+      "google": 157.16,
+      "meta": 87.34,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 156.71
+        "gasto_brl": 157.16
       },
       {
         "canal": "meta",
@@ -140,23 +140,15 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Médico, cuidado: você pode...",
-        "gasto_brl": 79.59
-      },
-      {
-        "canal": "meta",
-        "conta": "act_320965166251046",
-        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 1.33
+        "gasto_brl": 80.51
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 7762.26 x soma das campanhas 7702.57 (dif 59.69) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 18665.33 x soma das campanhas 18508.62 (dif 156.71) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 156.71",
-      "meta act_320965166251046: total da conta 25526.10 x soma das campanhas 25524.77 (dif 1.33) -> diferença lançada em NÃO MAPEADO",
+      "google 6351554556: total da conta 7776.43 x soma das campanhas 7716.51 (dif 59.92) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 18689.18 x soma das campanhas 18532.02 (dif 157.16) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 157.16",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 79.59",
-      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 1.33"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 80.51"
     ]
   }
 }
