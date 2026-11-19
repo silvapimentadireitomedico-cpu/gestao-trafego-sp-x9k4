@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-19T20:19:05Z",
+  "atualizadoEm": "2026-11-19T21:19:05Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8889,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 868.13,
-      "meta": 14970.58,
+      "meta": 14997.43,
       "leads_novos": 178,
       "ganhos": 12,
       "valor_ganhos": 45299.0,
@@ -21,8 +21,8 @@
       "orcamento_diario": 792.0
     },
     "fies": {
-      "google": 2790.05,
-      "meta": 13722.88,
+      "google": 2801.23,
+      "meta": 13745.24,
       "leads_novos": 154,
       "ganhos": 16,
       "valor_ganhos": 62142.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 118.18,
+      "meta": 119.32,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,18 +41,18 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 8720.21,
+      "google": 8728.38,
       "meta": 0.0,
-      "leads_novos": 23,
-      "ganhos": 3,
-      "valor_ganhos": 16970.0,
+      "leads_novos": 24,
+      "ganhos": 4,
+      "valor_ganhos": 20960.0,
       "orcamento_diario_google": 446.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 446.0
     },
     "inss": {
       "google": 0.0,
-      "meta": 472.22,
+      "meta": 475.05,
       "leads_novos": 12,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 115.9,
+      "meta": 116.8,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,11 +71,11 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 20152.96,
+      "google": 20179.19,
       "meta": 0.0,
-      "leads_novos": 337,
-      "ganhos": 26,
-      "valor_ganhos": 99512.02,
+      "leads_novos": 336,
+      "ganhos": 27,
+      "valor_ganhos": 101502.02,
       "orcamento_diario_google": 1393.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 1393.0
@@ -91,9 +91,9 @@
       "orcamento_diario": 0.0
     },
     "seg-vida": {
-      "google": 1456.1,
+      "google": 1494.08,
       "meta": 0.0,
-      "leads_novos": 11,
+      "leads_novos": 12,
       "ganhos": 2,
       "valor_ganhos": 3425.0,
       "orcamento_diario_google": 141.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 5092.54,
+      "google": 5099.15,
       "meta": 0.0,
       "leads_novos": 68,
       "ganhos": 6,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 175.06,
-      "meta": 112.54,
+      "google": 175.42,
+      "meta": 111.42,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 175.06
+        "gasto_brl": 175.42
       },
       {
         "canal": "meta",
@@ -146,24 +146,16 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um médico foi condenado pela...",
-        "gasto_brl": 20.92
-      },
-      {
-        "canal": "meta",
-        "conta": "act_320965166251046",
-        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 1.71
+        "gasto_brl": 21.51
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 8720.21 x soma das campanhas 8637.07 (dif 83.14) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 21784.12 x soma das campanhas 21609.06 (dif 175.06) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 175.06",
-      "meta act_320965166251046: total da conta 27825.78 x soma das campanhas 27824.07 (dif 1.71) -> diferença lançada em NÃO MAPEADO",
+      "google 6351554556: total da conta 8728.38 x soma das campanhas 8645.11 (dif 83.27) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 21848.69 x soma das campanhas 21673.27 (dif 175.42) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 175.42",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 83.08",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 20.92",
-      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 1.71"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 21.51"
     ]
   }
 }
