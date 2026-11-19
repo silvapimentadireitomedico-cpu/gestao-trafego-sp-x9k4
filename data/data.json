@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-19T18:19:12Z",
+  "atualizadoEm": "2026-11-19T19:19:02Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8889,
@@ -11,8 +11,8 @@
   },
   "gastos": {
     "aux-moradia": {
-      "google": 856.15,
-      "meta": 14896.93,
+      "google": 868.13,
+      "meta": 14934.26,
       "leads_novos": 178,
       "ganhos": 12,
       "valor_ganhos": 45299.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 2790.05,
-      "meta": 13669.26,
+      "meta": 13694.69,
       "leads_novos": 154,
       "ganhos": 16,
       "valor_ganhos": 62142.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 117.46,
+      "meta": 118.03,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,9 +41,9 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 8635.28,
+      "google": 8650.58,
       "meta": 0.0,
-      "leads_novos": 22,
+      "leads_novos": 23,
       "ganhos": 3,
       "valor_ganhos": 16970.0,
       "orcamento_diario_google": 446.0,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 468.81,
+      "meta": 469.77,
       "leads_novos": 12,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 115.6,
+      "meta": 115.71,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,11 +71,11 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 19931.58,
+      "google": 20021.37,
       "meta": 0.0,
-      "leads_novos": 331,
-      "ganhos": 25,
-      "valor_ganhos": 98022.02,
+      "leads_novos": 335,
+      "ganhos": 26,
+      "valor_ganhos": 99512.02,
       "orcamento_diario_google": 1393.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 1393.0
@@ -101,9 +101,9 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 5058.84,
+      "google": 5085.58,
       "meta": 0.0,
-      "leads_novos": 67,
+      "leads_novos": 68,
       "ganhos": 6,
       "valor_ganhos": 22300.0,
       "orcamento_diario_google": 250.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 174.46,
-      "meta": 109.45,
+      "google": 174.53,
+      "meta": 109.97,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 174.46
+        "gasto_brl": 174.53
       },
       {
         "canal": "meta",
@@ -146,16 +146,16 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um médico foi condenado pela...",
-        "gasto_brl": 19.54
+        "gasto_brl": 20.06
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 8635.28 x soma das campanhas 8553.17 (dif 82.11) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 21551.37 x soma das campanhas 21376.91 (dif 174.46) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 174.46",
+      "google 6351554556: total da conta 8650.58 x soma das campanhas 8567.58 (dif 83.00) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 21641.23 x soma das campanhas 21466.69 (dif 174.53) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 174.53",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 83.08",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 19.54"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 20.06"
     ]
   }
 }
