@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-23T03:19:00Z",
+  "atualizadoEm": "2026-11-23T04:19:03Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8889,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 979.83,
-      "meta": 17321.11,
+      "meta": 17339.36,
       "leads_novos": 178,
       "ganhos": 13,
       "valor_ganhos": 47990.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3024.45,
-      "meta": 15661.81,
+      "meta": 15670.26,
       "leads_novos": 162,
       "ganhos": 16,
       "valor_ganhos": 62142.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 136.4,
+      "meta": 139.59,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 9677.09,
+      "google": 9677.22,
       "meta": 0.0,
       "leads_novos": 26,
       "ganhos": 4,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 528.37,
+      "meta": 529.38,
       "leads_novos": 12,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 133.96,
+      "meta": 134.09,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 21698.59,
+      "google": 21701.73,
       "meta": 0.0,
       "leads_novos": 366,
       "ganhos": 27,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 5884.53,
+      "google": 5896.38,
       "meta": 0.0,
       "leads_novos": 79,
       "ganhos": 6,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 207.9,
-      "meta": 151.06,
+      "google": 208.2,
+      "meta": 152.0,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 207.9
+        "gasto_brl": 208.2
       },
       {
         "canal": "meta",
@@ -146,16 +146,24 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um médico foi condenado pela...",
-        "gasto_brl": 61.15
+        "gasto_brl": 61.55
+      },
+      {
+        "canal": "meta",
+        "conta": "act_320965166251046",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": 0.54
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 9677.09 x soma das campanhas 9564.87 (dif 112.22) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 23472.95 x soma das campanhas 23265.06 (dif 207.90) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 207.90",
+      "google 6351554556: total da conta 9677.22 x soma das campanhas 9564.87 (dif 112.35) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 23476.39 x soma das campanhas 23268.20 (dif 208.20) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 208.20",
+      "meta act_320965166251046: total da conta 31870.12 x soma das campanhas 31869.58 (dif 0.54) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 83.08",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 61.15"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 61.55",
+      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 0.54"
     ]
   }
 }
