@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-24T17:19:11Z",
+  "atualizadoEm": "2026-11-24T18:19:09Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8573,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1097.29,
-      "meta": 18333.52,
+      "meta": 18369.44,
       "leads_novos": 202,
       "ganhos": 14,
       "valor_ganhos": 49781.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3116.31,
-      "meta": 16896.8,
+      "meta": 16921.79,
       "leads_novos": 182,
       "ganhos": 19,
       "valor_ganhos": 70863.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 148.96,
+      "meta": 149.66,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,18 +41,18 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 10744.86,
+      "google": 10785.49,
       "meta": 0.0,
       "leads_novos": 37,
-      "ganhos": 4,
-      "valor_ganhos": 20960.0,
+      "ganhos": 5,
+      "valor_ganhos": 23950.0,
       "orcamento_diario_google": 446.0,
       "orcamento_diario_meta": 0.0,
       "orcamento_diario": 446.0
     },
     "inss": {
       "google": 0.0,
-      "meta": 597.47,
+      "meta": 599.91,
       "leads_novos": 15,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 151.34,
+      "meta": 151.61,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,9 +71,9 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 24404.73,
+      "google": 24565.44,
       "meta": 0.0,
-      "leads_novos": 419,
+      "leads_novos": 421,
       "ganhos": 30,
       "valor_ganhos": 120482.02,
       "orcamento_diario_google": 1393.0,
@@ -101,9 +101,9 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 6226.84,
+      "google": 6249.45,
       "meta": 0.0,
-      "leads_novos": 82,
+      "leads_novos": 83,
       "ganhos": 6,
       "valor_ganhos": 22300.0,
       "orcamento_diario_google": 250.0,
@@ -111,8 +111,8 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 222.89,
-      "meta": 165.76,
+      "google": 225.46,
+      "meta": 166.46,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 222.89
+        "gasto_brl": 225.46
       },
       {
         "canal": "meta",
@@ -146,16 +146,16 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um médico foi condenado pela...",
-        "gasto_brl": 75.85
+        "gasto_brl": 76.55
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 10744.86 x soma das campanhas 10621.65 (dif 123.21) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 26310.82 x soma das campanhas 26087.93 (dif 222.89) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 222.89",
+      "google 6351554556: total da conta 10785.49 x soma das campanhas 10661.59 (dif 123.90) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 26474.11 x soma das campanhas 26248.64 (dif 225.46) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 225.46",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 83.08",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 75.85"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 76.55"
     ]
   }
 }
