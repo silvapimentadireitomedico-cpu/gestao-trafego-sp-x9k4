@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-25T03:19:04Z",
+  "atualizadoEm": "2026-11-25T04:19:04Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8573,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1131.63,
-      "meta": 18797.16,
+      "meta": 18817.48,
       "leads_novos": 204,
       "ganhos": 14,
       "valor_ganhos": 49781.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3144.45,
-      "meta": 17185.09,
+      "meta": 17195.78,
       "leads_novos": 183,
       "ganhos": 20,
       "valor_ganhos": 75354.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 152.9,
+      "meta": 152.91,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 11059.32,
+      "google": 11077.6,
       "meta": 0.0,
       "leads_novos": 37,
       "ganhos": 6,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 603.77,
+      "meta": 604.42,
       "leads_novos": 16,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 152.58,
+      "meta": 152.65,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -71,7 +71,7 @@
       "orcamento_diario": 6.0
     },
     "seguro": {
-      "google": 24997.9,
+      "google": 25006.28,
       "meta": 0.0,
       "leads_novos": 429,
       "ganhos": 31,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 6366.69,
+      "google": 6374.53,
       "meta": 0.0,
       "leads_novos": 83,
       "ganhos": 6,
@@ -111,7 +111,7 @@
       "orcamento_diario": 250.0
     },
     "nao-mapeado": {
-      "google": 227.81,
+      "google": 228.22,
       "meta": 171.32,
       "leads_novos": 0,
       "ganhos": 0,
@@ -128,7 +128,7 @@
         "canal": "google",
         "conta": "1301598996",
         "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
-        "gasto_brl": 227.81
+        "gasto_brl": 228.22
       },
       {
         "canal": "meta",
@@ -146,16 +146,24 @@
         "canal": "meta",
         "conta": "act_320965166251046",
         "campanha": "Post do Instagram: Um médico foi condenado pela...",
-        "gasto_brl": 81.41
+        "gasto_brl": 81.5
+      },
+      {
+        "canal": "meta",
+        "conta": "act_320965166251046",
+        "campanha": "(gasto da conta fora de campanha: YouTube/rede cruzada)",
+        "gasto_brl": -0.09
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 11059.32 x soma das campanhas 10929.41 (dif 129.91) -> diferença lançada em DIREITO MÉDICO",
-      "google 1301598996: total da conta 26917.61 x soma das campanhas 26689.80 (dif 227.81) -> diferença lançada em NÃO MAPEADO",
-      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 227.81",
+      "google 6351554556: total da conta 11077.60 x soma das campanhas 10947.32 (dif 130.28) -> diferença lançada em DIREITO MÉDICO",
+      "google 1301598996: total da conta 26926.40 x soma das campanhas 26698.18 (dif 228.22) -> diferença lançada em NÃO MAPEADO",
+      "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 228.22",
+      "meta act_320965166251046: total da conta 34787.66 x soma das campanhas 34787.75 (dif -0.09) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Médico, cuidado: você pode...\" R$ 83.08",
-      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 81.41"
+      "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um médico foi condenado pela...\" R$ 81.50",
+      "NÃO MAPEADO: meta act_320965166251046 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ -0.09"
     ]
   }
 }
