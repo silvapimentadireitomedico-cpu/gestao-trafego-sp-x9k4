@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-11-26T04:19:02Z",
+  "atualizadoEm": "2026-11-26T05:19:04Z",
   "mesReferencia": "2026-11",
   "tipo": "corrente",
   "taxa_usd": 5.8825,
@@ -12,7 +12,7 @@
   "gastos": {
     "aux-moradia": {
       "google": 1201.42,
-      "meta": 19505.94,
+      "meta": 19518.09,
       "leads_novos": 214,
       "ganhos": 15,
       "valor_ganhos": 51771.0,
@@ -22,7 +22,7 @@
     },
     "fies": {
       "google": 3211.67,
-      "meta": 17715.67,
+      "meta": 17723.09,
       "leads_novos": 188,
       "ganhos": 21,
       "valor_ganhos": 80344.0,
@@ -32,7 +32,7 @@
     },
     "fies-suspensao": {
       "google": 0.0,
-      "meta": 157.73,
+      "meta": 158.05,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -41,7 +41,7 @@
       "orcamento_diario": 6.0
     },
     "direito-medico": {
-      "google": 11897.28,
+      "google": 11906.41,
       "meta": 0.0,
       "leads_novos": 38,
       "ganhos": 6,
@@ -52,7 +52,7 @@
     },
     "inss": {
       "google": 0.0,
-      "meta": 629.95,
+      "meta": 630.31,
       "leads_novos": 16,
       "ganhos": 1,
       "valor_ganhos": 1341.0,
@@ -62,7 +62,7 @@
     },
     "provab": {
       "google": 0.0,
-      "meta": 159.18,
+      "meta": 159.2,
       "leads_novos": 0,
       "ganhos": 0,
       "valor_ganhos": 0.0,
@@ -101,7 +101,7 @@
       "orcamento_diario": 141.0
     },
     "erro-medico": {
-      "google": 6608.93,
+      "google": 6612.25,
       "meta": 0.0,
       "leads_novos": 87,
       "ganhos": 6,
@@ -150,7 +150,7 @@
       }
     ],
     "avisos": [
-      "google 6351554556: total da conta 11897.28 x soma das campanhas 11758.35 (dif 138.93) -> diferença lançada em DIREITO MÉDICO",
+      "google 6351554556: total da conta 11906.41 x soma das campanhas 11767.48 (dif 138.93) -> diferença lançada em DIREITO MÉDICO",
       "google 1301598996: total da conta 28163.97 x soma das campanhas 27926.73 (dif 237.24) -> diferença lançada em NÃO MAPEADO",
       "NÃO MAPEADO: google 1301598996 \"(gasto da conta fora de campanha: YouTube/rede cruzada)\" R$ 237.24",
       "NÃO MAPEADO: meta act_320965166251046 \"Post do Instagram: Um vereador constrange uma...\" R$ 6.83",
